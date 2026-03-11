@@ -17,7 +17,7 @@ export class UpdateShadow implements IUseCase<UpdateShadowCommand, Shadow>{
             StringObject.create(request.data.identifier),
             ShadowType.create(request.data.type),
             ShadowState.create(request.data.state),
-            Coords.create(request.data.x, request.data.y),
+            Coords.create(request.data.coords.x, request.data.coords.y),
         );
 
         const result = await this.persist.update(shadow);

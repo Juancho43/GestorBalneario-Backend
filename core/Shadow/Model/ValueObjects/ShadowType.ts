@@ -16,10 +16,10 @@ export class ShadowType{
 
     private static getShapeByType(type: string): string {
         switch (type) {
-            case 'sombrilla':
-                return 'circle';
-            case 'carpa':
-                return 'rect';
+            case 'circle':
+                return 'sombrilla';
+            case 'rect':
+                return 'carpa';
             default:
                 throw new Error(`Unknown shadow type: ${type}`);
         }

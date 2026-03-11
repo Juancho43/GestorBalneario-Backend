@@ -10,9 +10,12 @@ import {DeleteShadowService} from "./services/delete-shadow/delete-shadow.servic
 import {SqliteShadowDelete} from "./repository/SqliteShadowDelete";
 import {SqliteShadowPersists} from "./repository/SqliteShadowPersists";
 import {SqliteShadowGetById} from "./repository/SqliteShadowGetById";
+import {GetCurrentShadowsService} from "./services/get-current-shadows/get-current-shadows.service";
+import {SqliteShadowsGetCurrent} from "./repository/SqliteShadowsGetCurrent";
+import {GetCurrentShadowsController} from "./controllers/get-current-shadows/get-current-shadows.controller";
 
 @Module({
-    controllers: [CreateShadowController, EditShadowController, DeleteShadowController, GetByIdShadowController],
+    controllers: [CreateShadowController, EditShadowController, DeleteShadowController, GetByIdShadowController, GetCurrentShadowsController],
     providers: [
         {
             provide: 'DELETE_SHADOW_INTERFACE',
@@ -26,6 +29,10 @@ import {SqliteShadowGetById} from "./repository/SqliteShadowGetById";
             provide: 'GET_SHADOW_INTERFACE',
             useClass: SqliteShadowGetById,
         },
-        CreateShadowService, EditShadowService, DeleteShadowService, GetShadowService],
+        {
+            provide: 'GET_ALL_SHADOW_INTERFACE',
+            useClass: SqliteShadowsGetCurrent,
+        },
+        CreateShadowService, EditShadowService, DeleteShadowService, GetShadowService, GetCurrentShadowsService],
 })
 export class ShadowModule {}

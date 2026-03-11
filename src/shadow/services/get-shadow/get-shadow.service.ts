@@ -2,6 +2,7 @@ import {Inject, Injectable} from '@nestjs/common';
 import type {GetShadow} from "../../../../core/Shadow/Model/GetShadow";
 import {GetShadowById} from "../../../../core/Shadow/Application/GetShadowById";
 import {GetShadowByIdQuery} from "../../../../core/Shadow/Application/DTO/GetShadowByIdQuery";
+import {ShadowResponse} from "../../../../core/Shadow/Application/DTO/ShadowResponse";
 
 @Injectable()
 export class GetShadowService {
@@ -13,7 +14,7 @@ export class GetShadowService {
 
     async execute(command: GetShadowByIdQuery){
         try {
-            return await this.useCase.execute(command);
+            return ShadowResponse.create(await this.useCase.execute(command));
         }catch (error) {
             console.error('Error getting shadow:', error);
             throw error;

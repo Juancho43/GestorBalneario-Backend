@@ -13,12 +13,13 @@ export class CreateShadow implements IUseCase<CreateShadowCommand, Shadow>{
     constructor(private readonly persist: PersistShadow) {
     }
     async execute(request: CreateShadowCommand): Promise<Shadow> {
+        console.log(request)
         const shadow = Shadow.create(
             randomUUID().toString(),
             StringObject.create(request.identifier),
             ShadowType.create(request.type),
-            ShadowState.create(request.state),
-            Coords.create(request.x, request.y),
+            ShadowState.create('active'),
+            Coords.create(request.coords.x, request.coords.y),
         );
 
         await this.persist.save(shadow);

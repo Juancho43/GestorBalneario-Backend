@@ -12,10 +12,12 @@ import { DeleteShadowService } from './shadow/services/delete-shadow/delete-shad
 import { GetShadowService } from './shadow/services/get-shadow/get-shadow.service';
 import { DatabaseModule } from './database/database.module';
 import { DatabaseMigrationService } from './database/database-migration/database-migration.service';
+import { GetCurrentShadowsController } from './shadow/controllers/get-current-shadows/get-current-shadows.controller';
+import { GetCurrentShadowsService } from './shadow/services/get-current-shadows/get-current-shadows.service';
 
 @Module({
   imports: [ShadowModule, DatabaseModule],
   controllers: [AppController],
-  providers: [AppService  ],
+  providers: [AppService],
 })
 export class AppModule {}

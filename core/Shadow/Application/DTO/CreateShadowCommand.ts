@@ -3,8 +3,7 @@ export class CreateShadowCommand {
         public readonly type: string,
         public readonly identifier: string,
         public readonly state: string,
-        public readonly x: number,
-        public readonly y: number
+        public readonly coords: {x: number, y:number}
     ) {
     }
 }

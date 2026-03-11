@@ -6,7 +6,7 @@ import {UpdateShadowCommand} from "../../../../core/Shadow/Application/DTO/Updat
 export class EditShadowController {
     constructor(@Inject() private service: EditShadowService) {
     }
-    @Put('create')
+    @Put('update')
     async createShadow(@Body()request: UpdateShadowCommand) {
         return await this.service.execute(request);
     }

@@ -1,4 +1,4 @@
-import {Body, Controller, Delete, Inject} from '@nestjs/common';
+import {Body, Controller, Delete, Inject, Param} from '@nestjs/common';
 import {DeleteShadowService} from "../../services/delete-shadow/delete-shadow.service";
 import {DeleteShadowCommand} from "../../../../core/Shadow/Application/DTO/DeleteShadowCommand";
 
@@ -6,8 +6,9 @@ import {DeleteShadowCommand} from "../../../../core/Shadow/Application/DTO/Delet
 export class DeleteShadowController {
     constructor(@Inject() private service: DeleteShadowService) {
     }
-    @Delete('delete')
-    async createShadow(@Body()request: DeleteShadowCommand) {
-        return await this.service.execute(request);
+    @Delete('delete/:id')
+    async createShadow(@Param('id') request) {
+        const command = new DeleteShadowCommand(request);
+        return await this.service.execute(command);
     }
 }
