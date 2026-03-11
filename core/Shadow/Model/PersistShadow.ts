@@ -1,5 +1,6 @@
 import {Shadow} from "./Shadow";
 
 export interface PersistShadow{
-    save(shadow: Shadow): void;
+    update(shadow: Shadow): Promise<boolean>;
+    save(shadow: Shadow): Promise<void>;
 }

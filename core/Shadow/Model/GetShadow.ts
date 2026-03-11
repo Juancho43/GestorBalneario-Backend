@@ -1,5 +1,5 @@
 import {Shadow} from "./Shadow";
 
-export interface GetShadowById{
+export interface GetShadow {
     get(id: string): Promise<Shadow | null>;
 }
