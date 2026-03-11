@@ -1,10 +1,12 @@
+import {type} from "node:os";
+
 export class ShadowType{
-    private type: string;
-    private shape: string;
+    private _type: string;
+    private _shape: string;
 
     private constructor(type: string, shape: string) {
-        this.type = type;
-        this.shape = shape;
+        this._type = type;
+        this._shape = shape;
     }
 
     static create(type: string): ShadowType {
@@ -21,5 +23,14 @@ export class ShadowType{
             default:
                 throw new Error(`Unknown shadow type: ${type}`);
         }
+    }
+
+
+    get type(): string {
+        return this._type;
+    }
+
+    get shape(): string {
+        return this._shape;
     }
 }

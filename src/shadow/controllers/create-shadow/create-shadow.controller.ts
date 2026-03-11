@@ -1,9 +1,13 @@
-import {Controller, Post} from '@nestjs/common';
+import {Body, Controller, Inject, Post} from '@nestjs/common';
+import {CreateShadowCommand} from "../../../../core/Shadow/Application/DTO/CreateShadowCommand";
+import {CreateShadowService} from "../../services/create-shadow/create-shadow.service";
 
 @Controller('shadow')
 export class CreateShadowController {
+    constructor(@Inject() private service: CreateShadowService) {
+    }
     @Post('create')
-    createShadow() {
-
+    async createShadow(@Body()request: CreateShadowCommand) {
+        return await this.service.execute(request);
     }
 }
