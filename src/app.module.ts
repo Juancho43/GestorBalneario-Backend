@@ -10,10 +10,12 @@ import { CreateShadowService } from './shadow/services/create-shadow/create-shad
 import { EditShadowService } from './shadow/services/edit-shadow/edit-shadow.service';
 import { DeleteShadowService } from './shadow/services/delete-shadow/delete-shadow.service';
 import { GetShadowService } from './shadow/services/get-shadow/get-shadow.service';
+import { DatabaseModule } from './database/database.module';
+import { DatabaseMigrationService } from './database/database-migration/database-migration.service';
 
 @Module({
-  imports: [ShadowModule],
+  imports: [ShadowModule, DatabaseModule],
   controllers: [AppController],
-  providers: [AppService ],
+  providers: [AppService  ],
 })
 export class AppModule {}
