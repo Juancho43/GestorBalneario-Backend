@@ -14,9 +14,11 @@ import { DatabaseModule } from './database/database.module';
 import { DatabaseMigrationService } from './database/database-migration/database-migration.service';
 import { GetCurrentShadowsController } from './shadow/controllers/get-current-shadows/get-current-shadows.controller';
 import { GetCurrentShadowsService } from './shadow/services/get-current-shadows/get-current-shadows.service';
+import { ClientsModule } from './clients/clients.module';
+import { ReservationModule } from './reservation/reservation.module';
 
 @Module({
-  imports: [ShadowModule, DatabaseModule],
+  imports: [ShadowModule, DatabaseModule, ClientsModule, ReservationModule],
   controllers: [AppController],
   providers: [AppService],
 })
