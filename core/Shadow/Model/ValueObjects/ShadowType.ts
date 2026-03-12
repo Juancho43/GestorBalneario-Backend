@@ -1,5 +1,3 @@
-import {type} from "node:os";
-
 export class ShadowType{
     private _type: string;
     private _shape: string;

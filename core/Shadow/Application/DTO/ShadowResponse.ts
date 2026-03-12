@@ -8,6 +8,7 @@ export class ShadowResponse{
             name: shadow.type.shape,
             type: shadow.type.type,
             coords: shadow.coords,
+            state: shadow.state.state,
         }
 
     }
