@@ -1,3 +1,3 @@
 export interface DeleteShadowById {
-    delete(id: number): Promise<void>;
+    delete(id: string): Promise<boolean>;
 }
