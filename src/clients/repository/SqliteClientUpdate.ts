@@ -12,7 +12,7 @@ export class SqliteClientUpdate implements UpdateClientDAO {
             UPDATE Clients 
             SET name = @name,
                 email = @email,
-                phone = @phone,
+                phone = @phone
             WHERE id = @id
         `);
 

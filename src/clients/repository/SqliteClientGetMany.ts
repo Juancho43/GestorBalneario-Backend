@@ -10,27 +10,25 @@ import {EmailObject} from "../../../core/common/Model/EmailObject";
 export class SqliteClientGetMany implements GetClientsDAO {
 
     constructor(@Inject(DB_PROVIDER) private readonly db: any) {}
-    get(query: GetClientsQuery): Promise<Client[]> {
-        const searchTerm = `%${query.query}%`; // 'query' es lo que el usuario escribe
-        const limit = query.pageSize;                // Cantidad de resultados por página
-        const offset = (query.page - 1) * limit; // 'page' es el número de página (1, 2, 3...)
+       async get(query: GetClientsQuery): Promise<Client[]> {
+            const searchTerm = `%${query.query}%`;
+            const limit = query.pageSize;
+            const offset = (query.page - 1) * limit;
 
-        const rows = this.db.prepare(`
-            SELECT * FROM client
-            WHERE name LIKE ?
-               OR email LIKE ?
-               OR phone LIKE ?
-            ORDER BY id ASC
+            const rows = this.db.prepare(`
+                SELECT * FROM Clients 
+                WHERE (name LIKE ? OR email LIKE ? OR phone LIKE ?)
+                ORDER BY id ASC
                 LIMIT ? OFFSET ?
-        `).all(searchTerm, searchTerm, searchTerm, limit, offset);
+            `).all(searchTerm, searchTerm, searchTerm, limit, offset);
 
-        return rows.map(row =>
-            Client.create(
-                row.id,
-                StringObject.create(row.name),
-                EmailObject.create(row.email),
-                StringObject.create(row.phone),
-            )
-        );
-    }
+            return rows.map(row =>
+                Client.create(
+                    row.id,
+                    StringObject.create(row.name),
+                    EmailObject.create(row.email),
+                    StringObject.create(row.phone),
+                )
+            );
+        }
 }
