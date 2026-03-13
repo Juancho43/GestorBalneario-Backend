@@ -5,9 +5,9 @@ export class EmailObject {
         this.email = email;
     }
 
-    static create(email: string): EmailObject | Error {
+    static create(email: string): EmailObject{
         if (!EmailObject.validateEmail(email)) {
-            return new Error("El formato del correo electrónico no es válido.");
+            throw new Error("El formato del correo electrónico no es válido.");
         }
         return new EmailObject(email);
     }

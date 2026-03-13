@@ -13,7 +13,6 @@ export class CreateShadow implements IUseCase<CreateShadowCommand, Shadow>{
     constructor(private readonly persist: PersistShadow) {
     }
     async execute(request: CreateShadowCommand): Promise<Shadow> {
-        console.log(request)
         const shadow = Shadow.create(
             randomUUID().toString(),
             StringObject.create(request.identifier),

@@ -8,7 +8,6 @@ export class SqliteShadowDelete implements DeleteShadowById{
 
     delete(id: string): Promise<boolean> {
         const result = this.db.prepare('DELETE FROM Shadows WHERE id = ?').run(id);
-
         return result.changes;
     }
 

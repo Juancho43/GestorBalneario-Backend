@@ -1,4 +1,15 @@
-import { Controller } from '@nestjs/common';
+import {Controller, Delete, Inject, Param} from '@nestjs/common';
+import {DeleteClientService} from "../../services/delete-client/delete-client.service";
+import {DeleteClientCommand} from "../../../../core/Client/Application/DTO/DeleteClientCommand";
 
-@Controller('delete-client')
-export class DeleteClientController {}
+@Controller('client')
+export class DeleteClientController {
+    constructor(@Inject() private service: DeleteClientService) {
+
+    }
+    @Delete('delete/:id')
+    async createShadow(@Param('id') request) {
+        const command = new DeleteClientCommand(request);
+        return await this.service.execute(command);
+    }
+}
