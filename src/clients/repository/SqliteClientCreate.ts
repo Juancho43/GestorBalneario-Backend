@@ -9,8 +9,9 @@ export class SqliteClientCreate implements SaveClientDAO {
     async save(client: Client): Promise<void> {
         const stmt = this.db.prepare(
             `INSERT OR REPLACE INTO Clients (id, name, email, phone) 
-             VALUES (@id, @name, @email, @phone)`
+         VALUES (:id, :name, :email, :phone)`
         );
+
         stmt.run({
             id: client.id,
             name: client.name.getValue(),
