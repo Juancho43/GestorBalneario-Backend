@@ -12,7 +12,6 @@ export class UpdateShadow implements IUseCase<UpdateShadowCommand, Shadow>{
     constructor(private readonly persist: PersistShadow) {}
 
     async execute(request: UpdateShadowCommand): Promise<Shadow> {
-        console.log(request);
         const shadow = Shadow.create(
             request.id,
             StringObject.create(request.data.identifier),
@@ -20,13 +19,11 @@ export class UpdateShadow implements IUseCase<UpdateShadowCommand, Shadow>{
             ShadowState.create(request.data.state),
             Coords.create(request.data.coords.x, request.data.coords.y),
         );
-        console.log(shadow)
         const result = await this.persist.update(shadow);
         if (!result){
-            throw new Error("Error updating shadow");
+            throw new Error("Shadow not found");
         }
         return shadow;
-
     }
 
 }

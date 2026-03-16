@@ -23,6 +23,8 @@ export class SqliteShadowPersists implements PersistShadow{
     }
 
     async update(shadow: Shadow): Promise<boolean> {
+        console.log('Updating shadow');
+        console.log('Shadow to persist:', shadow)
         const stmt = this.db.prepare(`
         UPDATE Shadows 
         SET identifier = @identifier, 
@@ -32,7 +34,6 @@ export class SqliteShadowPersists implements PersistShadow{
             y = @y 
         WHERE id = @id
     `);
-
         const result = stmt.run({
             id: shadow.id,
             identifier: shadow.identifier.getValue(),
@@ -41,6 +42,7 @@ export class SqliteShadowPersists implements PersistShadow{
             x: shadow.coords.getX(),
             y: shadow.coords.getY()
         });
+        console.log('Result', result);
 
         return result.changes > 0;
     }
