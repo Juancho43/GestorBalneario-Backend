@@ -8,8 +8,26 @@ import {UpdateReservationDAO} from "../../../core/Reservation/Model/DAO/UpdateRe
 export class SqliteUpdateReservation implements UpdateReservationDAO {
 
     constructor(@Inject(DB_PROVIDER) private readonly db: any) {}
-    update(reservation: Reservation): Promise<boolean> {
-        throw new Error("Method not implemented.");
+    async update(reservation: Reservation): Promise<boolean> {
+        const stmt = this.db.prepare(`
+            UPDATE Reservations
+            SET clientId = @clientId,
+                shadowId = @shadowId,
+                checkIn = @checkIn,
+                checkOut = @checkOut
+            WHERE id = @id
+        `);
+
+        const reservaActualizada = {
+            id: reservation.id, // Es vital usar el ID para filtrar
+            clientId: reservation.client.id,
+            shadowId: reservation.shadow.id,
+            checkIn: reservation.booking.checkIn.toString(),
+            checkOut: reservation.booking.checkOut.toString(),
+        };
+
+        const result = stmt.run(reservaActualizada);
+        return result.affectedRows > 0;
     }
 
 }

@@ -13,6 +13,7 @@ export class CreateReservation implements IUseCase<CreateReservationCommand, Res
     async execute(request: CreateReservationCommand): Promise<Reservation> {
         const client = await this.getClient.get(request.clientId);
         const shadow = await this.getShadow.get(request.shadowId);
+        console.log(request)
         if(!shadow){
             throw new Error('Shadow does not exist');
         }

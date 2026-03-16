@@ -7,8 +7,22 @@ import {DB_PROVIDER} from "../../database/DBPROVIDER";
 export class SqliteCreateReservation implements CreateReservationDAO {
 
     constructor(@Inject(DB_PROVIDER) private readonly db: any) {}
-    save(reservation: Reservation): Promise<void> {
-        throw new Error("Method not implemented.");
+   async save(reservation: Reservation): Promise<void> {
+        const stmt = this.db.prepare(`
+            INSERT INTO Reservations (id, clientId, shadowId, checkIn, checkOut, date)
+            VALUES (@id, @clientId, @shadowId, @checkIn, @checkOut, @date)
+        `);
+
+        const reserva = {
+            id: reservation.id,
+            clientId: reservation.client.id,
+            shadowId: reservation.shadow.id,
+            checkIn: reservation.booking.checkIn.toString(),
+            checkOut: reservation.booking.checkOut.toString(),
+            date: (new Date()).toISOString(),
+        };
+
+        stmt.run(reserva);
     }
 
 }

@@ -2,7 +2,7 @@ import {GetCurrentReservationService} from "../../services/get-current-reservati
 import {Body, Controller, Inject, Post} from "@nestjs/common";
 import {GetCurrentReservationsQuery} from "../../../../core/Reservation/Application/DTO/GetCurrentReservationsQuery";
 
-@Controller('reservations')
+@Controller('reservation')
 export class GetCurrentReservationsController {
    constructor(@Inject() private service: GetCurrentReservationService) {
    }

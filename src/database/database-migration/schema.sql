@@ -17,9 +17,9 @@ CREATE TABLE IF NOT EXISTS `Clients`(
 );
 
 CREATE TABLE IF NOT EXISTS `Reservations`(
-    `id` VARCHAR(255) NOT NULL PRIMARY KEY,
-    `clientId` VARCHAR(255) NOT NULL,
-    `shadowId` VARCHAR(255) NOT NULL,
+    `id` TEXT NOT NULL PRIMARY KEY,
+    `clientId` TEXT NOT NULL,
+    `shadowId` TEXT NOT NULL,
     `checkIn` DATETIME NOT NULL,
     `checkOut` DATETIME NOT NULL,
     `date` DATETIME NOT NULL,
