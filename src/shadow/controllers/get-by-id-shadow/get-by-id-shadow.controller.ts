@@ -8,7 +8,7 @@ export class GetByIdShadowController {
     constructor(@Inject() private service: GetShadowService) {
     }
     @Get('get/:id')
-    async createShadow(@Param('id') id: string) {
+    async get(@Param('id') id: string) {
         const query = new GetShadowByIdQuery(id);
         return await this.service.execute(query);
 

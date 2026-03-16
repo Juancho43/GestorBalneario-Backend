@@ -10,10 +10,10 @@ CREATE TABLE IF NOT EXISTS `Shadows`(
 );
 
 CREATE TABLE IF NOT EXISTS `Clients`(
-    `id` VARCHAR(255) NOT NULL PRIMARY KEY,
-    `name` VARCHAR(255) NOT NULL,
-    `phone` VARCHAR(255) NOT NULL,
-    `email` VARCHAR(255) NOT NULL
+    `id` TEXT NOT NULL PRIMARY KEY,
+    `name` TEXT NOT NULL,
+    `phone` TEXT NOT NULL,
+    `email` TEXT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS `Reservations`(

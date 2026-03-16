@@ -1,4 +1,16 @@
-import { Controller } from '@nestjs/common';
+import {Body, Controller, Inject, Put} from '@nestjs/common';
+import {EditReservationService} from "../../services/edit-reservation/edit-reservation.service";
+import {EditReservationCommand} from "../../../../core/Reservation/Application/DTO/EditReservationCommand";
 
-@Controller('edit-reservation')
-export class EditReservationController {}
+@Controller('reservation')
+export class EditReservationController {
+
+    constructor(@Inject() private readonly service: EditReservationService) {
+    }
+
+    @Put('update')
+    async createShadow(@Body()request: EditReservationCommand) {
+        return await this.service.execute(request);
+    }
+
+}
