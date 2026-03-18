@@ -1,7 +1,9 @@
 import {Body, Controller, Inject, Put} from '@nestjs/common';
 import {EditReservationService} from "../../services/edit-reservation/edit-reservation.service";
 import {EditReservationCommand} from "../../../../core/Reservation/Application/DTO/EditReservationCommand";
+import {ApiTags} from "@nestjs/swagger";
 
+@ApiTags('Reservation')
 @Controller('reservation')
 export class EditReservationController {
 

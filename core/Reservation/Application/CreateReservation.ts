@@ -17,7 +17,10 @@ export class CreateReservation implements IUseCase<CreateReservationCommand, Res
         if(!shadow){
             throw new Error('Shadow does not exist');
         }
-        if(!client){
+        if (shadow.state.state ==='unavailable'){
+            throw new Error('Shadow is unavailable');
+        }
+        if(!client) {
             throw new Error('Client does not exist');
         }
 

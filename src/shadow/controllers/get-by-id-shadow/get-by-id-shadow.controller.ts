@@ -1,7 +1,9 @@
 import {Body, Controller, Get, Inject, Param} from '@nestjs/common';
 import {GetShadowByIdQuery} from "../../../../core/Shadow/Application/DTO/GetShadowByIdQuery";
 import {GetShadowService} from "../../services/get-shadow/get-shadow.service";
+import {ApiTags} from "@nestjs/swagger";
 
+@ApiTags('Shadow')
 @Controller('shadow')
 export class GetByIdShadowController {
 

@@ -1,7 +1,9 @@
 import {Body, Controller, Delete, Inject, Param} from '@nestjs/common';
 import {DeleteShadowService} from "../../services/delete-shadow/delete-shadow.service";
 import {DeleteShadowCommand} from "../../../../core/Shadow/Application/DTO/DeleteShadowCommand";
+import {ApiTags} from "@nestjs/swagger";
 
+@ApiTags('Shadow')
 @Controller('shadow')
 export class DeleteShadowController {
     constructor(@Inject() private service: DeleteShadowService) {
