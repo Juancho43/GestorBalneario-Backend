@@ -3,14 +3,23 @@ import {ClientResponse} from "../../../Client/Application/DTO/ClientResponse";
 import {ShadowResponse} from "../../../Shadow/Application/DTO/ShadowResponse";
 
 export class ReservationResponse {
-    static create(reservation: Reservation){
-        return {
+    static create(reservation: Reservation, includeShadow: boolean = true){
+        let r ={
             id : reservation.id,
             client: ClientResponse.create(reservation.client),
-            shadow: ShadowResponse.create(reservation.shadow),
             checkIn: reservation.booking.checkIn.toString(),
-            checkOut: reservation.booking.checkOut.toString()
+            checkOut: reservation.booking.checkOut.toString(),
+            shadow: {} as ShadowResponse
         }
+
+       if (includeShadow){
+           r = {
+               ...r,
+               shadow:  ShadowResponse.create(reservation.shadow,false)
+           }
+       }
+
+        return r;
     }
     static createList(reservations: Reservation[]){
         return reservations.map((reservation: Reservation) => {

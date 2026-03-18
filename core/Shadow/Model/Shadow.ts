@@ -2,6 +2,8 @@ import {ShadowType} from "./ValueObjects/ShadowType";
 import {Coords} from "../../common/Model/Coords";
 import {ShadowState} from "./ValueObjects/ShadowState";
 import {StringObject} from "../../common/Model/StringObject";
+import {Reservation} from "../../Reservation/Model/Reservation";
+import {type} from "node:os";
 
 /**
  * Sombra
@@ -9,10 +11,11 @@ import {StringObject} from "../../common/Model/StringObject";
  */
 export class Shadow{
     private readonly _id: string;
-    private readonly _identifier: StringObject;
-    private readonly _type: ShadowType;
-    private readonly _state: ShadowState;
-    private readonly _coords: Coords;
+    private  _identifier: StringObject;
+    private  _type: ShadowType;
+    private  _state: ShadowState;
+    private  _coords: Coords;
+    private _currentReservation: Reservation;
 
     private constructor(id: string, identifier: StringObject, type: ShadowType, state: ShadowState, coords: Coords) {
         this._id = id;
@@ -26,6 +29,14 @@ export class Shadow{
         return new Shadow(id, identifier, type, state, coords);
     }
 
+
+    get currentReservation(): Reservation {
+        return this._currentReservation;
+    }
+
+    set currentReservation(value: Reservation) {
+        this._currentReservation = value;
+    }
 
     get id(): string {
         return this._id;
@@ -42,7 +53,9 @@ export class Shadow{
     get state(): ShadowState {
         return this._state;
     }
-
+    set state(state: ShadowState) {
+        this._state = state;
+    }
     get coords(): Coords {
         return this._coords;
     }

@@ -1,6 +1,7 @@
 import {Client} from "../../Client/Model/Client";
 import {Shadow} from "../../Shadow/Model/Shadow";
 import {Booking} from "./Booking";
+import {ShadowState} from "../../Shadow/Model/ValueObjects/ShadowState";
 
 export class Reservation{
     private _id: string;
@@ -13,6 +14,7 @@ export class Reservation{
         this._client = client;
         this._shadow = shadow;
         this._booking = booking;
+        this._shadow.state = ShadowState.create('unavailable');
     }
     public static create(id:string, client: Client, shadow: Shadow, booking: Booking): Reservation {
         if (!client || !shadow || !booking) {

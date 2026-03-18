@@ -17,7 +17,7 @@ export class CreateShadow implements IUseCase<CreateShadowCommand, Shadow>{
             randomUUID().toString(),
             StringObject.create(request.identifier),
             ShadowType.create(request.type),
-            ShadowState.create('active'),
+            ShadowState.create(request.state),
             Coords.create(request.coords.x, request.coords.y),
         );
 

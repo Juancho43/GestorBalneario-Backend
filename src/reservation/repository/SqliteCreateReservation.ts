@@ -17,12 +17,16 @@ export class SqliteCreateReservation implements CreateReservationDAO {
             id: reservation.id,
             clientId: reservation.client.id,
             shadowId: reservation.shadow.id,
-            checkIn: reservation.booking.checkIn.toString(),
-            checkOut: reservation.booking.checkOut.toString(),
+            checkIn: reservation.booking.checkIn.toISOString(),
+            checkOut: reservation.booking.checkOut.toISOString(),
             date: (new Date()).toISOString(),
         };
 
-        stmt.run(reserva);
+        const result = stmt.run(reserva);
+        console.log('Insert result:', result);
+        if (result.changes > 0) {
+            const update= this.db.prepare('UPDATE Shadows SET state = @state WHERE id = @id').run({state:reservation.shadow.state.state ,id:reserva.shadowId});
+        }
     }
 
 }

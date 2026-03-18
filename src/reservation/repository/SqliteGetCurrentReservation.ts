@@ -53,6 +53,7 @@ export class SqliteGetCurrentReservation implements GetCurrentReservationsDAO {
                 ShadowState.create(row.shadowState),
                 Coords.create(row.shadowX,row.shadowY)
             );
+            console.log(shadow)
             return Reservation.create(
                 row.id,
                 client,

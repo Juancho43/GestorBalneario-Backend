@@ -1,6 +1,6 @@
 export class ShadowState{
     private _state: string;
-    private static _validStates: string[] = ['active', 'inactive', 'maintenance'];
+    private static _validStates: string[] = ['available', 'unavailable'];
     private constructor(state: string) {
         this._state = state;
     }
