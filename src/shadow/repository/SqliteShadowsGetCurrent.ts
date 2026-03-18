@@ -12,7 +12,18 @@ export class SqliteShadowsGetCurrent implements GetCurrentShadows {
 
     constructor(@Inject(DB_PROVIDER) private readonly db: any) {}
     async getCurrentShadows(): Promise<Shadow[]> {
-        const rows = this.db.prepare('SELECT * FROM Shadows').all();
+        const now = new Date().toISOString();
+        const sql =
+            `SELECT
+                 s.*,
+                 CASE
+                     WHEN r.id IS NOT NULL THEN 'unavailable'
+                     ELSE 'available'
+                     END AS state
+             FROM Shadows s
+                      LEFT JOIN Reservations r ON s.id = r.shadowId
+                 AND ( ? BETWEEN r.checkIn AND r.checkOut)`;
+        const rows = this.db.prepare(sql).all(now);
 
         return rows.map(row =>
             Shadow.create(

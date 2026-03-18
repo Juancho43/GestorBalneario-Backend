@@ -7,8 +7,10 @@ export class ReservationResponse {
         let r ={
             id : reservation.id,
             client: ClientResponse.create(reservation.client),
-            checkIn: reservation.booking.checkIn.toString(),
-            checkOut: reservation.booking.checkOut.toString(),
+            dates:{
+                checkIn: reservation.booking.checkIn.toString(),
+                checkOut: reservation.booking.checkOut.toString(),
+            },
             shadow: {} as ShadowResponse
         }
 

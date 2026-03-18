@@ -15,7 +15,7 @@ export class Shadow{
     private  _type: ShadowType;
     private  _state: ShadowState;
     private  _coords: Coords;
-    private _currentReservation: Reservation;
+    private _currentReservation: Reservation | null = null;
 
     private constructor(id: string, identifier: StringObject, type: ShadowType, state: ShadowState, coords: Coords) {
         this._id = id;
@@ -30,9 +30,21 @@ export class Shadow{
     }
 
 
-    get currentReservation(): Reservation {
+    get currentReservation(): Reservation | null {
         return this._currentReservation;
     }
+
+    checkState(date: Date = new Date()){
+        if(this._currentReservation){
+            console.log('tengo una reserva',this._currentReservation.booking)
+            if(!this._currentReservation.isOccupiedOn(date)){
+                this._state = ShadowState.create('available')
+                console.log('no esta ocupada', this.identifier);
+            }
+
+        }
+    }
+
 
     set currentReservation(value: Reservation) {
         this._currentReservation = value;

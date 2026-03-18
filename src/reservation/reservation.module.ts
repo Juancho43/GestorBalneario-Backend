@@ -16,6 +16,9 @@ import {SqliteDeleteReservation} from "./repository/SqliteDeleteReservation";
 import {SqliteUpdateReservation} from "./repository/SqliteUpdateReservation";
 import {SqliteClientGetOne} from "../clients/repository/SqliteClientGetOne";
 import {SqliteShadowGetById} from "../shadow/repository/SqliteShadowGetById";
+import { GetActiveReservationsController } from './controllers/get-active-reservations/get-active-reservations.controller';
+import { GetActiveReservationsService } from './services/get-active-reservations/get-active-reservations.service';
+import {SqliteGetActiveReservation} from "./repository/SqliteGetActiveReservation";
 
 @Module({
   providers: [CreateReservationService, EditReservationService, DeleteReservationService, GetReservationService, GetCurrentReservationService,
@@ -47,7 +50,12 @@ import {SqliteShadowGetById} from "../shadow/repository/SqliteShadowGetById";
       provide: 'GET_SHADOW_INTERFACE',
       useClass: SqliteShadowGetById,
     },
+    {
+      provide: 'GET_ACTIVE_RESERVATIONS',
+      useClass: SqliteGetActiveReservation,
+    },
+    GetActiveReservationsService,
   ],
-  controllers: [GetCurrentReservationsController, EditReservationController, CreateReservationController, DeleteReservationController, GetReservationController]
+  controllers: [GetCurrentReservationsController, EditReservationController, CreateReservationController, DeleteReservationController, GetReservationController, GetActiveReservationsController]
 })
 export class ReservationModule {}

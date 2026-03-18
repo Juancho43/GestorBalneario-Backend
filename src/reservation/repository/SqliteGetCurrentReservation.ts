@@ -1,9 +1,6 @@
 import { Reservation } from "core/Reservation/Model/Reservation";
-import {CreateReservationDAO} from "../../../core/Reservation/Model/DAO/CreateReservationDAO";
 import {Inject, Injectable} from "@nestjs/common";
 import {DB_PROVIDER} from "../../database/DBPROVIDER";
-import {UpdateReservationDAO} from "../../../core/Reservation/Model/DAO/UpdateReservationDAO";
-import {GetReservationDAO} from "../../../core/Reservation/Model/DAO/GetReservationDAO";
 import {GetCurrentReservationsDAO} from "../../../core/Reservation/Model/DAO/GetCurrentReservationsDAO";
 import { GetCurrentReservationsQuery } from "core/Reservation/Application/DTO/GetCurrentReservationsQuery";
 import {Client} from "../../../core/Client/Model/Client";
@@ -53,7 +50,6 @@ export class SqliteGetCurrentReservation implements GetCurrentReservationsDAO {
                 ShadowState.create(row.shadowState),
                 Coords.create(row.shadowX,row.shadowY)
             );
-            console.log(shadow)
             return Reservation.create(
                 row.id,
                 client,

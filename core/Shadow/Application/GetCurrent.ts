@@ -9,7 +9,9 @@ export class GetCurrent implements IUseCase<GetShadowListByHoliday, Shadow[]>{
     }
 
     async execute(): Promise<Shadow[]> {
-        return await this.getCurrentShadows.getCurrentShadows();
+        let shadows = await this.getCurrentShadows.getCurrentShadows();
+
+        return shadows;
     }
 
 
