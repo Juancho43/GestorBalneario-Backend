@@ -16,9 +16,10 @@ import { GetCurrentShadowsController } from './shadow/controllers/get-current-sh
 import { GetCurrentShadowsService } from './shadow/services/get-current-shadows/get-current-shadows.service';
 import { ClientsModule } from './clients/clients.module';
 import { ReservationModule } from './reservation/reservation.module';
+import { PaymentsModule } from './payments/payments.module';
 
 @Module({
-  imports: [ShadowModule, DatabaseModule, ClientsModule, ReservationModule],
+  imports: [ShadowModule, DatabaseModule, ClientsModule, ReservationModule, PaymentsModule],
   controllers: [AppController],
   providers: [AppService],
 })
