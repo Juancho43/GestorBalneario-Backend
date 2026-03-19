@@ -13,7 +13,7 @@ export class GetActiveReservationsController {
     @ApiOperation({summary: 'Gets reservations', description: 'Gets the current active reservations.' })
     @ApiResponse({status: 200, description: 'The reservations has been retrieved.'})
     @ApiResponse({status: 500, description: 'The reservations has not been retrieved.'})
-    async get(){
+    async execute(){
         try{
             return ReservationResponse.createList(await this.service.execute());
         }catch(error){

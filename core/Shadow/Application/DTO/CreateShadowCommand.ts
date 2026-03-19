@@ -1,9 +1,43 @@
+/**
+ * Represents the command to create a new shadow.
+ */
 export class CreateShadowCommand {
-    constructor(
-        public readonly type: string,
-        public readonly identifier: string,
-        public readonly state: string,
-        public readonly coords: {x: number, y:number}
-    ) {
-    }
+
+    /**
+     * The type of the shadow.
+     * @example "Carpa"
+     * @type {string}
+     */
+    type:string;
+
+    /**
+     * The unique identifier for the shadow.
+     * @example "C1"
+     * @type {string}
+     */
+    identifier:string;
+
+    /**
+     * The state of the shadow.
+     * @example "available"
+     * @type {string}
+     */
+    state:string;
+
+    coords: Coords;
+
+
+}
+
+class Coords{
+    /*
+    * Left position of the shadow in the canvas
+    * @example 220
+    * */
+    x:number;
+    /**
+     * Top position of the shadow in the canvas
+     * @example 20
+     * */
+    y:number;
 }

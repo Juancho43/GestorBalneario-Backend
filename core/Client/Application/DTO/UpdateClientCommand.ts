@@ -1,6 +1,12 @@
 import {CreateClientCommand} from "./CreateClientCommand";
-
 export class UpdateClientCommand{
-    constructor(public id: string, public data: CreateClientCommand) {
-    }
+    /**
+     * Id of the client to edit
+     * @example "client-123"
+     * */
+    id:string;
+    /**
+     * Data of the client
+     * */
+    data:CreateClientCommand;
 }

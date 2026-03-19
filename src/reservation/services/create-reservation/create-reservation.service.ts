@@ -1,6 +1,4 @@
 import {Inject, Injectable} from '@nestjs/common';
-import {CreateShadowCommand} from "../../../../core/Shadow/Application/DTO/CreateShadowCommand";
-import {ShadowResponse} from "../../../../core/Shadow/Application/DTO/ShadowResponse";
 import {CreateReservation} from "../../../../core/Reservation/Application/CreateReservation";
 import type {CreateReservationDAO} from "../../../../core/Reservation/Model/DAO/CreateReservationDAO";
 import type {GetShadow} from "../../../../core/Shadow/Model/GetShadow";

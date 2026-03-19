@@ -11,7 +11,7 @@ export class GetCurrentShadowsController {
     @ApiOperation({summary: 'Gets shadows', description: 'Gets all the shadows.' })
     @ApiResponse({status: 200, description: 'The shadows has been retrieved.'})
     @ApiResponse({status: 500, description: 'The shadows has not been retrieved.'})
-    async getCurrentShadows() {
+    async execute() {
         try {
             return await this.get.get();
         }catch (error) {

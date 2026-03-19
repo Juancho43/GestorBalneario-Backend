@@ -1,9 +1,10 @@
 import {CreateShadowCommand} from "./CreateShadowCommand";
 
 export class UpdateShadowCommand{
-    constructor(
-        public id: string,
-        public data: CreateShadowCommand,
-    ) {
-    }
+    /**
+     * Id for the shadow to update
+     * */
+    id:string;
+
+    data:CreateShadowCommand;
 }

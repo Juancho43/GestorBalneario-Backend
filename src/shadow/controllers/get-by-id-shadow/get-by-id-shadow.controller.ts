@@ -13,7 +13,7 @@ export class GetByIdShadowController {
     @ApiOperation({summary: 'Get shadow', description: 'Gets a shadow by its id.' })
     @ApiResponse({status: 200, description: 'The shadow has been retrieved.'})
     @ApiResponse({status: 500, description: 'The shadow has not been retrieved.'})
-    async get(@Param('id') id: string) {
+    async execute(@Param('id') id: string) {
         try{
             const query = new GetShadowByIdQuery(id);
             return await this.service.execute(query);

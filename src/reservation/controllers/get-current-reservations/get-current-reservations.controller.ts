@@ -12,7 +12,7 @@ export class GetCurrentReservationsController {
     @ApiOperation({summary: 'Gets reservations', description: 'Gets all the reservations.' })
     @ApiResponse({status: 200, description: 'The reservations has been retrieved.'})
     @ApiResponse({status: 500, description: 'The reservations has not been retrieved.'})
-    async getCurrentShadows(@Body() query: GetCurrentReservationsQuery) {
+    async execute(@Body() query: GetCurrentReservationsQuery) {
         try{
             return await this.service.execute(query);
         }catch(error){

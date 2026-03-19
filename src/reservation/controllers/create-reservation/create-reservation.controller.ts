@@ -15,7 +15,7 @@ export class CreateReservationController {
         type: ReservationResponse
     })
     @ApiResponse({status:500, description: 'The reservation has not been created.'})
-    async create(@Body()request: CreateReservationCommand) {
+    async execute(@Body()request: CreateReservationCommand) {
         try {
             return await this.service.execute(request);
         }catch (error) {

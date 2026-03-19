@@ -1,8 +1,17 @@
 export class CreateClientCommand{
-    constructor(
-        public name:string,
-        public email:string,
-        public phone:string
-    ) {
-    }
+    /**
+     * Client's full name
+     * @example "Juan Bravo"
+     * */
+    name:string;
+    /**
+     * Client's email
+     * @example "example@mail.com"
+     * */
+    email:string;
+    /**
+     * Client's phone number
+     * @example "+1-555-123-4567"
+     * */
+    phone:string;
 }

@@ -9,7 +9,7 @@ export class GetClientsController {
     constructor(@Inject() private service: GetClientsService) {
     }
     @Post('current')
-    async getCurrentShadows(@Body() query: GetClientsQuery) {
+    async execute(@Body() query: GetClientsQuery) {
         return await this.service.execute(query);
     }
 }

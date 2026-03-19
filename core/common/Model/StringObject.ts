@@ -1,7 +1,7 @@
 export class StringObject {
     private readonly value: string;
 
-    private constructor(value: string, pattern:RegExp = /^[A-Za-z0-9 ]+$/) {
+    private constructor(value: string, pattern:RegExp = /^[A-Za-z0-9 +-]+$/) {
         if (!pattern.test(value)) {
             throw new Error(`Invalid string format.`);
         }

@@ -13,7 +13,7 @@ export class DeleteClientController {
     @ApiOperation({summary: 'Delete a client', description: 'Delete a client by id' })
     @ApiResponse({status: 204, description: 'The client has been deleted.'})
     @ApiResponse({status: 500, description: 'The client has not been deleted. Server Error'})
-    async createShadow(@Param('id') request: string) {
+    async execute(@Param('id') request: string) {
         try {
             const command = new DeleteClientCommand(request);
             return await this.service.execute(command);

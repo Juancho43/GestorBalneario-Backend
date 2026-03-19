@@ -1,9 +1,9 @@
 import {CreateReservationCommand} from "./CreateReservationCommand";
 
 export class EditReservationCommand {
-    constructor(
-        public id:string,
-        public data: CreateReservationCommand
-    ){
-    }
+    /**
+     * Id of the reservation to edit:w
+     * */
+    id: string;
+    data:CreateReservationCommand;
 }

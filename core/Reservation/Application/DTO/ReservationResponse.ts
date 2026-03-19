@@ -23,9 +23,7 @@ export class ReservationResponse {
         checkOut: string;
     };
 
-    /** * Related shadow (umbrella) details.
-     * Optional depending on the query context.
-     */
+
     shadow?: ShadowResponse;
 
     /**
