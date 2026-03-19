@@ -16,7 +16,6 @@ export class CreateClientService {
         try {
             return ClientResponse.create(await this.useCase.execute(command));
         }catch (error) {
-            console.error('Error creating client:', error);
             throw error;
         }
     }
