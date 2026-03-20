@@ -1,7 +1,7 @@
 import {Body, Controller, HttpException, HttpStatus, Inject, Post} from '@nestjs/common';
 import {CreateReservationService} from "../../services/create-reservation/create-reservation.service";
 import {CreateReservationCommand} from "../../../../core/Reservation/Application/DTO/CreateReservationCommand";
-import {ApiResponse, ApiTags} from "@nestjs/swagger";
+import {ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
 import {ReservationResponse} from "../../../../core/Reservation/Application/DTO/ReservationResponse";
 @ApiTags('Reservation')
 @Controller('reservation')
@@ -9,6 +9,8 @@ export class CreateReservationController {
     constructor(@Inject() private service: CreateReservationService) {
     }
     @Post('create')
+
+    @ApiOperation({summary: 'Create a reservation', description: 'Creates a new reservation' })
     @ApiResponse({
         status: 201,
         description: 'The reservation has been created.',
