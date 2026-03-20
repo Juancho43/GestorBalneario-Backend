@@ -1,56 +1,49 @@
 import {ShadowType} from "./ValueObjects/ShadowType";
 import {Coords} from "../../common/Model/Coords";
-import {ShadowState} from "./ValueObjects/ShadowState";
 import {StringObject} from "../../common/Model/StringObject";
 import {Reservation} from "../../Reservation/Model/Reservation";
-import {type} from "node:os";
+import {UniqueIdentifier} from "../../common/Model/UniqueIdentifier";
+import {Timestamps} from "../../common/Model/Timestamps";
+import {SoftDelete} from "../../common/Model/SoftDelete";
+import {Booking} from "../../Reservation/Model/Booking";
 
 /**
  * Sombra
  * Carpa-sombrilla
  */
 export class Shadow{
-    private readonly _id: string;
+    private readonly _id: UniqueIdentifier;
     private  _identifier: StringObject;
     private  _type: ShadowType;
-    private  _state: ShadowState;
     private  _coords: Coords;
-    private _currentReservation: Reservation | null = null;
-
-    private constructor(id: string, identifier: StringObject, type: ShadowType, state: ShadowState, coords: Coords) {
+    private _reservationId?: UniqueIdentifier;
+    private _timestamp: Timestamps;
+    private _softDelete: SoftDelete;
+    private constructor(id: UniqueIdentifier, identifier: StringObject, type: ShadowType, coords: Coords, timestamp: Timestamps, softDelete: SoftDelete) {
         this._id = id;
         this._identifier = identifier;
         this._type = type;
-        this._state = state;
         this._coords = coords;
+        this._timestamp = timestamp;
+        this._softDelete = softDelete;
     }
 
-    static create(id:string, identifier: StringObject, type: ShadowType, state: ShadowState, coords: Coords): Shadow {
-        return new Shadow(id, identifier, type, state, coords);
+    static create(id:UniqueIdentifier, identifier: StringObject, type: ShadowType, coords: Coords, timestamp: Timestamps, softDelete: SoftDelete): Shadow {
+        return new Shadow(id, identifier, type, coords, timestamp, softDelete);
     }
 
+    canBeReserved(dates: Booking, reservations: Reservation[]): boolean {
+        let isAvailable = true;
+        if (this._softDelete.isDeleted) isAvailable = false;
 
-    get currentReservation(): Reservation | null {
-        return this._currentReservation;
+        const hasOverlap = reservations.some(reservation => {
+            reservation.booking.overlapsWith(dates);
+        })
+        if (hasOverlap) isAvailable = false;
+        return isAvailable;
     }
 
-    checkState(date: Date = new Date()){
-        if(this._currentReservation){
-            console.log('tengo una reserva',this._currentReservation.booking)
-            if(!this._currentReservation.isOccupiedOn(date)){
-                this._state = ShadowState.create('available')
-                console.log('no esta ocupada', this.identifier);
-            }
-
-        }
-    }
-
-
-    set currentReservation(value: Reservation) {
-        this._currentReservation = value;
-    }
-
-    get id(): string {
+    get id(): UniqueIdentifier {
         return this._id;
     }
 
@@ -60,13 +53,6 @@ export class Shadow{
 
     get type(): ShadowType {
         return this._type;
-    }
-
-    get state(): ShadowState {
-        return this._state;
-    }
-    set state(state: ShadowState) {
-        this._state = state;
     }
     get coords(): Coords {
         return this._coords;

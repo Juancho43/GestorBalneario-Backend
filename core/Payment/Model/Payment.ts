@@ -1,67 +1,48 @@
 import {PaymentType} from "./PaymentType";
 import {StringObject} from "../../common/Model/StringObject";
-
-export class Payment{
-    private _id:string;
-    private _date:Date;
-    private _type: PaymentType;
-    private _amount:number;
-    private _changeType:number;
-    private _finalAmount:number;
-    private _description?: StringObject;
-
-    private constructor(id:string,date:Date,type:PaymentType,amount:number,changeType:number, description?: StringObject) {
-        this.validatePositiveAmount(amount);
-        this.validatePositiveAmount(changeType);
-        this._description = description;
-        this._id = id;
-        this._date = date;
-        this._type = type;
-        this._amount = amount;
-        this._changeType = changeType;
-        this._finalAmount = this.calculateFinalAmount();
+import {UniqueIdentifier} from "../../common/Model/UniqueIdentifier";
+import {Money} from "./Money";
+import {Timestamps} from "../../common/Model/Timestamps";
+import {SoftDelete} from "../../common/Model/SoftDelete";
+export class Payment {
+    private constructor(
+        private readonly _id: UniqueIdentifier,
+        private readonly _date: Date,
+        private readonly _type: PaymentType,
+        private readonly _money: Money,
+        private readonly _reservationId:UniqueIdentifier,
+        private readonly _description: StringObject,
+        private readonly _timestamp: Timestamps,
+        private readonly _softDelete: SoftDelete,
+    ) {
+        // La validación ya ocurrió dentro de Money.create()
     }
 
-    static create(id:string,date:Date,type:PaymentType,amount:number,changeType:number = 1, description: StringObject):Payment{
-        return new Payment(id,date,type,amount,changeType,description)
+    static create(
+        id: UniqueIdentifier,
+        date: Date,
+        type: PaymentType,
+        money: Money,
+        reservationId:UniqueIdentifier,
+        description: StringObject,
+        timestamp: Timestamps = Timestamps.create(),
+        softDelete: SoftDelete = SoftDelete.empty()
+    ): Payment {
+        // Creamos el VO aquí o lo recibimos por parámetro
+        return new Payment(id, date, type, money,reservationId,description,timestamp,softDelete);
     }
 
-    private validatePositiveAmount(amount: number): void {
-        if (amount <= 0) {
-            throw new Error("Payment amount must be positive.");
-        }
-    }
-
-    private calculateFinalAmount(): number {
-        // Ejemplo: 100 (USD) * 1000 (Rate) = 100,000 (Local)
-        return this._amount * this._changeType;
-    }
-
-    get id(): string {
-        return this._id;
-    }
-
-    get date(): Date {
-        return this._date;
-    }
-
-    get type(): PaymentType {
-        return this._type;
-    }
-
-    get amount(): number {
-        return this._amount;
-    }
-
-    get changeType(): number {
-        return this._changeType;
-    }
-
+    // Encapsulamos el acceso a través de la moneda
     get finalAmount(): number {
-        return this._finalAmount;
+        return this._money.finalAmount;
     }
 
-    get description(): StringObject {
-        return this._description!;
+    get money(): Money {
+        return this._money;
     }
+
+    get id(): UniqueIdentifier { return this._id; }
+    get date(): Date { return this._date; }
+    get type(): PaymentType { return this._type; }
+    get description(): StringObject | undefined { return this._description; }
 }
