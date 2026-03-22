@@ -23,10 +23,13 @@ export class ClientResponse{
     email: string;
     static create(client: Client){
         return{
-            id:client.id,
+            id:client.id.value,
             name: client.name.getValue(),
             phone: client.phone.getValue(),
             email: client.email.getValue(),
+            create_at: client.timestamp.createdAt.toISOString(),
+            updated_at: client.timestamp.updatedAt.toISOString(),
+            deleted_at: client.softDelete.value?.toISOString()
         }
     }
     static createList(clients: Client[]){

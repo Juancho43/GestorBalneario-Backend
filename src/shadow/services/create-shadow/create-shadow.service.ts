@@ -1,14 +1,14 @@
 import {Inject, Injectable} from '@nestjs/common';
 import {CreateShadow} from "../../../../core/Shadow/Application/CreateShadow";
-import type {PersistShadow} from "../../../../core/Shadow/Model/PersistShadow";
 import {CreateShadowCommand} from "../../../../core/Shadow/Application/DTO/CreateShadowCommand";
 import {ShadowResponse} from "../../../../core/Shadow/Application/DTO/ShadowResponse";
+import type {CreateShadowDAO} from "../../../../core/Shadow/Model/DAO/CreateShadowDAO";
 
 @Injectable()
 export class CreateShadowService {
     private useCase: CreateShadow;
 
-    constructor(@Inject('PERSIST_SHADOW_INTERFACE') implementation: PersistShadow) {
+    constructor(@Inject('CREATE_SHADOW_INTERFACE') implementation: CreateShadowDAO) {
         this.useCase = new CreateShadow(implementation);
     }
 

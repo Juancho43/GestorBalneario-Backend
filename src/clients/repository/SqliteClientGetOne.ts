@@ -4,6 +4,8 @@ import {Inject, Injectable} from "@nestjs/common";
 import {DB_PROVIDER} from "../../database/DBPROVIDER";
 import {StringObject} from "../../../core/common/Model/StringObject";
 import {EmailObject} from "../../../core/common/Model/EmailObject";
+import {Timestamps} from "../../../core/common/Model/Timestamps";
+import {SoftDelete} from "../../../core/common/Model/SoftDelete";
 @Injectable()
 export class SqliteClientGetOne implements GetClientDAO {
 
@@ -17,6 +19,8 @@ export class SqliteClientGetOne implements GetClientDAO {
                 StringObject.create(row.name),
                 EmailObject.create(row.email),
                 StringObject.create(row.phone),
+                Timestamps.restore(row.created_at, row.updated_at),
+                SoftDelete.restore(row.deleted_at),
             );
         }
         return result;
