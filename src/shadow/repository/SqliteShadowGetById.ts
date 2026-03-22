@@ -1,5 +1,5 @@
 import {Inject, Injectable} from "@nestjs/common";
-import {GetShadow} from "../../../core/Shadow/Model/GetShadow";
+import {GetShadowDAO} from "../../../core/Shadow/Model/DAO/GetShadowDAO";
 import {Shadow} from "../../../core/Shadow/Model/Shadow";
 import {DB_PROVIDER} from "../../database/DBPROVIDER";
 import {Coords} from "../../../core/common/Model/Coords";
@@ -10,54 +10,44 @@ import {Reservation} from "../../../core/Reservation/Model/Reservation";
 import {Client} from "../../../core/Client/Model/Client";
 import {EmailObject} from "../../../core/common/Model/EmailObject";
 import {Booking} from "../../../core/Reservation/Model/Booking";
+import {UniqueIdentifier} from "../../../core/common/Model/UniqueIdentifier";
+import {Timestamps} from "../../../core/common/Model/Timestamps";
+import {SoftDelete} from "../../../core/common/Model/SoftDelete";
 
 @Injectable()
-export class SqliteShadowGetById implements GetShadow{
+export class SqliteShadowGetById implements GetShadowDAO{
 
     constructor(@Inject(DB_PROVIDER) private readonly db: any) {}
 
     async get(id: string): Promise<Shadow | null> {
         const sql = `
-            SELECT * FROM Shadows
-                LEFT JOIN Reservations r ON Shadows.id = r.ShadowID
-                              LEFT JOIN Clients c ON r.ClientID = c.id
-            WHERE (Shadows.id = @id) OR (
-                (Shadows.id = @id) AND ( CURRENT_TIMESTAMP  BETWEEN r.checkIn AND r.checkOut))
+            SELECT
+                s.id AS shadowId,
+                s.identifier,
+                s.type,
+                s.x,
+                s.y,
+                s.created_at,
+                s.updated_at,
+                r.id AS reservationId 
+            FROM Shadows s
+                     LEFT JOIN Reservations r ON s.id = r.ShadowID
+            WHERE s.id = ?
         `;
-        const row = this.db.prepare(sql).get({ id: id});
+        const row = this.db.prepare(sql).get(id);
         let result : Shadow | null = null;
         let reservation : Reservation | null = null;
-        let client : Client | null = null;
-        if(row.clientId){
+        if(row){
             result = Shadow.create(
-                row.id,
+                UniqueIdentifier.restore(row.shadowId),
                 StringObject.create(row.identifier),
                 ShadowType.create(row.type),
-                ShadowState.create(row.state),
-                Coords.create(row.x, row.y)
-            );
-            client = Client.create(
-                row.clientId,
-                StringObject.create(row.name),
-                EmailObject.create(row.email),
-                StringObject.create(row.phone)
+                Coords.create(row.x, row.y),
+                Timestamps.restore(row.createdAt, row.updatedAt),
+                SoftDelete.restore(null)
             )
-            reservation = Reservation.create(
-                row.id,
-                client,
-                result,
-                Booking.create(new Date(row.checkIn), new Date(row.checkOut))
-            )
-            result.currentReservation = reservation
-        }else if (row) {
-            result = Shadow.create(
-                id,
-                StringObject.create(row.identifier),
-                ShadowType.create(row.type),
-                ShadowState.create(row.state),
-                Coords.create(row.x, row.y)
-            );
         }
+
         return result;
     }
 

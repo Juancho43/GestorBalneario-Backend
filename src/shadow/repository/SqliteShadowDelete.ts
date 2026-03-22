@@ -1,8 +1,8 @@
-import {DeleteShadowById} from "../../../core/Shadow/Model/DeleteShadowById";
+import {DeleteShadowDAO} from "../../../core/Shadow/Model/DAO/DeleteShadowDAO";
 import {Inject, Injectable} from "@nestjs/common";
 import {DB_PROVIDER} from "../../database/DBPROVIDER";
 @Injectable()
-export class SqliteShadowDelete implements DeleteShadowById{
+export class SqliteShadowDelete implements DeleteShadowDAO{
 
     constructor(@Inject(DB_PROVIDER) private readonly db: any) {}
 
