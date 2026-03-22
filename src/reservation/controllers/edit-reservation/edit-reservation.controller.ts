@@ -1,6 +1,6 @@
 import {Body, Controller, HttpException, HttpStatus, Inject, Put} from '@nestjs/common';
 import {EditReservationService} from "../../services/edit-reservation/edit-reservation.service";
-import {EditReservationCommand} from "../../../../core/Reservation/Application/DTO/EditReservationCommand";
+import {UpdateReservationCommand} from "../../../../core/Reservation/Application/DTO/UpdateReservationCommand";
 import {ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
 import {ReservationResponse} from "../../../../core/Reservation/Application/DTO/ReservationResponse";
 
@@ -15,7 +15,7 @@ export class EditReservationController {
     @ApiOperation({summary: 'Edit a client', description: 'Edits a reservation' })
     @ApiResponse({status: 200, description: 'The reservation has been updated.', type: ReservationResponse})
     @ApiResponse({status: 500, description: 'The reservation has not been updated. Server Error'})
-    async execute(@Body()request: EditReservationCommand) {
+    async execute(@Body()request: UpdateReservationCommand) {
         try {
             return await this.service.execute(request);
         }catch (error) {

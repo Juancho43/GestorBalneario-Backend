@@ -22,26 +22,32 @@ export class ReservationResponse {
          */
         checkOut: string;
     };
+    /**
+     * Total price for the reservation.
+     * @example 1000
+     * */
+    price: number
 
+    duration: number;
+
+
+    state: string;
 
     shadow?: ShadowResponse;
 
     /**
      * Maps a Reservation Model to a ReservationResponse DTO
      */
-    static create(reservation: Reservation, includeShadow: boolean = true): ReservationResponse {
+    static create(reservation: Reservation): ReservationResponse {
         const r = new ReservationResponse();
 
-        r.id = reservation.id;
-        r.client = ClientResponse.create(reservation.client);
+        r.id = reservation.id.toString();
         r.dates = {
             checkIn: reservation.booking.checkIn.toString(),
             checkOut: reservation.booking.checkOut.toString(),
         };
-
-        if (includeShadow && reservation.shadow) {
-            r.shadow = ShadowResponse.create(reservation.shadow, false);
-        }
+        r.price = reservation.price;
+        r.duration = reservation.booking.durationInDays();
 
         return r;
     }
