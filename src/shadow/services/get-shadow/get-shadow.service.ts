@@ -1,5 +1,5 @@
 import {Inject, Injectable} from '@nestjs/common';
-import type {GetShadow} from "../../../../core/Shadow/Model/GetShadow";
+import type {GetShadowDAO} from "../../../../core/Shadow/Model/DAO/GetShadowDAO";
 import {GetShadowById} from "../../../../core/Shadow/Application/GetShadowById";
 import {GetShadowByIdQuery} from "../../../../core/Shadow/Application/DTO/GetShadowByIdQuery";
 import {ShadowResponse} from "../../../../core/Shadow/Application/DTO/ShadowResponse";
@@ -8,7 +8,7 @@ import {ShadowResponse} from "../../../../core/Shadow/Application/DTO/ShadowResp
 export class GetShadowService {
     private useCase: GetShadowById;
 
-    constructor(@Inject('GET_SHADOW_INTERFACE') implementation: GetShadow) {
+    constructor(@Inject('GET_SHADOW_INTERFACE') implementation: GetShadowDAO) {
         this.useCase = new GetShadowById(implementation);
     }
 
