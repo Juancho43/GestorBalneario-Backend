@@ -7,4 +7,10 @@ export class UpdateShadowCommand{
     id:string;
 
     data:CreateShadowCommand;
+
+    /*
+  * Date of creation
+  * @example: '2026-01-10'
+  * */
+    createdAt:string;
 }

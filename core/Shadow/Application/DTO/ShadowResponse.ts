@@ -32,24 +32,17 @@ export class ShadowResponse{
      * */
     state: string;
 
+
     currentReservation?: ReservationResponse;
 
-      static create(shadow: Shadow, includeReservation: boolean = true){
+      static create(shadow: Shadow){
           const response: any = {
-              id: shadow.id,
+              id: shadow.id.value,
               identifier: shadow.identifier.getValue(),
               type: shadow.type.type,
               coords: shadow.coords,
-              state: shadow.state.state,
           }
-
-          if(includeReservation && shadow.currentReservation){
-              response.currentReservation = ReservationResponse.create(shadow.currentReservation, false);
-          } else {
-              response.currentReservation = null;
-          }
-
-          return response;
+                 return response;
       }
     static createList(shadows: Shadow[]){
         return shadows.map((shadow) => {

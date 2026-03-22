@@ -21,7 +21,7 @@ export class CreatePaymentCommand{
      * Amount of type of change
      * @example 1
      * */
-    changeType:string;
+    changeType:number;
     /**
      * Type of the payment
      * @example 'CASH'

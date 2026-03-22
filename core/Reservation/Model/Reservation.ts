@@ -1,6 +1,8 @@
 import {Booking} from "./Booking";
 import {UniqueIdentifier} from "../../common/Model/UniqueIdentifier";
 import {Payment} from "../../Payment/Model/Payment";
+import {SoftDelete} from "../../common/Model/SoftDelete";
+import {Timestamps} from "../../common/Model/Timestamps";
 
 export class Reservation{
     private _id: UniqueIdentifier;
@@ -9,19 +11,24 @@ export class Reservation{
     private _payments: UniqueIdentifier[];
     private _booking: Booking;
     private _price: number;
+    private _timestamp: Timestamps;
+    private _softDelete: SoftDelete;
 
-    private constructor(id: UniqueIdentifier,client: UniqueIdentifier, shadow: UniqueIdentifier, booking: Booking, price: number) {
+
+    private constructor(id: UniqueIdentifier,client: UniqueIdentifier, shadow: UniqueIdentifier, booking: Booking, price: number, timestamp: Timestamps, softDelete: SoftDelete) {
         this._id = id;
         this._client = client;
         this._shadow = shadow;
         this._booking = booking;
         this._price = price;
+        this._timestamp = timestamp;
+        this._softDelete = softDelete;
     }
-    public static create(id: UniqueIdentifier,client: UniqueIdentifier, shadow: UniqueIdentifier, booking: Booking, price: number): Reservation {
+    public static create(id: UniqueIdentifier,client: UniqueIdentifier, shadow: UniqueIdentifier, booking: Booking, price: number,timestamp:Timestamps,softdelete:SoftDelete): Reservation {
         if (!client || !shadow || !booking || !price) {
             throw new Error("Invalid reservation data: All fields are required.");
         }
-        return new Reservation(id,client, shadow, booking,price);
+        return new Reservation(id,client, shadow, booking,price,timestamp,softdelete);
     }
 
 
@@ -32,9 +39,7 @@ export class Reservation{
      */
     public getDebt(payments: Payment[]): number {
         // 1. Filtramos los pagos para asegurarnos de sumar solo los asociados a esta reserva
-        const totalPaid = payments
-            .filter(p => this._payments.some(id => id.equals(p.id))) // Comparamos Value Objects de ID
-            .reduce((sum, p) => sum + p.money.amount, 0);
+        const totalPaid = this.getTotalPaid(payments);
 
         const debt = this._price - totalPaid;
 
@@ -42,14 +47,24 @@ export class Reservation{
         return debt > 0 ? debt : 0;
     }
 
+    public getTotalPaid(payments: Payment[]): number {
+       return payments
+           .filter(p => this._payments.some(id => id.equals(p.id)))
+           .reduce((sum, p) => sum + p.money.amount, 0);
+    }
+
     public getStatus(payments: Payment[]) {
         if (this.getDebt(payments) === 0) return 'paid'
         if (this.getDebt(payments) < this._price) return 'partial'
         return 'partial'
     }
-    public price():number {
-        return this._price;
+
+    public checkNegativeDebt(payments: Payment[]) {
+       const totalPaid = this.getTotalPaid(payments);
+       const debt = this._price - totalPaid;
+       return debt < 0
     }
+
 
 
     /**
@@ -71,5 +86,29 @@ export class Reservation{
 
     get booking(): Booking {
         return this._booking;
+    }
+
+
+    get client(): UniqueIdentifier {
+        return this._client;
+    }
+
+    get shadow(): UniqueIdentifier {
+        return this._shadow;
+    }
+
+    get payments(): UniqueIdentifier[] {
+        return this._payments;
+    }
+    get price(): number {
+        return this._price;
+    }
+
+    get timestamp(): Timestamps {
+        return this._timestamp;
+    }
+
+    get softDelete(): SoftDelete {
+        return this._softDelete;
     }
 }

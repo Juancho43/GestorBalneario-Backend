@@ -1,5 +1,5 @@
 import {Inject, Injectable} from '@nestjs/common';
-import type {DeleteShadowById} from "../../../../core/Shadow/Model/DeleteShadowById";
+import type {DeleteShadowDAO} from "../../../../core/Shadow/Model/DAO/DeleteShadowDAO";
 import {DeleteReservation} from "../../../../core/Reservation/Application/DeleteReservation";
 import {DeleteReservationCommand} from "../../../../core/Reservation/Application/DTO/DeleteReservationCommand";
 
@@ -7,7 +7,7 @@ import {DeleteReservationCommand} from "../../../../core/Reservation/Application
 export class DeleteReservationService {
     private useCase: DeleteReservation;
 
-    constructor(@Inject('DELETE_RESERVATION_DAO') implementation: DeleteShadowById) {
+    constructor(@Inject('DELETE_RESERVATION_DAO') implementation: DeleteShadowDAO) {
         this.useCase = new DeleteReservation(implementation);
     }
 

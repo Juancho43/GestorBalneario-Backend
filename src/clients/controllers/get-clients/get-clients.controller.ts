@@ -1,4 +1,4 @@
-import {Body, Controller, Inject, Post} from '@nestjs/common';
+import {Body, Controller, Get, Inject, Post, Query} from '@nestjs/common';
 import {GetClientsService} from "../../services/get-clients/get-clients.service";
 import {GetClientsQuery} from "../../../../core/Client/Application/DTO/GetClientsQuery";
 import {ApiTags} from "@nestjs/swagger";
@@ -8,8 +8,10 @@ import {ApiTags} from "@nestjs/swagger";
 export class GetClientsController {
     constructor(@Inject() private service: GetClientsService) {
     }
-    @Post('current')
-    async execute(@Body() query: GetClientsQuery) {
+    @Get('current')
+    async execute(@Query('page') page: number = 1, @Query('size') size: number = 10) {
+        const query = new GetClientsQuery('',page, size);
         return await this.service.execute(query);
+
     }
 }

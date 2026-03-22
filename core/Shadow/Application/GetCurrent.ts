@@ -1,10 +1,11 @@
 import {IUseCase} from "../../common/Application/IUseCase";
 import {GetShadowListByHoliday} from "./DTO/GetShadowListByHoliday";
 import {Shadow} from "../Model/Shadow";
-import {GetCurrentShadows} from "../Model/GetCurrentShadows";
+import {GetShadowListDAO} from "../Model/DAO/GetShadowListDAO";
+import {ShadowResponse} from "./DTO/ShadowResponse";
 
 export class GetCurrent implements IUseCase<GetShadowListByHoliday, Shadow[]>{
-    constructor(private getCurrentShadows: GetCurrentShadows) {
+    constructor(private getCurrentShadows: GetShadowListDAO) {
 
     }
 

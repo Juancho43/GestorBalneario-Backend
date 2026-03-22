@@ -1,13 +1,13 @@
 import {Inject, Injectable} from '@nestjs/common';
 import {DeleteShadow} from "../../../../core/Shadow/Application/DeleteShadow";
 import {DeleteShadowCommand} from "../../../../core/Shadow/Application/DTO/DeleteShadowCommand";
-import type {DeleteShadowById} from "../../../../core/Shadow/Model/DeleteShadowById";
+import type {DeleteShadowDAO} from "../../../../core/Shadow/Model/DAO/DeleteShadowDAO";
 
 @Injectable()
 export class DeleteShadowService {
     private useCase: DeleteShadow;
 
-    constructor(@Inject('DELETE_SHADOW_INTERFACE') implementation: DeleteShadowById) {
+    constructor(@Inject('DELETE_SHADOW_INTERFACE') implementation: DeleteShadowDAO) {
         this.useCase = new DeleteShadow(implementation);
     }
 

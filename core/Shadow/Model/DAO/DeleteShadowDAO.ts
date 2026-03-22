@@ -1,3 +1,3 @@
-export interface DeleteShadowById {
+export interface DeleteShadowDAO {
     delete(id: string): Promise<boolean>;
 }

@@ -1,5 +1,3 @@
-import {StringObject} from "../../../common/Model/StringObject";
-import {PaymentType} from "../../Model/PaymentType";
 import {Payment} from "../../Model/Payment";
 
 export class PaymentResponse{
@@ -43,12 +41,13 @@ export class PaymentResponse{
 
     static create(payment: Payment){
         return {
-            id:payment.id,
+            id:payment.id.value,
             date:payment.date,
-            type:payment.type,
-            amount:payment.amount,
-            changeType:payment.changeType,
+            type:payment.type.getValue().toString(),
+            amount:payment.money.amount,
+            changeType:payment.money.exchangeRate,
             description:payment.description,
+            finalAmount:payment.money.finalAmount,
         }
     }
     static createList(payments: Payment[]){

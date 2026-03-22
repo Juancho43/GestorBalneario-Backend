@@ -1,14 +1,16 @@
 import {Inject, Injectable} from "@nestjs/common";
-import {GetCurrentShadows} from "../../../core/Shadow/Model/GetCurrentShadows";
+import {GetShadowListDAO} from "../../../core/Shadow/Model/DAO/GetShadowListDAO";
 import { Shadow } from "core/Shadow/Model/Shadow";
 import {DB_PROVIDER} from "../../database/DBPROVIDER";
 import {StringObject} from "../../../core/common/Model/StringObject";
 import {ShadowType} from "../../../core/Shadow/Model/ValueObjects/ShadowType";
-import {ShadowState} from "../../../core/Shadow/Model/ValueObjects/ShadowState";
 import {Coords} from "../../../core/common/Model/Coords";
+import {Timestamps} from "../../../core/common/Model/Timestamps";
+import {SoftDelete} from "../../../core/common/Model/SoftDelete";
+import {UniqueIdentifier} from "../../../core/common/Model/UniqueIdentifier";
 
 @Injectable()
-export class SqliteShadowsGetCurrent implements GetCurrentShadows {
+export class SqliteShadowsGetCurrent implements GetShadowListDAO {
 
     constructor(@Inject(DB_PROVIDER) private readonly db: any) {}
     async getCurrentShadows(): Promise<Shadow[]> {
@@ -27,11 +29,12 @@ export class SqliteShadowsGetCurrent implements GetCurrentShadows {
 
         return rows.map(row =>
             Shadow.create(
-                row.id,
+                UniqueIdentifier.restore(row.id),
                 StringObject.create(row.identifier),
                 ShadowType.create(row.type),
-                ShadowState.create(row.state),
-                Coords.create(row.x, row.y)
+                Coords.create(row.x, row.y),
+                Timestamps.restore(row.create_at,row.update_at),
+                SoftDelete.restore(row.delete_at),
             )
         );
     }

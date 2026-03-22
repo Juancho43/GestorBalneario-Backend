@@ -1,10 +1,10 @@
-import {DeleteShadowById} from "../Model/DeleteShadowById";
+import {DeleteShadowDAO} from "../Model/DAO/DeleteShadowDAO";
 import {IUseCase} from "../../common/Application/IUseCase";
 import {DeleteShadowCommand} from "./DTO/DeleteShadowCommand";
 
 export class DeleteShadow implements IUseCase<DeleteShadowCommand, void>{
 
-    constructor( private DeleteShadowById: DeleteShadowById) {
+    constructor( private DeleteShadowById: DeleteShadowDAO) {
     }
 
     async execute(request: DeleteShadowCommand): Promise<void> {

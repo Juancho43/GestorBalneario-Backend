@@ -18,4 +18,9 @@ export class CreateReservationCommand {
      * @example "2026-03-20T18:00:00Z"
      */
     checkOut: string;
+    /**
+     * Total price of the reservation
+     * @example 1000
+     * */
+    price: number;
 }

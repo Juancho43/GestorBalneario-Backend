@@ -2,7 +2,6 @@ import {StringObject} from "../../common/Model/StringObject";
 import {EmailObject} from "../../common/Model/EmailObject";
 import {Timestamps} from "../../common/Model/Timestamps";
 import {SoftDelete} from "../../common/Model/SoftDelete";
-import {timestamp} from "rxjs";
 import {UniqueIdentifier} from "../../common/Model/UniqueIdentifier";
 
 export class Client{

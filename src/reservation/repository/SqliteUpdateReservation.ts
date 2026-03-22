@@ -20,8 +20,8 @@ export class SqliteUpdateReservation implements UpdateReservationDAO {
 
         const reservaActualizada = {
             id: reservation.id, // Es vital usar el ID para filtrar
-            clientId: reservation.client.id,
-            shadowId: reservation.shadow.id,
+            clientId: reservation.client,
+            shadowId: reservation.shadow,
             checkIn: reservation.booking.checkIn.toString(),
             checkOut: reservation.booking.checkOut.toString(),
         };

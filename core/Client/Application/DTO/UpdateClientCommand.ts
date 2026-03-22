@@ -9,4 +9,9 @@ export class UpdateClientCommand{
      * Data of the client
      * */
     data:CreateClientCommand;
+    /*
+    * Date of creation
+    * @example: '2026-01-10'
+    * */
+    createdAt:string;
 }

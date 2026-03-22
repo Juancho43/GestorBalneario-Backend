@@ -6,6 +6,8 @@ import {Inject, Injectable} from "@nestjs/common";
 import {DB_PROVIDER} from "../../database/DBPROVIDER";
 import {StringObject} from "../../../core/common/Model/StringObject";
 import {EmailObject} from "../../../core/common/Model/EmailObject";
+import {Timestamps} from "../../../core/common/Model/Timestamps";
+import {SoftDelete} from "../../../core/common/Model/SoftDelete";
 @Injectable()
 export class SqliteClientGetMany implements GetClientsDAO {
 
@@ -18,7 +20,7 @@ export class SqliteClientGetMany implements GetClientsDAO {
             const rows = this.db.prepare(`
                 SELECT * FROM Clients 
                 WHERE (name LIKE ? OR email LIKE ? OR phone LIKE ?)
-                ORDER BY id ASC
+                ORDER BY id 
                 LIMIT ? OFFSET ?
             `).all(searchTerm, searchTerm, searchTerm, limit, offset);
 
@@ -28,6 +30,8 @@ export class SqliteClientGetMany implements GetClientsDAO {
                     StringObject.create(row.name),
                     EmailObject.create(row.email),
                     StringObject.create(row.phone),
+                    Timestamps.restore(row.created_at, row.updated_at),
+                    SoftDelete.restore(row.deleted_at),
                 )
             );
         }

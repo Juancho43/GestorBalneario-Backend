@@ -4,6 +4,8 @@ import {UniqueIdentifier} from "../../common/Model/UniqueIdentifier";
 import {Money} from "./Money";
 import {Timestamps} from "../../common/Model/Timestamps";
 import {SoftDelete} from "../../common/Model/SoftDelete";
+import {type} from "node:os";
+import {timestamp} from "rxjs";
 export class Payment {
     private constructor(
         private readonly _id: UniqueIdentifier,
@@ -45,4 +47,16 @@ export class Payment {
     get date(): Date { return this._date; }
     get type(): PaymentType { return this._type; }
     get description(): StringObject | undefined { return this._description; }
+
+    get reservationId(): UniqueIdentifier {
+        return this._reservationId;
+    }
+
+    get timestamp(): Timestamps {
+        return this._timestamp;
+    }
+
+    get softDelete(): SoftDelete {
+        return this._softDelete;
+    }
 }
