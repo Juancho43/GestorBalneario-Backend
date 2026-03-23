@@ -1,6 +1,6 @@
 import {PaymentType} from "./PaymentType";
 import {StringObject} from "../../common/Model/StringObject";
-import {UniqueIdentifier} from "../../common/Model/UniqueIdentifier";
+import {UUID} from "../../common/Model/UUID";
 import {Money} from "./Money";
 import {Timestamps} from "../../common/Model/Timestamps";
 import {SoftDelete} from "../../common/Model/SoftDelete";
@@ -8,7 +8,7 @@ import {type} from "node:os";
 import {timestamp} from "rxjs";
 export class Payment {
     private constructor(
-        private readonly _id: UniqueIdentifier,
+        private readonly _id: UUID,
         private readonly _date: Date,
         private readonly _type: PaymentType,
         private readonly _money: Money,
@@ -19,7 +19,7 @@ export class Payment {
     }
 
     static create(
-        id: UniqueIdentifier,
+        id: UUID,
         date: Date,
         type: PaymentType,
         money: Money,
@@ -38,7 +38,7 @@ export class Payment {
         return this._money;
     }
 
-    get id(): UniqueIdentifier { return this._id; }
+    get id(): UUID { return this._id; }
     get date(): Date { return this._date; }
     get type(): PaymentType { return this._type; }
     get description(): StringObject | undefined { return this._description; }

@@ -1,6 +1,6 @@
 import {describe, it, expect, beforeEach, assert} from 'vitest';
 import {Invoice} from "../../core/Billing/Invoice";
-import {UniqueIdentifier} from "../../core/common/Model/UniqueIdentifier";
+import {UUID} from "../../core/common/Model/UUID";
 
 describe('Invoice Domain Entity', () => {
 

@@ -6,7 +6,7 @@ import {StringObject} from "../../common/Model/StringObject";
 import {EmailObject} from "../../common/Model/EmailObject";
 import {Timestamps} from "../../common/Model/Timestamps";
 import {SoftDelete} from "../../common/Model/SoftDelete";
-import {UniqueIdentifier} from "../../common/Model/UniqueIdentifier";
+import {UUID} from "../../common/Model/UUID";
 
 export class UpdateClient implements IUseCase<UpdateClientCommand, Client>{
     constructor(private dao: UpdateClientDAO) {
@@ -14,7 +14,7 @@ export class UpdateClient implements IUseCase<UpdateClientCommand, Client>{
 
     async execute(request: UpdateClientCommand): Promise<Client> {
         const client = Client.create(
-            UniqueIdentifier.restore(request.id),
+            UUID.restore(request.id),
             StringObject.create(request.data.name),
             EmailObject.create(request.data.email),
             StringObject.create(request.data.phone),

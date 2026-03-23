@@ -1,10 +1,10 @@
-import {UniqueIdentifier} from "../common/Model/UniqueIdentifier";
+import {UUID} from "../common/Model/UUID";
 import {Money} from "../Payment/Model/Money";
 import {StringObject} from "../common/Model/StringObject";
 
 export interface InvoiceItem{
-    getInvoiceId():UniqueIdentifier;
+    getInvoiceId():UUID;
     getPrice():Money;
-    getId():UniqueIdentifier;
+    getId():UUID;
     getDescription():StringObject;
 }

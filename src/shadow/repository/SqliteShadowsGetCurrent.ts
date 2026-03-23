@@ -7,7 +7,7 @@ import {ShadowType} from "../../../core/Shadow/Model/ValueObjects/ShadowType";
 import {Coords} from "../../../core/common/Model/Coords";
 import {Timestamps} from "../../../core/common/Model/Timestamps";
 import {SoftDelete} from "../../../core/common/Model/SoftDelete";
-import {UniqueIdentifier} from "../../../core/common/Model/UniqueIdentifier";
+import {UUID} from "../../../core/common/Model/UUID";
 
 @Injectable()
 export class SqliteShadowsGetCurrent implements GetShadowListDAO {
@@ -29,7 +29,7 @@ export class SqliteShadowsGetCurrent implements GetShadowListDAO {
 
         return rows.map(row =>
             Shadow.create(
-                UniqueIdentifier.restore(row.id),
+                UUID.restore(row.id),
                 StringObject.create(row.identifier),
                 ShadowType.create(row.type),
                 Coords.create(row.x, row.y),

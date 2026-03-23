@@ -4,7 +4,7 @@ import {Reservation} from "../../../core/Reservation/Model/Reservation";
 import {Client} from "../../../core/Client/Model/Client";
 import {Injectable} from "@nestjs/common";
 import {SoftDelete} from "../../../core/common/Model/SoftDelete";
-import {UniqueIdentifier} from "../../../core/common/Model/UniqueIdentifier";
+import {UUID} from "../../../core/common/Model/UUID";
 import {StringObject} from "../../../core/common/Model/StringObject";
 import {EmailObject} from "../../../core/common/Model/EmailObject";
 import {Timestamps} from "../../../core/common/Model/Timestamps";
@@ -36,7 +36,7 @@ export class SqliteGetReservationWithClient extends SqliteBaseClass implements G
         const result = this.getDb().prepare(sql).get(id) as any;
         return {
             client: Client.create(
-                UniqueIdentifier.restore(result.clientId),
+                UUID.restore(result.clientId),
                 StringObject.create(result.name),
                 EmailObject.create(result.email),
                 StringObject.create(result.phone),
@@ -44,9 +44,9 @@ export class SqliteGetReservationWithClient extends SqliteBaseClass implements G
                 SoftDelete.empty()
             ),
             reservation: Reservation.create(
-                UniqueIdentifier.restore(result.reservationId),
-                UniqueIdentifier.restore(result.clientId),
-                UniqueIdentifier.restore(result.shadowId),
+                UUID.restore(result.reservationId),
+                UUID.restore(result.clientId),
+                UUID.restore(result.shadowId),
                 Booking.create(new Date(result.checkIn), new Date(result.checkOut)),
                 result.price,
                 Timestamps.restore(new Date(result.resCreated), new Date(result.resUpdated)),

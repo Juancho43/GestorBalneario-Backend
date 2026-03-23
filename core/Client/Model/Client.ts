@@ -2,17 +2,17 @@ import {StringObject} from "../../common/Model/StringObject";
 import {EmailObject} from "../../common/Model/EmailObject";
 import {Timestamps} from "../../common/Model/Timestamps";
 import {SoftDelete} from "../../common/Model/SoftDelete";
-import {UniqueIdentifier} from "../../common/Model/UniqueIdentifier";
+import {UUID} from "../../common/Model/UUID";
 
 export class Client{
-    private _id:UniqueIdentifier;
+    private _id:UUID;
     private _name:StringObject;
     private _email:EmailObject;
     private _phone:StringObject;
-    private _invoices: UniqueIdentifier[];
+    private _invoices: UUID[];
     private _timestamp: Timestamps;
     private _softDelete: SoftDelete;
-    private constructor(id:UniqueIdentifier,name:StringObject,email:EmailObject,phone:StringObject, timestamp:Timestamps,softDelete:SoftDelete){
+    private constructor(id:UUID, name:StringObject, email:EmailObject, phone:StringObject, timestamp:Timestamps, softDelete:SoftDelete){
         this._id=id;
         this._name=name;
         this._email=email;
@@ -21,7 +21,7 @@ export class Client{
         this._softDelete=softDelete;
     }
 
-    static create(id:UniqueIdentifier,name:StringObject,email:EmailObject,phone:StringObject, timestamp:Timestamps,softDelete:SoftDelete){
+    static create(id:UUID, name:StringObject, email:EmailObject, phone:StringObject, timestamp:Timestamps, softDelete:SoftDelete){
         return new Client(id,name,email,phone,timestamp,softDelete);
     }
 
@@ -34,7 +34,7 @@ export class Client{
         return this._softDelete;
     }
 
-    get id(): UniqueIdentifier {
+    get id(): UUID {
         return this._id;
     }
 

@@ -6,7 +6,7 @@ import {ShadowType} from "../Model/ValueObjects/ShadowType";
 import {Coords} from "../../common/Model/Coords";
 import {Timestamps} from "../../common/Model/Timestamps";
 import {SoftDelete} from "../../common/Model/SoftDelete";
-import {UniqueIdentifier} from "../../common/Model/UniqueIdentifier";
+import {UUID} from "../../common/Model/UUID";
 import {UpdateShadowDAO} from "../Model/DAO/UpdateShadowDAO";
 
 export class UpdateShadow implements IUseCase<UpdateShadowCommand, Shadow>{
@@ -15,7 +15,7 @@ export class UpdateShadow implements IUseCase<UpdateShadowCommand, Shadow>{
 
     async execute(request: UpdateShadowCommand): Promise<Shadow> {
         const shadow = Shadow.create(
-            UniqueIdentifier.restore(request.id),
+            UUID.restore(request.id),
             StringObject.create(request.data.identifier),
             ShadowType.create(request.data.type),
             Coords.create(request.data.coords.x, request.data.coords.y),

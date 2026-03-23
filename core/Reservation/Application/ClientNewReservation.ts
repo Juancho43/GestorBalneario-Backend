@@ -5,7 +5,7 @@ import type {CreateReservationDAO} from "../Model/DAO/CreateReservationDAO";
 import type {GetClientDAO} from "../../Client/Model/DAO/GetClientDAO";
 import type {GetShadowDAO} from "../../Shadow/Model/DAO/GetShadowDAO";
 import {Booking} from "../Model/Booking";
-import {UniqueIdentifier} from "../../common/Model/UniqueIdentifier";
+import {UUID} from "../../common/Model/UUID";
 import {GetReservationsByShadowIdDAO} from "../Model/DAO/GetReservationsByShadowIdDAO";
 import {Timestamps} from "../../common/Model/Timestamps";
 import {SoftDelete} from "../../common/Model/SoftDelete";
@@ -19,8 +19,8 @@ export class ClientNewReservation implements IUseCase<CreateReservationCommand, 
     ) {
     }
     async execute(request: CreateReservationCommand): Promise<Reservation> {
-        const clientId = UniqueIdentifier.restore(request.clientId);
-        const shadowId = UniqueIdentifier.restore(request.shadowId);
+        const clientId = UUID.restore(request.clientId);
+        const shadowId = UUID.restore(request.shadowId);
         const booking =  Booking.create(new Date(request.checkIn),new Date(request.checkOut));
         const client = await this.getClient.get(request.clientId);
         if (!client) {
@@ -35,7 +35,7 @@ export class ClientNewReservation implements IUseCase<CreateReservationCommand, 
 
 
         const reservation = Reservation.create(
-            UniqueIdentifier.create(),
+            UUID.create(),
             clientId,
             shadowId,
             booking,

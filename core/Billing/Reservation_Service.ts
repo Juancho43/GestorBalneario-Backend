@@ -1,22 +1,22 @@
-import {UniqueIdentifier} from "../common/Model/UniqueIdentifier";
+import {UUID} from "../common/Model/UUID";
 import {Money} from "../Payment/Model/Money";
 import {InvoiceItem} from "./InvoiceItem";
 import {StringObject} from "../common/Model/StringObject";
 import {Payment} from "../Payment/Model/Payment";
 
 export class Reservation_Service implements InvoiceItem{
-    private id: UniqueIdentifier;
+    private id: UUID;
     private price : Money;
     private description : StringObject;
-    private invoiceId: UniqueIdentifier;
-    private serviceId: UniqueIdentifier;
-    private reservationId: UniqueIdentifier;
+    private invoiceId: UUID;
+    private serviceId: UUID;
+    private reservationId: UUID;
 
-    getId(): UniqueIdentifier {
+    getId(): UUID {
         return this.id;
     }
 
-    getInvoiceId(): UniqueIdentifier {
+    getInvoiceId(): UUID {
         return this.invoiceId;
     }
 

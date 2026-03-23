@@ -2,7 +2,7 @@ import {ShadowType} from "./ValueObjects/ShadowType";
 import {Coords} from "../../common/Model/Coords";
 import {StringObject} from "../../common/Model/StringObject";
 import {Reservation} from "../../Reservation/Model/Reservation";
-import {UniqueIdentifier} from "../../common/Model/UniqueIdentifier";
+import {UUID} from "../../common/Model/UUID";
 import {Timestamps} from "../../common/Model/Timestamps";
 import {SoftDelete} from "../../common/Model/SoftDelete";
 import {Booking} from "../../Reservation/Model/Booking";
@@ -12,13 +12,13 @@ import {Booking} from "../../Reservation/Model/Booking";
  * Carpa-sombrilla
  */
 export class Shadow{
-    private readonly _id: UniqueIdentifier;
+    private readonly _id: UUID;
     private  _identifier: StringObject;
     private  _type: ShadowType;
     private  _coords: Coords;
     private _timestamp: Timestamps;
     private _softDelete: SoftDelete;
-    private constructor(id: UniqueIdentifier, identifier: StringObject, type: ShadowType, coords: Coords, timestamp: Timestamps, softDelete: SoftDelete) {
+    private constructor(id: UUID, identifier: StringObject, type: ShadowType, coords: Coords, timestamp: Timestamps, softDelete: SoftDelete) {
         this._id = id;
         this._identifier = identifier;
         this._type = type;
@@ -27,7 +27,7 @@ export class Shadow{
         this._softDelete = softDelete;
     }
 
-    static create(id:UniqueIdentifier, identifier: StringObject, type: ShadowType, coords: Coords, timestamp: Timestamps, softDelete: SoftDelete): Shadow {
+    static create(id:UUID, identifier: StringObject, type: ShadowType, coords: Coords, timestamp: Timestamps, softDelete: SoftDelete): Shadow {
         return new Shadow(id, identifier, type, coords, timestamp, softDelete);
     }
 
@@ -42,7 +42,7 @@ export class Shadow{
         return isAvailable;
     }
 
-    get id(): UniqueIdentifier {
+    get id(): UUID {
         return this._id;
     }
 

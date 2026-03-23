@@ -1,19 +1,19 @@
 import {Booking} from "./Booking";
-import {UniqueIdentifier} from "../../common/Model/UniqueIdentifier";
+import {UUID} from "../../common/Model/UUID";
 import {Payment} from "../../Payment/Model/Payment";
 import {SoftDelete} from "../../common/Model/SoftDelete";
 import {Timestamps} from "../../common/Model/Timestamps";
 
 export class Reservation{
-    private _id: UniqueIdentifier;
-    private _client: UniqueIdentifier;
-    private _shadow: UniqueIdentifier;
+    private _id: UUID;
+    private _client: UUID;
+    private _shadow: UUID;
     private _booking: Booking;
     private _timestamp: Timestamps;
     private _softDelete: SoftDelete;
 
 
-    private constructor(id: UniqueIdentifier,client: UniqueIdentifier, shadow: UniqueIdentifier, booking: Booking, timestamp: Timestamps, softDelete: SoftDelete) {
+    private constructor(id: UUID, client: UUID, shadow: UUID, booking: Booking, timestamp: Timestamps, softDelete: SoftDelete) {
         this._id = id;
         this._client = client;
         this._shadow = shadow;
@@ -21,7 +21,7 @@ export class Reservation{
         this._timestamp = timestamp;
         this._softDelete = softDelete;
     }
-    public static create(id: UniqueIdentifier,client: UniqueIdentifier, shadow: UniqueIdentifier, booking: Booking, timestamp:Timestamps,softdelete:SoftDelete): Reservation {
+    public static create(id: UUID, client: UUID, shadow: UUID, booking: Booking, timestamp:Timestamps, softdelete:SoftDelete): Reservation {
         if (!client || !shadow || !booking){
             throw new Error("Invalid reservation data: All fields are required.");
         }
@@ -42,16 +42,16 @@ export class Reservation{
 
 
 
-    get id(): UniqueIdentifier {
+    get id(): UUID {
         return this._id;
     }
     get booking(): Booking {
         return this._booking;
     }
-    get client(): UniqueIdentifier {
+    get client(): UUID {
         return this._client;
     }
-    get shadow(): UniqueIdentifier {
+    get shadow(): UUID {
         return this._shadow;
     }
     get timestamp(): Timestamps {

@@ -5,7 +5,7 @@ import {CreatePaymentDAO} from "../Model/DAO/CreatePaymentDAO";
 import {GetReservationDAO} from "../../Reservation/Model/DAO/GetReservationDAO";
 import {StringObject} from "../../common/Model/StringObject";
 import {PaymentType} from "../Model/PaymentType";
-import {UniqueIdentifier} from "../../common/Model/UniqueIdentifier";
+import {UUID} from "../../common/Model/UUID";
 import {Money} from "../Model/Money";
 import {Timestamps} from "../../common/Model/Timestamps";
 import {SoftDelete} from "../../common/Model/SoftDelete";
@@ -29,7 +29,7 @@ export class AddPaymentToReservation implements IUseCase<CreatePaymentCommand, P
         );
 
         const payment = Payment.create(
-            UniqueIdentifier.create(),
+            UUID.create(),
             new Date(command.date),
             PaymentType.create(command.type),
             money,
