@@ -6,8 +6,6 @@ import {UniqueIdentifier} from "../../common/Model/UniqueIdentifier";
 import {Timestamps} from "../../common/Model/Timestamps";
 import {SoftDelete} from "../../common/Model/SoftDelete";
 import {Booking} from "../../Reservation/Model/Booking";
-import {type} from "node:os";
-import {timestamp} from "rxjs";
 
 /**
  * Sombra
@@ -18,8 +16,6 @@ export class Shadow{
     private  _identifier: StringObject;
     private  _type: ShadowType;
     private  _coords: Coords;
-    private _seasonId:UniqueIdentifier;
-    private _reservationId?: UniqueIdentifier;
     private _timestamp: Timestamps;
     private _softDelete: SoftDelete;
     private constructor(id: UniqueIdentifier, identifier: StringObject, type: ShadowType, coords: Coords, timestamp: Timestamps, softDelete: SoftDelete) {
@@ -59,14 +55,6 @@ export class Shadow{
     }
     get coords(): Coords {
         return this._coords;
-    }
-
-    get seasonId(): UniqueIdentifier {
-        return this._seasonId;
-    }
-
-    get reservationId(): UniqueIdentifier | undefined {
-        return this._reservationId;
     }
 
     get timestamp(): Timestamps {

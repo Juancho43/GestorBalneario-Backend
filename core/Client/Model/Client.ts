@@ -9,7 +9,7 @@ export class Client{
     private _name:StringObject;
     private _email:EmailObject;
     private _phone:StringObject;
-    private _reservations: UniqueIdentifier[];
+    private _invoices: UniqueIdentifier[];
     private _timestamp: Timestamps;
     private _softDelete: SoftDelete;
     private constructor(id:UniqueIdentifier,name:StringObject,email:EmailObject,phone:StringObject, timestamp:Timestamps,softDelete:SoftDelete){
