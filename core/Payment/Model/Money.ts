@@ -1,14 +1,21 @@
+export enum Currency {
+    USD = 'USD',
+    ARS = 'ARS',
+    BTC = 'BTC',
+    OTHER = 'OTHER',
+}
+
 export class Money {
     private constructor(
         private readonly _amount: number,
         private readonly _exchangeRate: number,
-        private readonly _currency: string // Ejemplo: 'USD', 'ARS'
+        private readonly _currency: Currency,
     ) {
         this.validate(this._amount);
         this.validate(this._exchangeRate);
     }
 
-    public static create(amount: number, exchangeRate: number = 1, currency: string = 'ARS'): Money {
+    public static create(amount: number, exchangeRate: number = 1, currency: Currency = Currency.ARS): Money {
         return new Money(amount, exchangeRate, currency);
     }
 
