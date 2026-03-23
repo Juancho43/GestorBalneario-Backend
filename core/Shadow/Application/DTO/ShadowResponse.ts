@@ -32,18 +32,16 @@ export class ShadowResponse{
      * */
     state: string;
 
-
-    currentReservation?: ReservationResponse;
-
-      static create(shadow: Shadow){
-          const response: any = {
-              id: shadow.id.value,
-              identifier: shadow.identifier.getValue(),
-              type: shadow.type.type,
-              coords: shadow.coords,
-          }
-                 return response;
-      }
+    static create(shadow: Shadow){
+        const response: any = {
+            id: shadow.id.value,
+            identifier: shadow.identifier.getValue(),
+            type: shadow.type.type,
+            coords: shadow.coords,
+            state: shadow.isAvailable() ? 'available' : 'occupied'
+        }
+        return response;
+    }
     static createList(shadows: Shadow[]){
         return shadows.map((shadow) => {
             return ShadowResponse.create(shadow);

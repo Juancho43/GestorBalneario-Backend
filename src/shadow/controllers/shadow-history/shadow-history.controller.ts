@@ -1,6 +1,6 @@
 import {Controller, Get, Param, Query} from '@nestjs/common';
 import {ApiOperation, ApiTags} from "@nestjs/swagger";
-@ApiTags()
+@ApiTags('ShadowFronted')
 @Controller('shadow')
 export class ShadowHistoryController {
     @Get('history/:id')

@@ -17,6 +17,7 @@ export class Shadow{
     private  _type: ShadowType;
     private  _coords: Coords;
     private _timestamp: Timestamps;
+    private _reservations: Reservation[] = [];
     private _softDelete: SoftDelete;
     private constructor(id: UUID, identifier: StringObject, type: ShadowType, coords: Coords, timestamp: Timestamps, softDelete: SoftDelete) {
         this._id = id;
@@ -31,15 +32,22 @@ export class Shadow{
         return new Shadow(id, identifier, type, coords, timestamp, softDelete);
     }
 
-    canBeReserved(dates: Booking, reservations: Reservation[]): boolean {
+    canBeReserved(dates: Booking): boolean {
         let isAvailable = true;
         if (this._softDelete.isDeleted) isAvailable = false;
 
-        const hasOverlap = reservations.some(reservation => {
+        const hasOverlap = this._reservations.some(reservation => {
             reservation.booking.overlapsWith(dates);
         })
         if (hasOverlap) isAvailable = false;
         return isAvailable;
+    }
+
+    addReservation(reservation: Reservation){
+        this._reservations.push(reservation);
+    }
+    isAvailable():boolean{
+        return this.canBeReserved(Booking.create(new Date(), new Date()));
     }
 
     get id(): UUID {
