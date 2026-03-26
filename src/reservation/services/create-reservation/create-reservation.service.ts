@@ -23,7 +23,7 @@ export class CreateReservationService {
 
     async execute(command: CreateReservationCommand) {
         try {
-            this.logger.log('Creating a reservation', command);
+            this.logger.debug('Creating a reservation', command);
             return ReservationResponse.create(await this.useCase.execute(command));
         }catch (error) {
             this.logger.error('Error creating reservation:', error);

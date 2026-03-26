@@ -21,7 +21,7 @@ export class SqliteGetCurrentReservation implements GetCurrentReservationsDAO {
         // Utilizamos JOIN para traer los datos relacionados en un solo paso
         const rows = this.db.prepare(`
             SELECT
-                r.id, r.checkIn, r.checkOut, r.date, r.price,
+                r.id, r.checkIn, r.checkOut, r.date,
                 c.id as clientId, c.name as clientName, c.email as clientEmail, c.phone as clientPhone,
                 s.id as shadowId,s.identifier as shadowIdentifier, s.type as shadowType, s.x as shadowX, s.y as shadowY
             FROM Reservations r
@@ -36,7 +36,6 @@ export class SqliteGetCurrentReservation implements GetCurrentReservationsDAO {
                 UUID.restore(row.clientId),
                 UUID.restore(row.shadowId),
                 Booking.create(new Date(row.checkIn), new Date(row.checkOut)),
-                row.price,
                 Timestamps.create(),
                 SoftDelete.empty()
             )
