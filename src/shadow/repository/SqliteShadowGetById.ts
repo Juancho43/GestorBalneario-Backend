@@ -10,7 +10,7 @@ import {Reservation} from "../../../core/Reservation/Model/Reservation";
 import {Client} from "../../../core/Client/Model/Client";
 import {EmailObject} from "../../../core/common/Model/EmailObject";
 import {Booking} from "../../../core/Reservation/Model/Booking";
-import {UniqueIdentifier} from "../../../core/common/Model/UniqueIdentifier";
+import {UUID} from "../../../core/common/Model/UUID";
 import {Timestamps} from "../../../core/common/Model/Timestamps";
 import {SoftDelete} from "../../../core/common/Model/SoftDelete";
 
@@ -39,7 +39,7 @@ export class SqliteShadowGetById implements GetShadowDAO{
         let reservation : Reservation | null = null;
         if(row){
             result = Shadow.create(
-                UniqueIdentifier.restore(row.shadowId),
+                UUID.restore(row.shadowId),
                 StringObject.create(row.identifier),
                 ShadowType.create(row.type),
                 Coords.create(row.x, row.y),

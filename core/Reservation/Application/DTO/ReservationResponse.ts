@@ -8,9 +8,6 @@ export class ReservationResponse {
      */
     id: string;
 
-    /** Associated client information */
-    client: ClientResponse;
-
     /** Booking dates and schedule information */
     dates: {
         /** Check-in date and time (ISO 8601)
@@ -22,18 +19,10 @@ export class ReservationResponse {
          */
         checkOut: string;
     };
-    /**
-     * Total price for the reservation.
-     * @example 1000
-     * */
-    price: number
 
     duration: number;
 
 
-    state: string;
-
-    shadow?: ShadowResponse;
 
     /**
      * Maps a Reservation Model to a ReservationResponse DTO
@@ -41,12 +30,11 @@ export class ReservationResponse {
     static create(reservation: Reservation): ReservationResponse {
         const r = new ReservationResponse();
 
-        r.id = reservation.id.toString();
+        r.id = reservation.id.value;
         r.dates = {
             checkIn: reservation.booking.checkIn.toString(),
             checkOut: reservation.booking.checkOut.toString(),
         };
-        r.price = reservation.price;
         r.duration = reservation.booking.durationInDays();
 
         return r;

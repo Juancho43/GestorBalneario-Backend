@@ -5,7 +5,7 @@ import {GetClientDAO} from "../../Client/Model/DAO/GetClientDAO";
 import {GetShadowDAO} from "../../Shadow/Model/DAO/GetShadowDAO";
 import {Booking} from "../Model/Booking";
 import {UpdateReservationDAO} from "../Model/DAO/UpdateReservationDAO";
-import {UniqueIdentifier} from "../../common/Model/UniqueIdentifier";
+import {UUID} from "../../common/Model/UUID";
 import {Timestamps} from "../../common/Model/Timestamps";
 import {SoftDelete} from "../../common/Model/SoftDelete";
 
@@ -23,11 +23,10 @@ export class UpdateReservation implements IUseCase<UpdateReservationCommand, Res
         }
 
         const reservation = Reservation.create(
-            UniqueIdentifier.restore(request.id),
-            UniqueIdentifier.restore(request.data.clientId),
-            UniqueIdentifier.restore(request.data.shadowId),
+            UUID.restore(request.id),
+            UUID.restore(request.data.clientId),
+            UUID.restore(request.data.shadowId),
             Booking.create(new Date(request.data.checkIn),new Date(request.data.checkOut)),
-            request.data.price,
             Timestamps.restore(new Date(request.createdAt), new Date()).update(),
             SoftDelete.empty()
         )

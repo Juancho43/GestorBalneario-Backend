@@ -2,7 +2,7 @@ import { Reservation } from "core/Reservation/Model/Reservation";
 import {Injectable} from "@nestjs/common";
 import {GetReservationDAO} from "../../../core/Reservation/Model/DAO/GetReservationDAO";
 import {SqliteBaseClass} from "../../database/SqliteBaseClass";
-import {UniqueIdentifier} from "../../../core/common/Model/UniqueIdentifier";
+import {UUID} from "../../../core/common/Model/UUID";
 import {Booking} from "../../../core/Reservation/Model/Booking";
 import {Timestamps} from "../../../core/common/Model/Timestamps";
 import {SoftDelete} from "../../../core/common/Model/SoftDelete";
@@ -19,11 +19,10 @@ export class SqliteGetReservation extends SqliteBaseClass implements GetReservat
         }
 
         return Reservation.create(
-            UniqueIdentifier.restore(row.id),
-            UniqueIdentifier.restore(row.clientId),
-            UniqueIdentifier.restore(row.shadowId),
+            UUID.restore(row.id),
+            UUID.restore(row.clientId),
+            UUID.restore(row.shadowId),
             Booking.create(new Date(row.checkIn), new Date(row.checkOut)),
-            row.price,
             Timestamps.restore(new Date(row.created_at), new Date(row.updated_at)),
             SoftDelete.empty()
         );

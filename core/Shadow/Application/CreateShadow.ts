@@ -9,7 +9,7 @@ import {Coords} from "../../common/Model/Coords";
 import {PersistShadow} from "../Model/PersistShadow";
 import {Timestamps} from "../../common/Model/Timestamps";
 import {SoftDelete} from "../../common/Model/SoftDelete";
-import {UniqueIdentifier} from "../../common/Model/UniqueIdentifier";
+import {UUID} from "../../common/Model/UUID";
 import {CreateShadowDAO} from "../Model/DAO/CreateShadowDAO";
 
 export class CreateShadow implements IUseCase<CreateShadowCommand, Shadow>{
@@ -18,7 +18,7 @@ export class CreateShadow implements IUseCase<CreateShadowCommand, Shadow>{
     }
     async execute(request: CreateShadowCommand): Promise<Shadow> {
         const shadow = Shadow.create(
-            UniqueIdentifier.create(),
+            UUID.create(),
             StringObject.create(request.identifier),
             ShadowType.create(request.type),
             Coords.create(request.coords.x, request.coords.y),

@@ -15,9 +15,22 @@ import {GetCurrentShadowsController} from "./controllers/get-current-shadows/get
 import {SqliteShadowCreate} from "./repository/SqliteShadowCreate";
 import {SqliteShadowUpdate} from "./repository/SqliteShadowUpdate";
 import { ShadowHistoryController } from './controllers/shadow-history/shadow-history.controller';
+import { GetShadowMapService } from './services/get-shadow-map/get-shadow-map.service';
+import {GetShadowMapController} from "./controllers/get-shadow-map/get-shadow-map.controller";
+import {SqliteGetShadowMap} from "./repository/SqliteGetShadowMap";
+import {SqliteGetShadowHistory} from "./repository/SqliteGetShadowHistory";
+import {GetShadowHistoryService} from "./services/get-shadow-history/get-shadow-history.service";
 
 @Module({
-    controllers: [CreateShadowController, EditShadowController, DeleteShadowController, GetByIdShadowController, GetCurrentShadowsController, ShadowHistoryController],
+    controllers: [
+        CreateShadowController,
+        EditShadowController,
+        DeleteShadowController,
+        GetByIdShadowController,
+        GetCurrentShadowsController,
+        ShadowHistoryController,
+        GetShadowMapController
+    ],
     providers: [
         {
             provide: 'DELETE_SHADOW_INTERFACE',
@@ -39,6 +52,21 @@ import { ShadowHistoryController } from './controllers/shadow-history/shadow-his
             provide: 'GET_ALL_SHADOW_INTERFACE',
             useClass: SqliteShadowsGetCurrent,
         },
-        CreateShadowService, EditShadowService, DeleteShadowService, GetShadowService, GetCurrentShadowsService],
+        {
+          provide: 'GET_SHADOW_MAP',
+          useClass: SqliteGetShadowMap
+        },
+        {
+         provide:'GET_SHADOW_HISTORY',
+         useClass:SqliteGetShadowHistory,
+        },
+        CreateShadowService,
+        EditShadowService,
+        DeleteShadowService,
+        GetShadowService,
+        GetCurrentShadowsService,
+        GetShadowMapService,
+        GetShadowHistoryService
+    ],
 })
 export class ShadowModule {}

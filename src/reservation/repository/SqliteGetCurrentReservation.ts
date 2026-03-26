@@ -6,7 +6,7 @@ import { GetCurrentReservationsQuery } from "core/Reservation/Application/DTO/Ge
 import {Booking} from "../../../core/Reservation/Model/Booking";
 import {Timestamps} from "../../../core/common/Model/Timestamps";
 import {SoftDelete} from "../../../core/common/Model/SoftDelete";
-import {UniqueIdentifier} from "../../../core/common/Model/UniqueIdentifier";
+import {UUID} from "../../../core/common/Model/UUID";
 
 @Injectable()
 export class SqliteGetCurrentReservation implements GetCurrentReservationsDAO {
@@ -32,9 +32,9 @@ export class SqliteGetCurrentReservation implements GetCurrentReservationsDAO {
         `).all(limit, offset);
         return rows.map(row =>{
             return Reservation.create(
-                UniqueIdentifier.restore(row.id),
-                UniqueIdentifier.restore(row.clientId),
-                UniqueIdentifier.restore(row.shadowId),
+                UUID.restore(row.id),
+                UUID.restore(row.clientId),
+                UUID.restore(row.shadowId),
                 Booking.create(new Date(row.checkIn), new Date(row.checkOut)),
                 row.price,
                 Timestamps.create(),

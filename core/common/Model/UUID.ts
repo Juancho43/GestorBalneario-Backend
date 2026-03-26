@@ -1,10 +1,10 @@
 import { v4 as uuidv4, validate as validateUuid } from 'uuid';
 
 /**
- * UniqueIdentifier Value Object
+ * UUID
  * Garantiza que cualquier ID en el sistema sea un UUID válido.
  */
-export class UniqueIdentifier {
+export class UUID {
     private readonly _value: string;
 
     private constructor(value: string) {
@@ -15,15 +15,15 @@ export class UniqueIdentifier {
     /**
      * Factory method para crear un nuevo ID (Generación)
      */
-    static create(): UniqueIdentifier {
-        return new UniqueIdentifier(uuidv4());
+    static create(): UUID {
+        return new UUID(uuidv4());
     }
 
     /**
      * Factory method para reconstruir un ID existente (Persistencia/SQLite)
      */
-    static restore(value: string): UniqueIdentifier {
-        return new UniqueIdentifier(value);
+    static restore(value: string): UUID {
+        return new UUID(value);
     }
 
     private validate(value: string): void {
@@ -36,14 +36,7 @@ export class UniqueIdentifier {
         return this._value;
     }
 
-    /**
-     * Comparación lógica entre Value Objects
-     */
-    equals(other: UniqueIdentifier): boolean {
+    equals(other: UUID): boolean {
         return this._value === other.value;
-    }
-
-    toString(): string {
-        return this._value;
     }
 }

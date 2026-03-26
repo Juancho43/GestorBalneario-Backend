@@ -1,20 +1,20 @@
 import {Inject, Injectable} from '@nestjs/common';
-import {AddPaymentToReservation} from "../../../../core/Payment/Application/AddPaymentToReservation";
+import {ProcessPayment} from "../../../../core/Payment/Application/ProcessPayment";
 import {CreatePaymentCommand} from "../../../../core/Payment/Application/DTO/CreatePaymentCommand";
 import {PaymentResponse} from "../../../../core/Payment/Application/DTO/PaymentResponse";
 import type {CreatePaymentDAO} from "../../../../core/Payment/Model/DAO/CreatePaymentDAO";
-import type {GetReservationDAO} from "../../../../core/Reservation/Model/DAO/GetReservationDAO";
+import type {GetInvoiceDAO} from "../../../../core/Invoice/Model/DAO/GetInvoiceDAO";
 
 @Injectable()
 export class CreatePaymentService {
 
-    private useCase: AddPaymentToReservation;
+    private useCase: ProcessPayment;
 
     constructor(
         @Inject('CREATE_PAYMENT_DAO') createPayment: CreatePaymentDAO,
-        @Inject('GET_RESERVATION_DAO') getReservation: GetReservationDAO
+        @Inject('GET_INVOICE_DAO') getInvoice:GetInvoiceDAO
     ) {
-        this.useCase = new AddPaymentToReservation(createPayment,getReservation);
+        this.useCase = new ProcessPayment(createPayment,getInvoice);
     }
 
     async execute(command: CreatePaymentCommand) {

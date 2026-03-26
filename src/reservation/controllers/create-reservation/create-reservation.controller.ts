@@ -9,13 +9,8 @@ export class CreateReservationController {
     constructor(@Inject() private service: CreateReservationService) {
     }
     @Post('create')
-
     @ApiOperation({summary: 'Create a reservation', description: 'Creates a new reservation' })
-    @ApiResponse({
-        status: 201,
-        description: 'The reservation has been created.',
-        type: ReservationResponse
-    })
+    @ApiResponse({status: 201, description: 'The reservation has been created.', type: ReservationResponse})
     @ApiResponse({status:500, description: 'The reservation has not been created.'})
     async execute(@Body()request: CreateReservationCommand) {
         try {

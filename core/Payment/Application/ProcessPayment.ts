@@ -2,43 +2,42 @@ import {IUseCase} from "../../common/Application/IUseCase";
 import {CreatePaymentCommand} from "./DTO/CreatePaymentCommand";
 import {Payment} from "../Model/Payment";
 import {CreatePaymentDAO} from "../Model/DAO/CreatePaymentDAO";
-import {GetReservationDAO} from "../../Reservation/Model/DAO/GetReservationDAO";
 import {StringObject} from "../../common/Model/StringObject";
 import {PaymentType} from "../Model/PaymentType";
-import {UniqueIdentifier} from "../../common/Model/UniqueIdentifier";
+import {UUID} from "../../common/Model/UUID";
 import {Money} from "../Model/Money";
 import {Timestamps} from "../../common/Model/Timestamps";
 import {SoftDelete} from "../../common/Model/SoftDelete";
+import {GetInvoiceDAO} from "../../Invoice/Model/DAO/GetInvoiceDAO";
 
-export class AddPaymentToReservation implements IUseCase<CreatePaymentCommand, Payment>{
+export class ProcessPayment implements IUseCase<CreatePaymentCommand, Payment>{
     constructor(
         private dao: CreatePaymentDAO,
-        private getReservation: GetReservationDAO
+        private getReservation:GetInvoiceDAO
     ) {
     }
 
     async execute(command: CreatePaymentCommand): Promise<Payment> {
-        const reservation = await this.getReservation.get(command.reservationId);
-        if (!reservation) {
-            throw new Error("Reservation not found!");
+        const invoice = await this.getReservation.get(command.invoiceId);
+        if (!invoice) {
+            throw new Error("Invoice not found!");
         }
         const money = Money.create(
             command.amount,
             command.changeType,
-            command.type
+            command.currency
         );
 
         const payment = Payment.create(
-            UniqueIdentifier.create(),
+            UUID.create(),
             new Date(command.date),
             PaymentType.create(command.type),
             money,
-            reservation.id,
             StringObject.create(command.description?? command.date.toISOString()),
             Timestamps.create(command.date),
             SoftDelete.empty()
         );
-
+        invoice.addPayment(payment);
         await this.dao.save(payment);
         return payment;
     }

@@ -9,6 +9,7 @@ import {SqliteCreatePayment} from "./repository/SqliteCreatePayment";
 import {SqliteUpdatePayment} from "./repository/SqliteUpdatePayment";
 import {SqliteGetPayment} from "./repository/SqliteGetPayment";
 import {SqliteGetReservation} from "../reservation/repository/SqliteGetReservation";
+import {SqliteGetInvoice} from "../invoices/repository/SqliteGetInvoice";
 
 @Module({
   controllers: [CreatePaymentController, UpdatePaymentController, GetPaymentController],
@@ -28,7 +29,12 @@ import {SqliteGetReservation} from "../reservation/repository/SqliteGetReservati
     {
       provide: 'GET_RESERVATION_DAO',
       useClass: SqliteGetReservation,
+    },
+    {
+      provide: 'GET_INVOICE_DAO',
+      useClass: SqliteGetInvoice,
     }
   ]
+
 })
 export class PaymentsModule {}
