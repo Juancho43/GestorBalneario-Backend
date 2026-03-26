@@ -1,4 +1,3 @@
-import {SaveClientDAO} from "../../../core/Client/Model/DAO/SaveClientDAO";
 import {Client} from "../../../core/Client/Model/Client";
 import {GetClientsDAO} from "../../../core/Client/Model/DAO/GetClientsDAO";
 import {GetClientsQuery} from "../../../core/Client/Application/DTO/GetClientsQuery";
@@ -8,6 +7,7 @@ import {StringObject} from "../../../core/common/Model/StringObject";
 import {EmailObject} from "../../../core/common/Model/EmailObject";
 import {Timestamps} from "../../../core/common/Model/Timestamps";
 import {SoftDelete} from "../../../core/common/Model/SoftDelete";
+import {UUID} from "../../../core/common/Model/UUID";
 @Injectable()
 export class SqliteClientGetMany implements GetClientsDAO {
 
@@ -26,7 +26,7 @@ export class SqliteClientGetMany implements GetClientsDAO {
 
             return rows.map(row =>
                 Client.create(
-                    row.id,
+                    UUID.restore(row.id),
                     StringObject.create(row.name),
                     EmailObject.create(row.email),
                     StringObject.create(row.phone),

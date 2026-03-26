@@ -14,7 +14,7 @@ export class SqliteShadowUpdate extends SqliteBaseClass implements UpdateShadowD
         WHERE id = @id
     `);
         const result = stmt.run({
-            id: shadow.id,
+            id: shadow.id.value,
             identifier: shadow.identifier.getValue(),
             type: shadow.type.type,
             x: shadow.coords.getX(),
