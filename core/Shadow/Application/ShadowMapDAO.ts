@@ -1,5 +1,5 @@
 import {ShadowMapDTO} from "./DTO/ShadowMapDTO";
 
-export interface ShadowMapQuery {
+export interface ShadowMapDAO {
     get(): Promise<ShadowMapDTO>;
 }

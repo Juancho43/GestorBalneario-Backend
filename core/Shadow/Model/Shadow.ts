@@ -47,7 +47,9 @@ export class Shadow{
         this._reservations.push(reservation);
     }
     isAvailable():boolean{
-        return this.canBeReserved(Booking.create(new Date(), new Date()));
+        const date = new Date();
+         date.setHours(date.getHours() + 8);
+        return this.canBeReserved(Booking.create(new Date(), date));
     }
 
     get id(): UUID {

@@ -18,6 +18,8 @@ import { ShadowHistoryController } from './controllers/shadow-history/shadow-his
 import { GetShadowMapService } from './services/get-shadow-map/get-shadow-map.service';
 import {GetShadowMapController} from "./controllers/get-shadow-map/get-shadow-map.controller";
 import {SqliteGetShadowMap} from "./repository/SqliteGetShadowMap";
+import {SqliteGetShadowHistory} from "./repository/SqliteGetShadowHistory";
+import {GetShadowHistoryService} from "./services/get-shadow-history/get-shadow-history.service";
 
 @Module({
     controllers: [
@@ -54,6 +56,17 @@ import {SqliteGetShadowMap} from "./repository/SqliteGetShadowMap";
           provide: 'GET_SHADOW_MAP',
           useClass: SqliteGetShadowMap
         },
-        CreateShadowService, EditShadowService, DeleteShadowService, GetShadowService, GetCurrentShadowsService, GetShadowMapService],
+        {
+         provide:'GET_SHADOW_HISTORY',
+         useClass:SqliteGetShadowHistory,
+        },
+        CreateShadowService,
+        EditShadowService,
+        DeleteShadowService,
+        GetShadowService,
+        GetCurrentShadowsService,
+        GetShadowMapService,
+        GetShadowHistoryService
+    ],
 })
 export class ShadowModule {}

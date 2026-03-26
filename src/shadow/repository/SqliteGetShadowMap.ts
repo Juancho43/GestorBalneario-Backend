@@ -1,13 +1,13 @@
 import {Injectable} from "@nestjs/common";
 import {SqliteBaseClass} from "../../database/SqliteBaseClass";
-import {ShadowMapQuery} from "../../../core/Shadow/Application/ShadowMapQuery";
+import {ShadowMapDAO} from "../../../core/Shadow/Application/ShadowMapDAO";
 import { ShadowMapDTO } from "core/Shadow/Application/DTO/ShadowMapDTO";
 import {ShadowResponse} from "../../../core/Shadow/Application/DTO/ShadowResponse";
 import {ReservationResponse} from "../../../core/Reservation/Application/DTO/ReservationResponse";
 import {ClientResponse} from "../../../core/Client/Application/DTO/ClientResponse";
 
 @Injectable()
-export class SqliteGetShadowMap extends SqliteBaseClass implements ShadowMapQuery {
+export class SqliteGetShadowMap extends SqliteBaseClass implements ShadowMapDAO {
     async get(): Promise<ShadowMapDTO> {
         const sql = `
             SELECT
