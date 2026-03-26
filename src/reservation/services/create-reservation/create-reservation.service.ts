@@ -1,29 +1,32 @@
-import {Inject, Injectable} from '@nestjs/common';
-import {ClientNewReservation} from "../../../../core/Reservation/Application/ClientNewReservation";
+import {Inject, Injectable, Logger} from '@nestjs/common';
+import {CreateReservation} from "../../../../core/Reservation/Application/CreateReservation";
 import type {CreateReservationDAO} from "../../../../core/Reservation/Model/DAO/CreateReservationDAO";
 import type {GetShadowDAO} from "../../../../core/Shadow/Model/DAO/GetShadowDAO";
 import type {GetClientDAO} from "../../../../core/Client/Model/DAO/GetClientDAO";
 import {CreateReservationCommand} from "../../../../core/Reservation/Application/DTO/CreateReservationCommand";
 import {ReservationResponse} from "../../../../core/Reservation/Application/DTO/ReservationResponse";
-import type {GetReservationsByShadowIdDAO} from "../../../../core/Reservation/Model/DAO/GetReservationsByShadowIdDAO";
+import type {EventPublisher} from "../../../../core/common/Application/EventPublisher";
+import type {GetServiceDAO} from "../../../../core/Service/Model/DAO/GetServiceDAO";
 
 @Injectable()
 export class CreateReservationService {
-    private useCase: ClientNewReservation;
-
+    private useCase: CreateReservation;
+    private logger = new Logger(CreateReservationService.name);
     constructor(@Inject('CREATE_RESERVATION_DAO') implementation: CreateReservationDAO,
+                @Inject('GET_SERVICE_INTERFACE') service: GetServiceDAO,
                 @Inject('GET_SHADOW_INTERFACE') shadow: GetShadowDAO,
                 @Inject('GET_CLIENT_INTERFACE') client: GetClientDAO,
-                @Inject('GET_RESERVATIONS_BY_SHADOW_INTERFACE') getReservations: GetReservationsByShadowIdDAO
+                @Inject('EVENT') event: EventPublisher
     ) {
-        this.useCase = new ClientNewReservation(implementation,getReservations,shadow,client);
+        this.useCase = new CreateReservation(implementation,service,shadow,client,event);
     }
 
     async execute(command: CreateReservationCommand) {
         try {
+            this.logger.log('Creating a reservation', command);
             return ReservationResponse.create(await this.useCase.execute(command));
         }catch (error) {
-            console.error('Error creating reservation:', error);
+            this.logger.error('Error creating reservation:', error);
             throw error;
         }
     }

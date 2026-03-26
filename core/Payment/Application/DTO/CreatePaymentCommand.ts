@@ -1,10 +1,11 @@
 import {PaymentMethod} from "../../Model/PaymentType";
+import {Currency} from "../../Model/Money";
 
 export class CreatePaymentCommand{
-    /** Id of the reservation
-     * @example "reservation-123"
+    /** Id of the invoices
+     * @example "invoices-123"
      */
-    reservationId:string;
+    invoiceId:string;
 
     /** Total amount of the payment
      *  @example 100.50
@@ -27,6 +28,13 @@ export class CreatePaymentCommand{
      * @example 'CASH'
      * */
     type:PaymentMethod;
+
+
+    /**
+     * Currency of the payment
+     * @example 'ARS'
+     * */
+    currency:Currency;
 
     /**
      * Description of the payment

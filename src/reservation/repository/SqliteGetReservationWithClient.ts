@@ -18,7 +18,6 @@ export class SqliteGetReservationWithClient extends SqliteBaseClass implements G
                 c.name,
                 c.phone,
                 c.email,
-                r.price,
                 r.checkIn,
                 r.checkOut,
                 r.date,
@@ -48,7 +47,6 @@ export class SqliteGetReservationWithClient extends SqliteBaseClass implements G
                 UUID.restore(result.clientId),
                 UUID.restore(result.shadowId),
                 Booking.create(new Date(result.checkIn), new Date(result.checkOut)),
-                result.price,
                 Timestamps.restore(new Date(result.resCreated), new Date(result.resUpdated)),
                 SoftDelete.empty()
             )

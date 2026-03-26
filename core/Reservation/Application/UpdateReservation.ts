@@ -27,7 +27,6 @@ export class UpdateReservation implements IUseCase<UpdateReservationCommand, Res
             UUID.restore(request.data.clientId),
             UUID.restore(request.data.shadowId),
             Booking.create(new Date(request.data.checkIn),new Date(request.data.checkOut)),
-            request.data.price,
             Timestamps.restore(new Date(request.createdAt), new Date()).update(),
             SoftDelete.empty()
         )

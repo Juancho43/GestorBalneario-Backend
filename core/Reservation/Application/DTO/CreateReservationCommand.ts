@@ -9,6 +9,17 @@ export class CreateReservationCommand {
      */
     clientId: string;
 
+    /**
+     * Final price of the reservation
+     * @example 150.00
+     * */
+    price: number;
+    /**
+     * Id of the reservationService
+     * @example "service-456"
+     * */
+    serviceId: string;
+
     /** * Date and time of the client arrives
      * @example "2026-03-19T10:00:00Z"
      */
@@ -18,9 +29,4 @@ export class CreateReservationCommand {
      * @example "2026-03-20T18:00:00Z"
      */
     checkOut: string;
-    /**
-     * Total price of the reservation
-     * @example 1000
-     * */
-    price: number;
 }

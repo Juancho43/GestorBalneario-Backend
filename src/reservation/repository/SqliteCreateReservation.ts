@@ -8,8 +8,8 @@ export class SqliteCreateReservation extends SqliteBaseClass implements CreateRe
 
     async save(reservation: Reservation): Promise<void> {
         const stmt = this.getDb().prepare(`
-            INSERT INTO Reservations (id, clientId, shadowId, checkIn, checkOut, date, price, created_at, updated_at)
-            VALUES (@id, @clientId, @shadowId, @checkIn, @checkOut, @date, @price, @created_at, @updated_at)
+            INSERT INTO Reservations (id, clientId, shadowId, checkIn, checkOut, date, created_at, updated_at)
+            VALUES (@id, @clientId, @shadowId, @checkIn, @checkOut, @date, @created_at, @updated_at)
         `);
         const reserva = {
             id: reservation.id.value,
@@ -18,7 +18,6 @@ export class SqliteCreateReservation extends SqliteBaseClass implements CreateRe
             checkIn: reservation.booking.checkIn.toISOString(),
             checkOut: reservation.booking.checkOut.toISOString(),
             date: (new Date()).toISOString(),
-            price: reservation.price,
             created_at: reservation.timestamp.createdAt.toISOString(),
             updated_at: reservation.timestamp.updatedAt.toISOString(),
         };

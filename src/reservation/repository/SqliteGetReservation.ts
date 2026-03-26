@@ -23,7 +23,6 @@ export class SqliteGetReservation extends SqliteBaseClass implements GetReservat
             UUID.restore(row.clientId),
             UUID.restore(row.shadowId),
             Booking.create(new Date(row.checkIn), new Date(row.checkOut)),
-            row.price,
             Timestamps.restore(new Date(row.created_at), new Date(row.updated_at)),
             SoftDelete.empty()
         );

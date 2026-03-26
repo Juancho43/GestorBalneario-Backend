@@ -1,7 +1,7 @@
 import { v4 as uuidv4, validate as validateUuid } from 'uuid';
 
 /**
- * UniqueIdentifier Value Object
+ * UUID
  * Garantiza que cualquier ID en el sistema sea un UUID válido.
  */
 export class UUID {
@@ -36,14 +36,7 @@ export class UUID {
         return this._value;
     }
 
-    /**
-     * Comparación lógica entre Value Objects
-     */
     equals(other: UUID): boolean {
         return this._value === other.value;
-    }
-
-    toString(): string {
-        return this._value;
     }
 }

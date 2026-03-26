@@ -22,8 +22,17 @@ import {SqliteGetActiveReservation} from "./repository/SqliteGetActiveReservatio
 import {SqliteGetReservationsByShadowId} from "./repository/SqliteGetReservationsByShadowId";
 import { GetReservationsWithClientsController } from './controllers/get-reservations-with-clients/get-reservations-with-clients.controller';
 import {SqliteGetReservationWithClient} from "./repository/SqliteGetReservationWithClient";
+import {NestEventPublisherAdapter} from "../events/NestEventPublisherAdapter";
+import {CqrsModule} from "@nestjs/cqrs";
+import {ReservationCreatedHandler} from "../billing/handlers/OnReservationCreatedHandler";
+import {CreateInvoiceHandler} from "../billing/handlers/CreateInvoiceHandler";
+import {CreateInvoice} from "../../core/Invoice/Application/CreateInvoice";
+import {SqliteGetService} from "../services/repository/SqliteGetService";
+import {AddInvoiceItemService} from "../billing/services/add-invoice-item/add-invoice-item.service";
+import {BillingModule} from "../billing/billing.module";
 
 @Module({
+  imports:[CqrsModule,BillingModule],
   providers: [CreateReservationService, EditReservationService, DeleteReservationService, GetReservationService, GetCurrentReservationService,
     {
       provide: 'GET_RESERVATION_DAO',
@@ -64,7 +73,19 @@ import {SqliteGetReservationWithClient} from "./repository/SqliteGetReservationW
     {
       provide:'GET_RESERVATION_CLIENT_DAO',
       useClass: SqliteGetReservationWithClient
+
     },
+    {
+      provide:'GET_SERVICE_INTERFACE',
+      useClass: SqliteGetService
+    },
+    {
+        provide:'EVENT',
+        useClass: NestEventPublisherAdapter
+    },
+      ReservationCreatedHandler,
+      CreateInvoiceHandler,
+      CreateInvoice,
     GetActiveReservationsService,
   ],
   controllers: [GetCurrentReservationsController, EditReservationController, CreateReservationController, DeleteReservationController, GetReservationController, GetActiveReservationsController, GetReservationsWithClientsController]

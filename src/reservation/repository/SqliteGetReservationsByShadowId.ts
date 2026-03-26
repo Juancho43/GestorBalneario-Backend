@@ -20,7 +20,6 @@ export class SqliteGetReservationsByShadowId extends SqliteBaseClass implements 
                 UUID.restore(row.clientId),
                 UUID.restore(shadowId),
                 Booking.create(new Date(row.checkIn), new Date(row.checkOut)),
-                row.price,
                 Timestamps.restore(new Date(row.created_at), new Date(row.updated_at)),
                 SoftDelete.empty()
             )
