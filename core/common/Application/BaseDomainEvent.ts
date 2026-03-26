@@ -15,7 +15,7 @@ export abstract class BaseDomainEvent implements IDomainEvent {
     toString(){
         return{
             eventName:this.eventName,
-            eventId:this.eventId,
+            eventId:this.eventId.value,
         }
     }
 }

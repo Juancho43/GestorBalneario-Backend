@@ -18,22 +18,39 @@ export class Reservation_Service implements InvoiceItem{
         description : StringObject,
         serviceId : UUID,
         reservationId : UUID,
+        invoiceId : UUID,
     ) {
         this.id = id;
         this.price = price;
         this.description = description;
         this.reservationId = reservationId;
         this.serviceId = serviceId;
+        this.invoiceId = invoiceId;
     }
 
-    static create(    id: UUID,
-                      price : Money,
-                      description : StringObject,
-                      serviceId : UUID,
-                      reservationId : UUID
+    getServiceId(): UUID {
+        return this.serviceId;
+    }
+
+    getAggregateId(): UUID {
+        return this.reservationId
+    }
+
+    static create(
+        id: UUID,
+        price : Money,
+        description : StringObject,
+        serviceId : UUID,
+        reservationId : UUID,
+        invoiceId: UUID
     ){
         return new Reservation_Service(
-            id,price,description,serviceId,reservationId,
+            id,
+            price,
+            description,
+            serviceId,
+            reservationId,
+            invoiceId
         );
     }
 

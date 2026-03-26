@@ -25,17 +25,20 @@ export class AddInvoiceItem implements IUseCase<AddInvoiceItemCommand, void>{
             throw new Error("Service not found");
         }
         const client = await this.getClientInvoices.get(request.clientId);
+        if (!client){
+            throw new Error("Client not found");
+        }
         let invoiceToWork = client.getOrCreateActiveInvoice();
-
         const reservationItem = Reservation_Service.create(
             UUID.create(),
             Money.create(request.price),
             StringObject.create(request.description),
             UUID.restore(request.serviceId),
             UUID.restore(request.aggregateId),
+            invoiceToWork.id
         )
         invoiceToWork.addItem(reservationItem);
-        await this.createInvoiceItemDAO.create(reservationItem);
+        await this.createInvoiceItemDAO.create(reservationItem,invoiceToWork);
         this.eventPublisher.publish(new InvoiceItemAdded(invoiceToWork.id.value));
     }
 }

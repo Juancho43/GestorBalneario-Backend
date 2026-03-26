@@ -10,7 +10,7 @@ export class ReservationCreatedHandler implements IEventHandler<ReservationCreat
     }
 
     handle(event: ReservationCreatedEvent) {
-        this.logger.log('Handling reservation created event:',event);
+        this.logger.debug('Handling reservation created event:',event);
         const command = new AddInvoiceItemCommand();
         command.clientId=event.clientId;
         command.aggregateId=event.aggregateId;

@@ -25,11 +25,10 @@ import {SqliteGetReservationWithClient} from "./repository/SqliteGetReservationW
 import {NestEventPublisherAdapter} from "../events/NestEventPublisherAdapter";
 import {CqrsModule} from "@nestjs/cqrs";
 import {ReservationCreatedHandler} from "../billing/handlers/OnReservationCreatedHandler";
-import {CreateInvoiceHandler} from "../billing/handlers/CreateInvoiceHandler";
 import {CreateInvoice} from "../../core/Invoice/Application/CreateInvoice";
 import {SqliteGetService} from "../services/repository/SqliteGetService";
-import {AddInvoiceItemService} from "../billing/services/add-invoice-item/add-invoice-item.service";
 import {BillingModule} from "../billing/billing.module";
+import {AddInvoiceItemHandler} from "../billing/handlers/CreateInvoiceHandler";
 
 @Module({
   imports:[CqrsModule,BillingModule],
@@ -84,7 +83,7 @@ import {BillingModule} from "../billing/billing.module";
         useClass: NestEventPublisherAdapter
     },
       ReservationCreatedHandler,
-      CreateInvoiceHandler,
+      AddInvoiceItemHandler,
       CreateInvoice,
     GetActiveReservationsService,
   ],
