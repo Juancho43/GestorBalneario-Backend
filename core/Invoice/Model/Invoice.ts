@@ -58,7 +58,7 @@ export class Invoice{
     }
     addItem(item: InvoiceItem) {
         this._items.push(item);
-        // this.updateAmount();
+        this.updateAmount();
     }
 
     addPayment(payment: Payment) {
