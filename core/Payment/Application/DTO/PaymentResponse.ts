@@ -37,7 +37,7 @@ export class PaymentResponse{
      * @type {string}
      */
     description?:string;
-
+    finalAmount:number;
 
     static create(payment: Payment){
         return {
@@ -46,7 +46,7 @@ export class PaymentResponse{
             type:payment.type.getValue().toString(),
             amount:payment.money.amount,
             changeType:payment.money.exchangeRate,
-            description:payment.description,
+            description:payment.description?.getValue(),
             finalAmount:payment.money.finalAmount,
         }
     }

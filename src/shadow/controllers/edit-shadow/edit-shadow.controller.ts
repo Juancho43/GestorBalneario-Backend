@@ -1,8 +1,8 @@
 import {Body, Controller, HttpException, HttpStatus, Inject, Put} from '@nestjs/common';
 import {EditShadowService} from "../../services/edit-shadow/edit-shadow.service";
-import {UpdateShadowCommand} from "../../../../core/Shadow/Application/DTO/UpdateShadowCommand";
+import {UpdateShadowCommand} from "../../../../core/Shadow/Application/Command/UpdateShadowCommand";
 import {ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
-import {ShadowResponse} from "../../../../core/Shadow/Application/DTO/ShadowResponse";
+import {ShadowResponse} from "../../../../core/Shadow/Application/Response/ShadowResponse";
 
 @ApiTags('Shadow')
 @Controller('shadow')

@@ -1,6 +1,6 @@
 import {Inject, Injectable} from '@nestjs/common';
 import {DeleteShadow} from "../../../../core/Shadow/Application/DeleteShadow";
-import {DeleteShadowCommand} from "../../../../core/Shadow/Application/DTO/DeleteShadowCommand";
+import {DeleteShadowCommand} from "../../../../core/Shadow/Application/Command/DeleteShadowCommand";
 import type {DeleteShadowDAO} from "../../../../core/Shadow/Model/DAO/DeleteShadowDAO";
 
 @Injectable()

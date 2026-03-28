@@ -1,9 +1,10 @@
 import {expect} from "vitest";
 import {MoneyMother} from "./MoneyMother";
+import {Currency} from "../../core/Payment/Model/Money";
 
 describe('Money Domain Entity',() =>{
     it('should be created', () =>{
-        const money  = MoneyMother.create(100, 1, 'USD');
+        const money  = MoneyMother.create(100, 1, Currency.USD);
         expect(money).toBeTruthy();
         expect(money.amount).toBe(100);
         expect(money.currency).toBe('USD');
@@ -11,7 +12,7 @@ describe('Money Domain Entity',() =>{
     })
 
     it('should calculate final amount', () => {
-        const money  = MoneyMother.create(100, 1140, 'USD');
+        const money  = MoneyMother.create(100, 1140, Currency.USD);
         expect(money.finalAmount).toBe(100 * 1140);
     })
 

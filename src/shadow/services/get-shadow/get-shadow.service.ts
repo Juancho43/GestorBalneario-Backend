@@ -2,7 +2,7 @@ import {Inject, Injectable} from '@nestjs/common';
 import type {GetShadowDAO} from "../../../../core/Shadow/Model/DAO/GetShadowDAO";
 import {GetShadowById} from "../../../../core/Shadow/Application/GetShadowById";
 import {GetShadowByIdQuery} from "../../../../core/Shadow/Application/DTO/GetShadowByIdQuery";
-import {ShadowResponse} from "../../../../core/Shadow/Application/DTO/ShadowResponse";
+import {ShadowResponse} from "../../../../core/Shadow/Application/Response/ShadowResponse";
 
 @Injectable()
 export class GetShadowService {

@@ -25,7 +25,6 @@ export class SqliteGetActiveReservation extends SqliteBaseClass implements GetAc
                 UUID.restore(row.clientId),
                 UUID.restore(row.shadowId),
                 Booking.create(new Date(row.checkIn), new Date(row.checkOut)),
-                row.price,
                 Timestamps.create(),
                 SoftDelete.empty()
             )

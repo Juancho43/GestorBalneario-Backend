@@ -28,9 +28,9 @@ export class CreateReservation implements IUseCase<CreateReservationCommand, Res
             this.getShadow.get(request.shadowId)
             ]);
 
-        // if (!service){
-        //     throw new Error("Service not found");
-        // }
+        if (!service){
+            throw new Error("Service not found");
+        }
         if (!client) {
             throw new Error("Client not found");
         }
@@ -55,8 +55,7 @@ export class CreateReservation implements IUseCase<CreateReservationCommand, Res
             request.serviceId,
             request.price,
             new Date(),
-            'Shadow booking',
-            // service.name.getValue(),
+            service.name.getValue(),
         ));
         return reservation;
     }

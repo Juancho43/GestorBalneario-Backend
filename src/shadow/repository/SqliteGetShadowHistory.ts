@@ -1,9 +1,8 @@
 import {SqliteBaseClass} from "../../database/SqliteBaseClass";
-import type {ShadowHistoryDAO} from "../../../core/Shadow/Application/ShadowHistoryDAO";
-import {ShadowHistoryDTO} from "../../../core/Shadow/Application/DTO/ShadowHistoryDTO";
+import type {ShadowHistoryDAO} from "../../../core/Shadow/Application/Query/ShadowHistoryDAO";
+import {ShadowHistoryDTO} from "../../../core/Shadow/Application/Response/ShadowHistoryDTO";
 import {Injectable} from "@nestjs/common";
-import {Shadow} from "../../../core/Shadow/Model/Shadow";
-import {ShadowResponse} from "../../../core/Shadow/Application/DTO/ShadowResponse";
+import {ShadowResponse} from "../../../core/Shadow/Application/Response/ShadowResponse";
 import {ReservationResponse} from "../../../core/Reservation/Application/DTO/ReservationResponse";
 @Injectable()
 export class SqliteGetShadowHistory extends SqliteBaseClass implements ShadowHistoryDAO{
@@ -19,22 +18,21 @@ export class SqliteGetShadowHistory extends SqliteBaseClass implements ShadowHis
                 s.x,
                 s.y,
                 s.identifier
-            FROM Reservations r
-                     JOIN Clients c ON r.clientId = c.id
-                    JOIN Shadows s ON r.shadowId = s.id
-            WHERE r.shadowId = @id
+            FROM Shadows s
+                LEFT JOIN Reservations r ON r.shadowId = s.id
+                LEFT JOIN Clients c ON r.clientId = c.id
+            WHERE s.id = @id
             ORDER BY r.date DESC
             LIMIT @limit OFFSET @offset;
         `
         const result = this.getDb().prepare(sql).all({id:id,offset:page, limit:limit})as any;
         const dto = this.toDTO(result);
-        dto.page=page;
         return dto;
-
     }
+
     private toDTO(rows: any): ShadowHistoryDTO{
         const historyDTO = new ShadowHistoryDTO();
-        historyDTO.reservation = [];
+        historyDTO.reservations = [];
         const shadow : ShadowResponse = {
             id: rows[0].shadowId, // Asegúrate que este sea s.id en el SQL
             identifier: rows[0].identifier,
@@ -45,17 +43,20 @@ export class SqliteGetShadowHistory extends SqliteBaseClass implements ShadowHis
             },
             state: rows[0].reservationId ? 'occupied' : 'available'
         };
-        rows.forEach(row=>{
-            const reservation: ReservationResponse = {
-                id: row.reservationId, // El ID de la reserva
-                dates: {
-                    checkIn: row.checkIn,
-                    checkOut: row.checkOut,
-                },
-                duration: 0,
-            }
-           historyDTO.reservation.push(reservation)
-        })
+        if(rows[0].reservationId){
+            rows.forEach(row=>{
+                const reservation: ReservationResponse = {
+                    id: row.reservationId, // El ID de la reserva
+                    dates: {
+                        checkIn: row.checkIn,
+                        checkOut: row.checkOut,
+                    },
+                    duration: 0,
+                }
+                historyDTO.reservations.push(reservation)
+            })
+        }
+
         historyDTO.shadow = shadow;
         return historyDTO;
     }

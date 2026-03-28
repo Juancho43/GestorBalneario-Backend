@@ -1,4 +1,4 @@
-import {Body, Controller, Get, Inject, Post, Query} from '@nestjs/common';
+import {Controller, Get, Inject, Query} from '@nestjs/common';
 import {GetClientsService} from "../../services/get-clients/get-clients.service";
 import {GetClientsQuery} from "../../../../core/Client/Application/DTO/GetClientsQuery";
 import {ApiTags} from "@nestjs/swagger";

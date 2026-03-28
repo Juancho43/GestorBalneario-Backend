@@ -1,6 +1,6 @@
 import {IUseCase} from "../../common/Application/IUseCase";
-import {ShadowHistoryDTO} from "./DTO/ShadowHistoryDTO";
-import {ShadowHistoryDAO} from "./ShadowHistoryDAO";
+import {ShadowHistoryDTO} from "./Response/ShadowHistoryDTO";
+import {ShadowHistoryDAO} from "./Query/ShadowHistoryDAO";
 import {GetShadowHistoryQuery} from "./DTO/GetShadowHistoryQuery";
 
 export class GetShadowHistory implements IUseCase<GetShadowHistoryQuery, ShadowHistoryDTO>{

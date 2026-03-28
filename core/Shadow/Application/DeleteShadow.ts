@@ -1,6 +1,6 @@
 import {DeleteShadowDAO} from "../Model/DAO/DeleteShadowDAO";
 import {IUseCase} from "../../common/Application/IUseCase";
-import {DeleteShadowCommand} from "./DTO/DeleteShadowCommand";
+import {DeleteShadowCommand} from "./Command/DeleteShadowCommand";
 
 export class DeleteShadow implements IUseCase<DeleteShadowCommand, void>{
 

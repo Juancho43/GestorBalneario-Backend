@@ -13,8 +13,8 @@ export class Invoice{
     private _amount: Money;
     private _clientId: UUID;
     private _status: InvoiceStatus;
-    private items: InvoiceItem[] = [];
-    private payments: Payment[] = [];
+    private _items: InvoiceItem[] = [];
+    private _payments: Payment[] = [];
     private _timestamps: Timestamps;
     private _softDelete: SoftDelete;
     private constructor(
@@ -47,17 +47,17 @@ export class Invoice{
     }
 
     calculateTotalAmount(): number{
-        return this.items.reduce((total, item) => total += (item.getPrice().finalAmount), 0);
+        return this._items.reduce((total, item) => total += (item.getPrice().finalAmount), 0);
     }
 
     calculateTotalPaid(): number {
-        return this.payments.reduce((total, p) => total + p.finalAmount, 0);
+        return this._payments.reduce((total, p) => total + p.finalAmount, 0);
     }
     get status(){
         return this._status;
     }
     addItem(item: InvoiceItem) {
-        this.items.push(item);
+        this._items.push(item);
         this.updateAmount();
     }
 
@@ -69,12 +69,41 @@ export class Invoice{
         if (totalPaid > this._amount.finalAmount) {
             throw new Error("Payment exceeds the total amount due.");
         }
-        this.payments.push(payment);
+        this._payments.push(payment);
         if(this.calculateTotalPaid() == this._amount.finalAmount){
             this._status = InvoiceStatus.create(InvoiceStatusEnum.PAID);
         }
     }
     get id():UUID{
-        return this.id;
+        return this._id;
+    }
+
+
+    get date(): Date {
+        return this._date;
+    }
+
+    get amount(): Money {
+        return this._amount;
+    }
+
+    get clientId(): UUID {
+        return this._clientId;
+    }
+
+    get items(): InvoiceItem[] {
+        return this._items;
+    }
+
+    get payments(): Payment[] {
+        return this._payments;
+    }
+
+    get timestamps(): Timestamps {
+        return this._timestamps;
+    }
+
+    get softDelete(): SoftDelete {
+        return this._softDelete;
     }
 }

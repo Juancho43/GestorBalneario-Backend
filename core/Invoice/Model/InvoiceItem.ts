@@ -7,4 +7,6 @@ export interface InvoiceItem{
     getPrice():Money;
     getId():UUID;
     getDescription():StringObject;
+    getAggregateId():UUID;
+    getServiceId():UUID;
 }

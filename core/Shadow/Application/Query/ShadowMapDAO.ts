@@ -1,4 +1,4 @@
-import {ShadowMapDTO} from "./DTO/ShadowMapDTO";
+import {ShadowMapDTO} from "../Response/ShadowMapDTO";
 
 export interface ShadowMapDAO {
     get(): Promise<ShadowMapDTO>;

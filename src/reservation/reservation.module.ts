@@ -25,11 +25,12 @@ import {SqliteGetReservationWithClient} from "./repository/SqliteGetReservationW
 import {NestEventPublisherAdapter} from "../events/NestEventPublisherAdapter";
 import {CqrsModule} from "@nestjs/cqrs";
 import {ReservationCreatedHandler} from "../billing/handlers/OnReservationCreatedHandler";
-import {CreateInvoiceHandler} from "../billing/handlers/CreateInvoiceHandler";
-import {CreateInvoice} from "../../core/Invoice/Application/CreateInvoice";
 import {SqliteGetService} from "../services/repository/SqliteGetService";
-import {AddInvoiceItemService} from "../billing/services/add-invoice-item/add-invoice-item.service";
 import {BillingModule} from "../billing/billing.module";
+import {AddInvoiceItemHandler} from "../billing/handlers/CreateInvoiceHandler";
+import { GetReservationDetailController } from './controllers/get-reservation-detail/get-reservation-detail.controller';
+import { GetReservationDetailService } from './services/get-reservation-detail/get-reservation-detail.service';
+import {SqliteGetReservationDetail} from "./repository/SqliteGetReservationDetail";
 
 @Module({
   imports:[CqrsModule,BillingModule],
@@ -83,11 +84,15 @@ import {BillingModule} from "../billing/billing.module";
         provide:'EVENT',
         useClass: NestEventPublisherAdapter
     },
+    {
+      provide:'GET_DETAILS',
+      useClass: SqliteGetReservationDetail
+    },
       ReservationCreatedHandler,
-      CreateInvoiceHandler,
-      CreateInvoice,
+      AddInvoiceItemHandler,
     GetActiveReservationsService,
+    GetReservationDetailService,
   ],
-  controllers: [GetCurrentReservationsController, EditReservationController, CreateReservationController, DeleteReservationController, GetReservationController, GetActiveReservationsController, GetReservationsWithClientsController]
+  controllers: [GetCurrentReservationsController, EditReservationController, CreateReservationController, DeleteReservationController, GetReservationController, GetActiveReservationsController, GetReservationsWithClientsController, GetReservationDetailController]
 })
 export class ReservationModule {}
