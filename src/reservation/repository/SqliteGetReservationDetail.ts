@@ -2,7 +2,7 @@ import { ReservationDetailResponse } from "core/Reservation/Application/DTO/Rese
 import {GetReservationDetailsDAO} from "../../../core/Reservation/Model/DAO/GetReservationDetailsDAO";
 import {SqliteBaseClass} from "../../database/SqliteBaseClass";
 import {ClientResponse} from "../../../core/Client/Application/DTO/ClientResponse";
-import {ShadowResponse} from "../../../core/Shadow/Application/DTO/ShadowResponse";
+import {ShadowResponse} from "../../../core/Shadow/Application/Response/ShadowResponse";
 import {ReservationResponse} from "../../../core/Reservation/Application/DTO/ReservationResponse";
 import {InvoiceResponse} from "../../../core/Invoice/Application/DTO/InvoiceResponse";
 import {PaymentResponse} from "../../../core/Payment/Application/DTO/PaymentResponse";

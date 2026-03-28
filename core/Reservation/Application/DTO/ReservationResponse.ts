@@ -1,6 +1,6 @@
 import { Reservation } from "../../Model/Reservation";
 import { ClientResponse } from "../../../Client/Application/DTO/ClientResponse";
-import { ShadowResponse } from "../../../Shadow/Application/DTO/ShadowResponse";
+import { ShadowResponse } from "../../../Shadow/Application/Response/ShadowResponse";
 
 export class ReservationResponse {
     /** * Unique identifier for the reservation

@@ -5,7 +5,7 @@ import {CreatePaymentDAO} from "../Model/DAO/CreatePaymentDAO";
 import {StringObject} from "../../common/Model/StringObject";
 import {PaymentType} from "../Model/PaymentType";
 import {UUID} from "../../common/Model/UUID";
-import {Money} from "../Model/Money";
+import {Currency, Money} from "../Model/Money";
 import {Timestamps} from "../../common/Model/Timestamps";
 import {SoftDelete} from "../../common/Model/SoftDelete";
 import {GetInvoiceDAO} from "../../Invoice/Model/DAO/GetInvoiceDAO";
@@ -38,7 +38,7 @@ export class ProcessPayment implements IUseCase<CreatePaymentCommand, Payment>{
             SoftDelete.empty()
         );
         invoice.addPayment(payment);
-        await this.dao.save(payment);
+        await this.dao.save(payment,invoice);
         return payment;
     }
 }
