@@ -9,7 +9,7 @@ export class ShadowHistoryController {
     }
     @Get('history/:id')
     @ApiOperation({summary: 'Get the history of the shadow reservations', description: 'Gets all the reservation of a shadows.' })
-    get(@Param('id') id: string, @Query('page') page: number = 1, @Query('size') size: number = 10) {
+    get(@Param('id') id: string, @Query('page') page: number = 0, @Query('size') size: number = 10) {
         try{
             const query = new GetShadowHistoryQuery(id,page,size);
             return this.service.execute(query);

@@ -1,7 +1,7 @@
 import {Inject, Injectable, Logger} from '@nestjs/common';
 import {GetShadowHistory} from "../../../../core/Shadow/Application/GetShadowHistory";
 import {GetShadowHistoryQuery} from "../../../../core/Shadow/Application/DTO/GetShadowHistoryQuery";
-import type {ShadowHistoryDAO} from "../../../../core/Shadow/Application/ShadowHistoryDAO";
+import type {ShadowHistoryDAO} from "../../../../core/Shadow/Application/Query/ShadowHistoryDAO";
 
 @Injectable()
 export class GetShadowHistoryService {

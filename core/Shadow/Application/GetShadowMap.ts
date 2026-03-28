@@ -1,6 +1,6 @@
 import {IUseCase} from "../../common/Application/IUseCase";
-import {ShadowMapDTO} from "./DTO/ShadowMapDTO";
-import {ShadowMapDAO} from "./ShadowMapDAO";
+import {ShadowMapDTO} from "./Response/ShadowMapDTO";
+import {ShadowMapDAO} from "./Query/ShadowMapDAO";
 
 export class GetShadowMap implements IUseCase<void,ShadowMapDTO>
 {

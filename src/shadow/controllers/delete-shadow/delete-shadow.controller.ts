@@ -1,6 +1,6 @@
 import {Controller, Delete, HttpException, Inject, Param} from '@nestjs/common';
 import {DeleteShadowService} from "../../services/delete-shadow/delete-shadow.service";
-import {DeleteShadowCommand} from "../../../../core/Shadow/Application/DTO/DeleteShadowCommand";
+import {DeleteShadowCommand} from "../../../../core/Shadow/Application/Command/DeleteShadowCommand";
 import {ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
 
 @ApiTags('Shadow')

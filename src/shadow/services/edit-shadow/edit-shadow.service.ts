@@ -1,7 +1,7 @@
 import {Inject, Injectable} from '@nestjs/common';
 import {UpdateShadow} from "../../../../core/Shadow/Application/UpdateShadow";
-import {UpdateShadowCommand} from "../../../../core/Shadow/Application/DTO/UpdateShadowCommand";
-import {ShadowResponse} from "../../../../core/Shadow/Application/DTO/ShadowResponse";
+import {UpdateShadowCommand} from "../../../../core/Shadow/Application/Command/UpdateShadowCommand";
+import {ShadowResponse} from "../../../../core/Shadow/Application/Response/ShadowResponse";
 import type {UpdateShadowDAO} from "../../../../core/Shadow/Model/DAO/UpdateShadowDAO";
 
 @Injectable()

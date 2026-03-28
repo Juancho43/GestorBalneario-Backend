@@ -10,7 +10,6 @@ export class GetClientController {
     constructor(@Inject() private service: GetClientService) {
     }
     @Get('get/:id')
-
     @ApiOperation({summary: 'Gets a client', description: 'Gets a client by id' })
     @ApiResponse({status: 200, description: 'The client has been retrieved.', type: ClientResponse})
     @ApiResponse({status: 500, description: 'The client has not been retrieved. Server Error'})

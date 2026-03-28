@@ -1,6 +1,6 @@
 import {IUseCase} from "../../common/Application/IUseCase";
 import {Shadow} from "../Model/Shadow";
-import {UpdateShadowCommand} from "./DTO/UpdateShadowCommand";
+import {UpdateShadowCommand} from "./Command/UpdateShadowCommand";
 import {StringObject} from "../../common/Model/StringObject";
 import {ShadowType} from "../Model/ValueObjects/ShadowType";
 import {Coords} from "../../common/Model/Coords";

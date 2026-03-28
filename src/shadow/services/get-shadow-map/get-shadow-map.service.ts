@@ -1,6 +1,6 @@
 import {Inject, Injectable, Logger} from '@nestjs/common';
 import {GetShadowMap} from "../../../../core/Shadow/Application/GetShadowMap";
-import type {ShadowMapDAO} from "../../../../core/Shadow/Application/ShadowMapDAO";
+import type {ShadowMapDAO} from "../../../../core/Shadow/Application/Query/ShadowMapDAO";
 
 @Injectable()
 export class GetShadowMapService {
