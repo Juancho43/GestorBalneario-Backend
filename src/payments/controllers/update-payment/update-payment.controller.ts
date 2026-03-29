@@ -1,7 +1,7 @@
 import {Body, Controller, HttpException, HttpStatus, Put} from '@nestjs/common';
 import {ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
 import {PaymentResponse} from "../../../../core/Payment/Application/DTO/PaymentResponse";
-import {UpdatePaymentCommand} from "../../../../core/Payment/Application/DTO/UpdatePaymentCommand";
+import {UpdatePaymentCommand} from "../../../../core/Payment/Application/Command/UpdatePaymentCommand";
 
 @ApiTags('Payment')
 @Controller('update-payment')

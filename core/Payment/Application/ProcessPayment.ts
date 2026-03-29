@@ -1,5 +1,5 @@
 import {IUseCase} from "../../common/Application/IUseCase";
-import {CreatePaymentCommand} from "./DTO/CreatePaymentCommand";
+import {CreatePaymentCommand} from "./Command/CreatePaymentCommand";
 import {Payment} from "../Model/Payment";
 import {CreatePaymentDAO} from "../Model/DAO/CreatePaymentDAO";
 import {StringObject} from "../../common/Model/StringObject";

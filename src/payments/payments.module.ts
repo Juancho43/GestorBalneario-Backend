@@ -10,9 +10,12 @@ import {SqliteUpdatePayment} from "./repository/SqliteUpdatePayment";
 import {SqliteGetPayment} from "./repository/SqliteGetPayment";
 import {SqliteGetReservation} from "../reservation/repository/SqliteGetReservation";
 import {SqliteGetInvoice} from "../invoices/repository/SqliteGetInvoice";
+import { PaymentsReportController } from './controllers/payments-report/payments-report.controller';
+import { PaymentsReportService } from './services/payments-report/payments-report.service';
+import {SqlitePaymentReport} from "./repository/SqlitePaymentReport";
 
 @Module({
-  controllers: [CreatePaymentController, UpdatePaymentController, GetPaymentController],
+  controllers: [CreatePaymentController, UpdatePaymentController, GetPaymentController, PaymentsReportController],
   providers: [CreatePaymentService, UpdatePaymentService, GetPaymentService,
     {
       provide : 'CREATE_PAYMENT_DAO',
@@ -33,7 +36,12 @@ import {SqliteGetInvoice} from "../invoices/repository/SqliteGetInvoice";
     {
       provide: 'GET_INVOICE_DAO',
       useClass: SqliteGetInvoice,
-    }
+    },
+    {
+      provide: 'PAYMENT_REPORT',
+      useClass:SqlitePaymentReport
+    },
+    PaymentsReportService
   ]
 
 })

@@ -1,6 +1,6 @@
 import {Inject, Injectable, Logger} from '@nestjs/common';
 import {ProcessPayment} from "../../../../core/Payment/Application/ProcessPayment";
-import {CreatePaymentCommand} from "../../../../core/Payment/Application/DTO/CreatePaymentCommand";
+import {CreatePaymentCommand} from "../../../../core/Payment/Application/Command/CreatePaymentCommand";
 import {PaymentResponse} from "../../../../core/Payment/Application/DTO/PaymentResponse";
 import type {CreatePaymentDAO} from "../../../../core/Payment/Model/DAO/CreatePaymentDAO";
 import type {GetInvoiceDAO} from "../../../../core/Invoice/Model/DAO/GetInvoiceDAO";
