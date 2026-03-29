@@ -1,4 +1,5 @@
 import {Payment} from "../../Model/Payment";
+import {InvoiceResponse} from "../../../Invoice/Application/DTO/InvoiceResponse";
 
 export class PaymentResponse{
     /**
@@ -38,7 +39,8 @@ export class PaymentResponse{
      */
     description?:string;
     finalAmount:number;
-
+    invoiceId?:string;
+    invoice? :InvoiceResponse;
     static create(payment: Payment){
         return {
             id:payment.id.value,

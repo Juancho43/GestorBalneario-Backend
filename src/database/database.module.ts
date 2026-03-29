@@ -11,7 +11,7 @@ import {DB_PROVIDER} from "./DBPROVIDER";
         {
         provide: DB_PROVIDER,
         useFactory: () => {
-            const db = new Database('my_app.db');
+            const db = new Database('balneario.db');
             db.pragma('journal_mode = WAL'); // Rendimiento optimizado
             return db;
         },
