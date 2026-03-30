@@ -2,7 +2,6 @@ import {UUID} from "../common/Model/UUID";
 import {Money} from "../Payment/Model/Money";
 import {InvoiceItem} from "../Invoice/Model/InvoiceItem";
 import {StringObject} from "../common/Model/StringObject";
-import {Payment} from "../Payment/Model/Payment";
 
 export class Reservation_Service implements InvoiceItem{
     private id: UUID;
@@ -70,4 +69,7 @@ export class Reservation_Service implements InvoiceItem{
         return this.description;
     }
 
+    getAggregate(): string {
+        return 'Reservations'
+    }
 }

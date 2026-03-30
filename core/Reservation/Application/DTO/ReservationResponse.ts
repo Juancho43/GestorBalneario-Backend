@@ -21,7 +21,7 @@ export class ReservationResponse {
     };
 
     duration: number;
-
+    shadow?: ShadowResponse;
 
 
     /**
