@@ -1,6 +1,6 @@
-import { InvoiceDetailQuery } from "core/Invoice/Application/DTO/InvoiceDetailQuery";
+import { InvoiceDetailQuery } from "core/Invoice/Application/Queries/InvoiceDetailQuery";
 import { InvoiceDetailsDTO } from "core/Invoice/Application/DTO/InvoiceDetailsDTO";
-import {InvoiceDetailDAO} from "../../../core/Invoice/Application/InvoiceDetailDAO";
+import {InvoiceDetailDAO} from "../../../core/Invoice/Application/Interfaces/InvoiceDetailDAO";
 import {SqliteBaseClass} from "../../database/SqliteBaseClass";
 import {Injectable} from "@nestjs/common";
 import {InvoiceResponse} from "../../../core/Invoice/Application/DTO/InvoiceResponse";

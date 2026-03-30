@@ -1,8 +1,8 @@
 import {Inject, Injectable} from '@nestjs/common';
 import {ReservationResponse} from "../../../../core/Reservation/Application/DTO/ReservationResponse";
-import {GetCurrentReservations} from "../../../../core/Reservation/Application/GetCurrentReservations";
+import {GetCurrentReservations} from "../../../../core/Reservation/Application/UseCase/GetCurrentReservations";
 import type {GetCurrentReservationsDAO} from "../../../../core/Reservation/Model/DAO/GetCurrentReservationsDAO";
-import {GetCurrentReservationsQuery} from "../../../../core/Reservation/Application/DTO/GetCurrentReservationsQuery";
+import {GetCurrentReservationsQuery} from "../../../../core/Reservation/Application/Queries/GetCurrentReservationsQuery";
 
 @Injectable()
 export class GetCurrentReservationService {

@@ -1,7 +1,7 @@
 import {Inject, Injectable, Logger} from '@nestjs/common';
-import {CreateSeason} from "../../../../core/Season/Application/CreateSeason";
+import {CreateSeason} from "../../../../core/Season/Application/UseCase/CreateSeason";
 import type {CreateSeasonDAO} from "../../../../core/Season/Model/DAO/CreateSeasonDAO";
-import {CreateSeasonCommand} from "../../../../core/Season/Application/DTO/CreateSeasonCommand";
+import {CreateSeasonCommand} from "../../../../core/Season/Application/Commads/CreateSeasonCommand";
 import {SeasonResponse} from "../../../../core/Season/Application/DTO/SeasonResponse";
 
 @Injectable()

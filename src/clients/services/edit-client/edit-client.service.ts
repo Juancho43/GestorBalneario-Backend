@@ -1,8 +1,8 @@
 import {Inject, Injectable} from '@nestjs/common';
 import {ClientResponse} from "../../../../core/Client/Application/DTO/ClientResponse";
-import {UpdateClient} from "../../../../core/Client/Application/UpdateClient";
+import {UpdateClient} from "../../../../core/Client/Application/UseCase/UpdateClient";
 import type {UpdateClientDAO} from "../../../../core/Client/Model/DAO/UpdateClientDAO";
-import {UpdateClientCommand} from "../../../../core/Client/Application/DTO/UpdateClientCommand";
+import {UpdateClientCommand} from "../../../../core/Client/Application/Commands/UpdateClientCommand";
 
 @Injectable()
 export class EditClientService {

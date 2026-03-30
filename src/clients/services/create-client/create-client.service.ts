@@ -1,8 +1,8 @@
 import {Inject, Injectable} from '@nestjs/common';
 import type {SaveClientDAO} from "../../../../core/Client/Model/DAO/SaveClientDAO";
-import {CreateClientCommand} from "../../../../core/Client/Application/DTO/CreateClientCommand";
+import {CreateClientCommand} from "../../../../core/Client/Application/Commands/CreateClientCommand";
 import {ClientResponse} from "../../../../core/Client/Application/DTO/ClientResponse";
-import {CreateClient} from "../../../../core/Client/Application/CreateClient";
+import {CreateClient} from "../../../../core/Client/Application/UseCase/CreateClient";
 
 @Injectable()
 export class CreateClientService {

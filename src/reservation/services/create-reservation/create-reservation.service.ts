@@ -1,9 +1,9 @@
 import {Inject, Injectable, Logger} from '@nestjs/common';
-import {CreateReservation} from "../../../../core/Reservation/Application/CreateReservation";
+import {CreateReservation} from "../../../../core/Reservation/Application/UseCase/CreateReservation";
 import type {CreateReservationDAO} from "../../../../core/Reservation/Model/DAO/CreateReservationDAO";
 import type {GetShadowDAO} from "../../../../core/Shadow/Model/DAO/GetShadowDAO";
 import type {GetClientDAO} from "../../../../core/Client/Model/DAO/GetClientDAO";
-import {CreateReservationCommand} from "../../../../core/Reservation/Application/DTO/CreateReservationCommand";
+import {CreateReservationCommand} from "../../../../core/Reservation/Application/Commands/CreateReservationCommand";
 import {ReservationResponse} from "../../../../core/Reservation/Application/DTO/ReservationResponse";
 import type {EventPublisher} from "../../../../core/common/Application/EventPublisher";
 import type {GetServiceDAO} from "../../../../core/Service/Model/DAO/GetServiceDAO";

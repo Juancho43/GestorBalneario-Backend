@@ -1,10 +1,10 @@
 import {Inject, Injectable} from '@nestjs/common';
 import {ReservationResponse} from "../../../../core/Reservation/Application/DTO/ReservationResponse";
-import {UpdateReservation} from "../../../../core/Reservation/Application/UpdateReservation";
+import {UpdateReservation} from "../../../../core/Reservation/Application/UseCase/UpdateReservation";
 import type {UpdateReservationDAO} from "../../../../core/Reservation/Model/DAO/UpdateReservationDAO";
 import type {GetShadowDAO} from "../../../../core/Shadow/Model/DAO/GetShadowDAO";
 import type {GetClientDAO} from "../../../../core/Client/Model/DAO/GetClientDAO";
-import {UpdateReservationCommand} from "../../../../core/Reservation/Application/DTO/UpdateReservationCommand";
+import {UpdateReservationCommand} from "../../../../core/Reservation/Application/Commands/UpdateReservationCommand";
 
 @Injectable()
 export class EditReservationService {

@@ -1,9 +1,9 @@
 import {Inject, Injectable} from '@nestjs/common';
-import {GetReservation} from "../../../../core/Reservation/Application/GetReservation";
+import {GetReservation} from "../../../../core/Reservation/Application/UseCase/GetReservation";
 import type {GetReservationDAO} from "../../../../core/Reservation/Model/DAO/GetReservationDAO";
 import {ReservationResponse} from "../../../../core/Reservation/Application/DTO/ReservationResponse";
-import {GetReservationQuery} from "../../../../core/Reservation/Application/DTO/GetReservationQuery";
-import {GetReservationWithClient} from "../../../../core/Reservation/Application/GetReservationWithClient";
+import {GetReservationQuery} from "../../../../core/Reservation/Application/Queries/GetReservationQuery";
+import {GetReservationWithClient} from "../../../../core/Reservation/Application/UseCase/GetReservationWithClient";
 import type {GetReservationWithClientDAO} from "../../../../core/Reservation/Model/DAO/GetReservationWithClientDAO";
 
 @Injectable()

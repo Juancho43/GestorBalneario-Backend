@@ -1,5 +1,5 @@
 import {Body, Controller, Get, HttpException, HttpStatus, Inject, Param} from '@nestjs/common';
-import {GetShadowByIdQuery} from "../../../../core/Shadow/Application/DTO/GetShadowByIdQuery";
+import {GetShadowByIdQuery} from "../../../../core/Shadow/Application/Queries/GetShadowByIdQuery";
 import {GetShadowService} from "../../services/get-shadow/get-shadow.service";
 import {ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
 

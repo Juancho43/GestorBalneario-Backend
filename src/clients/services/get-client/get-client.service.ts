@@ -1,7 +1,7 @@
 import {Inject, Injectable} from '@nestjs/common';
-import {GetClientById} from "../../../../core/Client/Application/GetClientById";
+import {GetClientById} from "../../../../core/Client/Application/UseCase/GetClientById";
 import type {GetClientDAO} from "../../../../core/Client/Model/DAO/GetClientDAO";
-import {GetClientQuery} from "../../../../core/Client/Application/DTO/GetClientQuery";
+import {GetClientQuery} from "../../../../core/Client/Application/Queries/GetClientQuery";
 import {ClientResponse} from "../../../../core/Client/Application/DTO/ClientResponse";
 
 @Injectable()

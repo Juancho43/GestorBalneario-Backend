@@ -2,7 +2,7 @@ import {UUID} from "../../common/Model/UUID";
 import {InvoiceItem} from "./InvoiceItem";
 import {Money} from "../../Payment/Model/Money";
 import {Payment} from "../../Payment/Model/Payment";
-import {InvoiceStatus, InvoiceStatusEnum} from "../../Billing/Model/DAO/InvoiceStatus";
+import {InvoiceStatus, InvoiceStatusEnum} from "./InvoiceStatus";
 import {Timestamps} from "../../common/Model/Timestamps";
 import {SoftDelete} from "../../common/Model/SoftDelete";
 

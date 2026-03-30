@@ -1,6 +1,6 @@
 import {Body, Controller, HttpException, HttpStatus, Inject, Post} from '@nestjs/common';
 import {CreateReservationService} from "../../services/create-reservation/create-reservation.service";
-import {CreateReservationCommand} from "../../../../core/Reservation/Application/DTO/CreateReservationCommand";
+import {CreateReservationCommand} from "../../../../core/Reservation/Application/Commands/CreateReservationCommand";
 import {ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
 import {ReservationResponse} from "../../../../core/Reservation/Application/DTO/ReservationResponse";
 @ApiTags('Reservation')

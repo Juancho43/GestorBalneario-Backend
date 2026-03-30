@@ -1,5 +1,5 @@
 import {Injectable, Inject, Logger} from '@nestjs/common';
-import {AddInvoiceItem} from "../../../../core/Invoice/Application/AddInvoiceItem";
+import {AddInvoiceItem} from "../../../../core/Invoice/Application/UseCase/AddInvoiceItem";
 import {AddInvoiceItemCommand} from "../../../../core/Billing/Application/DTO/AddInvoiceItemCommand";
 import type {GetClientsInvoicesDAO} from "../../../../core/Client/Model/DAO/GetClientsInvoicesDAO";
 import type {GetServiceDAO} from "../../../../core/Service/Model/DAO/GetServiceDAO";

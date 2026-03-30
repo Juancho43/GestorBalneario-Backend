@@ -1,6 +1,6 @@
 import {Inject, Injectable, Logger} from '@nestjs/common';
 import type {GetServicesDAO} from "../../../../core/Service/Model/DAO/GetServicesDAO";
-import {GetServices} from "../../../../core/Service/Application/GetServices";
+import {GetServices} from "../../../../core/Service/Application/UseCase/GetServices";
 import {ServiceResponse} from "../../../../core/Service/Application/DTO/ServiceResponse";
 
 @Injectable()

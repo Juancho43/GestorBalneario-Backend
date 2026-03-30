@@ -1,6 +1,6 @@
 import {Body, Controller, HttpException, HttpStatus, Inject, Post} from '@nestjs/common';
 import {ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
-import {CreateServiceCommand} from "../../../../core/Service/Application/DTO/CreateServiceCommand";
+import {CreateServiceCommand} from "../../../../core/Service/Application/Commands/CreateServiceCommand";
 import {CreateServiceService} from "../../service/create-service/create-service.service";
 import {ServiceResponse} from "../../../../core/Service/Application/DTO/ServiceResponse";
 @ApiTags('Service')

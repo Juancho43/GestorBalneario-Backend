@@ -1,8 +1,8 @@
 import {Inject, Injectable} from '@nestjs/common';
 import {ClientResponse} from "../../../../core/Client/Application/DTO/ClientResponse";
 import type {GetClientsDAO} from "../../../../core/Client/Model/DAO/GetClientsDAO";
-import {GetClients} from "../../../../core/Client/Application/GetClients";
-import {GetClientsQuery} from "../../../../core/Client/Application/DTO/GetClientsQuery";
+import {GetClients} from "../../../../core/Client/Application/UseCase/GetClients";
+import {GetClientsQuery} from "../../../../core/Client/Application/Queries/GetClientsQuery";
 
 @Injectable()
 export class GetClientsService {

@@ -1,6 +1,6 @@
 import {Client} from "../../../core/Client/Model/Client";
 import {GetClientsDAO} from "../../../core/Client/Model/DAO/GetClientsDAO";
-import {GetClientsQuery} from "../../../core/Client/Application/DTO/GetClientsQuery";
+import {GetClientsQuery} from "../../../core/Client/Application/Queries/GetClientsQuery";
 import {Inject, Injectable} from "@nestjs/common";
 import {DB_PROVIDER} from "../../database/DBPROVIDER";
 import {StringObject} from "../../../core/common/Model/StringObject";

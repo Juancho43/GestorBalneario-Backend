@@ -1,8 +1,8 @@
 import {Inject, Injectable, Logger} from '@nestjs/common';
-import {CreateServiceCommand} from "../../../../core/Service/Application/DTO/CreateServiceCommand";
+import {CreateServiceCommand} from "../../../../core/Service/Application/Commands/CreateServiceCommand";
 import type {CreateServiceDAO} from "../../../../core/Service/Model/DAO/CreateServiceDAO";
 import {ServiceResponse} from "../../../../core/Service/Application/DTO/ServiceResponse";
-import {CreateService} from "../../../../core/Service/Application/CreateService";
+import {CreateService} from "../../../../core/Service/Application/UseCase/CreateService";
 
 @Injectable()
 export class CreateServiceService {

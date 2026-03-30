@@ -1,6 +1,6 @@
 import {Body, Controller, HttpException, HttpStatus, Inject, Post} from '@nestjs/common';
 import {CreateClientService} from "../../services/create-client/create-client.service";
-import {CreateClientCommand} from "../../../../core/Client/Application/DTO/CreateClientCommand";
+import {CreateClientCommand} from "../../../../core/Client/Application/Commands/CreateClientCommand";
 import {ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
 import {ClientResponse} from "../../../../core/Client/Application/DTO/ClientResponse";
 

@@ -1,6 +1,6 @@
 import {Body, Controller, HttpException, HttpStatus, Inject, Put} from '@nestjs/common';
 import {EditClientService} from "../../services/edit-client/edit-client.service";
-import {UpdateClientCommand} from "../../../../core/Client/Application/DTO/UpdateClientCommand";
+import {UpdateClientCommand} from "../../../../core/Client/Application/Commands/UpdateClientCommand";
 import {ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
 import {ClientResponse} from "../../../../core/Client/Application/DTO/ClientResponse";
 

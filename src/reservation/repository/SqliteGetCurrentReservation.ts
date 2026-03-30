@@ -2,7 +2,7 @@ import { Reservation } from "core/Reservation/Model/Reservation";
 import {Inject, Injectable} from "@nestjs/common";
 import {DB_PROVIDER} from "../../database/DBPROVIDER";
 import {GetCurrentReservationsDAO} from "../../../core/Reservation/Model/DAO/GetCurrentReservationsDAO";
-import { GetCurrentReservationsQuery } from "core/Reservation/Application/DTO/GetCurrentReservationsQuery";
+import { GetCurrentReservationsQuery } from "core/Reservation/Application/Queries/GetCurrentReservationsQuery";
 import {Booking} from "../../../core/Reservation/Model/Booking";
 import {Timestamps} from "../../../core/common/Model/Timestamps";
 import {SoftDelete} from "../../../core/common/Model/SoftDelete";

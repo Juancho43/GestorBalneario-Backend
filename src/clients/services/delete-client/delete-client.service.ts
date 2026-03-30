@@ -1,7 +1,7 @@
 import {Inject, Injectable} from '@nestjs/common';
-import {DeleteClient} from "../../../../core/Client/Application/DeleteClient";
+import {DeleteClient} from "../../../../core/Client/Application/UseCase/DeleteClient";
 import type {DeleteClientDAO} from "../../../../core/Client/Model/DAO/DeleteClientDAO";
-import {DeleteClientCommand} from "../../../../core/Client/Application/DTO/DeleteClientCommand";
+import {DeleteClientCommand} from "../../../../core/Client/Application/Commands/DeleteClientCommand";
 
 @Injectable()
 export class DeleteClientService {

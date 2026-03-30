@@ -1,6 +1,6 @@
 import {Controller, Get, HttpException, HttpStatus, Inject, Query} from '@nestjs/common';
 import {ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
-import {GetClientsQuery} from "../../../../core/Client/Application/DTO/GetClientsQuery";
+import {GetClientsQuery} from "../../../../core/Client/Application/Queries/GetClientsQuery";
 import {GetSeasonsService} from "../../services/get-seasons/get-seasons.service";
 
 @ApiTags('Season')

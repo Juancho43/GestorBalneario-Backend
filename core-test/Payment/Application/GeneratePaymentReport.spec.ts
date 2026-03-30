@@ -1,6 +1,6 @@
 import { vi, describe, it, expect } from 'vitest'
-import {GeneratePaymentReport} from "../../../core/Payment/Application/GeneratePaymentReport";
-import {PaymentsReportDAO} from "../../../core/Payment/Application/PaymentsReportDAO";
+import {GeneratePaymentReport} from "../../../core/Payment/Application/UseCase/GeneratePaymentReport";
+import {PaymentsReportDAO} from "../../../core/Payment/Application/Interfaces/PaymentsReportDAO";
 import {PaymentsReportQuery} from "../../../core/Payment/Application/Query/PaymentsReportQuery";
 import {PaymentsReportDTO} from "../../../core/Payment/Application/DTO/PaymentsReportDTO";
 
@@ -51,7 +51,7 @@ describe('GeneratePaymentReport', () => {
         // Verificamos que el resultado sea el esperado
         expect(result).toEqual(mockResponse);
 
-        // Verificamos que el DAO fue llamado exactamente con la Query recibida
+        // Verificamos que el DAO fue llamado exactamente con la Interfaces recibida
         expect(mockDao.get).toHaveBeenCalledWith(mockQuery);
         expect(mockDao.get).toHaveBeenCalledTimes(1);
     })

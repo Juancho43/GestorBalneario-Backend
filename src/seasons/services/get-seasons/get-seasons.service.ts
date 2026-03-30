@@ -1,7 +1,7 @@
 import {Inject, Injectable, Logger} from '@nestjs/common';
 import {SeasonResponse} from "../../../../core/Season/Application/DTO/SeasonResponse";
 import type {GetSeasonsDAO} from "../../../../core/Season/Model/DAO/GetSeasonsDAO";
-import {GetSeasons} from "../../../../core/Season/Application/GetSeasons";
+import {GetSeasons} from "../../../../core/Season/Application/UseCase/GetSeasons";
 
 @Injectable()
 export class GetSeasonsService {

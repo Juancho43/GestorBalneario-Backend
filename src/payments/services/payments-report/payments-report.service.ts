@@ -1,7 +1,7 @@
 import {Inject, Injectable, Logger} from '@nestjs/common';
 import {PaymentsReportQuery} from "../../../../core/Payment/Application/Query/PaymentsReportQuery";
-import {GeneratePaymentReport} from "../../../../core/Payment/Application/GeneratePaymentReport";
-import type {PaymentsReportDAO} from "../../../../core/Payment/Application/PaymentsReportDAO";
+import {GeneratePaymentReport} from "../../../../core/Payment/Application/UseCase/GeneratePaymentReport";
+import type {PaymentsReportDAO} from "../../../../core/Payment/Application/Interfaces/PaymentsReportDAO";
 
 @Injectable()
 export class PaymentsReportService {

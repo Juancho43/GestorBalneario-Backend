@@ -1,6 +1,6 @@
 import {Controller, Get, HttpException, HttpStatus, Inject, Param} from '@nestjs/common';
 import {GetClientService} from "../../services/get-client/get-client.service";
-import {GetClientQuery} from "../../../../core/Client/Application/DTO/GetClientQuery";
+import {GetClientQuery} from "../../../../core/Client/Application/Queries/GetClientQuery";
 import {ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
 import {ClientResponse} from "../../../../core/Client/Application/DTO/ClientResponse";
 

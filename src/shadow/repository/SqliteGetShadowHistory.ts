@@ -1,5 +1,5 @@
 import {SqliteBaseClass} from "../../database/SqliteBaseClass";
-import type {ShadowHistoryDAO} from "../../../core/Shadow/Application/Query/ShadowHistoryDAO";
+import type {ShadowHistoryDAO} from "../../../core/Shadow/Application/Interfaces/ShadowHistoryDAO";
 import {ShadowHistoryDTO} from "../../../core/Shadow/Application/Response/ShadowHistoryDTO";
 import {Injectable} from "@nestjs/common";
 import {ShadowResponse} from "../../../core/Shadow/Application/Response/ShadowResponse";

@@ -25,7 +25,7 @@ export class ReservationResponse {
 
 
     /**
-     * Maps a Reservation Model to a ReservationResponse DTO
+     * Maps a Reservation Model to a ReservationResponse Queries
      */
     static create(reservation: Reservation): ReservationResponse {
         const r = new ReservationResponse();

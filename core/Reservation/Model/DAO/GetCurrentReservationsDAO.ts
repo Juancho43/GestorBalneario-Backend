@@ -1,4 +1,4 @@
-import {GetCurrentReservationsQuery} from "../../Application/DTO/GetCurrentReservationsQuery";
+import {GetCurrentReservationsQuery} from "../../Application/Queries/GetCurrentReservationsQuery";
 import {Reservation} from "../Reservation";
 
 export interface GetCurrentReservationsDAO{

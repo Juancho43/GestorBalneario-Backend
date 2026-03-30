@@ -1,6 +1,6 @@
 import {Inject, Injectable} from '@nestjs/common';
 import type {GetActiveReservationsDAO} from "../../../../core/Reservation/Model/DAO/GetActiveReservationsDAO";
-import {GetActiveReservations} from "../../../../core/Reservation/Application/GetActiveReservations";
+import {GetActiveReservations} from "../../../../core/Reservation/Application/UseCase/GetActiveReservations";
 
 @Injectable()
 export class GetActiveReservationsService {

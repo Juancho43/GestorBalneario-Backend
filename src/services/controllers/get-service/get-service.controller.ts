@@ -2,7 +2,7 @@ import {Controller, Get, HttpException, HttpStatus, Inject, Param} from '@nestjs
 import {ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
 import {ServiceResponse} from "../../../../core/Service/Application/DTO/ServiceResponse";
 import {GetServiceService} from "../../service/get-service/get-service.service";
-import {GetServiceQuery} from "../../../../core/Service/Application/DTO/GetServiceQuery";
+import {GetServiceQuery} from "../../../../core/Service/Application/Queries/GetServiceQuery";
 @ApiTags('Service')
 @Controller('service')
 export class GetServiceController {

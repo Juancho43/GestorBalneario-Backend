@@ -1,7 +1,7 @@
 import {Controller, Get, Inject, Param, Query} from '@nestjs/common';
 import {ApiOperation, ApiTags} from "@nestjs/swagger";
 import {GetShadowHistoryService} from "../../services/get-shadow-history/get-shadow-history.service";
-import {GetShadowHistoryQuery} from "../../../../core/Shadow/Application/DTO/GetShadowHistoryQuery";
+import {GetShadowHistoryQuery} from "../../../../core/Shadow/Application/Queries/GetShadowHistoryQuery";
 @ApiTags('ShadowFronted')
 @Controller('shadow')
 export class ShadowHistoryController {

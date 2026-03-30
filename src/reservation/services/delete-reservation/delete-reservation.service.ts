@@ -1,7 +1,7 @@
 import {Inject, Injectable} from '@nestjs/common';
 import type {DeleteShadowDAO} from "../../../../core/Shadow/Model/DAO/DeleteShadowDAO";
-import {DeleteReservation} from "../../../../core/Reservation/Application/DeleteReservation";
-import {DeleteReservationCommand} from "../../../../core/Reservation/Application/DTO/DeleteReservationCommand";
+import {DeleteReservation} from "../../../../core/Reservation/Application/UseCase/DeleteReservation";
+import {DeleteReservationCommand} from "../../../../core/Reservation/Application/Commands/DeleteReservationCommand";
 
 @Injectable()
 export class DeleteReservationService {

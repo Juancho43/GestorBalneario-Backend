@@ -1,7 +1,7 @@
 import {Body, Controller, HttpException, HttpStatus, Inject, Post} from '@nestjs/common';
 import {ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
 import {SeasonResponse} from "../../../../core/Season/Application/DTO/SeasonResponse";
-import {CreateSeasonCommand} from "../../../../core/Season/Application/DTO/CreateSeasonCommand";
+import {CreateSeasonCommand} from "../../../../core/Season/Application/Commads/CreateSeasonCommand";
 import {CreateSeasonService} from "../../services/create-season/create-season.service";
 
 @ApiTags('Season')

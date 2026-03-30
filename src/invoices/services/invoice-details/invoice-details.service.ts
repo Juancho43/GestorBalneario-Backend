@@ -1,7 +1,7 @@
 import {Inject, Injectable, Logger} from '@nestjs/common';
-import type {InvoiceDetailDAO} from "../../../../core/Invoice/Application/InvoiceDetailDAO";
-import {InvoiceDetails} from "../../../../core/Invoice/Application/InvoiceDetails";
-import {InvoiceDetailQuery} from "../../../../core/Invoice/Application/DTO/InvoiceDetailQuery";
+import type {InvoiceDetailDAO} from "../../../../core/Invoice/Application/Interfaces/InvoiceDetailDAO";
+import {InvoiceDetails} from "../../../../core/Invoice/Application/UseCase/InvoiceDetails";
+import {InvoiceDetailQuery} from "../../../../core/Invoice/Application/Queries/InvoiceDetailQuery";
 
 @Injectable()
 export class InvoiceDetailsService {

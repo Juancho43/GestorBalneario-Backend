@@ -1,6 +1,6 @@
 import {Inject, Injectable, Logger} from '@nestjs/common';
 import type {GetInvoicesDAO} from "../../../../core/Invoice/Model/DAO/GetInvoicesDAO";
-import {GetInvoices} from "../../../../core/Invoice/Application/GetInvoices";
+import {GetInvoices} from "../../../../core/Invoice/Application/UseCase/GetInvoices";
 import {InvoiceResponse} from "../../../../core/Invoice/Application/DTO/InvoiceResponse";
 
 @Injectable()

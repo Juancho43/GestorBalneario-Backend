@@ -1,7 +1,7 @@
 import {PaymentsReportDTO} from "../../../core/Payment/Application/DTO/PaymentsReportDTO";
 import {SqliteBaseClass} from "../../database/SqliteBaseClass";
 import {Injectable} from "@nestjs/common";
-import type {PaymentsReportDAO} from "../../../core/Payment/Application/PaymentsReportDAO";
+import type {PaymentsReportDAO} from "../../../core/Payment/Application/Interfaces/PaymentsReportDAO";
 import { PaymentsReportQuery } from "core/Payment/Application/Query/PaymentsReportQuery";
 import {PaymentResponse} from "../../../core/Payment/Application/DTO/PaymentResponse";
 

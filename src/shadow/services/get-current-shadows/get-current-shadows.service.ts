@@ -1,6 +1,6 @@
 import {Inject, Injectable} from '@nestjs/common';
 import type {GetShadowListDAO} from "../../../../core/Shadow/Model/DAO/GetShadowListDAO";
-import {GetCurrent} from "../../../../core/Shadow/Application/GetCurrent";
+import {GetCurrent} from "../../../../core/Shadow/Application/UseCase/GetCurrent";
 import {ShadowResponse} from "../../../../core/Shadow/Application/Response/ShadowResponse";
 
 @Injectable()

@@ -1,6 +1,6 @@
 import {Controller, Delete, HttpException, Inject, Param} from '@nestjs/common';
 import {DeleteReservationService} from "../../services/delete-reservation/delete-reservation.service";
-import {DeleteReservationCommand} from "../../../../core/Reservation/Application/DTO/DeleteReservationCommand";
+import {DeleteReservationCommand} from "../../../../core/Reservation/Application/Commands/DeleteReservationCommand";
 import {ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
 
 @ApiTags('Reservation')

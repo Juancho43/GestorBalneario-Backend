@@ -1,6 +1,6 @@
 import {Controller, Get, Inject, Query} from '@nestjs/common';
 import {GetClientsService} from "../../services/get-clients/get-clients.service";
-import {GetClientsQuery} from "../../../../core/Client/Application/DTO/GetClientsQuery";
+import {GetClientsQuery} from "../../../../core/Client/Application/Queries/GetClientsQuery";
 import {ApiTags} from "@nestjs/swagger";
 
 @ApiTags('Client')

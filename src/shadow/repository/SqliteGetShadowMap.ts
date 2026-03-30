@@ -1,6 +1,6 @@
 import {Injectable} from "@nestjs/common";
 import {SqliteBaseClass} from "../../database/SqliteBaseClass";
-import {ShadowMapDAO} from "../../../core/Shadow/Application/Query/ShadowMapDAO";
+import {ShadowMapDAO} from "../../../core/Shadow/Application/Interfaces/ShadowMapDAO";
 import { ShadowMapDTO } from "core/Shadow/Application/Response/ShadowMapDTO";
 import {ShadowResponse} from "../../../core/Shadow/Application/Response/ShadowResponse";
 import {ReservationResponse} from "../../../core/Reservation/Application/DTO/ReservationResponse";
