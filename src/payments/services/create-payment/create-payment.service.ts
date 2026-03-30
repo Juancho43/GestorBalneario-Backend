@@ -22,7 +22,7 @@ export class CreatePaymentService {
             this.logger.debug('Creating payment')
             return PaymentResponse.create(await this.useCase.execute(command));
         }catch (error) {
-            this.logger.error(error.message);
+            this.logger.error(error);
             throw error;
         }
     }

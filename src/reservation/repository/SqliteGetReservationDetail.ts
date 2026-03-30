@@ -15,7 +15,7 @@ export class SqliteGetReservationDetail extends SqliteBaseClass implements GetRe
                 c.id as clientId,
                 s.id as shadowId,
                 rs.serviceId as serviceId,
-                rs.invoiceId as invoiceId,
+                i.id as invoiceId,
                 p.id as paymentId,
                 r.date as reservationDate,
                 r.checkIn as reservationCheckIn,
@@ -41,14 +41,13 @@ export class SqliteGetReservationDetail extends SqliteBaseClass implements GetRe
                 Reservations r
                     LEFT JOIN Shadows s ON r.shadowId = s.id
                     LEFT JOIN Clients c ON r.clientId = c.id
-                    LEFT JOIN Reservation_Service AS rs ON rs.reservationId = r.id
+                    LEFT JOIN Invoice_Items AS rs ON rs.aggregateId = r.id
                     LEFT JOIN Invoices i ON rs.invoiceId = i.id
                     LEFT JOIN Invoice_Payments AS ip ON ip.invoiceId = i.id
                     LEFT JOIN Payments p ON ip.paymentId = p.id
             WHERE r.id = @id AND r.deleted_at IS NULL
         `
         const rows = this.getDb().prepare(sql).all({id}) as any;
-
         const clientResponse = new ClientResponse();
         clientResponse.id = rows[0].clientId;
         clientResponse.name = rows[0].clientName;

@@ -1,7 +1,7 @@
 import {CommandHandler, ICommandHandler} from "@nestjs/cqrs";
-import {AddInvoiceItemCommand} from "../../../core/Billing/Application/DTO/AddInvoiceItemCommand";
 import {AddInvoiceItemService} from "../services/add-invoice-item/add-invoice-item.service";
 import {Inject, Logger} from "@nestjs/common";
+import {AddInvoiceItemCommand} from "../../../core/Invoice/Application/Commands/AddInvoiceItemCommand";
 
 @CommandHandler(AddInvoiceItemCommand)
 export class AddInvoiceItemHandler implements ICommandHandler<AddInvoiceItemCommand> {

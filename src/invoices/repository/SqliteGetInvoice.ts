@@ -21,11 +21,12 @@ export class SqliteGetInvoice extends SqliteBaseClass implements GetInvoiceDAO{
                 i.amount AS invoiceAmount,
                 i.clientId AS clientId,
                 r.price,
-                r.reservationId,
+                r.aggregateId,
+                r.aggregateType,
                 r.serviceId,
                 r.id as itemId
             FROM Invoices i
-                     LEFT JOIN Reservation_Service r ON r.invoiceId = i.id
+                     LEFT JOIN Invoice_Items r ON r.invoiceId = i.id
             WHERE i.id = @id and i.deleted_at IS NULL
         `
         const result = this.getDb().prepare(sql).all({id}) as any;
@@ -39,15 +40,17 @@ export class SqliteGetInvoice extends SqliteBaseClass implements GetInvoiceDAO{
                 SoftDelete.empty()
             )
                 result.forEach((row: any) => {
-                    const item = Reservation_Service.create(
-                        UUID.restore(row.itemId),
-                        Money.create(row.price),
-                        StringObject.create('Booking'),
-                        UUID.restore(row.serviceId),
-                        UUID.restore(row.reservationId),
-                        UUID.restore(row.invoiceId),
-                    )
-                    invoice!.addItem(item)
+                    if(row.aggregateType == 'Reservations'){
+                        const item = Reservation_Service.create(
+                            UUID.restore(row.itemId),
+                            Money.create(row.price),
+                            StringObject.create('Booking'),
+                            UUID.restore(row.serviceId),
+                            UUID.restore(row.aggregateId),
+                            UUID.restore(row.invoiceId),
+                        )
+                        invoice!.addItem(item)
+                    }
                 })
         }
        return invoice;

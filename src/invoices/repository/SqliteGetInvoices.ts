@@ -23,11 +23,12 @@ export class SqliteGetInvoices extends SqliteBaseClass implements GetInvoicesDAO
                 i.amount AS invoiceAmount,
                 i.clientId AS clientId,
                 r.price,
-                r.reservationId,
+                r.aggregateId,
+                r.aggregateType,
                 r.serviceId,
                 r.id as itemId
             FROM Invoices i
-                     LEFT JOIN Reservation_Service r ON r.invoiceId = i.id
+                     LEFT JOIN Invoice_Items r ON r.invoiceId = i.id
             WHERE i.deleted_at IS NULL
             LIMIT @limit OFFSET @offset
         `
@@ -54,17 +55,17 @@ export class SqliteGetInvoices extends SqliteBaseClass implements GetInvoicesDAO
 
             // 2. If there is a linked item (r.id is not null), create and add it
             if (row.itemId) {
-                const item = Reservation_Service.create(
-                    UUID.restore(row.itemId),
-                    Money.create(row.price),
-                    StringObject.create('Booking'),
-                    UUID.restore(row.serviceId),
-                    UUID.restore(row.reservationId),
-                    UUID.restore(row.invoiceId)
-                );
-
-                // Add the item to the invoice stored in our Map
-                invoiceMap.get(id)!.addItem(item);
+                if(row.aggregateType == 'Reservations'){
+                    const item = Reservation_Service.create(
+                        UUID.restore(row.itemId),
+                        Money.create(row.price),
+                        StringObject.create('Booking'),
+                        UUID.restore(row.serviceId),
+                        UUID.restore(row.aggregateId),
+                        UUID.restore(row.invoiceId),
+                    )
+                    invoiceMap.get(id)!.addItem(item);
+                }
             }
         });
 

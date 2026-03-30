@@ -1,10 +1,10 @@
 import {Injectable, Inject, Logger} from '@nestjs/common';
 import {AddInvoiceItem} from "../../../../core/Invoice/Application/UseCase/AddInvoiceItem";
-import {AddInvoiceItemCommand} from "../../../../core/Billing/Application/DTO/AddInvoiceItemCommand";
 import type {GetClientsInvoicesDAO} from "../../../../core/Client/Model/DAO/GetClientsInvoicesDAO";
 import type {GetServiceDAO} from "../../../../core/Service/Model/DAO/GetServiceDAO";
 import type {CreateInvoiceItemDAO} from "../../../../core/Invoice/Model/DAO/CreateInvoiceItemDAO";
 import type {EventPublisher} from "../../../../core/common/Application/EventPublisher";
+import {AddInvoiceItemCommand} from "../../../../core/Invoice/Application/Commands/AddInvoiceItemCommand";
 
 @Injectable()
 export class AddInvoiceItemService {
@@ -25,7 +25,7 @@ export class AddInvoiceItemService {
             return await this.useCase.execute(command);
         }catch(error){
             this.logger.error(error);
-            return error
+            throw error
         }
     }
 

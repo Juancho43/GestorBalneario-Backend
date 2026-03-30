@@ -1,5 +1,4 @@
 import {IUseCase} from "../../../common/Application/IUseCase";
-import {AddInvoiceItemCommand} from "../../../Billing/Application/DTO/AddInvoiceItemCommand";
 import {GetClientsInvoicesDAO} from "../../../Client/Model/DAO/GetClientsInvoicesDAO";
 import {UUID} from "../../../common/Model/UUID";
 import {Reservation_Service} from "../../../Service/Model/Reservation_Service";
@@ -9,6 +8,7 @@ import {CreateInvoiceItemDAO} from "../../Model/DAO/CreateInvoiceItemDAO";
 import {GetServiceDAO} from "../../../Service/Model/DAO/GetServiceDAO";
 import {EventPublisher} from "../../../common/Application/EventPublisher";
 import {InvoiceItemAdded} from "../../Model/InvoiceItemAdded";
+import {AddInvoiceItemCommand} from "../Commands/AddInvoiceItemCommand";
 
 export class AddInvoiceItem implements IUseCase<AddInvoiceItemCommand, void>{
 

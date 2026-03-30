@@ -33,9 +33,10 @@ export class SqliteInvoiceDetail extends SqliteBaseClass implements InvoiceDetai
                 r.checkOut,
                 rs.price AS priceItem,
                 rs.id AS itemId
+                
             FROM Invoices i
-                     INNER JOIN Reservation_Service rs ON rs.invoiceId = i.id
-                     INNER JOIN Reservations r on rs.reservationId = r.id
+                     INNER JOIN Invoice_Items rs ON rs.invoiceId = i.id
+                     LEFT JOIN Reservations r on rs.aggregateId = r.id and rs.aggregateType = 'Reservations'
                      INNER JOIN Invoice_Payments ip ON ip.invoiceId = i.id
                      INNER JOIN Payments p ON ip.paymentId = p.id
                      INNER JOIN Shadows s ON r.shadowId = s.id

@@ -12,12 +12,12 @@ export class SqliteCreateInvoiceItem extends SqliteBaseClass implements CreateIn
                 VALUES (@id,@date,@amount,@clientId,@created_at,@updated_at)
         `
         const sqlItem = `
-            INSERT INTO Reservation_Service (id,invoiceId, reservationId, serviceId, price) 
-            VALUES (@id,@invoiceId, @reservationId, @serviceId, @price)
+            INSERT INTO Invoice_Items (id,invoiceId, aggregateId, aggregateType, serviceId, price) 
+            VALUES (@id,@invoiceId, @aggregateId,@type, @serviceId, @price)
         `
         const sqlUpdate = `
             UPDATE Invoices
-            SET amount = (SELECT SUM(price) FROM Reservation_Service WHERE invoiceId = @id)
+            SET amount = (SELECT SUM(price) FROM Invoice_Items WHERE invoiceId = @id)
             WHERE id = @id ;
         `
 
@@ -39,7 +39,8 @@ export class SqliteCreateInvoiceItem extends SqliteBaseClass implements CreateIn
             stmtItem.run({
                 id:item.getId().value,
                 invoiceId: item.getInvoiceId().value,
-                reservationId: item.getAggregateId().value,
+                aggregateId: item.getAggregateId().value,
+                type: item.getAggregate(),
                 serviceId: item.getServiceId().value,
                 price: item.getPrice().finalAmount,
             })
