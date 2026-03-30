@@ -36,10 +36,14 @@ export class Shadow{
         let isAvailable = true;
         if (this._softDelete.isDeleted) isAvailable = false;
 
-        const hasOverlap = this._reservations.some(reservation => {
-            reservation.booking.overlapsWith(dates);
+
+        let overlap = false;
+        this._reservations.forEach(reservation => {
+            if(reservation.booking.overlapsWith(dates)){
+                overlap = true;
+            }
         })
-        if (hasOverlap) isAvailable = false;
+        if (overlap) isAvailable = false;
         return isAvailable;
     }
 
