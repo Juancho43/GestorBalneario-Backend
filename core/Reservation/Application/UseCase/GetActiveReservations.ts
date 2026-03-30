@@ -1,6 +1,6 @@
 import {IUseCase} from "../../../common/Application/IUseCase";
 import {Reservation} from "../../Model/Reservation";
-import {GetActiveReservationsDAO} from "../../Model/DAO/GetActiveReservationsDAO";
+import {GetActiveReservationsDAO} from "../Interfaces/GetActiveReservationsDAO";
 
 export class GetActiveReservations implements IUseCase<any, Reservation[]>{
     constructor(private readonly dao: GetActiveReservationsDAO) {}

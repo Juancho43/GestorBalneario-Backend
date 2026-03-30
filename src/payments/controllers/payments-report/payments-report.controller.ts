@@ -2,7 +2,7 @@ import {Controller, Get, HttpException, HttpStatus, Inject, Query} from '@nestjs
 import {ApiTags} from "@nestjs/swagger";
 import {PaymentsReportService} from "../../services/payments-report/payments-report.service";
 import {PaymentsReportQuery} from "../../../../core/Payment/Application/Query/PaymentsReportQuery";
-@ApiTags('PaymentFrontend')
+@ApiTags('Frontend')
 @Controller('payment')
 export class PaymentsReportController {
 

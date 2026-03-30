@@ -1,6 +1,6 @@
 import {Inject, Injectable, Logger} from '@nestjs/common';
 import {GetReservationDetail} from "../../../../core/Reservation/Application/UseCase/GetReservationDetail";
-import type{GetReservationDetailsDAO} from "../../../../core/Reservation/Model/DAO/GetReservationDetailsDAO";
+import type{GetReservationDetailsDAO} from "../../../../core/Reservation/Application/Interfaces/GetReservationDetailsDAO";
 import {GetReservationQuery} from "../../../../core/Reservation/Application/Queries/GetReservationQuery";
 
 @Injectable()

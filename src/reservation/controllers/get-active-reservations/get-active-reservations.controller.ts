@@ -3,7 +3,7 @@ import {ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
 import {GetActiveReservationsService} from "../../services/get-active-reservations/get-active-reservations.service";
 import {ReservationResponse} from "../../../../core/Reservation/Application/DTO/ReservationResponse";
 
-@ApiTags('Reservation')
+@ApiTags('Frontend')
 @Controller('reservation')
 export class GetActiveReservationsController {
     constructor(@Inject() private service: GetActiveReservationsService) {

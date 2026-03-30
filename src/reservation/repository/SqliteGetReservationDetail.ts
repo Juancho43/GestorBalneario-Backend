@@ -1,5 +1,5 @@
 import { ReservationDetailResponse } from "core/Reservation/Application/DTO/ReservationDetailResponse";
-import {GetReservationDetailsDAO} from "../../../core/Reservation/Model/DAO/GetReservationDetailsDAO";
+import {GetReservationDetailsDAO} from "../../../core/Reservation/Application/Interfaces/GetReservationDetailsDAO";
 import {SqliteBaseClass} from "../../database/SqliteBaseClass";
 import {ClientResponse} from "../../../core/Client/Application/DTO/ClientResponse";
 import {ShadowResponse} from "../../../core/Shadow/Application/Response/ShadowResponse";

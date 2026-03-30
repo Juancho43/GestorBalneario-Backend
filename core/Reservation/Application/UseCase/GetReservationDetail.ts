@@ -1,7 +1,7 @@
 import {IUseCase} from "../../../common/Application/IUseCase";
 import {GetReservationQuery} from "../Queries/GetReservationQuery";
 import {ReservationDetailResponse} from "../DTO/ReservationDetailResponse";
-import {GetReservationDetailsDAO} from "../../Model/DAO/GetReservationDetailsDAO";
+import {GetReservationDetailsDAO} from "../Interfaces/GetReservationDetailsDAO";
 
 export class GetReservationDetail implements IUseCase<GetReservationQuery, ReservationDetailResponse>{
 

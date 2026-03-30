@@ -1,7 +1,7 @@
 import {Controller, Get, HttpException, HttpStatus, Inject, Param} from '@nestjs/common';
 import {ApiTags} from "@nestjs/swagger";
 import {GetReservationDetailService} from "../../services/get-reservation-detail/get-reservation-detail.service";
-@ApiTags('ReservationFronted')
+@ApiTags('Frontend')
 @Controller('reservation')
 export class GetReservationDetailController {
 

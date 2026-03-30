@@ -2,7 +2,7 @@ import {Controller, Get, HttpException, HttpStatus, Inject, Param} from '@nestjs
 import {ApiTags} from "@nestjs/swagger";
 import {InvoiceDetailsService} from "../../services/invoice-details/invoice-details.service";
 import {InvoiceDetailQuery} from "../../../../core/Invoice/Application/Queries/InvoiceDetailQuery";
-@ApiTags('InvoiceFrontend')
+@ApiTags('Frontend')
 @Controller('invoice')
 export class InvoiceDetailsController {
 

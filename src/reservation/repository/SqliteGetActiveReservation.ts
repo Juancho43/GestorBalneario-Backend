@@ -1,4 +1,4 @@
-import {GetActiveReservationsDAO} from "../../../core/Reservation/Model/DAO/GetActiveReservationsDAO";
+import {GetActiveReservationsDAO} from "../../../core/Reservation/Application/Interfaces/GetActiveReservationsDAO";
 import {Injectable} from "@nestjs/common";
 import {Reservation} from "../../../core/Reservation/Model/Reservation";
 import {Booking} from "../../../core/Reservation/Model/Booking";

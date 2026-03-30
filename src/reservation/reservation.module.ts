@@ -20,7 +20,6 @@ import { GetActiveReservationsController } from './controllers/get-active-reserv
 import { GetActiveReservationsService } from './services/get-active-reservations/get-active-reservations.service';
 import {SqliteGetActiveReservation} from "./repository/SqliteGetActiveReservation";
 import {SqliteGetReservationsByShadowId} from "./repository/SqliteGetReservationsByShadowId";
-import { GetReservationsWithClientsController } from './controllers/get-reservations-with-clients/get-reservations-with-clients.controller';
 import {SqliteGetReservationWithClient} from "./repository/SqliteGetReservationWithClient";
 import {NestEventPublisherAdapter} from "../events/NestEventPublisherAdapter";
 import {CqrsModule} from "@nestjs/cqrs";
@@ -93,6 +92,6 @@ import {SqliteGetReservationDetail} from "./repository/SqliteGetReservationDetai
     GetActiveReservationsService,
     GetReservationDetailService,
   ],
-  controllers: [GetCurrentReservationsController, EditReservationController, CreateReservationController, DeleteReservationController, GetReservationController, GetActiveReservationsController, GetReservationsWithClientsController, GetReservationDetailController]
+  controllers: [GetCurrentReservationsController, EditReservationController, CreateReservationController, DeleteReservationController, GetReservationController, GetActiveReservationsController, GetReservationDetailController]
 })
 export class ReservationModule {}

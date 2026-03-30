@@ -1,5 +1,5 @@
 import {GetCurrentReservationService} from "../../services/get-current-reservation/get-current-reservation.service";
-import {Body, Controller, Get, HttpException, HttpStatus, Inject, Post, Query} from "@nestjs/common";
+import {Controller, Get, HttpException, HttpStatus, Inject, Query} from "@nestjs/common";
 import {GetCurrentReservationsQuery} from "../../../../core/Reservation/Application/Queries/GetCurrentReservationsQuery";
 import {ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
 

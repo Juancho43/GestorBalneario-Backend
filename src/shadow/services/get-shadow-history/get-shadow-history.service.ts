@@ -7,16 +7,16 @@ import type {ShadowHistoryDAO} from "../../../../core/Shadow/Application/Interfa
 export class GetShadowHistoryService {
     private readonly logger = new Logger(GetShadowHistoryService.name);
     private useCase: GetShadowHistory;
-    constructor(@Inject('GET_SHADOW_HISTORY') private dao: ShadowHistoryDAO) {
+    constructor(@Inject('GET_SHADOW_HISTORY') dao: ShadowHistoryDAO) {
         this.useCase = new GetShadowHistory(dao);
     }
     execute(query:GetShadowHistoryQuery){
         try{
-            this.logger.log("GetShadowHistoryService.execute", query);
+            this.logger.debug("GetShadowHistoryService.execute", query);
             return this.useCase.execute(query);
         }catch(e){
             this.logger.error(e.message)
-            return e;
+            throw e;
         }
     }
 }
