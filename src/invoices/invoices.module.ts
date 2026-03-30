@@ -5,6 +5,9 @@ import { GetInvoicesController } from './controllers/get-invoices/get-invoices.c
 import { GetInvoicesService } from './services/get-invoices/get-invoices.service';
 import { GetInvoiceService } from './services/get-invoice/get-invoice.service';
 import {SqliteGetInvoices} from "./repository/SqliteGetInvoices";
+import { InvoiceDetailsController } from './controllers/invoice-details/invoice-details.controller';
+import { InvoiceDetailsService } from './services/invoice-details/invoice-details.service';
+import {SqliteInvoiceDetail} from "./repository/SqliteInvoiceDetail";
 
 @Module({
     providers:[
@@ -16,10 +19,15 @@ import {SqliteGetInvoices} from "./repository/SqliteGetInvoices";
             provide:'GET_INVOICES',
             useClass: SqliteGetInvoices
         },
+        {
+            provide:'INVOICE_DETAIL',
+            useClass: SqliteInvoiceDetail
+        },
         GetInvoicesService,
-        GetInvoiceService
+        GetInvoiceService,
+        InvoiceDetailsService
     ],
     exports: [],
-    controllers: [GetInvoiceController, GetInvoicesController]
+    controllers: [GetInvoiceController, GetInvoicesController, InvoiceDetailsController]
 })
 export class InvoicesModule {}

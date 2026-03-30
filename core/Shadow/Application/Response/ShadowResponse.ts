@@ -1,5 +1,4 @@
 import {Shadow} from "../../Model/Shadow";
-import {ReservationResponse} from "../../../Reservation/Application/DTO/ReservationResponse";
 
 export class ShadowResponse{
 

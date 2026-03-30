@@ -9,4 +9,5 @@ export interface InvoiceItem{
     getDescription():StringObject;
     getAggregateId():UUID;
     getServiceId():UUID;
+    getAggregate(): string;
 }

@@ -4,7 +4,7 @@ import {ItemResponse} from "./ItemResponse";
 export class InvoiceResponse {
     id:string;
     date:string;
-    items: any[];
+    items: ItemResponse[];
     amount:number;
     clientId:string;
 

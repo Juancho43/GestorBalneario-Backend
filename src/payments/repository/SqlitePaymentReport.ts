@@ -32,6 +32,7 @@ export class SqlitePaymentReport extends SqliteBaseClass implements PaymentsRepo
             paymentResponse.changeType = result.changeType;
             paymentResponse.amount = result.amount;
             paymentResponse.invoiceId = result.invoiceId;
+            paymentResponse.finalAmount = result.changeType * result.amount;
             response.payments.push(paymentResponse);
         })
 
