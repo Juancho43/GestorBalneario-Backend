@@ -5,6 +5,7 @@ import {GetSeasonDAO} from "../../../core/Season/Model/DAO/GetSeasonDAO";
 import {UUID} from "../../../core/common/Model/UUID";
 import {Timestamps} from "../../../core/common/Model/Timestamps";
 import {SoftDelete} from "../../../core/common/Model/SoftDelete";
+import {StringObject} from "../../../core/common/Model/StringObject";
 
 @Injectable()
 export class SqliteGetSeason extends SqliteBaseClass implements GetSeasonDAO {
@@ -18,6 +19,7 @@ export class SqliteGetSeason extends SqliteBaseClass implements GetSeasonDAO {
                 UUID.restore(result.id),
                 new Date(result.startDate),
                 new Date(result.endDate),
+                StringObject.create(result.name),
                 Timestamps.restore(new Date(result.created_at), new Date(result.updated_at)),
                 SoftDelete.empty()
             )

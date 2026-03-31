@@ -8,26 +8,28 @@ import {ClientResponse} from "../../../core/Client/Application/DTO/ClientRespons
 
 @Injectable()
 export class SqliteGetShadowMap extends SqliteBaseClass implements ShadowMapDAO {
-    async get(): Promise<ShadowMapDTO> {
+    async get(seasonId: string): Promise<ShadowMapDTO> {
         const sql = `
             SELECT
-                s.id AS id,              
+                s.id AS id,
                 s.identifier,
                 s.type,
                 s.x,
                 s.y,
-                r.id AS reservationId,  
+                r.id AS reservationId,
                 r.checkIn,
                 r.checkOut,
-                c.id AS clientId,        
+                c.id AS clientId,
                 c.name,
                 c.phone,
                 c.email
             FROM Shadows s
-                     LEFT JOIN Reservations r ON r.shadowId = s.id and (CURRENT_TIMESTAMP BETWEEN r.checkIn and r.checkOut) 
+                     LEFT JOIN Season_Shadows ss ON ss.shadowId = s.id 
+                     LEFT JOIN Reservations r ON r.shadowId = s.id and (CURRENT_TIMESTAMP BETWEEN r.checkIn and r.checkOut)
                      LEFT JOIN Clients c ON r.clientId = c.id
+           WHERE ss.seasonId = @seasonId
         `;
-        const results = this.getDb().prepare(sql).all() as any;
+        const results = this.getDb().prepare(sql).all({seasonId:seasonId}) as any;
         return this.toDTO(results)    ;
     }
     private toDTO(rows: any[]): ShadowMapDTO {

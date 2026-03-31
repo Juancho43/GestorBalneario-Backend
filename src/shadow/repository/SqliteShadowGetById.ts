@@ -21,9 +21,11 @@ export class SqliteShadowGetById extends SqliteBaseClass implements GetShadowDAO
                 s.id AS shadowId, s.identifier, s.type, s.x, s.y,
                 s.created_at, s.updated_at,
                 r.id AS reservationId, r.checkIn, r.checkOut, r.clientId, r.date,
-                r.created_at AS resCreated, r.updated_at as resUpdated
+                r.created_at AS resCreated, r.updated_at as resUpdated,
+                ss.seasonId
             FROM Shadows s
                      LEFT JOIN Reservations r ON s.id = r.ShadowID
+            INNER JOIN Season_Shadows ss ON ss.shadowId = s.id
             WHERE s.id = ? -- Usamos el signo de interrogación
         `;
 
@@ -34,6 +36,7 @@ export class SqliteShadowGetById extends SqliteBaseClass implements GetShadowDAO
 
             result = Shadow.create(
                 UUID.restore(firstRow.shadowId),
+                UUID.restore(firstRow.seasonId),
                 StringObject.create(firstRow.identifier),
                 ShadowType.create(firstRow.type),
                 Coords.create(firstRow.x, firstRow.y),

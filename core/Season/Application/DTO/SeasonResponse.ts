@@ -18,22 +18,31 @@ export class SeasonResponse {
      * @example "2024-06-30T23:59:59.999Z"
      */
     endDate: string;
-
-        /**
-         * The creation date of the season in ISO 8601 format.
-         * @example "2023-09-01T00:00:00.000Z"
-         */
-        created_at: string;
-        /**
-         * The last update date of the season in ISO 8601 format.
-         * @example "2023-09-01T00:00:00.000Z"
-         */
-        updated_at: string;
-        /**
-         * The deletion date of the season in ISO 8601 format, or an empty string if not deleted.
-         * @example "2024-07-15T10:30:00.000Z"
-         */
-        deleted_at: string;
+    /**
+     * The name of the season.
+     * @example "2023-2024 Season"
+     */
+    name: string;
+    /*
+    * If the season is currently active
+    * @example "true"
+    * */
+    isActive: boolean;
+    /**
+     * The creation date of the season in ISO 8601 format.
+     * @example "2023-09-01T00:00:00.000Z"
+     */
+    created_at: string;
+    /**
+     * The last update date of the season in ISO 8601 format.
+     * @example "2023-09-01T00:00:00.000Z"
+     */
+    updated_at: string;
+    /**
+     * The deletion date of the season in ISO 8601 format, or an empty string if not deleted.
+     * @example "2024-07-15T10:30:00.000Z"
+     */
+    deleted_at: string;
 
     /**
      * Creates a SeasonResponse from a Season entity.
@@ -54,6 +63,8 @@ export class SeasonResponse {
         response.id = season.id.value;
         response.startDate = season.startDate.toISOString();
         response.endDate = season.endDate.toISOString();
+        response.isActive = season.isActive;
+        response.name = season.name.getValue();
         response.created_at = season.timestamps.createdAt.toISOString();
         response.updated_at = season.timestamps.updatedAt.toISOString();
         response.deleted_at = season.softDelete.value?.toISOString() || '';

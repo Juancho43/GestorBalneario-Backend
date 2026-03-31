@@ -30,6 +30,7 @@ export class SqliteShadowsGetCurrent implements GetShadowListDAO {
         return rows.map(row =>
             Shadow.create(
                 UUID.restore(row.id),
+                UUID.restore(row.id),
                 StringObject.create(row.identifier),
                 ShadowType.create(row.type),
                 Coords.create(row.x, row.y),

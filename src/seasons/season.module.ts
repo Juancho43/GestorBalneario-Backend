@@ -8,9 +8,12 @@ import {CreateSeasonController} from "./controllers/create-season/create-season.
 import {SqliteGetSeasons} from "./repository/SqliteGetSeasons";
 import {SqliteGetSeason} from "./repository/SqliteGetSeason";
 import {SqliteCreateSeason} from "./repository/SqliteCreateSeason";
+import { GetActiveSeasonController } from './controllers/get-active-season/get-active-season.controller';
+import { GetActiveSeasonService } from './services/get-active-season/get-active-season.service';
+import {SqliteGetActiveSeason} from "./repository/SqliteGetActiveSeason";
 
 @Module({
-    controllers:[GetSeasonController, GetSeasonsController, CreateSeasonController],
+    controllers:[GetSeasonController, GetSeasonsController, CreateSeasonController, GetActiveSeasonController],
     providers: [
         {
           provide:"GET_SEASON",
@@ -24,6 +27,15 @@ import {SqliteCreateSeason} from "./repository/SqliteCreateSeason";
           provide:'CREATE_SEASON',
           useClass: SqliteCreateSeason
         },
-        CreateSeasonService, GetSeasonService, GetSeasonsService]
+        {
+            provide:'GET_ACTIVE',
+            useClass: SqliteGetActiveSeason
+        },
+        CreateSeasonService,
+        GetSeasonService,
+        GetSeasonsService,
+        GetActiveSeasonService
+    ],
+    exports:[GetActiveSeasonService]
 })
 export class SeasonModule {}

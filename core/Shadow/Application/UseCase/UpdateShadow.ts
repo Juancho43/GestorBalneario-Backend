@@ -8,14 +8,20 @@ import {Timestamps} from "../../../common/Model/Timestamps";
 import {SoftDelete} from "../../../common/Model/SoftDelete";
 import {UUID} from "../../../common/Model/UUID";
 import {UpdateShadowDAO} from "../../Model/DAO/UpdateShadowDAO";
+import {ActiveSeason} from "../../../Season/Application/Interfaces/ActiveSeason";
 
 export class UpdateShadow implements IUseCase<UpdateShadowCommand, Shadow>{
 
-    constructor(private readonly persist: UpdateShadowDAO) {}
+    constructor(
+        private readonly persist: UpdateShadowDAO,
+        private readonly currentSeason: ActiveSeason,
+    ) {}
 
     async execute(request: UpdateShadowCommand): Promise<Shadow> {
+        const season = await this.currentSeason.get();
         const shadow = Shadow.create(
             UUID.restore(request.id),
+            season.id,
             StringObject.create(request.data.identifier),
             ShadowType.create(request.data.type),
             Coords.create(request.data.coords.x, request.data.coords.y),

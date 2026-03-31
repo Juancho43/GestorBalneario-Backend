@@ -1,5 +1,5 @@
 import {ShadowMapDTO} from "../Response/ShadowMapDTO";
 
 export interface ShadowMapDAO {
-    get(): Promise<ShadowMapDTO>;
+    get(seasonId: string): Promise<ShadowMapDTO>;
 }

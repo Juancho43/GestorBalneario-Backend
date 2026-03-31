@@ -20,8 +20,10 @@ import {GetShadowMapController} from "./controllers/get-shadow-map/get-shadow-ma
 import {SqliteGetShadowMap} from "./repository/SqliteGetShadowMap";
 import {SqliteGetShadowHistory} from "./repository/SqliteGetShadowHistory";
 import {GetShadowHistoryService} from "./services/get-shadow-history/get-shadow-history.service";
+import {SeasonModule} from "../seasons/season.module";
 
 @Module({
+    imports:[SeasonModule],
     controllers: [
         CreateShadowController,
         EditShadowController,

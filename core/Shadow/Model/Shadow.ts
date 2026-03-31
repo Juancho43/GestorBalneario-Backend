@@ -14,13 +14,15 @@ import {Booking} from "../../Reservation/Model/Booking";
 export class Shadow{
     private readonly _id: UUID;
     private  _identifier: StringObject;
+    private _season: UUID;
     private  _type: ShadowType;
     private  _coords: Coords;
     private _timestamp: Timestamps;
     private _reservations: Reservation[] = [];
     private _softDelete: SoftDelete;
-    private constructor(id: UUID, identifier: StringObject, type: ShadowType, coords: Coords, timestamp: Timestamps, softDelete: SoftDelete) {
+    private constructor(id: UUID,season: UUID, identifier: StringObject, type: ShadowType, coords: Coords, timestamp: Timestamps, softDelete: SoftDelete) {
         this._id = id;
+        this._season = season;
         this._identifier = identifier;
         this._type = type;
         this._coords = coords;
@@ -28,10 +30,14 @@ export class Shadow{
         this._softDelete = softDelete;
     }
 
-    static create(id:UUID, identifier: StringObject, type: ShadowType, coords: Coords, timestamp: Timestamps, softDelete: SoftDelete): Shadow {
-        return new Shadow(id, identifier, type, coords, timestamp, softDelete);
+    static create(id:UUID,season: UUID, identifier: StringObject, type: ShadowType, coords: Coords, timestamp: Timestamps, softDelete: SoftDelete): Shadow {
+        return new Shadow(id,season, identifier, type, coords, timestamp, softDelete);
     }
 
+
+    get season(){
+        return this._season;
+    }
     canBeReserved(dates: Booking): boolean {
         let isAvailable = true;
         if (this._softDelete.isDeleted) isAvailable = false;

@@ -24,7 +24,7 @@ describe('Shadow Domain Entity',()=>{
         coords = Coords.create(10,10);
         timestamps = Timestamps.create();
         softDelete = SoftDelete.empty();
-        shadow = ShadowMother.create(id,identifier,type,coords,timestamps,softDelete);
+        shadow = ShadowMother.create(id,id,identifier,type,coords,timestamps,softDelete);
     })
     it('Should be created',()=>{
         expect(shadow.id).toBe(id);
