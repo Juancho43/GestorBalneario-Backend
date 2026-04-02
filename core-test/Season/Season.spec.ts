@@ -9,7 +9,7 @@ describe('Season Domain Entity', () => {
         const startDate = new Date('2026-03-01')
         const endDate = new Date('2026-06-01')
         const name = StringObject.create('Season 2026')
-        const season = SeasonMother.create(UUID.create(), startDate,endDate,name,Timestamps.create(),SoftDelete.empty());
+        const season = SeasonMother.create(UUID.create(),false, startDate,endDate,name,Timestamps.create(),SoftDelete.empty());
         expect(season.startDate).toEqual(startDate);
         expect(season.endDate).toEqual(endDate);
     })
@@ -18,7 +18,7 @@ describe('Season Domain Entity', () => {
         const startDate = new Date();
         const endDate = new Date('2020-03-01');
         const name = StringObject.create('Season 2026')
-       expect(() => SeasonMother.create(UUID.create(),startDate,endDate,name,Timestamps.create(),SoftDelete.empty())).toThrow();
+       expect(() => SeasonMother.create(UUID.create(),false,startDate,endDate,name,Timestamps.create(),SoftDelete.empty())).toThrow();
 
     })
 })

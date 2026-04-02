@@ -15,8 +15,17 @@ export class Season{
     private _timestamps: Timestamps;
     private _softDelete: SoftDelete;
 
-    private constructor(id: UUID, startDate: Date, endDate: Date,name: StringObject, timestamps: Timestamps, softDelete: SoftDelete) {
+    private constructor(
+        id: UUID,
+        isActive: boolean,
+        startDate: Date,
+        endDate: Date,
+        name: StringObject,
+        timestamps: Timestamps,
+        softDelete: SoftDelete
+    ) {
         this._id = id;
+        this._isActive = isActive;
         this._startDate = startDate;
         this._endDate = endDate;
         this._name = name;
@@ -24,11 +33,11 @@ export class Season{
         this._softDelete = softDelete;
     }
 
-    static create(id: UUID, startDate: Date, endDate: Date,name: StringObject, timestamps: Timestamps, softDelete: SoftDelete): Season {
+    static create(id: UUID, isActive: boolean,startDate: Date, endDate: Date,name: StringObject, timestamps: Timestamps, softDelete: SoftDelete): Season {
         if (endDate <= startDate) {
             throw new Error("La fecha de finalización debe ser posterior a la fecha de inicio.");
         }
-       return new Season(id, startDate, endDate, name, timestamps, softDelete);
+       return new Season(id, isActive, startDate, endDate, name, timestamps, softDelete);
     }
     toggleActive(){
         this._isActive = !this._isActive;

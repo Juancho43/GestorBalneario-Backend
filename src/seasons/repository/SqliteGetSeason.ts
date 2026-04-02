@@ -17,6 +17,7 @@ export class SqliteGetSeason extends SqliteBaseClass implements GetSeasonDAO {
         if (result) {
             season = Season.create(
                 UUID.restore(result.id),
+                result.isActive,
                 new Date(result.startDate),
                 new Date(result.endDate),
                 StringObject.create(result.name),

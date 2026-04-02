@@ -11,9 +11,12 @@ import {SqliteCreateSeason} from "./repository/SqliteCreateSeason";
 import { GetActiveSeasonController } from './controllers/get-active-season/get-active-season.controller';
 import { GetActiveSeasonService } from './services/get-active-season/get-active-season.service';
 import {SqliteGetActiveSeason} from "./repository/SqliteGetActiveSeason";
+import { SetActiveSeasonController } from './controllers/set-active-season/set-active-season.controller';
+import { SetActiveSeasonService } from './services/set-active-season/set-active-season.service';
+import {SqliteSetActiveSeason} from "./repository/SqliteSetActiveSeason";
 
 @Module({
-    controllers:[GetSeasonController, GetSeasonsController, CreateSeasonController, GetActiveSeasonController],
+    controllers:[GetSeasonController, GetSeasonsController, CreateSeasonController, GetActiveSeasonController, SetActiveSeasonController],
     providers: [
         {
           provide:"GET_SEASON",
@@ -31,10 +34,15 @@ import {SqliteGetActiveSeason} from "./repository/SqliteGetActiveSeason";
             provide:'GET_ACTIVE',
             useClass: SqliteGetActiveSeason
         },
+        {
+            provide: 'SET_ACTIVE',
+            useClass: SqliteSetActiveSeason
+        },
         CreateSeasonService,
         GetSeasonService,
         GetSeasonsService,
-        GetActiveSeasonService
+        GetActiveSeasonService,
+        SetActiveSeasonService
     ],
     exports:[GetActiveSeasonService]
 })

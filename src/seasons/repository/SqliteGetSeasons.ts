@@ -23,6 +23,7 @@ export class SqliteGetSeasons extends SqliteBaseClass implements GetSeasonsDAO {
             result.forEach((row) => {
                 const season = Season.create(
                     UUID.restore(row.id),
+                    row.isActive,
                     new Date(row.startDate),
                     new Date(row.endDate),
                     StringObject.create(row.name),

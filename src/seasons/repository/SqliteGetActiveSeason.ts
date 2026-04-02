@@ -8,7 +8,7 @@ export class SqliteGetActiveSeason extends SqliteBaseClass implements GetActiveS
     async get(): Promise<SeasonResponse> {
         const sql = `
             SELECT * FROM Seasons s
-            WHERE isActive IS NOT NULL AND deleted_at IS NULL
+            WHERE isActive = 1 AND deleted_at IS NULL
         `
         const result = this.getDb().prepare(sql).get() as any;
         const response = new SeasonResponse();
