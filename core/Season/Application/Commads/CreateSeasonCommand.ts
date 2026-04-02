@@ -12,5 +12,13 @@ export class CreateSeasonCommand{
      * @example "2024-12-31"
      */
     endDate:string;
+    /*
+    * A brief name for the season
+    * @example: "2024 Summer season"
+    * */
+    name: string;
+
+
+    isActive:boolean;
 
 }

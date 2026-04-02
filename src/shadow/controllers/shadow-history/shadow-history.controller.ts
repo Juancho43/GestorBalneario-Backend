@@ -16,7 +16,7 @@ export class ShadowHistoryController {
             const query = new GetShadowHistoryQuery(id,page,size);
             return this.service.execute(query);
         }catch(error){
-            return new HttpException(error.message, HttpStatus.BAD_REQUEST);
+            throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
         }
     }
 }

@@ -26,7 +26,7 @@ export class SqliteShadowGetById extends SqliteBaseClass implements GetShadowDAO
             FROM Shadows s
                      LEFT JOIN Reservations r ON s.id = r.ShadowID
             INNER JOIN Season_Shadows ss ON ss.shadowId = s.id
-            WHERE s.id = ? -- Usamos el signo de interrogación
+            WHERE s.id = ?
         `;
 
         const row = this.getDb().prepare(sql).all(id) as any[];
@@ -40,7 +40,7 @@ export class SqliteShadowGetById extends SqliteBaseClass implements GetShadowDAO
                 StringObject.create(firstRow.identifier),
                 ShadowType.create(firstRow.type),
                 Coords.create(firstRow.x, firstRow.y),
-                Timestamps.restore(firstRow.created_at, firstRow.updated_at), // Ojo aquí con las mayúsculas
+                Timestamps.restore(firstRow.created_at, firstRow.updated_at),
                 SoftDelete.restore(null)
             );
             if(row[0].reservationId){
