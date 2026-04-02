@@ -32,7 +32,8 @@ export class SqliteInvoiceDetail extends SqliteBaseClass implements InvoiceDetai
                 r.checkIn,
                 r.checkOut,
                 rs.price AS priceItem,
-                rs.id AS itemId
+                rs.id AS itemId,
+                rs.aggregateType AS itemAggregateType
                 
             FROM Invoices i
                      INNER JOIN Invoice_Items rs ON rs.invoiceId = i.id
@@ -81,7 +82,7 @@ export class SqliteInvoiceDetail extends SqliteBaseClass implements InvoiceDetai
                 reservation.id = row.reservationId;
                 reservation.dates = { checkIn: row.checkIn, checkOut: row.checkOut };
                 reservation.shadow = shadow;
-
+                item.aggregate = row.itemAggregateType;
                 item.aggregateObject = reservation;
                 response.items.push(item);
 
@@ -102,7 +103,7 @@ export class SqliteInvoiceDetail extends SqliteBaseClass implements InvoiceDetai
                 processedPayments.add(row.paymentId);
             }
         });
-
+        console.log(results)
         return response;
     }
 
