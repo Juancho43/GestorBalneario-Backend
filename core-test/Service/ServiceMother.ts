@@ -9,19 +9,13 @@ import { Money } from '../../core/Payment/Model/Money';
 export class ServiceMother {
     static create(
         id: UUID = UUID.create(),
+        seasonId: UUID = UUID.create(),
         name: StringObject = StringObject.create('Default Service'),
         price: Money = MoneyMother.create(100),
         timestamp: Timestamps = Timestamps.create(),
         softDelete: SoftDelete = SoftDelete.empty(),
     ): Service {
-        return Service.create(id, name, price, timestamp, softDelete);
+        return Service.create(id, seasonId,name, price, timestamp, softDelete);
     }
 
-    static withPrice(price: Money): Service {
-        return this.create(undefined, undefined, price);
-    }
-
-    static withName(name: StringObject): Service {
-        return this.create(undefined, name);
-    }
 }

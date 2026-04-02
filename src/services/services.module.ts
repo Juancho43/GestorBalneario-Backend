@@ -8,9 +8,14 @@ import { CreateServiceService } from './service/create-service/create-service.se
 import {SqliteCreateService} from "./repository/SqliteCreateService";
 import {SqliteGetService} from "./repository/SqliteGetService";
 import {SqliteGetServices} from "./repository/SqliteGetServices";
+import {SeasonModule} from "../seasons/season.module";
+import { GetSeasonServicesController } from './controllers/get-season-services/get-season-services.controller';
+import { GetSeasonServicesService } from './service/get-season-services/get-season-services.service';
+import {SqliteSeasonsServices} from "./repository/SqliteSeasonsServices";
 
 @Module({
-  controllers: [CreateServiceController, GetServiceController, GetsServicesController],
+  imports:[SeasonModule],
+  controllers: [CreateServiceController, GetServiceController, GetsServicesController, GetSeasonServicesController],
   providers: [
     {
       provide: 'CREATE_SERVICE',
@@ -21,9 +26,13 @@ import {SqliteGetServices} from "./repository/SqliteGetServices";
       useClass: SqliteGetService,
     },
     {
+      provide: 'GET_SEASON_SERVICES',
+      useClass: SqliteSeasonsServices,
+    },
+    {
       provide: 'GET_SERVICES',
       useClass: SqliteGetServices,
     },
-    GetsServicesService, GetServiceService, CreateServiceService]
+    GetsServicesService, GetServiceService, CreateServiceService, GetSeasonServicesService]
 })
 export class ServicesModule {}

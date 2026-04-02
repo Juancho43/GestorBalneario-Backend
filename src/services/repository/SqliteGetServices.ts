@@ -10,8 +10,15 @@ import {SoftDelete} from "../../../core/common/Model/SoftDelete";
 @Injectable()
 export class SqliteGetServices extends SqliteBaseClass implements GetServicesDAO{
     async get(): Promise<Service[]> {
-        const sql = `SELECT *
-                     FROM Services
+        const sql = `SELECT 
+            s.id,
+            s.description,
+            s.price,
+            s.created_at,
+            s.updated_at,
+            ss.seasonId
+                     FROM Services s 
+                     INNER JOIN Season_Services ss ON ss.serviceId = s.id
                      WHERE deleted_at IS NULL
                      ORDER BY created_at DESC
                      LIMIT @limit OFFSET @offset
@@ -23,6 +30,7 @@ export class SqliteGetServices extends SqliteBaseClass implements GetServicesDAO
             result.forEach((row) => {
                 const service=  Service.create(
                     UUID.restore(row.id),
+                    UUID.restore(row.seasonId),
                     StringObject.create(row.description),
                     Money.create(row.price),
                     Timestamps.restore(new Date(row.created_at), new Date(row.updated_at)),

@@ -7,22 +7,24 @@ import {timestamp} from "rxjs";
 
 export class Service{
     private _id : UUID;
+    private _seasonId : UUID;
     private _name : StringObject;
     private _price: Money;
     private _timestamp: Timestamps;
     private _softDelete: SoftDelete;
 
 
-    private constructor(id: UUID, name: StringObject, price: Money, timestamp: Timestamps, softDelete: SoftDelete) {
+    private constructor(id: UUID, seasonId: UUID, name: StringObject, price: Money, timestamp: Timestamps, softDelete: SoftDelete) {
         this._id = id;
+        this._seasonId = seasonId;
         this._name = name;
         this._price = price;
         this._timestamp = timestamp;
         this._softDelete = softDelete;
     }
 
-    static create(id: UUID, name: StringObject, price: Money, timestamp: Timestamps, softDelete: SoftDelete){
-        return new Service(id, name, price, timestamp, softDelete);
+    static create(id: UUID, seasonId: UUID,name: StringObject, price: Money, timestamp: Timestamps, softDelete: SoftDelete){
+        return new Service(id,seasonId, name, price, timestamp, softDelete);
     }
     get timestamp(): Timestamps {
         return this._timestamp;
@@ -44,4 +46,7 @@ export class Service{
         return this._price;
     }
 
+    get seasonId(): UUID {
+        return this._seasonId;
+    }
 }
