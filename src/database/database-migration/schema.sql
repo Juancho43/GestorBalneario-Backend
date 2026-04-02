@@ -30,6 +30,8 @@ CREATE TABLE IF NOT EXISTS `Seasons`(
                           `id` TEXT NOT NULL PRIMARY KEY,
                           `startDate` TEXT NOT NULL,
                           `endDate` TEXT NOT NULL,
+                            `name` TEXT NOT NULL,
+                          `isActive` INTEGER NULL,
                           `created_at` TEXT NOT NULL,
                           `updated_at` TEXT NOT NULL,
                           `deleted_at` TEXT NULL
@@ -68,8 +70,8 @@ CREATE TABLE IF NOT EXISTS `Payments`(
 );
 CREATE INDEX IF NOT EXISTS `payments_date_index` ON `Payments`(`date`);
 
--- 6. Tabla Holiday_Shadows
-CREATE TABLE IF NOT EXISTS `Holiday_Shadows`(
+-- 6. Tabla Season_Shadows
+CREATE TABLE IF NOT EXISTS `Season_Shadows`(
                                   `id` TEXT NOT NULL PRIMARY KEY,
                                   `shadowId` TEXT NOT NULL UNIQUE,
                                   `seasonId` TEXT NOT NULL,
@@ -82,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `Invoices`(
                              `id` TEXT NOT NULL PRIMARY KEY,
                            `date` TEXT NOT NULL,
                            `clientId` TEXT NOT NULL,
-                           `amount` REAL NOT NULL, -- SQLite no tiene DECIMAL nativo, se usa REAL o INTEGER
+                           `amount` REAL NOT NULL,
                            `created_at` TEXT NOT NULL,
                            `updated_at` TEXT NOT NULL,
                            `deleted_at` TEXT NULL,
@@ -108,14 +110,26 @@ CREATE TABLE IF NOT EXISTS `Services`(
                            `deleted_at` TEXT NULL
 );
 
+
 -- 10. Tabla Reservation_Service
-CREATE TABLE IF NOT EXISTS `Reservation_Service`(
-                                        `id` TEXT NOT NULL PRIMARY KEY,
-                                      `invoiceId` INTEGER NOT NULL,
-                                      `reservationId` TEXT NOT NULL,
-                                      `serviceId` INTEGER NOT NULL,
-                                      `price` INTEGER NOT NULL,
-                                      FOREIGN KEY(`serviceId`) REFERENCES `Services`(`id`),
-                                      FOREIGN KEY(`reservationId`) REFERENCES `Reservations`(`id`),
-                                      FOREIGN KEY(`invoiceId`) REFERENCES `Invoices`(`id`)
+
+CREATE TABLE IF NOT EXISTS `Invoice_Items`(
+                                                    `id` TEXT NOT NULL PRIMARY KEY,
+                                                    `invoiceId` INTEGER NOT NULL,
+                                                    `aggregateId` TEXT NULL ,
+                                                    `aggregateType` TEXT NULL,
+                                                    `serviceId` TEXT NOT NULL,
+                                                    `price` INTEGER NOT NULL,
+                                                    `quantity` INTEGER NULL,
+                                                    FOREIGN KEY(`serviceId`) REFERENCES `Services`(`id`),
+                                                    FOREIGN KEY(`invoiceId`) REFERENCES `Invoices`(`id`)
 );
+-- 11. Tabla Seasons_Services
+CREATE TABLE IF NOT EXISTS `Season_Services`(
+                                               `id` TEXT NOT NULL PRIMARY KEY,
+                                               `serviceId` TEXT NOT NULL UNIQUE,
+                                               `seasonId` TEXT NOT NULL,
+                                               FOREIGN KEY(`seasonId`) REFERENCES `Seasons`(`id`),
+                                               FOREIGN KEY(`serviceId`) REFERENCES `Services`(`id`)
+);
+
