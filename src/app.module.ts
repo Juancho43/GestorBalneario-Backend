@@ -14,6 +14,7 @@ import { SeasonModule } from './seasons/season.module';
 @Module({
   imports: [ShadowModule, DatabaseModule, ClientsModule, ReservationModule, PaymentsModule, BillingModule, InvoicesModule, ServicesModule, SeasonModule],
   controllers: [AppController, ],
-  providers: [AppService, ],
+  providers: [AppService,
+  ],
 })
 export class AppModule {}

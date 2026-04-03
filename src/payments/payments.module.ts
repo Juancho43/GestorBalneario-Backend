@@ -13,8 +13,10 @@ import {SqliteGetInvoice} from "../invoices/repository/SqliteGetInvoice";
 import { PaymentsReportController } from './controllers/payments-report/payments-report.controller';
 import { PaymentsReportService } from './services/payments-report/payments-report.service';
 import {SqlitePaymentReport} from "./repository/SqlitePaymentReport";
+import {SeasonModule} from "../seasons/season.module";
 
 @Module({
+  imports:[SeasonModule],
   controllers: [CreatePaymentController, UpdatePaymentController, GetPaymentController, PaymentsReportController],
   providers: [CreatePaymentService, UpdatePaymentService, GetPaymentService,
     {

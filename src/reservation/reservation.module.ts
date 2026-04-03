@@ -30,9 +30,10 @@ import {AddInvoiceItemHandler} from "../billing/handlers/CreateInvoiceHandler";
 import { GetReservationDetailController } from './controllers/get-reservation-detail/get-reservation-detail.controller';
 import { GetReservationDetailService } from './services/get-reservation-detail/get-reservation-detail.service';
 import {SqliteGetReservationDetail} from "./repository/SqliteGetReservationDetail";
+import {SeasonModule} from "../seasons/season.module";
 
 @Module({
-  imports:[CqrsModule,BillingModule],
+  imports:[CqrsModule,BillingModule,SeasonModule],
   providers: [CreateReservationService, EditReservationService, DeleteReservationService, GetReservationService, GetCurrentReservationService,
     {
       provide: 'GET_RESERVATION_DAO',
