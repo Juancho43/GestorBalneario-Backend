@@ -17,7 +17,7 @@ export class CreateClientController {
         try {
             return await this.service.execute(request);
         }catch (error) {
-            return new HttpException(error.message, HttpStatus.BAD_REQUEST);
+            throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
         }
     }
 }

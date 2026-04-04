@@ -14,9 +14,15 @@ import {SqliteClientUpdate} from "./repository/SqliteClientUpdate";
 import {SqliteClientDelete} from "./repository/SqliteClientDelete";
 import {SqliteClientGetOne} from "./repository/SqliteClientGetOne";
 import {SqliteClientGetMany} from "./repository/SqliteClientGetMany";
+import { ClientDetailsController } from './controllers/client-details/client-details.controller';
+import { ClientDetailsService } from './services/client-details/client-details.service';
+import {SqliteClientDetails} from "./repository/SqliteClientDetails";
+import { ClientSearcherController } from './controllers/client-searcher/client-searcher.controller';
+import { ClientSearcherService } from './services/client-searcher/client-searcher.service';
+import {SqliteClientSearch} from "./repository/SqliteClientSearch";
 
 @Module({
-  controllers: [GetClientController, CreateClientController, EditClientController, DeleteClientController, GetClientsController],
+  controllers: [GetClientController, CreateClientController, EditClientController, DeleteClientController, GetClientsController, ClientDetailsController, ClientSearcherController],
   providers: [GetClientsService, GetClientService, CreateClientService, EditClientService, DeleteClientService,
     {
       provide: 'CREATE_CLIENT_INTERFACE',
@@ -37,7 +43,17 @@ import {SqliteClientGetMany} from "./repository/SqliteClientGetMany";
     {
       provide: 'GET_CLIENTS_INTERFACE',
       useClass: SqliteClientGetMany,
-    }
+    },
+    {
+      provide: 'GET_DETAILS',
+      useClass: SqliteClientDetails
+    },
+    {
+      provide:'SEARCHER',
+      useClass: SqliteClientSearch
+    },
+    ClientDetailsService,
+    ClientSearcherService
   ]
 })
 export class ClientsModule {}
