@@ -7,10 +7,14 @@ import {ServiceResponse} from "../../../core/Service/Application/DTO/ServiceResp
 
 @Injectable()
 export class SqliteSeasonsServices extends SqliteBaseClass implements SeasonServiceDAO {
-   async get(query: GetSeasonServicesQuery): Promise<SeasonServiceDTO> {
+    async get(query: GetSeasonServicesQuery): Promise<SeasonServiceDTO> {
         const sql = `
-        SELECT * FROM Services s 
-            INNER JOIN Season_Services ss ON ss.serviceId = s.id
+            SELECT
+                s.id as serviceId,
+                s.price as servicePrice,
+                s.description as serviceDescription
+            FROM Services s
+                     INNER JOIN Season_Services ss ON ss.serviceId = s.id
             WHERE ss.seasonId = @seasonId
             LIMIT @limit OFFSET @offset
         `
@@ -23,9 +27,9 @@ export class SqliteSeasonsServices extends SqliteBaseClass implements SeasonServ
         const response = new SeasonServiceDTO();
         results.forEach((result) => {
             const service = new ServiceResponse();
-            service.id = result.id;
-            service.name = result.description;
-            service.price = result.price;
+            service.id = result.serviceId;
+            service.name = result.serviceDescription;
+            service.price = result.servicePrice;
             response.services.push(service);
         })
         return response;
