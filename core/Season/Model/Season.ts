@@ -5,13 +5,10 @@ import {StringObject} from "../../common/Model/StringObject";
 
 export class Season{
     private _id: UUID;
-    private shadows: UUID[] = [];
-    private services: UUID[] =[];
     private _startDate: Date;
     private _endDate: Date;
     private _name: StringObject;
     private _isActive: boolean = false;
-    private invoices: UUID[] = [];
     private _timestamps: Timestamps;
     private _softDelete: SoftDelete;
 

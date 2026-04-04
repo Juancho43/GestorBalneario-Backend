@@ -7,12 +7,12 @@ import {StringObject} from "../../../common/Model/StringObject";
 import {Money} from "../../../Payment/Model/Money";
 import {Timestamps} from "../../../common/Model/Timestamps";
 import {SoftDelete} from "../../../common/Model/SoftDelete";
-import {ActiveSeason} from "../../../Season/Application/Interfaces/ActiveSeason";
+import {ActiveSeasonDAO} from "../../../Season/Application/Interfaces/ActiveSeasonDAO";
 
 export class CreateService implements IUseCase<CreateServiceCommand, Service>{
     constructor(
         private dao: CreateServiceDAO,
-        private currentSeason: ActiveSeason
+        private currentSeason: ActiveSeasonDAO
     ) {
     }
 

@@ -3,9 +3,9 @@ import {StringObject} from "../../common/Model/StringObject";
 import {Money} from "../../Payment/Model/Money";
 import {Timestamps} from "../../common/Model/Timestamps";
 import {SoftDelete} from "../../common/Model/SoftDelete";
-import {timestamp} from "rxjs";
+import {Prototype} from "../../common/Model/Prototype";
 
-export class Service{
+export class Service implements Prototype<Service> {
     private _id : UUID;
     private _seasonId : UUID;
     private _name : StringObject;
@@ -21,6 +21,10 @@ export class Service{
         this._price = price;
         this._timestamp = timestamp;
         this._softDelete = softDelete;
+    }
+
+    clone(): Service {
+        return new Service(UUID.create(), this._seasonId, this._name, this._price, Timestamps.create(), SoftDelete.empty());
     }
 
     static create(id: UUID, seasonId: UUID,name: StringObject, price: Money, timestamp: Timestamps, softDelete: SoftDelete){

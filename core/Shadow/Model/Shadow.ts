@@ -6,12 +6,13 @@ import {UUID} from "../../common/Model/UUID";
 import {Timestamps} from "../../common/Model/Timestamps";
 import {SoftDelete} from "../../common/Model/SoftDelete";
 import {Booking} from "../../Reservation/Model/Booking";
+import {Prototype} from "../../common/Model/Prototype";
 
 /**
  * Sombra
  * Carpa-sombrilla
  */
-export class Shadow{
+export class Shadow implements Prototype<Shadow>{
     private readonly _id: UUID;
     private  _identifier: StringObject;
     private _season: UUID;
@@ -28,6 +29,10 @@ export class Shadow{
         this._coords = coords;
         this._timestamp = timestamp;
         this._softDelete = softDelete;
+    }
+
+    clone(): Shadow {
+        return Shadow.create(UUID.create(), this._season, this._identifier, this._type, this._coords, Timestamps.create(), SoftDelete.empty());
     }
 
     static create(id:UUID,season: UUID, identifier: StringObject, type: ShadowType, coords: Coords, timestamp: Timestamps, softDelete: SoftDelete): Shadow {
@@ -84,4 +89,5 @@ export class Shadow{
     get softDelete(): SoftDelete {
         return this._softDelete;
     }
+
 }

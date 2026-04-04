@@ -2,14 +2,14 @@ import {Inject, Injectable, Logger} from '@nestjs/common';
 import type {GetActiveSeasonDAO} from "../../../../core/Season/Application/Interfaces/GetActiveSeasonDAO";
 import {GetActiveSeason} from "../../../../core/Season/Application/UseCase/GetActiveSeason";
 import {SeasonResponse} from "../../../../core/Season/Application/DTO/SeasonResponse";
-import {ActiveSeason} from "../../../../core/Season/Application/Interfaces/ActiveSeason";
+import {ActiveSeasonDAO} from "../../../../core/Season/Application/Interfaces/ActiveSeasonDAO";
 import {UUID} from "../../../../core/common/Model/UUID";
 import {StringObject} from "../../../../core/common/Model/StringObject";
 import {Timestamps} from "../../../../core/common/Model/Timestamps";
 import {SoftDelete} from "../../../../core/common/Model/SoftDelete";
 import { Season } from "core/Season/Model/Season";
 @Injectable()
-export class GetActiveSeasonService implements ActiveSeason {
+export class GetActiveSeasonService implements ActiveSeasonDAO {
     private logger = new Logger(GetActiveSeasonService.name);
     private useCase: GetActiveSeason;
     private season: SeasonResponse | null = null;

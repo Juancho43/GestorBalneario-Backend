@@ -1,5 +1,5 @@
 import {Season} from "../../Model/Season";
 
-export interface ActiveSeason{
+export interface ActiveSeasonDAO {
     get(): Promise<Season>
 }

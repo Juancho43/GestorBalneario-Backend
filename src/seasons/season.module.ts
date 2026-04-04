@@ -14,9 +14,20 @@ import {SqliteGetActiveSeason} from "./repository/SqliteGetActiveSeason";
 import { SetActiveSeasonController } from './controllers/set-active-season/set-active-season.controller';
 import { SetActiveSeasonService } from './services/set-active-season/set-active-season.service';
 import {SqliteSetActiveSeason} from "./repository/SqliteSetActiveSeason";
+import {SqliteCloneSeason} from "./repository/SqliteCloneSeason";
+import {SqliteGetSeasonShadowsServices} from "./repository/SqliteGetSeasonShadowsServices";
+import { CloneSeasonController } from './controllers/clone-season/clone-season.controller';
+import { CloneSeasonService } from './services/clone-season/clone-season.service';
 
 @Module({
-    controllers:[GetSeasonController, GetSeasonsController, CreateSeasonController, GetActiveSeasonController, SetActiveSeasonController],
+    controllers:[
+        GetSeasonController,
+        GetSeasonsController,
+        CreateSeasonController,
+        GetActiveSeasonController,
+        SetActiveSeasonController,
+        CloneSeasonController
+    ],
     providers: [
         {
           provide:"GET_SEASON",
@@ -38,11 +49,20 @@ import {SqliteSetActiveSeason} from "./repository/SqliteSetActiveSeason";
             provide: 'SET_ACTIVE',
             useClass: SqliteSetActiveSeason
         },
+        {
+          provide: 'CLONE_SEASON',
+          useClass: SqliteCloneSeason
+        },
+        {
+            provide: 'GET_SEASON_DATA',
+            useClass: SqliteGetSeasonShadowsServices
+        },
         CreateSeasonService,
         GetSeasonService,
         GetSeasonsService,
         GetActiveSeasonService,
-        SetActiveSeasonService
+        SetActiveSeasonService,
+        CloneSeasonService
     ],
     exports:[GetActiveSeasonService]
 })
