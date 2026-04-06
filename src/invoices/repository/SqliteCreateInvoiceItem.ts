@@ -8,8 +8,8 @@ export class SqliteCreateInvoiceItem extends SqliteBaseClass implements CreateIn
     async create(item: InvoiceItem, invoice: Invoice): Promise<void> {
         console.log('EN EL SQL')
         const sqlInvoice = `
-            INSERT OR IGNORE INTO Invoices (id,date,amount,clientId,created_at,updated_at)
-                VALUES (@id,@date,@amount,@clientId,@created_at,@updated_at)
+            INSERT OR IGNORE INTO Invoices (id,date,state,amount,clientId,created_at,updated_at)
+                VALUES (@id,@date,@amount,@state,@clientId,@created_at,@updated_at)
         `
         const sqlItem = `
             INSERT INTO Invoice_Items (id,invoiceId, aggregateId, aggregateType, serviceId, price) 
@@ -31,6 +31,7 @@ export class SqliteCreateInvoiceItem extends SqliteBaseClass implements CreateIn
                 id:invoice.id.value,
                 date: invoice.date.toISOString(),
                 amount: invoice.amount.toString(),
+                state: invoice.state.toString(),
                 clientId: invoice.clientId.value,
                 created_at: invoice.timestamps.createdAt.toISOString(),
                 updated_at: invoice.timestamps.updatedAt.toISOString(),

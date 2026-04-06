@@ -7,6 +7,7 @@ import {Invoice} from "../../Invoice/Model/Invoice";
 import {Service} from "../../Service/Model/Service";
 import {Money} from "../../Payment/Model/Money";
 import {InvoiceItem} from "../../Invoice/Model/InvoiceItem";
+import {IssuedState} from "../../Invoice/Model/IssuedState";
 
 export class Client{
     private _id:UUID;
@@ -58,7 +59,7 @@ export class Client{
     }
 
     getLastInvoice(): Invoice | null {
-        return this._invoices.find(invoice => invoice.status.value === "CREATED") || null;
+        return this._invoices.find(invoice => invoice.state.toString() === IssuedState.name) || null;
     }
     getOrCreateActiveInvoice(): Invoice {
         let lastInvoice = this.getLastInvoice();

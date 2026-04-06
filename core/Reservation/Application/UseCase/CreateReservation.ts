@@ -37,17 +37,15 @@ export class CreateReservation implements IUseCase<CreateReservationCommand, Res
         if (!shadow) {
             throw new Error("Shadow not found");
         }
-        const booking =  Booking.create(new Date(request.checkIn),new Date(request.checkOut));
-        if(!shadow.canBeReserved(booking)) throw new Error("Shadow is not available for the selected dates");
         const reservation = Reservation.create(
             UUID.create(),
             UUID.restore(request.clientId),
             UUID.restore(request.shadowId),
-            booking,
+            Booking.create(new Date(request.checkIn),new Date(request.checkOut)),
             Timestamps.create(),
             SoftDelete.empty()
         );
-
+        shadow.addReservation(reservation);
         await this.dao.save(reservation);
         this.publisher.publish(new ReservationCreatedEvent(
             reservation.id.value,

@@ -17,6 +17,7 @@ describe('Shadow Domain Entity',()=>{
     let coords:Coords;
     let timestamps:Timestamps;
     let softDelete:SoftDelete;
+
     beforeAll(()=>{
         id = UUID.create();
         type = ShadowType.create("Carpa");
@@ -75,4 +76,11 @@ describe('Shadow Domain Entity',()=>{
         );
         expect(shadow.canBeReserved(reservation1.booking)).toBe(true);
     })
+
+    it('should have state',()=>{
+        expect(shadow.state).toBeDefined();
+    })
+
+
+
 })

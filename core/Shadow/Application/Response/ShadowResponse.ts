@@ -37,7 +37,8 @@ export class ShadowResponse{
             identifier: shadow.identifier.getValue(),
             type: shadow.type.type,
             coords: shadow.coords,
-            state: shadow.isAvailable() ? 'available' : 'occupied'
+            state: shadow.isAvailable() ? 'available' : 'occupied',
+            status: shadow.state.toString(),
         }
         return response;
     }

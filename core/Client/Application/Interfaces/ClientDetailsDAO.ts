@@ -1,6 +1,6 @@
 import {ClientDetailsDTO} from "../DTO/ClientDetailsDTO";
-import {GetClientQuery} from "../Queries/GetClientQuery";
+import {ClientDetailQuery} from "../Queries/ClientDetailQuery";
 
 export interface ClientDetailsDAO{
-    get(query: GetClientQuery): Promise<ClientDetailsDTO>;
+    get(query: ClientDetailQuery): Promise<ClientDetailsDTO>;
 }

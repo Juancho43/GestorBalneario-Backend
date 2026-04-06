@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS `Shadows`(
                           `type` TEXT NOT NULL,
                           `x` REAL NOT NULL,
                           `y` REAL NOT NULL,
+                            `state` TEXT NOT NULL,
                           `created_at` TEXT NOT NULL,
                           `updated_at` TEXT NOT NULL,
                           `deleted_at` TEXT NULL
@@ -81,14 +82,15 @@ CREATE TABLE IF NOT EXISTS `Season_Shadows`(
 
 -- 7. Tabla Invoices
 CREATE TABLE IF NOT EXISTS `Invoices`(
-                             `id` TEXT NOT NULL PRIMARY KEY,
-                           `date` TEXT NOT NULL,
-                           `clientId` TEXT NOT NULL,
-                           `amount` REAL NOT NULL,
-                           `created_at` TEXT NOT NULL,
-                           `updated_at` TEXT NOT NULL,
-                           `deleted_at` TEXT NULL,
-                           FOREIGN KEY(`clientId`) REFERENCES `Clients`(`id`)
+                                         `id` TEXT NOT NULL PRIMARY KEY,
+                                         `date` TEXT NOT NULL,
+                                         `clientId` TEXT NOT NULL,
+                                         `amount` REAL NOT NULL,
+                                         `state` TEXT NOT NULL,
+                                         `created_at` TEXT NOT NULL,
+                                         `updated_at` TEXT NOT NULL,
+                                         `deleted_at` TEXT NULL,
+                                         FOREIGN KEY(`clientId`) REFERENCES `Clients`(`id`)
 );
 
 -- 8. Tabla Invoice_Payments
@@ -114,15 +116,15 @@ CREATE TABLE IF NOT EXISTS `Services`(
 -- 10. Tabla Reservation_Service
 
 CREATE TABLE IF NOT EXISTS `Invoice_Items`(
-                                                    `id` TEXT NOT NULL PRIMARY KEY,
-                                                    `invoiceId` INTEGER NOT NULL,
-                                                    `aggregateId` TEXT NULL ,
-                                                    `aggregateType` TEXT NULL,
-                                                    `serviceId` TEXT NOT NULL,
-                                                    `price` INTEGER NOT NULL,
-                                                    `quantity` INTEGER NULL,
-                                                    FOREIGN KEY(`serviceId`) REFERENCES `Services`(`id`),
-                                                    FOREIGN KEY(`invoiceId`) REFERENCES `Invoices`(`id`)
+                                              `id` TEXT NOT NULL PRIMARY KEY,
+                                              `invoiceId` INTEGER NOT NULL,
+                                              `aggregateId` TEXT NULL ,
+                                              `aggregateType` TEXT NULL,
+                                              `serviceId` TEXT NOT NULL,
+                                              `price` INTEGER NOT NULL,
+                                              `quantity` INTEGER NULL,
+                                              FOREIGN KEY(`serviceId`) REFERENCES `Services`(`id`),
+                                              FOREIGN KEY(`invoiceId`) REFERENCES `Invoices`(`id`)
 );
 -- 11. Tabla Seasons_Services
 CREATE TABLE IF NOT EXISTS `Season_Services`(
@@ -132,4 +134,3 @@ CREATE TABLE IF NOT EXISTS `Season_Services`(
                                                FOREIGN KEY(`seasonId`) REFERENCES `Seasons`(`id`),
                                                FOREIGN KEY(`serviceId`) REFERENCES `Services`(`id`)
 );
-

@@ -1,25 +1,8 @@
-export class ShadowState{
-    private _state: string;
-    private static _validStates: string[] = ['available', 'unavailable'];
-    private constructor(state: string) {
-        this._state = state;
-    }
-   static validateState(state: string): boolean {
-        return this._validStates.includes(state);
-   }
+import {Shadow} from "../Shadow";
 
-    static create(state: string): ShadowState {
-        if (!this.validateState(state)) {
-            throw new Error(`Invalid shadow state: ${state}. Valid states are: ${this._validStates.join(', ')}`);
-        }
-        return new ShadowState(state);
-    }
-
-    get state(): string {
-        return this._state;
-    }
-
-    static get validStates(): string[] {
-        return this._validStates;
-    }
+export interface ShadowState {
+    getShadow(): Shadow;
+    update(): void;
+    delete(): void;
+    toString(): string;
 }

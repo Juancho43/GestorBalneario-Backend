@@ -21,27 +21,28 @@ export class SqliteInvoiceDetail extends SqliteBaseClass implements InvoiceDetai
                 s.id AS shadowId,
                 c.id AS clientId,
                 r.id AS reservationId,
-                p.id AS paymentId,
                 i.date AS invoiceDate,
                 i.amount AS invoiceAmount,
-                p.description AS paymentDescription,
-                p.amount AS paymentAmount,
-                p.date AS paymentDate,
-                p.type AS paymentType,
-                p.changeType AS paymentChangeType,
+                i.state as invoiceState,
+                p.id as paymentId,
+                p.type as paymentType,
+                p.amount as paymentAmount,
+                p.changeType as paymentChangeType,
+                p.date as paymentDate,
+                p.finalAmount as paymentFinalAmount,
+                p.description as paymentDescription,
                 r.checkIn,
                 r.checkOut,
                 rs.price AS priceItem,
                 rs.id AS itemId,
                 rs.aggregateType AS itemAggregateType
-                
             FROM Invoices i
-                     INNER JOIN Invoice_Items rs ON rs.invoiceId = i.id
+                     LEFT JOIN Invoice_Items rs ON rs.invoiceId = i.id
                      LEFT JOIN Reservations r on rs.aggregateId = r.id and rs.aggregateType = 'Reservations'
-                     INNER JOIN Invoice_Payments ip ON ip.invoiceId = i.id
-                     INNER JOIN Payments p ON ip.paymentId = p.id
-                     INNER JOIN Shadows s ON r.shadowId = s.id
-                     INNER JOIN Clients c ON r.clientId = c.id
+                     LEFT JOIN Invoice_Payments ip ON ip.invoiceId = i.id
+                     LEFT JOIN Payments p ON ip.paymentId = p.id
+                     LEFT JOIN Shadows s ON r.shadowId = s.id
+                     LEFT JOIN Clients c ON r.clientId = c.id
             WHERE i.id = @id AND i.deleted_at IS NULL
         `
         const results = this.getDb().prepare(sql).all({id:query.id}) as any[];
@@ -54,7 +55,7 @@ export class SqliteInvoiceDetail extends SqliteBaseClass implements InvoiceDetai
         response.invoice.id = firstRow.invoiceId;
         response.invoice.amount = firstRow.invoiceAmount;
         response.invoice.date = firstRow.invoiceDate;
-
+        response.invoice.state = firstRow.invoiceState;
         response.client = new ClientResponse();
         response.client.id = firstRow.clientId;
         response.client.name = firstRow.name;
@@ -91,20 +92,19 @@ export class SqliteInvoiceDetail extends SqliteBaseClass implements InvoiceDetai
 
             // --- Map Payments ---
             if (!processedPayments.has(row.paymentId)) {
-                const payment = new PaymentResponse();
-                payment.id = row.paymentId;
-                payment.amount = row.paymentAmount;
-                payment.date = row.paymentDate;
-                payment.description = row.paymentDescription;
-                payment.type = row.paymentType;
-
-                response.payments.push(payment);
+                const paymentResponse = new PaymentResponse();
+                paymentResponse.id = row.paymentId;
+                paymentResponse.date = row.paymentDate;
+                paymentResponse.description = row.paymentDescription;
+                paymentResponse.type = row.paymentType;
+                paymentResponse.amount = row.paymentAmount;
+                paymentResponse.finalAmount = row.paymentAmount * row.paymentChangeType;
+                paymentResponse.changeType = row.paymentChangeType;
+                response.payments.push(paymentResponse);
 
                 processedPayments.add(row.paymentId);
             }
         });
-        console.log(results)
         return response;
     }
-
 }

@@ -7,13 +7,15 @@ export class InvoiceResponse {
     items: ItemResponse[];
     amount:number;
     clientId:string;
-
+    state: string;
     static create(invoice: Invoice){
         const response = new InvoiceResponse();
         response.id = invoice.id.value;
         response.date = invoice.date.toISOString();
         response.amount = invoice.amount.finalAmount;
         response.clientId = invoice.clientId.value;
+        console.log(invoice)
+        response.state = invoice.state.toString();
         response.items = ItemResponse.createList(invoice.items);
         return response;
     }

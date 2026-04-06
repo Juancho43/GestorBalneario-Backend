@@ -2,6 +2,7 @@ import {Inject, Injectable, Logger} from '@nestjs/common';
 import {GetClientQuery} from "../../../../core/Client/Application/Queries/GetClientQuery";
 import type {ClientDetailsDAO} from "../../../../core/Client/Application/Interfaces/ClientDetailsDAO";
 import {GetClientDetails} from "../../../../core/Client/Application/UseCase/GetClientDetails";
+import {ClientDetailQuery} from "../../../../core/Client/Application/Queries/ClientDetailQuery";
 
 @Injectable()
 export class ClientDetailsService {
@@ -12,7 +13,7 @@ export class ClientDetailsService {
         this.useCase = new GetClientDetails(dao);
     }
 
-    execute(query: GetClientQuery){
+    execute(query: ClientDetailQuery){
         try {
             this.logger.debug('Getting clients details',query);
             return this.useCase.execute(query);

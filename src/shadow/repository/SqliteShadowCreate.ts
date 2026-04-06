@@ -10,14 +10,15 @@ export class SqliteShadowCreate extends SqliteBaseClass implements CreateShadowD
             INSERT INTO Season_Shadows (id, seasonId, shadowId) values (@id, @seasonId, @shadowId)
         `)
         const stmtShadow = this.getDb().prepare(
-            `INSERT OR REPLACE INTO Shadows (id, identifier, type, x, y,created_at,updated_at)
-             VALUES (@id, @identifier, @type, @x, @y, @created_at, @updated_at)`
+            `INSERT OR REPLACE INTO Shadows (id, identifier, state,type, x, y,created_at,updated_at)
+             VALUES (@id, @identifier, @type,@state, @x, @y, @created_at, @updated_at)`
         );
         const transaction = this.getDb().transaction(() => {
             stmtShadow.run({
                 id: shadow.id.value,
                 identifier: shadow.identifier.getValue(),
                 type: shadow.type.type,
+                state: shadow.state.toString(),
                 x: shadow.coords.getX(),
                 y: shadow.coords.getY(),
                 created_at:shadow.timestamp.createdAt.toISOString(),

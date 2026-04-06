@@ -7,6 +7,7 @@ import {SqliteBaseClass} from "../../database/SqliteBaseClass";
 export class SqliteCreateReservation extends SqliteBaseClass implements CreateReservationDAO {
 
     async save(reservation: Reservation): Promise<void> {
+        //TODO: update shadow state on DB to booked, create a transaction
         const stmt = this.getDb().prepare(`
             INSERT INTO Reservations (id, clientId, shadowId, checkIn, checkOut, date, created_at, updated_at)
             VALUES (@id, @clientId, @shadowId, @checkIn, @checkOut, @date, @created_at, @updated_at)

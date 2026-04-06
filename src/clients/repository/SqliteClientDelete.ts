@@ -1,5 +1,3 @@
-import {SaveClientDAO} from "../../../core/Client/Model/DAO/SaveClientDAO";
-import {Client} from "../../../core/Client/Model/Client";
 import {DeleteClientDAO} from "../../../core/Client/Model/DAO/DeleteClientDAO";
 import {Inject, Injectable} from "@nestjs/common";
 import {DB_PROVIDER} from "../../database/DBPROVIDER";
