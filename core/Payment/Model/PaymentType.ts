@@ -32,17 +32,7 @@ export class PaymentType {
         return [PaymentMethod.USD_DOLLAR, PaymentMethod.CRYPTO].includes(this.value);
     }
 
-    /**
-     * Returns true if the payment is digital or traceable
-     * (useful for internal auditing/accounting).
-     */
-    public isTraceable(): boolean {
-        return [
-            PaymentMethod.TRANSFER,
-            PaymentMethod.CREDIT_CARD,
-            PaymentMethod.CRYPTO
-        ].includes(this.value);
-    }
+
 
     public getValue(): PaymentMethod {
         return this.value;
