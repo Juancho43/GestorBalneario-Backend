@@ -13,11 +13,11 @@ export class ClientDetailsController {
     @Get('detail/:id')
     execute(
         @Param('id') id: string,
-        @Query('page') page: string ,
-        @Query('limit') limit: string
+        @Query('page') page: number,
+        @Query('limit') limit: number
         ) {
         try{
-            return this.service.execute(new ClientDetailQuery(id,limit,page));
+            return this.service.execute(new ClientDetailQuery(page,limit,id));
         }catch(error){
             throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
         }

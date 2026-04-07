@@ -8,8 +8,6 @@ import {Season} from "../../Model/Season";
 import {StringObject} from "../../../common/Model/StringObject";
 import {SoftDelete} from "../../../common/Model/SoftDelete";
 import {Timestamps} from "../../../common/Model/Timestamps";
-import {ShadowResponse} from "../../../Shadow/Application/Response/ShadowResponse";
-import {ServiceResponse} from "../../../Service/Application/DTO/ServiceResponse";
 
 export class CloneSeason implements IUseCase<CloneSeasonCommand,void>{
     constructor(

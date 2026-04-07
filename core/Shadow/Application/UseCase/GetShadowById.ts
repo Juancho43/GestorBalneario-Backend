@@ -7,7 +7,7 @@ export class GetShadowById implements IUseCase<GetShadowByIdQuery, Shadow>{
     constructor(private readonly get: GetShadowDAO) {
     }
     async execute(request: GetShadowByIdQuery): Promise<Shadow> {
-        const shadow = await this.get.get(request.shadowId);
+        const shadow = await this.get.get(request.id);
         if (!shadow){
             throw new Error("Shadow not found");
         }

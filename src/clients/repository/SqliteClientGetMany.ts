@@ -13,16 +13,14 @@ export class SqliteClientGetMany implements GetClientsDAO {
 
     constructor(@Inject(DB_PROVIDER) private readonly db: any) {}
        async get(query: GetClientsQuery): Promise<Client[]> {
-            const searchTerm = `%${query.query}%`;
             const limit = query.pageSize;
             const offset = (query.page - 1) * limit;
 
             const rows = this.db.prepare(`
                 SELECT * FROM Clients 
-                WHERE (name LIKE ? OR email LIKE ? OR phone LIKE ?)
                 ORDER BY id 
                 LIMIT ? OFFSET ?
-            `).all(searchTerm, searchTerm, searchTerm, limit, offset);
+            `).all(limit, offset);
 
             return rows.map(row =>
                 Client.create(

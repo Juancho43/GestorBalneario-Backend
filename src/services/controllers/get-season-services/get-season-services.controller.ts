@@ -12,7 +12,7 @@ export class GetSeasonServicesController {
     @Get('season/:id')
     execute(@Param('id') id: string,@Query('page') page: number = 0, @Query('size') size: number = 10) {
         try{
-            return this.service.execute(new GetSeasonServicesQuery(id,page,size));
+            return this.service.execute(new GetSeasonServicesQuery(page,size,id));
         }catch(error){
             throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
         }

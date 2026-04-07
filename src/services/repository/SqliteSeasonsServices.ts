@@ -20,7 +20,7 @@ export class SqliteSeasonsServices extends SqliteBaseClass implements SeasonServ
         `
         const results = this.getDb().prepare(sql).all({
             seasonId: query.seasonId,
-            limit: query.limit,
+            limit: query.pageSize,
             offset: query.page,
         }) as any[];
 

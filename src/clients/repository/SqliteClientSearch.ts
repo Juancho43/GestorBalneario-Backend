@@ -20,8 +20,8 @@ export class SqliteClientSearch extends SqliteBaseClass implements ClientSearche
 
         const results = stmt.all({
             query: query.query,
-            limit: query.limit,
-            page:  query.offset
+            limit: query.pageSize,
+            page:  query.page
         }) as any[];
         const dto :ClientResponse[] = [];
         results.forEach(result => {

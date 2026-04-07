@@ -1,8 +1,20 @@
 import {Season} from "../../Model/Season";
+import {TimeStampResponse} from "../../../common/Application/TimeStampResponse";
 /**
  * Represents the data transfer object for a season response.
+ * @example
+ * {
+ *   "id": "season-123",
+ *   "startDate": "2023-09-01T00:00:00.000Z",
+ *   "endDate": "2024-06-30T23:59:59.999Z",
+ *   "name": "2023-2024 Season",
+ *   "isActive": true,
+ *   "createdAt": "2023-01-01T10:00:00.000Z",
+ *   "updatedAt": "2023-01-01T10:00:00.000Z",
+ *   "deletedAt": ""
+ * }
  */
-export class SeasonResponse {
+export class SeasonResponse extends TimeStampResponse{
     /**
      * The unique identifier of the season.
      * @example "season-123"
@@ -23,26 +35,12 @@ export class SeasonResponse {
      * @example "2023-2024 Season"
      */
     name: string;
-    /*
-    * If the season is currently active
-    * @example "true"
-    * */
+    /**
+    * If the season is currently active.
+    * @example true
+    */
     isActive: boolean;
-    /**
-     * The creation date of the season in ISO 8601 format.
-     * @example "2023-09-01T00:00:00.000Z"
-     */
-    created_at: string;
-    /**
-     * The last update date of the season in ISO 8601 format.
-     * @example "2023-09-01T00:00:00.000Z"
-     */
-    updated_at: string;
-    /**
-     * The deletion date of the season in ISO 8601 format, or an empty string if not deleted.
-     * @example "2024-07-15T10:30:00.000Z"
-     */
-    deleted_at: string;
+
 
     /**
      * Creates a SeasonResponse from a Season entity.
@@ -55,7 +53,10 @@ export class SeasonResponse {
      * // {
      * //   id: "some-id",
      * //   startDate: "2023-09-01T00:00:00.000Z",
-     * //   endDate: "2024-06-30T00:00:00.000Z"
+     * //   endDate: "2024-06-30T00:00:00.000Z",
+     * //   name: "2023-2024 Season",
+     * //   isActive: true,
+     * //   ...
      * // }
      */
     static create(season: Season): SeasonResponse {
@@ -65,11 +66,17 @@ export class SeasonResponse {
         response.endDate = season.endDate.toISOString();
         response.isActive = season.isActive;
         response.name = season.name.getValue();
-        response.created_at = season.timestamps.createdAt.toISOString();
+        response.create_at = season.timestamps.createdAt.toISOString();
         response.updated_at = season.timestamps.updatedAt.toISOString();
         response.deleted_at = season.softDelete.value?.toISOString() || '';
         return response;
     }
+
+    /**
+     * Creates a list of SeasonResponse objects from a list of Season entities.
+     * @param {Season[]} seasons - The list of season entities.
+     * @returns {SeasonResponse[]} A list of SeasonResponse instances.
+     */
     static createList(seasons: Season[]): SeasonResponse[] {
         return seasons.map(season => SeasonResponse.create(season));
     }

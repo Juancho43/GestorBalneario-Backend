@@ -19,8 +19,8 @@ export class SqlitePaymentReport extends SqliteBaseClass implements PaymentsRepo
            start: query.start,
            end: query.end,
            method: query.method,
-           limit: query.limit,
-           offset: query.page * query.limit
+           limit: query.pageSize,
+           offset: query.page * query.pageSize,
         }) as any[];
         const response = new PaymentsReportDTO()
 

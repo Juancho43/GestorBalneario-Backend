@@ -13,7 +13,7 @@ export class ShadowHistoryController {
     @ApiResponse({status: 200, description: 'The shadow history has been retrieved.', type: ShadowHistoryDTO})
     execute(@Param('id') id: string, @Query('page') page: number = 0, @Query('size') size: number = 10) {
         try{
-            const query = new GetShadowHistoryQuery(id,page,size);
+            const query = new GetShadowHistoryQuery(page,size,id);
             return this.service.execute(query);
         }catch(error){
             throw new HttpException(error.message, HttpStatus.BAD_REQUEST);

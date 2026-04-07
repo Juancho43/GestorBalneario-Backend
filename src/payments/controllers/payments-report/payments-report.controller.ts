@@ -18,7 +18,7 @@ export class PaymentsReportController {
         @Query('method') method: string,
         ) {
         try{
-            const query = new PaymentsReportQuery(start,end,page,size,method);
+            const query = new PaymentsReportQuery(page,size,start,end,method);
             return this.service.execute(query);
         }catch(error){
             return new HttpException(error.message, HttpStatus.BAD_REQUEST);

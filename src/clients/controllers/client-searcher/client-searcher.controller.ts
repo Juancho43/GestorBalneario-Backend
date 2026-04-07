@@ -15,7 +15,7 @@ export class ClientSearcherController{
         @Query('limit') limit: number
     ){
         try {
-            const searchQuery = new ClientSearchQuery(query,limit,page)
+            const searchQuery = new ClientSearchQuery(page,limit,query)
             return this.service.execute(searchQuery);
         }catch(error){
             throw new HttpException(error.message, HttpStatus.BAD_REQUEST);

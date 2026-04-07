@@ -14,7 +14,7 @@ export class GetCurrentReservationsController {
     @ApiResponse({status: 500, description: 'The reservations has not been retrieved.'})
     async execute(@Query('page') page: number = 1, @Query('size') size: number = 10) {
         try{
-            const query = new GetCurrentReservationsQuery('',page, size);
+            const query = new GetCurrentReservationsQuery(page, size);
             return await this.service.execute(query);
         }catch(error){
             return new HttpException(error.message, HttpStatus.BAD_REQUEST);

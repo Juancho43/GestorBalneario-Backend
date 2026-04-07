@@ -2,6 +2,7 @@ import {InvoiceState} from "./InvoiceState";
 import {InvoiceItem} from "./InvoiceItem";
 import {Payment} from "../../Payment/Model/Payment";
 import {Invoice} from "./Invoice";
+import {ModifyPaidInvoiceError} from "./Errors/ModifyPaidInvoice";
 
 export class PaidState implements InvoiceState {
 
@@ -9,11 +10,11 @@ export class PaidState implements InvoiceState {
     }
 
     addItem(item: InvoiceItem): void {
-        throw new Error("Cannot add items to an already paid invoice.");
+        throw new ModifyPaidInvoiceError("Cannot add items.");
     }
 
     addPayment(payment: Payment): void {
-        throw new Error("Cannot add payment to an already paid invoices.");
+        throw new ModifyPaidInvoiceError("Cannot add payments.");
     }
 
     delete(): void {

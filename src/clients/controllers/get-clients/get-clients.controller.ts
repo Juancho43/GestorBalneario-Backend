@@ -10,7 +10,7 @@ export class GetClientsController {
     }
     @Get('current')
     async execute(@Query('page') page: number = 1, @Query('size') size: number = 10) {
-        const query = new GetClientsQuery('',page, size);
+        const query = new GetClientsQuery(page, size);
         return await this.service.execute(query);
 
     }

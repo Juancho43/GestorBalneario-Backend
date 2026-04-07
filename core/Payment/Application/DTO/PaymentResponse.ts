@@ -1,7 +1,11 @@
 import {Payment} from "../../Model/Payment";
 import {InvoiceResponse} from "../../../Invoice/Application/DTO/InvoiceResponse";
+import {TimeStampResponse} from "../../../common/Application/TimeStampResponse";
 
-export class PaymentResponse{
+/**
+ * Represents the response for a payment.
+ */
+export class PaymentResponse extends TimeStampResponse{
     /**
      * The unique identifier of the payment.
      * @example 'payment-123'
@@ -38,8 +42,23 @@ export class PaymentResponse{
      * @type {string}
      */
     description?:string;
+    /**
+     * The final amount of the payment after exchange rate.
+     * @example 100
+     * @type {number}
+     */
     finalAmount:number;
+    /**
+     * The unique identifier of the invoice associated with the payment.
+     * @example 'invoice-456'
+     * @type {string}
+     */
     invoiceId?:string;
+    /**
+     * The invoice associated with the payment.
+     * @example { id: 'invoice-456', ... }
+     * @type {InvoiceResponse}
+     */
     invoice? :InvoiceResponse;
     static create(payment: Payment){
         return {

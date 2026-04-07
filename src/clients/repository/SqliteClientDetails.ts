@@ -26,8 +26,8 @@ export class SqliteClientDetails extends SqliteBaseClass implements ClientDetail
         `);
         const results = stmt.all({
             clientId: query.clientId,
-            limit:query.limit,
-            offset: query.offset
+            limit:query.pageSize,
+            offset: query.page
         }) as any[];
         const dto = new ClientDetailsDTO();
         if(results.length > 0){
