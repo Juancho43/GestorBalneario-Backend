@@ -1,5 +1,5 @@
-import {ShadowHistoryDTO} from "../Response/ShadowHistoryDTO";
+import { ShadowHistoryDTO } from '../Response/ShadowHistoryDTO';
 
 export interface ShadowHistoryDAO {
-    get(id: string,page:number,limit:number): Promise<ShadowHistoryDTO>
+  get(id: string, page: number, limit: number): Promise<ShadowHistoryDTO>;
 }

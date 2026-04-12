@@ -1,13 +1,20 @@
-import {SqliteBaseClass} from "../../database/SqliteBaseClass";
-import type {ShadowHistoryDAO} from "../../../core/Shadow/Application/Interfaces/ShadowHistoryDAO";
-import {ShadowHistoryDTO} from "../../../core/Shadow/Application/Response/ShadowHistoryDTO";
-import {Injectable} from "@nestjs/common";
-import {ShadowResponse} from "../../../core/Shadow/Application/Response/ShadowResponse";
-import {ReservationResponse} from "../../../core/Reservation/Application/DTO/ReservationResponse";
+import { SqliteBaseClass } from '../../database/SqliteBaseClass';
+import type { ShadowHistoryDAO } from '../../../core/Shadow/Application/Interfaces/ShadowHistoryDAO';
+import { ShadowHistoryDTO } from '../../../core/Shadow/Application/Response/ShadowHistoryDTO';
+import { Injectable } from '@nestjs/common';
+import { ShadowResponse } from '../../../core/Shadow/Application/Response/ShadowResponse';
+import { ReservationResponse } from '../../../core/Reservation/Application/DTO/ReservationResponse';
 @Injectable()
-export class SqliteGetShadowHistory extends SqliteBaseClass implements ShadowHistoryDAO{
-    async get(id: string, page: number, limit: number): Promise<ShadowHistoryDTO> {
-        const sql = `
+export class SqliteGetShadowHistory
+  extends SqliteBaseClass
+  implements ShadowHistoryDAO
+{
+  async get(
+    id: string,
+    page: number,
+    limit: number,
+  ): Promise<ShadowHistoryDTO> {
+    const sql = `
             SELECT r.id    AS reservationId,
                    r.checkIn,
                    r.checkOut,
@@ -24,40 +31,42 @@ export class SqliteGetShadowHistory extends SqliteBaseClass implements ShadowHis
             WHERE s.id = @id
             ORDER BY r.date DESC
             LIMIT @limit OFFSET @offset;
-        `
-        const result = this.getDb().prepare(sql).all({id:id,offset:page, limit:limit})as any;
-        const dto = this.toDTO(result);
-        return dto;
-    }
+        `;
+    const result = this.getDb()
+      .prepare(sql)
+      .all({ id: id, offset: page, limit: limit }) as any;
+    const dto = this.toDTO(result);
+    return dto;
+  }
 
-    private toDTO(rows: any): ShadowHistoryDTO{
-        const historyDTO = new ShadowHistoryDTO();
-        historyDTO.reservations = [];
-        const shadow : ShadowResponse = {
-            id: rows[0].shadowId, // Asegúrate que este sea s.id en el SQL
-            identifier: rows[0].identifier,
-            type: rows[0].type,
-            coords: {
-                x: rows[0].x,
-                y: rows[0].y
-            },
-            state: rows[0].reservationId ? 'occupied' : 'available'
+  private toDTO(rows: any): ShadowHistoryDTO {
+    const historyDTO = new ShadowHistoryDTO();
+    historyDTO.reservations = [];
+    const shadow: ShadowResponse = {
+      id: rows[0].shadowId, // Asegúrate que este sea s.id en el SQL
+      identifier: rows[0].identifier,
+      type: rows[0].type,
+      coords: {
+        x: rows[0].x,
+        y: rows[0].y,
+      },
+      state: rows[0].reservationId ? 'occupied' : 'available',
+    };
+    if (rows[0].reservationId) {
+      rows.forEach((row) => {
+        const reservation: ReservationResponse = {
+          id: row.reservationId, // El ID de la reserva
+          dates: {
+            checkIn: row.checkIn,
+            checkOut: row.checkOut,
+          },
+          duration: 0,
         };
-        if(rows[0].reservationId){
-            rows.forEach(row=>{
-                const reservation: ReservationResponse = {
-                    id: row.reservationId, // El ID de la reserva
-                    dates: {
-                        checkIn: row.checkIn,
-                        checkOut: row.checkOut,
-                    },
-                    duration: 0,
-                }
-                historyDTO.reservations.push(reservation)
-            })
-        }
-
-        historyDTO.shadow = shadow;
-        return historyDTO;
+        historyDTO.reservations.push(reservation);
+      });
     }
+
+    historyDTO.shadow = shadow;
+    return historyDTO;
+  }
 }

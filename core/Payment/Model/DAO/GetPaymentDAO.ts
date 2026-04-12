@@ -1,5 +1,5 @@
-import {Payment} from "../Payment";
+import { Payment } from '../Payment';
 
-export interface GetPaymentDAO{
-    get(id:string): Promise<Payment|null>;
+export interface GetPaymentDAO {
+  get(id: string): Promise<Payment | null>;
 }

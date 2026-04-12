@@ -1,5 +1,5 @@
-import {Service} from "../Service";
+import { Service } from '../Service';
 
-export interface CreateServiceDAO{
-    create(service: Service): Promise<void>;
+export interface CreateServiceDAO {
+  save(service: Service): Promise<void>;
 }

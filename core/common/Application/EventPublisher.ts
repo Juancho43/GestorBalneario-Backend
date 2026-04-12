@@ -1,5 +1,5 @@
-import {BaseDomainEvent} from "./BaseDomainEvent";
+import { BaseDomainEvent } from './BaseDomainEvent';
 
-export interface EventPublisher{
-    publish(event: BaseDomainEvent): void;
+export interface EventPublisher {
+  publish(event: BaseDomainEvent): void;
 }

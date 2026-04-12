@@ -1,14 +1,17 @@
-import {DeleteShadowDAO} from "../../../core/Shadow/Model/DAO/DeleteShadowDAO";
-import {Inject, Injectable} from "@nestjs/common";
-import {DB_PROVIDER} from "../../database/DBPROVIDER";
+import { DeleteShadowDAO } from '../../../core/Shadow/Model/DAO/DeleteShadowDAO';
+import { Injectable } from '@nestjs/common';
+import { SqliteBaseClass } from '../../database/SqliteBaseClass';
+import { Shadow } from '../../../core/Shadow/Model/Shadow';
 @Injectable()
-export class SqliteShadowDelete implements DeleteShadowDAO{
-
-    constructor(@Inject(DB_PROVIDER) private readonly db: any) {}
-
-    delete(id: string): Promise<boolean> {
-        const result = this.db.prepare('DELETE FROM Shadows WHERE id = ?').run(id);
-        return result.changes;
-    }
-
+export class SqliteShadowDelete
+  extends SqliteBaseClass
+  implements DeleteShadowDAO
+{
+  async delete(shadow: Shadow): Promise<void> {
+    const sql = `UPDATE Shadows SET deleted_at = @date WHERE id = @id`;
+    this.getDb().prepare(sql).run({
+      date: shadow.getSoftDelete().value!.toISOString(),
+      id: shadow.getId().value,
+    });
+  }
 }

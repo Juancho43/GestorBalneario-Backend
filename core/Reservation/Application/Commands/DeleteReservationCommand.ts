@@ -1,4 +1,3 @@
 export class DeleteReservationCommand {
-    constructor(public id: string) {
-    }
+  constructor(public id: string) {}
 }

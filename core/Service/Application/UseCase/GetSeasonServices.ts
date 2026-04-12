@@ -1,13 +1,15 @@
-import {IUseCase} from "../../../common/Application/IUseCase";
-import {SeasonServiceDTO} from "../DTO/SeasonServiceDTO";
-import {SeasonServiceDAO} from "../Interfaces/SeasonServiceDAO";
-import {GetSeasonServicesQuery} from "../Queries/GetSeasonServicesQuery";
+import { IUseCase } from '../../../common/Application/IUseCase';
+import { SeasonServiceDTO } from '../DTO/SeasonServiceDTO';
+import { SeasonServiceDAO } from '../Interfaces/SeasonServiceDAO';
+import { GetSeasonServicesQuery } from '../Queries/GetSeasonServicesQuery';
 
-export class GetSeasonServices implements IUseCase<GetSeasonServicesQuery,SeasonServiceDTO>{
-    constructor(private persistance: SeasonServiceDAO){}
+export class GetSeasonServices implements IUseCase<
+  GetSeasonServicesQuery,
+  SeasonServiceDTO
+> {
+  constructor(private persistance: SeasonServiceDAO) {}
 
-     execute(request: GetSeasonServicesQuery): Promise<SeasonServiceDTO> {
-        return this.persistance.get(request);
-    }
-
+  execute(request: GetSeasonServicesQuery): Promise<SeasonServiceDTO> {
+    return this.persistance.get(request);
+  }
 }

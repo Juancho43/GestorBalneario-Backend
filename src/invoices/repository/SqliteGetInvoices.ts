@@ -1,19 +1,21 @@
-import {Injectable} from "@nestjs/common";
-import {SqliteBaseClass} from "../../database/SqliteBaseClass";
-import {GetInvoicesDAO} from "../../../core/Invoice/Model/DAO/GetInvoicesDAO";
-import { Invoice } from "core/Invoice/Model/Invoice";
-import {UUID} from "../../../core/common/Model/UUID";
-import {Timestamps} from "../../../core/common/Model/Timestamps";
-import {SoftDelete} from "../../../core/common/Model/SoftDelete";
-import {Reservation_Service} from "../../../core/Service/Model/Reservation_Service";
-import {Money} from "../../../core/Payment/Model/Money";
-import {StringObject} from "../../../core/common/Model/StringObject";
+import { Injectable } from '@nestjs/common';
+import { SqliteBaseClass } from '../../database/SqliteBaseClass';
+import { GetInvoicesDAO } from '../../../core/Invoice/Model/DAO/GetInvoicesDAO';
+import { Invoice } from 'core/Invoice/Model/Invoice';
+import { UUID } from '../../../core/common/Model/UUID';
+import { Timestamps } from '../../../core/common/Model/Timestamps';
+import { SoftDelete } from '../../../core/common/Model/SoftDelete';
+import { Reservation_Service } from '../../../core/Service/Model/Reservation_Service';
+import { Money } from '../../../core/Payment/Model/Money';
+import { StringObject } from '../../../core/common/Model/StringObject';
 
 @Injectable()
-export class SqliteGetInvoices extends SqliteBaseClass implements GetInvoicesDAO {
-
-    async get(): Promise<Invoice[]> {
-        const sql = `
+export class SqliteGetInvoices
+  extends SqliteBaseClass
+  implements GetInvoicesDAO
+{
+  async get(): Promise<Invoice[]> {
+    const sql = `
             SELECT
                 i.id AS invoiceId,
                 i.date,
@@ -31,45 +33,48 @@ export class SqliteGetInvoices extends SqliteBaseClass implements GetInvoicesDAO
                      LEFT JOIN Invoice_Items r ON r.invoiceId = i.id
             WHERE i.deleted_at IS NULL
             LIMIT @limit OFFSET @offset
-        `
-        const results = this.getDb().prepare(sql).all({
-            limit:10,
-            offset:0,
-        }) as any[];
+        `;
+    const results = this.getDb().prepare(sql).all({
+      limit: 10,
+      offset: 0,
+    }) as any[];
 
-        const invoiceMap: Map<string, Invoice> = new Map();
-        results.forEach((row) => {
-            const id = row.invoiceId;
+    const invoiceMap: Map<string, Invoice> = new Map();
+    results.forEach((row) => {
+      const id = row.invoiceId;
 
-            // 1. If this is the first time we see this invoice, create the Invoice object
-            if (!invoiceMap.has(id)) {
-                const newInvoice = Invoice.create(
-                    UUID.restore(row.invoiceId),
-                    new Date(row.date),
-                    UUID.restore(row.clientId),
-                    Timestamps.restore(new Date(row.createdAtInvoice), new Date(row.updatedAtInvoice)),
-                    SoftDelete.empty()
-                );
-                invoiceMap.set(id, newInvoice);
-            }
+      // 1. If this is the first time we see this invoice, create the Invoice object
+      if (!invoiceMap.has(id)) {
+        const newInvoice = Invoice.create(
+          UUID.restore(row.invoiceId),
+          new Date(row.date),
+          UUID.restore(row.clientId),
+          Timestamps.restore(
+            new Date(row.createdAtInvoice),
+            new Date(row.updatedAtInvoice),
+          ),
+          SoftDelete.empty(),
+        );
+        invoiceMap.set(id, newInvoice);
+      }
 
-            // 2. If there is a linked item (r.id is not null), create and add it
-            if (row.itemId) {
-                if(row.aggregateType == 'Reservations'){
-                    const item = Reservation_Service.create(
-                        UUID.restore(row.itemId),
-                        Money.create(row.price),
-                        StringObject.create('Booking'),
-                        UUID.restore(row.serviceId),
-                        UUID.restore(row.aggregateId),
-                        UUID.restore(row.invoiceId),
-                    )
-                    invoiceMap.get(id)!.addItem(item);
-                }
-            }
-        });
+      // 2. If there is a linked item (r.id is not null), create and add it
+      if (row.itemId) {
+        if (row.aggregateType == 'Reservations') {
+          const item = Reservation_Service.create(
+            UUID.restore(row.itemId),
+            Money.create(row.price),
+            StringObject.create('Booking'),
+            UUID.restore(row.serviceId),
+            UUID.restore(row.aggregateId),
+            UUID.restore(row.invoiceId),
+          );
+          invoiceMap.get(id)!.addItem(item);
+        }
+      }
+    });
 
-        // Return the values of the map as an array
-        return Array.from(invoiceMap.values());
-    }
+    // Return the values of the map as an array
+    return Array.from(invoiceMap.values());
+  }
 }

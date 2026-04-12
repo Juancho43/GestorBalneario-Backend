@@ -1,31 +1,34 @@
-import {Inject, Injectable} from '@nestjs/common';
-import {ReservationResponse} from "../../../../core/Reservation/Application/DTO/ReservationResponse";
-import {UpdateReservation} from "../../../../core/Reservation/Application/UseCase/UpdateReservation";
-import type {UpdateReservationDAO} from "../../../../core/Reservation/Model/DAO/UpdateReservationDAO";
+import { Inject, Injectable, Logger } from '@nestjs/common';
+import { ReservationResponse } from '../../../../core/Reservation/Application/DTO/ReservationResponse';
+import { UpdateReservation } from '../../../../core/Reservation/Application/UseCase/CRUD/UpdateReservation';
+import type { UpdateReservationDAO } from '../../../../core/Reservation/Model/DAO/UpdateReservationDAO';
+import { UpdateReservationCommand } from '../../../../core/Reservation/Application/Commands/UpdateReservationCommand';
+import type { GetReservationDAO } from '../../../../core/Reservation/Model/DAO/GetReservationDAO';
 import type {GetShadowDAO} from "../../../../core/Shadow/Model/DAO/GetShadowDAO";
-import type {GetClientDAO} from "../../../../core/Client/Model/DAO/GetClientDAO";
-import {UpdateReservationCommand} from "../../../../core/Reservation/Application/Commands/UpdateReservationCommand";
 
 @Injectable()
 export class EditReservationService {
+  private useCase: UpdateReservation;
+  private logger = new Logger(EditReservationService.name);
+  constructor(
 
-    private useCase: UpdateReservation;
+      @Inject('GET_SHADOW_DAO') getShadow: GetShadowDAO,
+      @Inject('GET_RESERVATION_DAO') get: GetReservationDAO,
+      @Inject('UPDATE_RESERVATION_DAO') implementation: UpdateReservationDAO,
+  ) {
+    this.useCase = new UpdateReservation(implementation, get,getShadow);
+  }
 
-    constructor(
-        @Inject('UPDATE_RESERVATION_DAO') implementation: UpdateReservationDAO,
-        @Inject('GET_SHADOW_INTERFACE') shadow: GetShadowDAO,
-        @Inject('GET_CLIENT_INTERFACE') client: GetClientDAO
-    ) {
-        this.useCase = new UpdateReservation(implementation,client,shadow);
+  async execute(command: UpdateReservationCommand) {
+    try {
+      this.logger.debug(
+        'Executing EditReservationService with command: ',
+        command,
+      );
+      return ReservationResponse.create(await this.useCase.execute(command));
+    } catch (error) {
+      this.logger.error('Error updating reservation:', error);
+      throw error;
     }
-
-    async execute(command: UpdateReservationCommand){
-        try {
-            return ReservationResponse.create(await this.useCase.execute(command));
-        }catch (error) {
-            console.error('Error updating reservation:', error);
-            throw error;
-        }
-    }
+  }
 }
-

@@ -9,7 +9,9 @@ describe('GetSeasonServicesController', () => {
       controllers: [GetSeasonServicesController],
     }).compile();
 
-    controller = module.get<GetSeasonServicesController>(GetSeasonServicesController);
+    controller = module.get<GetSeasonServicesController>(
+      GetSeasonServicesController,
+    );
   });
 
   it('should be defined', () => {

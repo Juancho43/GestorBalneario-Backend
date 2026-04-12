@@ -1,3 +1,5 @@
-export interface DeleteClientDAO{
-    delete(id: string): Promise<boolean>;
+import { Client } from '../Client';
+
+export interface DeleteClientDAO {
+  delete(client: Client): Promise<void>;
 }

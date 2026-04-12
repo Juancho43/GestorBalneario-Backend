@@ -1,27 +1,26 @@
-import {Inject, Injectable} from '@nestjs/common';
-import {GetReservation} from "../../../../core/Reservation/Application/UseCase/GetReservation";
-import type {GetReservationDAO} from "../../../../core/Reservation/Model/DAO/GetReservationDAO";
-import {ReservationResponse} from "../../../../core/Reservation/Application/DTO/ReservationResponse";
-import {GetReservationQuery} from "../../../../core/Reservation/Application/Queries/GetReservationQuery";
-import {GetReservationWithClient} from "../../../../core/Reservation/Application/UseCase/GetReservationWithClient";
-import type {GetReservationWithClientDAO} from "../../../../core/Reservation/Model/DAO/GetReservationWithClientDAO";
+import { Inject, Injectable, Logger } from '@nestjs/common';
+import { GetReservationQuery } from '../../../../core/Reservation/Application/Queries/GetReservationQuery';
+import { GetReservation } from '../../../../core/Reservation/Application/UseCase/CRUD/GetReservation';
+import type { GetReservationDAO } from '../../../../core/Reservation/Model/DAO/GetReservationDAO';
 
 @Injectable()
 export class GetReservationService {
+  private useCase: GetReservation;
+  private logger = new Logger(GetReservationService.name);
+  constructor(
+    @Inject('GET_RESERVATION_CLIENT_DAO')
+    implementation: GetReservationDAO,
+  ) {
+    this.useCase = new GetReservation(implementation);
+  }
 
-    private useCase: GetReservationWithClient;
-
-    constructor(@Inject('GET_RESERVATION_CLIENT_DAO') implementation: GetReservationWithClientDAO) {
-        this.useCase = new GetReservationWithClient(implementation);
+  async execute(query: GetReservationQuery) {
+    try {
+      this.logger.debug('Getting reservation', query);
+      return await this.useCase.execute(query);
+    } catch (error) {
+      this.logger.error('Service error:', error);
+      throw error;
     }
-
-    async execute(query: GetReservationQuery){
-        try {
-            return await this.useCase.execute(query);
-        }catch (error) {
-            console.error('Service error:', error);
-            throw error;
-        }
-    }
+  }
 }
-

@@ -1,3 +1,5 @@
-export interface DeleteReservationDAO{
-    delete(id: string): Promise<boolean>;
+import { Reservation } from '../Reservation';
+
+export interface DeleteReservationDAO {
+  delete(entity: Reservation): Promise<void>;
 }

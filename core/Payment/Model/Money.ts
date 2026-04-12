@@ -1,33 +1,44 @@
 export enum Currency {
-    USD = 'USD',
-    ARS = 'ARS',
-    BTC = 'BTC',
-    OTHER = 'OTHER',
+  USD = 'USD',
+  ARS = 'ARS',
+  BTC = 'BTC',
+  OTHER = 'OTHER',
 }
 
 export class Money {
-    private constructor(
-        private readonly _amount: number,
-        private readonly _exchangeRate: number,
-        private readonly _currency: Currency,
-    ) {
-        this.validate(this._amount);
-        this.validate(this._exchangeRate);
-    }
+  private constructor(
+    private readonly _amount: number,
+    private readonly _exchangeRate: number,
+    private readonly _currency: Currency,
+  ) {
+    this.validate(this._amount);
+    this.validate(this._exchangeRate);
+  }
 
-    public static create(amount: number, exchangeRate: number = 1, currency: Currency = Currency.ARS): Money {
-        return new Money(amount, exchangeRate, currency);
-    }
+  public static create(
+    amount: number,
+    exchangeRate: number = 1,
+    currency: Currency = Currency.ARS,
+  ): Money {
+    return new Money(amount, exchangeRate, currency);
+  }
 
-    private validate(value: number): void {
-        if (value <= 0) throw new Error("Los valores monetarios deben ser positivos.");
-    }
+  private validate(value: number): void {
+    if (value <= 0)
+      throw new Error('Los valores monetarios deben ser positivos.');
+  }
 
-    public get finalAmount(): number {
-        return this._amount * this._exchangeRate;
-    }
+  public get finalAmount(): number {
+    return this._amount * this._exchangeRate;
+  }
 
-    get amount(): number { return this._amount; }
-    get exchangeRate(): number { return this._exchangeRate; }
-    get currency(): string { return this._currency; }
+  get amount(): number {
+    return this._amount;
+  }
+  get exchangeRate(): number {
+    return this._exchangeRate;
+  }
+  get currency(): string {
+    return this._currency;
+  }
 }

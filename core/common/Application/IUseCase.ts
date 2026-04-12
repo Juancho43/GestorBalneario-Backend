@@ -1,3 +1,3 @@
-export interface IUseCase<T,J> {
-    execute(request: T): Promise<J>;
+export interface IUseCase<T, J> {
+  execute(request: T): Promise<J>;
 }

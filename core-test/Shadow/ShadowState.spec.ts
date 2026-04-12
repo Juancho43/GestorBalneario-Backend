@@ -1,12 +1,4 @@
-
 describe('Shadow state', () => {
-    it('should be available', () => {
-    })
-    it('should be occupied',()=>{
-
-    })
-
-
-
-
-})
+  it('should be available', () => {});
+  it('should be occupied', () => {});
+});

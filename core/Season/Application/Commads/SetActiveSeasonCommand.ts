@@ -1,3 +1,7 @@
 export class SetActiveSeasonCommand {
-    seasonId: string;
+  seasonId: string;
+
+  constructor(seasonId: string) {
+    this.seasonId = seasonId;
+  }
 }

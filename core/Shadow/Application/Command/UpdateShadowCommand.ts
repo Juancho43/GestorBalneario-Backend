@@ -1,16 +1,15 @@
-import {CreateShadowCommand} from "./CreateShadowCommand";
+import { CreateShadowCommand } from './CreateShadowCommand';
 
-export class UpdateShadowCommand{
-    /**
-     * Id for the shadow to update
-     * */
-    id:string;
+export class UpdateShadowCommand {
+  /**
+   * Id for the shadow to update
+   * */
+  id: string;
 
-    data:CreateShadowCommand;
+  data: CreateShadowCommand;
 
-    /*
-  * Date of creation
-  * @example: '2026-01-10'
-  * */
-    createdAt:string;
+  constructor(id: string, data: CreateShadowCommand) {
+    this.id = id;
+    this.data = data;
+  }
 }

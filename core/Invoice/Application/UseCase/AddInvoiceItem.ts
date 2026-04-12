@@ -1,44 +1,42 @@
-import {IUseCase} from "../../../common/Application/IUseCase";
-import {GetClientsInvoicesDAO} from "../../../Client/Model/DAO/GetClientsInvoicesDAO";
-import {UUID} from "../../../common/Model/UUID";
-import {Reservation_Service} from "../../../Service/Model/Reservation_Service";
-import {Money} from "../../../Payment/Model/Money";
-import {StringObject} from "../../../common/Model/StringObject";
-import {CreateInvoiceItemDAO} from "../../Model/DAO/CreateInvoiceItemDAO";
-import {GetServiceDAO} from "../../../Service/Model/DAO/GetServiceDAO";
-import {EventPublisher} from "../../../common/Application/EventPublisher";
-import {InvoiceItemAdded} from "../../Model/InvoiceItemAdded";
-import {AddInvoiceItemCommand} from "../Commands/AddInvoiceItemCommand";
+import { IUseCase } from '../../../common/Application/IUseCase';
+import { GetClientsInvoicesDAO } from '../../../Client/Model/DAO/GetClientsInvoicesDAO';
+import { CreateInvoiceItemDAO } from '../../Model/DAO/CreateInvoiceItemDAO';
+import { GetServiceDAO } from '../../../Service/Model/DAO/GetServiceDAO';
+import { EventPublisher } from '../../../common/Application/EventPublisher';
+import { InvoiceItemAdded } from '../../Model/Event/InvoiceItemAdded';
+import { AddInvoiceItemCommand } from '../Commands/AddInvoiceItemCommand';
+import { EntityNotFoundError } from '../../../common/Model/Errors/EntityNotFound';
+import { CreateInvoiceItem } from './CreateInvoiceItem';
 
-export class AddInvoiceItem implements IUseCase<AddInvoiceItemCommand, void>{
+export class AddInvoiceItem implements IUseCase<AddInvoiceItemCommand, void> {
+  constructor(
+    private getClientInvoices: GetClientsInvoicesDAO,
+    private getServiceDAO: GetServiceDAO,
+    private createInvoiceItemDAO: CreateInvoiceItemDAO,
+    private eventPublisher: EventPublisher,
+  ) {}
 
-    constructor(
-        private getClientInvoices: GetClientsInvoicesDAO,
-        private getServiceDAO: GetServiceDAO,
-        private createInvoiceItemDAO: CreateInvoiceItemDAO,
-        private eventPublisher: EventPublisher
-    ) {}
-
-    async execute(request: AddInvoiceItemCommand): Promise<void> {
-        const service = await this.getServiceDAO.get(request.serviceId);
-        if(!service){
-            throw new Error("Service not found");
-        }
-        const client = await this.getClientInvoices.get(request.clientId);
-        if (!client){
-            throw new Error("Client not found");
-        }
-        let invoiceToWork = client.getOrCreateActiveInvoice();
-        const reservationItem = Reservation_Service.create(
-            UUID.create(),
-            Money.create(request.price),
-            StringObject.create(request.description),
-            UUID.restore(request.serviceId),
-            UUID.restore(request.aggregateId),
-            invoiceToWork.id
-        )
-        invoiceToWork.addItem(reservationItem);
-        await this.createInvoiceItemDAO.create(reservationItem,invoiceToWork);
-        this.eventPublisher.publish(new InvoiceItemAdded(invoiceToWork.id.value));
+  async execute(request: AddInvoiceItemCommand): Promise<void> {
+    const service = await this.getServiceDAO.get(request.serviceId);
+    if (!service) {
+      throw new EntityNotFoundError('Service', request.serviceId);
     }
+    const client = await this.getClientInvoices.get(request.clientId);
+    if (!client) {
+      throw new EntityNotFoundError('Client', request.clientId);
+    }
+    let invoiceToWork = client.getOrCreateActiveInvoice();
+    const item = CreateInvoiceItem.create(
+      request.type,
+      request.price,
+      request.description,
+      request.serviceId,
+      request.aggregateId,
+      invoiceToWork.id,
+    );
+
+    invoiceToWork.addItem(item);
+    await this.createInvoiceItemDAO.create(item, invoiceToWork);
+    this.eventPublisher.publish(new InvoiceItemAdded(invoiceToWork.id.value));
+  }
 }

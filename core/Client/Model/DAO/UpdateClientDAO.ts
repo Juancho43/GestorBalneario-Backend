@@ -1,5 +1,5 @@
-import {Client} from "../Client";
+import { Client } from '../Client';
 
-export interface UpdateClientDAO{
-    update(client: Client): Promise<boolean>;
+export interface UpdateClientDAO {
+  update(client: Client): Promise<void>;
 }

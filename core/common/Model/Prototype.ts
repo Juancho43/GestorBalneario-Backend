@@ -1,3 +1,3 @@
-export interface Prototype<T>{
-    clone() : T;
+export interface Prototype<T> {
+  clone(): T;
 }

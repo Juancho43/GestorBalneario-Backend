@@ -1,25 +1,25 @@
-import {ShadowState} from "./ShadowState";
-import {Shadow} from "../Shadow";
+import { ShadowState } from './ShadowState';
+import { Shadow } from '../Shadow';
 
 export class AvailableState implements ShadowState {
-    private readonly shadow: Shadow;
+  private readonly shadow: Shadow;
 
-    constructor(shadow: Shadow) {
-        this.shadow = shadow;
-    }
+  constructor(shadow: Shadow) {
+    this.shadow = shadow;
+  }
 
-    update(): void {
-        this.shadow.timestamp.update();
-    }
+  update(): void {
+    this.shadow.timestamp.update();
+  }
 
-    delete(): void {
-        this.shadow.softDelete.apply();
-    }
+  delete(): void {
+    this.shadow.softDelete.apply();
+  }
 
-    getShadow(): Shadow {
-        return this.shadow;
-    }
-    toString(): string {
-        return AvailableState.name;
-    }
+  getShadow(): Shadow {
+    return this.shadow;
+  }
+  toString(): string {
+    return AvailableState.name;
+  }
 }

@@ -1,5 +1,5 @@
-import {Shadow} from "../Shadow";
+import { Shadow } from '../Shadow';
 
 export interface GetShadowDAO {
-    get(id: string): Promise<Shadow | null>;
+  get(id: string): Promise<Shadow | null>;
 }

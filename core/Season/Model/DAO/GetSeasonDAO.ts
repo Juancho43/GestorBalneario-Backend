@@ -1,5 +1,5 @@
-import {Season} from "../Season";
+import { Season } from '../Season';
 
-export interface GetSeasonDAO{
-    get(id:string): Promise<Season | null>;
+export interface GetSeasonDAO {
+  get(id: string): Promise<Season | null>;
 }

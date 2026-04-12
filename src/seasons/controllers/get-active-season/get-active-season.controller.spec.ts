@@ -9,7 +9,9 @@ describe('GetActiveSeasonController', () => {
       controllers: [GetActiveSeasonController],
     }).compile();
 
-    controller = module.get<GetActiveSeasonController>(GetActiveSeasonController);
+    controller = module.get<GetActiveSeasonController>(
+      GetActiveSeasonController,
+    );
   });
 
   it('should be defined', () => {

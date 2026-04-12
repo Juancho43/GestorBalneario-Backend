@@ -1,5 +1,5 @@
-import {Payment} from "../Payment";
+import { Payment } from '../Payment';
 
-export interface GetPaymentsByReservationIdDAO{
-    get(id: string): Promise<Payment[]>
+export interface GetPaymentsByReservationIdDAO {
+  get(id: string): Promise<Payment[]>;
 }

@@ -1,4 +1,6 @@
 export class CreateInvoiceCommand {
-    constructor(public reservationId: string, public clientId: string) {
-    }
+  constructor(
+    public reservationId: string,
+    public clientId: string,
+  ) {}
 }

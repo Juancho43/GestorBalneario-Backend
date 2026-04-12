@@ -1,9 +1,9 @@
-import {CreatePaymentCommand} from "./CreatePaymentCommand";
+import { CreatePaymentCommand } from './CreatePaymentCommand';
 
-export class UpdatePaymentCommand{
-    /**
-     * Payment id to update
-     * */
-    id:string;
-    data: CreatePaymentCommand;
+export class UpdatePaymentCommand {
+  /**
+   * Payment id to update
+   * */
+  id: string;
+  data: CreatePaymentCommand;
 }

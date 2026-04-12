@@ -1,5 +1,5 @@
-import {Client} from "../Client";
+import { Client } from '../Client';
 
-export interface SaveClientDAO{
-    save(client: Client): Promise<void>;
+export interface SaveClientDAO {
+  save(client: Client): Promise<void>;
 }

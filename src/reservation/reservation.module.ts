@@ -3,57 +3,63 @@ import { CreateReservationService } from './services/create-reservation/create-r
 import { EditReservationService } from './services/edit-reservation/edit-reservation.service';
 import { DeleteReservationService } from './services/delete-reservation/delete-reservation.service';
 import { GetReservationService } from './services/get-reservation/get-reservation.service';
-import { GetCurrentReservationService } from './services/get-current-reservation/get-current-reservation.service';
-import { GetCurrentReservationsController } from './controllers/get-current-reservations/get-current-reservations.controller';
 import { EditReservationController } from './controllers/edit-reservation/edit-reservation.controller';
 import { CreateReservationController } from './controllers/create-reservation/create-reservation.controller';
 import { DeleteReservationController } from './controllers/delete-reservation/delete-reservation.controller';
 import { GetReservationController } from './controllers/get-reservation/get-reservation.controller';
-import {SqliteGetReservation} from "./repository/SqliteGetReservation";
-import {SqliteGetCurrentReservation} from "./repository/SqliteGetCurrentReservation";
-import {SqliteCreateReservation} from "./repository/SqliteCreateReservation";
-import {SqliteDeleteReservation} from "./repository/SqliteDeleteReservation";
-import {SqliteUpdateReservation} from "./repository/SqliteUpdateReservation";
-import {SqliteClientGetOne} from "../clients/repository/SqliteClientGetOne";
-import {SqliteShadowGetById} from "../shadow/repository/SqliteShadowGetById";
+import { SqliteGetReservation } from './repository/SqliteGetReservation';
+import { SqliteGetCurrentReservation } from './repository/SqliteGetCurrentReservation';
+import { SqliteCreateReservation } from './repository/SqliteCreateReservation';
+import { SqliteDeleteReservation } from './repository/SqliteDeleteReservation';
+import { SqliteUpdateReservation } from './repository/SqliteUpdateReservation';
+import { SqliteClientGetOne } from '../clients/repository/SqliteClientGetOne';
+import { SqliteShadowGetById } from '../shadow/repository/SqliteShadowGetById';
 import { GetActiveReservationsController } from './controllers/get-active-reservations/get-active-reservations.controller';
 import { GetActiveReservationsService } from './services/get-active-reservations/get-active-reservations.service';
-import {SqliteGetActiveReservation} from "./repository/SqliteGetActiveReservation";
-import {SqliteGetReservationsByShadowId} from "./repository/SqliteGetReservationsByShadowId";
-import {SqliteGetReservationWithClient} from "./repository/SqliteGetReservationWithClient";
-import {NestEventPublisherAdapter} from "../events/NestEventPublisherAdapter";
-import {CqrsModule} from "@nestjs/cqrs";
-import {ReservationCreatedHandler} from "../billing/handlers/OnReservationCreatedHandler";
-import {SqliteGetService} from "../services/repository/SqliteGetService";
-import {BillingModule} from "../billing/billing.module";
-import {AddInvoiceItemHandler} from "../billing/handlers/CreateInvoiceHandler";
+import { SqliteGetActiveReservation } from './repository/SqliteGetActiveReservation';
+import { SqliteGetReservationsByShadowId } from './repository/SqliteGetReservationsByShadowId';
+import { SqliteGetReservationWithClient } from './repository/SqliteGetReservationWithClient';
+import { NestEventPublisherAdapter } from '../events/NestEventPublisherAdapter';
+import { CqrsModule } from '@nestjs/cqrs';
+import { ReservationCreatedHandler } from '../events/handlers/OnReservationCreatedHandler';
+import { SqliteGetService } from '../services/repository/SqliteGetService';
+import { EventsModule } from '../events/eventsModule';
+import { AddInvoiceItemHandler } from '../events/handlers/CreateInvoiceHandler';
 import { GetReservationDetailController } from './controllers/get-reservation-detail/get-reservation-detail.controller';
 import { GetReservationDetailService } from './services/get-reservation-detail/get-reservation-detail.service';
-import {SqliteGetReservationDetail} from "./repository/SqliteGetReservationDetail";
-import {SeasonModule} from "../seasons/season.module";
+import { SqliteGetReservationDetail } from './repository/SqliteGetReservationDetail';
+import { SeasonModule } from '../seasons/season.module';
 
 @Module({
-  imports:[CqrsModule,BillingModule,SeasonModule],
-  providers: [CreateReservationService, EditReservationService, DeleteReservationService, GetReservationService, GetCurrentReservationService,
+  imports: [CqrsModule, EventsModule, SeasonModule],
+  providers: [
+    CreateReservationService,
+    EditReservationService,
+    DeleteReservationService,
+    GetReservationService,
     {
       provide: 'GET_RESERVATION_DAO',
-      useClass:SqliteGetReservation
+      useClass: SqliteGetReservation,
     },
     {
-      provide:'GET_RESERVATIONS_DAO',
-      useClass:SqliteGetCurrentReservation
+      provide: 'GET_SHADOW_DAO',
+      useClass: SqliteShadowGetById,
     },
     {
-      provide:'CREATE_RESERVATION_DAO',
-      useClass:SqliteCreateReservation
+      provide: 'GET_RESERVATIONS_DAO',
+      useClass: SqliteGetCurrentReservation,
+    },
+    {
+      provide: 'CREATE_RESERVATION_DAO',
+      useClass: SqliteCreateReservation,
     },
     {
       provide: 'UPDATE_RESERVATION_DAO',
-      useClass:SqliteUpdateReservation
+      useClass: SqliteUpdateReservation,
     },
     {
       provide: 'DELETE_RESERVATION_DAO',
-      useClass: SqliteDeleteReservation
+      useClass: SqliteDeleteReservation,
     },
     {
       provide: 'GET_CLIENT_INTERFACE',
@@ -68,31 +74,37 @@ import {SeasonModule} from "../seasons/season.module";
       useClass: SqliteGetActiveReservation,
     },
     {
-      provide:'GET_RESERVATIONS_BY_SHADOW_INTERFACE',
-      useClass:SqliteGetReservationsByShadowId,
+      provide: 'GET_RESERVATIONS_BY_SHADOW_INTERFACE',
+      useClass: SqliteGetReservationsByShadowId,
     },
     {
-      provide:'GET_RESERVATION_CLIENT_DAO',
-      useClass: SqliteGetReservationWithClient
-
+      provide: 'GET_RESERVATION_CLIENT_DAO',
+      useClass: SqliteGetReservationWithClient,
     },
     {
-      provide:'GET_SERVICE_INTERFACE',
-      useClass: SqliteGetService
+      provide: 'GET_SERVICE_INTERFACE',
+      useClass: SqliteGetService,
     },
     {
-        provide:'EVENT',
-        useClass: NestEventPublisherAdapter
+      provide: 'EVENT',
+      useClass: NestEventPublisherAdapter,
     },
     {
-      provide:'GET_DETAILS',
-      useClass: SqliteGetReservationDetail
+      provide: 'GET_DETAILS',
+      useClass: SqliteGetReservationDetail,
     },
-      ReservationCreatedHandler,
-      AddInvoiceItemHandler,
+    ReservationCreatedHandler,
+    AddInvoiceItemHandler,
     GetActiveReservationsService,
     GetReservationDetailService,
   ],
-  controllers: [GetCurrentReservationsController, EditReservationController, CreateReservationController, DeleteReservationController, GetReservationController, GetActiveReservationsController, GetReservationDetailController]
+  controllers: [
+    EditReservationController,
+    CreateReservationController,
+    DeleteReservationController,
+    GetReservationController,
+    GetActiveReservationsController,
+    GetReservationDetailController,
+  ],
 })
 export class ReservationModule {}

@@ -1,12 +1,17 @@
-import {DeleteClientDAO} from "../../../core/Client/Model/DAO/DeleteClientDAO";
-import {Inject, Injectable} from "@nestjs/common";
-import {DB_PROVIDER} from "../../database/DBPROVIDER";
+import { DeleteClientDAO } from '../../../core/Client/Model/DAO/DeleteClientDAO';
+import { Injectable } from '@nestjs/common';
+import { Client } from '../../../core/Client/Model/Client';
+import { SqliteBaseClass } from '../../database/SqliteBaseClass';
 @Injectable()
-export class SqliteClientDelete implements DeleteClientDAO {
-
-    constructor(@Inject(DB_PROVIDER) private readonly db: any) {}
-    delete(id: string): Promise<boolean> {
-        const result = this.db.prepare('DELETE FROM Clients WHERE id = ?').run(id);
-        return result.changes;
-    }
+export class SqliteClientDelete
+  extends SqliteBaseClass
+  implements DeleteClientDAO
+{
+  async delete(client: Client): Promise<void> {
+    const sql = `UPDATE Clients SET deleted_at = @date WHERE id = @id`;
+    this.getDb().prepare(sql).run({
+      date: client.getSoftDelete().value!.toISOString(),
+      id: client.getId().value,
+    });
+  }
 }

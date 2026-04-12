@@ -1,3 +1,5 @@
+import { Shadow } from '../Shadow';
+
 export interface DeleteShadowDAO {
-    delete(id: string): Promise<boolean>;
+  delete(entity: Shadow): Promise<void>;
 }

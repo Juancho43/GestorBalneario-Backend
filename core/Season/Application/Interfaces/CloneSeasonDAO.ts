@@ -1,5 +1,5 @@
-import {CloneSeasonDTO} from "../DTO/CloneSeasonDTO";
+import { CloneSeasonDTO } from '../DTO/CloneSeasonDTO';
 
-export interface CloneSeasonDAO{
-    save(dto: CloneSeasonDTO) : Promise<void>
+export interface CloneSeasonDAO {
+  save(dto: CloneSeasonDTO): Promise<void>;
 }

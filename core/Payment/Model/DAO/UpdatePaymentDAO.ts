@@ -1,5 +1,5 @@
-import {Payment} from "../Payment";
+import { Payment } from '../Payment';
 
-export interface UpdatePaymentDAO{
-    save(payment: Payment): Promise<boolean>;
+export interface UpdatePaymentDAO {
+  update(payment: Payment): Promise<void>;
 }

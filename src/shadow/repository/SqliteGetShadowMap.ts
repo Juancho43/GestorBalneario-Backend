@@ -1,15 +1,18 @@
-import {Injectable} from "@nestjs/common";
-import {SqliteBaseClass} from "../../database/SqliteBaseClass";
-import {ShadowMapDAO} from "../../../core/Shadow/Application/Interfaces/ShadowMapDAO";
-import { ShadowMapDTO } from "core/Shadow/Application/Response/ShadowMapDTO";
-import {ShadowResponse} from "../../../core/Shadow/Application/Response/ShadowResponse";
-import {ReservationResponse} from "../../../core/Reservation/Application/DTO/ReservationResponse";
-import {ClientResponse} from "../../../core/Client/Application/DTO/ClientResponse";
+import { Injectable } from '@nestjs/common';
+import { SqliteBaseClass } from '../../database/SqliteBaseClass';
+import { ShadowMapDAO } from '../../../core/Shadow/Application/Interfaces/ShadowMapDAO';
+import { ShadowMapDTO } from 'core/Shadow/Application/Response/ShadowMapDTO';
+import { ShadowResponse } from '../../../core/Shadow/Application/Response/ShadowResponse';
+import { ReservationResponse } from '../../../core/Reservation/Application/DTO/ReservationResponse';
+import { ClientResponse } from '../../../core/Client/Application/DTO/ClientResponse';
 
 @Injectable()
-export class SqliteGetShadowMap extends SqliteBaseClass implements ShadowMapDAO {
-    async get(seasonId: string): Promise<ShadowMapDTO> {
-        const sql = `
+export class SqliteGetShadowMap
+  extends SqliteBaseClass
+  implements ShadowMapDAO
+{
+  async get(seasonId: string): Promise<ShadowMapDTO> {
+    const sql = `
             SELECT
                 s.id AS id,
                 s.identifier,
@@ -29,52 +32,58 @@ export class SqliteGetShadowMap extends SqliteBaseClass implements ShadowMapDAO 
                      LEFT JOIN Clients c ON r.clientId = c.id
            WHERE ss.seasonId = @seasonId
         `;
-        const results = this.getDb().prepare(sql).all({seasonId:seasonId}) as any;
-        return this.toDTO(results)    ;
-    }
-    private toDTO(rows: any[]): ShadowMapDTO {
-        const mapResponse = new ShadowMapDTO();
-        mapResponse.map = []; // Inicializamos el array de resultados
+    const results = this.getDb()
+      .prepare(sql)
+      .all({ seasonId: seasonId }) as any;
+    return this.toDTO(results);
+  }
+  private toDTO(rows: any[]): ShadowMapDTO {
+    const mapResponse = new ShadowMapDTO();
+    mapResponse.map = []; // Inicializamos el array de resultados
 
-        rows.forEach(row => {
-            // 1. Construimos el objeto de la Sombra (siempre existe)
-            const shadow: ShadowResponse = {
-                id: row.id, // Asegúrate que este sea s.id en el SQL
-                identifier: row.identifier,
-                type: row.type,
-                coords: {
-                    x: row.x,
-                    y: row.y
-                },
-                state: row.reservationId ? 'occupied' : 'available'
-            };
+    rows.forEach((row) => {
+      // 1. Construimos el objeto de la Sombra (siempre existe)
+      const shadow: ShadowResponse = {
+        id: row.id, // Asegúrate que este sea s.id en el SQL
+        identifier: row.identifier,
+        type: row.type,
+        coords: {
+          x: row.x,
+          y: row.y,
+        },
+        state: row.reservationId ? 'occupied' : 'available',
+      };
 
-            // 2. Construimos la Reserva (solo si existe shadowId en la fila)
-            const reservation: ReservationResponse | undefined = row.reservationId ? {
-                id: row.reservationId, // El ID de la reserva
-                dates: {
-                    checkIn: row.checkIn,
-                    checkOut: row.checkOut,
-                },
-                duration: 0,
-            } : undefined;
+      // 2. Construimos la Reserva (solo si existe shadowId en la fila)
+      const reservation: ReservationResponse | undefined = row.reservationId
+        ? {
+            id: row.reservationId, // El ID de la reserva
+            dates: {
+              checkIn: row.checkIn,
+              checkOut: row.checkOut,
+            },
+            duration: 0,
+          }
+        : undefined;
 
-            // 3. Construimos el Cliente (solo si existe clientId en la fila)
-            const client: ClientResponse | undefined = row.clientId ? {
-                id: row.clientId,
-                name: row.name,
-                phone: row.phone,
-                email: row.email
-            } : undefined;
+      // 3. Construimos el Cliente (solo si existe clientId en la fila)
+      const client: ClientResponse | undefined = row.clientId
+        ? {
+            id: row.clientId,
+            name: row.name,
+            phone: row.phone,
+            email: row.email,
+          }
+        : undefined;
 
-            // 4. Agregamos al mapa general
-            mapResponse.map.push({
-                shadow,
-                reservation,
-                client
-            });
-        });
+      // 4. Agregamos al mapa general
+      mapResponse.map.push({
+        shadow,
+        reservation,
+        client,
+      });
+    });
 
-        return mapResponse;
-    }
+    return mapResponse;
+  }
 }

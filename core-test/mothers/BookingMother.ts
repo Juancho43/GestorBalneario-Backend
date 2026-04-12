@@ -1,13 +1,14 @@
 // test/mothers/BookingMother.ts
 
-import {Booking} from "../../core/Reservation/Model/Booking";
+import { Booking } from '../../core/Reservation/Model/Booking';
 
 export class BookingMother {
-  static create(overrides: Partial<{
-    checkIn: Date;
-    checkOut: Date;
-  }> = {}): Booking {
-
+  static create(
+    overrides: Partial<{
+      checkIn: Date;
+      checkOut: Date;
+    }> = {},
+  ): Booking {
     // Default: Una semana de reserva empezando hoy
     const defaultCheckIn = new Date();
     const defaultCheckOut = new Date();

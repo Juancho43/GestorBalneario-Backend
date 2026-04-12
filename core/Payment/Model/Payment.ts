@@ -1,54 +1,84 @@
-import {PaymentType} from "./PaymentType";
-import {StringObject} from "../../common/Model/StringObject";
-import {UUID} from "../../common/Model/UUID";
-import {Money} from "./Money";
-import {Timestamps} from "../../common/Model/Timestamps";
-import {SoftDelete} from "../../common/Model/SoftDelete";
-import {type} from "node:os";
-import {timestamp} from "rxjs";
-export class Payment {
-    private constructor(
-        private readonly _id: UUID,
-        private readonly _date: Date,
-        private readonly _type: PaymentType,
-        private readonly _money: Money,
-        private readonly _description: StringObject,
-        private readonly _timestamp: Timestamps,
-        private readonly _softDelete: SoftDelete,
-    ) {
-    }
+import { PaymentType } from './PaymentType';
+import { StringObject } from '../../common/Model/StringObject';
+import { UUID } from '../../common/Model/UUID';
+import { Money } from './Money';
+import { Timestamps } from '../../common/Model/Timestamps';
+import { SoftDelete } from '../../common/Model/SoftDelete';
+import { Entity } from '../../common/Model/Entity';
+export class Payment implements Entity {
+  private constructor(
+    private readonly _id: UUID,
+    private readonly _date: Date,
+    private readonly _type: PaymentType,
+    private readonly _money: Money,
+    private readonly _description: StringObject,
+    private readonly _timestamp: Timestamps,
+    private readonly _softDelete: SoftDelete,
+  ) {}
 
-    static create(
-        id: UUID,
-        date: Date,
-        type: PaymentType,
-        money: Money,
-        description: StringObject,
-        timestamp: Timestamps,
-        softDelete: SoftDelete,
-    ): Payment {
-        return new Payment(id, date, type, money,description,timestamp,softDelete);
-    }
+  delete(): void {
+    this.softDelete.apply();
+  }
+  update(): void {
+    this.timestamp.update();
+  }
 
-    get finalAmount(): number {
-        return this._money.finalAmount;
-    }
+  getId(): UUID {
+    return this._id;
+  }
+  getTimestamps(): Timestamps {
+    return this._timestamp;
+  }
+  getSoftDelete(): SoftDelete {
+    return this._softDelete;
+  }
 
-    get money(): Money {
-        return this._money;
-    }
+  static create(
+    id: UUID,
+    date: Date,
+    type: PaymentType,
+    money: Money,
+    description: StringObject,
+    timestamp: Timestamps,
+    softDelete: SoftDelete,
+  ): Payment {
+    return new Payment(
+      id,
+      date,
+      type,
+      money,
+      description,
+      timestamp,
+      softDelete,
+    );
+  }
 
-    get id(): UUID { return this._id; }
-    get date(): Date { return this._date; }
-    get type(): PaymentType { return this._type; }
-    get description(): StringObject | undefined { return this._description; }
+  get finalAmount(): number {
+    return this._money.finalAmount;
+  }
 
+  get money(): Money {
+    return this._money;
+  }
 
-    get timestamp(): Timestamps {
-        return this._timestamp;
-    }
+  get id(): UUID {
+    return this._id;
+  }
+  get date(): Date {
+    return this._date;
+  }
+  get type(): PaymentType {
+    return this._type;
+  }
+  get description(): StringObject | undefined {
+    return this._description;
+  }
 
-    get softDelete(): SoftDelete {
-        return this._softDelete;
-    }
+  get timestamp(): Timestamps {
+    return this._timestamp;
+  }
+
+  get softDelete(): SoftDelete {
+    return this._softDelete;
+  }
 }
