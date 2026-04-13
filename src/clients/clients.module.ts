@@ -18,6 +18,8 @@ import { SqliteClientDetails } from './repository/SqliteClientDetails';
 import { ClientSearcherController } from './controllers/client-searcher/client-searcher.controller';
 import { ClientSearcherService } from './services/client-searcher/client-searcher.service';
 import { SqliteClientSearch } from './repository/SqliteClientSearch';
+import { GetClientsHistoryController } from './controllers/get-clients-history/get-clients-history.controller';
+import {GetClientsHistoryService} from "./services/get-clients-history/get-clients-history.service";
 
 @Module({
   controllers: [
@@ -27,6 +29,7 @@ import { SqliteClientSearch } from './repository/SqliteClientSearch';
     DeleteClientController,
     ClientDetailsController,
     ClientSearcherController,
+    GetClientsHistoryController,
   ],
   providers: [
     GetClientService,
@@ -50,7 +53,7 @@ import { SqliteClientSearch } from './repository/SqliteClientSearch';
       useClass: SqliteClientGetOne,
     },
     {
-      provide: 'GET_CLIENTS_INTERFACE',
+      provide: 'GET_CLIENTS',
       useClass: SqliteClientGetMany,
     },
     {
@@ -63,6 +66,7 @@ import { SqliteClientSearch } from './repository/SqliteClientSearch';
     },
     ClientDetailsService,
     ClientSearcherService,
+    GetClientsHistoryService,
   ],
 })
 export class ClientsModule {}

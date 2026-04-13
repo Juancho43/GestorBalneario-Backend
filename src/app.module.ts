@@ -12,6 +12,7 @@ import { ServicesModule } from './services/services.module';
 import { SeasonModule } from './seasons/season.module';
 import { GetSeasonReservationsController } from './reservation/controllers/get-season-reservations/get-season-reservations.controller';
 import { GetSeasonReservationsService } from './reservation/services/services/get-season-reservations/get-season-reservations.service';
+import { GetSeasonsHistoryService } from './seasons/services/get-seasons-history/get-seasons-history.service';
 
 @Module({
   imports: [
@@ -26,6 +27,6 @@ import { GetSeasonReservationsService } from './reservation/services/services/ge
     SeasonModule,
   ],
   controllers: [AppController, GetSeasonReservationsController],
-  providers: [AppService, GetSeasonReservationsService],
+  providers: [AppService, GetSeasonReservationsService, ],
 })
 export class AppModule {}

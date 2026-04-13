@@ -1,5 +1,6 @@
 import { Season } from '../Season';
+import {GetSeasonsHistoryQuery} from "../../Application/Queries/GetSeasonsHistoryQuery";
 
 export interface GetSeasonsDAO {
-  get(): Promise<Season[]>;
+  get(query: GetSeasonsHistoryQuery): Promise<Season[]>;
 }

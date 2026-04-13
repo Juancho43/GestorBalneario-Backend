@@ -19,6 +19,7 @@ import { CloneSeasonService } from './services/clone-season/clone-season.service
 import { DeleteSeasonController } from './controllers/delete-season/delete-season.controller';
 import { EditSeasonController } from './controllers/edit-season/edit-season.controller';
 import { SeasonHistoryController } from './controllers/season-history/season-history.controller';
+import {GetSeasonsHistoryService} from "./services/get-seasons-history/get-seasons-history.service";
 
 @Module({
   controllers: [
@@ -60,10 +61,15 @@ import { SeasonHistoryController } from './controllers/season-history/season-his
       provide: 'GET_SEASON_DATA',
       useClass: SqliteGetSeasonShadowsServices,
     },
+    {
+      provide: 'GET_HISTORY',
+      useClass: SqliteGetSeasons
+    },
     CreateSeasonService,
     GetSeasonService,
     GetActiveSeasonService,
     SetActiveSeasonService,
+    GetSeasonsHistoryService,
     CloneSeasonService,
   ],
   exports: [GetActiveSeasonService],
