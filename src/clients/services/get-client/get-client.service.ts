@@ -17,7 +17,7 @@ export class GetClientService {
       return ClientResponse.create(await this.useCase.execute(query));
     } catch (error) {
       this.logger.error('Error getting shadow:', error);
-      throw error;
+      throw  error;
     }
   }
 }

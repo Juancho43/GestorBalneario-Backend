@@ -20,7 +20,7 @@ export class GetSeasonService {
       return SeasonResponse.create(await this.useCase.execute(command));
     } catch (error) {
       this.logger.error(error);
-      return error;
+      throw  error;
     }
   }
 }

@@ -1,8 +1,6 @@
 import {
   Controller,
   Get,
-  HttpException,
-  HttpStatus,
   Inject,
   Param,
 } from '@nestjs/common';
@@ -10,9 +8,11 @@ import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { SeasonResponse } from '../../../../core/Season/Application/DTO/SeasonResponse';
 import { GetSeasonService } from '../../services/get-season/get-season.service';
 import { GetByIdQuery } from '../../../../core/common/Application/GetByIdQuery';
+import {CreateAppResponse} from "../../../../core/common/Application/CreateAppResponse";
+import {IController} from "../../../../core/common/Application/IController";
 @ApiTags('Season')
 @Controller('season')
-export class GetSeasonController {
+export class GetSeasonController implements IController {
   constructor(@Inject() private service: GetSeasonService) {}
 
   @Get('get/:id')
@@ -31,9 +31,10 @@ export class GetSeasonController {
   })
   async execute(@Param('id') id: string) {
     try {
-      return await this.service.execute(new GetByIdQuery(id));
+      const data = await this.service.execute( new GetByIdQuery(id));
+      return  CreateAppResponse.successResponse('The season has been retrieved.',data);
     } catch (error) {
-      return new HttpException(error.message, HttpStatus.BAD_REQUEST);
+      return CreateAppResponse.errorResponse(error)
     }
   }
 }
