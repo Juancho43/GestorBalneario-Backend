@@ -1,5 +1,5 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { DeleteInvoiceController } from './delete-invoice.controller';
+import {Test, TestingModule} from '@nestjs/testing';
+import {DeleteInvoiceController} from './delete-invoice.controller';
 
 describe('DeleteInvoiceController', () => {
   let controller: DeleteInvoiceController;

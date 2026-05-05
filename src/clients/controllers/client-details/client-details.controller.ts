@@ -1,31 +1,23 @@
-import {
-  Controller,
-  Get,
-  HttpException,
-  HttpStatus,
-  Inject,
-  Param,
-  Query,
-} from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
-import { ClientDetailsService } from '../../services/client-details/client-details.service';
-import { GetClientQuery } from '../../../../core/Client/Application/Queries/GetClientQuery';
-import { ClientDetailQuery } from '../../../../core/Client/Application/Queries/ClientDetailQuery';
+import {Controller, Get, HttpException, HttpStatus, Inject, Param, Query,} from '@nestjs/common';
+import {ApiTags} from '@nestjs/swagger';
+import {ClientDetailsService} from '../../services/client-details/client-details.service';
+import {ClientDetailQuery} from '../../../../core/Client/Application/Queries/ClientDetailQuery';
+import {CreateAppResponse} from "../../../../core/common/Application/CreateAppResponse";
+import {IController} from "../../../../core/common/Application/IController";
+
 @ApiTags('Frontend')
 @Controller('client')
-export class ClientDetailsController {
+export class ClientDetailsController implements IController {
   constructor(@Inject() private service: ClientDetailsService) {}
 
   @Get('detail/:id')
-  execute(
-    @Param('id') id: string,
-    @Query('page') page: number,
-    @Query('limit') limit: number,
+  async execute(
+      @Param('id') id: string,
+      @Query('page') page: number=0,
+      @Query('limit') limit: number = 10,
   ) {
-    try {
-      return this.service.execute(new ClientDetailQuery(page, limit, id));
-    } catch (error) {
-      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
-    }
+      const data = await this.service.execute(new ClientDetailQuery(page, limit, id))
+      return CreateAppResponse.successResponse('The client details have been retrieved successfully', data);
+
   }
 }

@@ -1,5 +1,5 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { SeasonHistoryController } from './season-history.controller';
+import {Test, TestingModule} from '@nestjs/testing';
+import {SeasonHistoryController} from './season-history.controller';
 
 describe('SeasonHistoryController', () => {
   let controller: SeasonHistoryController;

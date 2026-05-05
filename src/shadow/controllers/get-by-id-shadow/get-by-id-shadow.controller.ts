@@ -1,18 +1,14 @@
-import {
-  Controller,
-  Get,
-  HttpException,
-  HttpStatus,
-  Inject,
-  Param,
-} from '@nestjs/common';
-import { GetShadowByIdQuery } from '../../../../core/Shadow/Application/Queries/GetShadowByIdQuery';
-import { GetShadowService } from '../../services/get-shadow/get-shadow.service';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {Controller, Get, Inject, Param} from '@nestjs/common';
+import {GetShadowService} from '../../services/get-shadow/get-shadow.service';
+import {ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger';
+import {CreateAppResponse} from '../../../../core/common/Application/CreateAppResponse';
+import {IController} from '../../../../core/common/Application/IController';
+import {ShadowResponse} from '../../../../core/Shadow/Application/Response/ShadowResponse';
+import {GetByIdQuery} from '../../../../core/common/Application/GetByIdQuery';
 
 @ApiTags('Shadow')
 @Controller('shadow')
-export class GetByIdShadowController {
+export class GetByIdShadowController implements IController {
   constructor(@Inject() private service: GetShadowService) {}
   @Get('get/:id')
   @ApiOperation({
@@ -25,11 +21,11 @@ export class GetByIdShadowController {
     description: 'The shadow has not been retrieved.',
   })
   async execute(@Param('id') id: string) {
-    try {
-      const query = new GetShadowByIdQuery(id);
-      return await this.service.execute(query);
-    } catch (error) {
-      return new HttpException(error.message, HttpStatus.BAD_REQUEST);
-    }
+      const query = new GetByIdQuery(id);
+      const data = ShadowResponse.create(await this.service.execute(query));
+      return CreateAppResponse.successResponse(
+        'Tha shadow has been retrieved',
+        data,
+      );
   }
 }

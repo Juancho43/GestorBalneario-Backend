@@ -1,21 +1,15 @@
-import {
-  Body,
-  Controller,
-  HttpException,
-  HttpStatus,
-  Inject,
-  Put,
-  UseGuards,
-} from '@nestjs/common';
-import { EditShadowService } from '../../services/edit-shadow/edit-shadow.service';
-import { UpdateShadowCommand } from '../../../../core/Shadow/Application/Command/UpdateShadowCommand';
-import { ApiHeader, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { ShadowResponse } from '../../../../core/Shadow/Application/Response/ShadowResponse';
-import { CurrentSeasonGuard } from '../../../guards/current-season.guard';
+import {Body, Controller, Inject, Put, UseGuards} from '@nestjs/common';
+import {EditShadowService} from '../../services/edit-shadow/edit-shadow.service';
+import {UpdateShadowCommand} from '../../../../core/Shadow/Application/Command/UpdateShadowCommand';
+import {ApiHeader, ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger';
+import {ShadowResponse} from '../../../../core/Shadow/Application/Response/ShadowResponse';
+import {CurrentSeasonGuard} from '../../../guards/current-season.guard';
+import {IController} from '../../../../core/common/Application/IController';
+import {CreateAppResponse} from '../../../../core/common/Application/CreateAppResponse';
 
 @ApiTags('Shadow')
 @Controller('shadow')
-export class EditShadowController {
+export class EditShadowController implements IController {
   constructor(@Inject() private service: EditShadowService) {}
   @Put('update')
   @UseGuards(CurrentSeasonGuard)
@@ -39,10 +33,10 @@ export class EditShadowController {
     description: 'The shadow has not been updated. Server Error',
   })
   async execute(@Body() request: UpdateShadowCommand) {
-    try {
-      return await this.service.execute(request);
-    } catch (error) {
-      return new HttpException(error.message, HttpStatus.BAD_REQUEST);
-    }
+      const data = ShadowResponse.create(await this.service.execute(request));
+      return CreateAppResponse.successResponse(
+        'The shadow has been updated',
+        data,
+      );
   }
 }

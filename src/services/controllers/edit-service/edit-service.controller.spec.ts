@@ -1,5 +1,5 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { EditServiceController } from './edit-service.controller';
+import {Test, TestingModule} from '@nestjs/testing';
+import {EditServiceController} from './edit-service.controller';
 
 describe('EditServiceController', () => {
   let controller: EditServiceController;

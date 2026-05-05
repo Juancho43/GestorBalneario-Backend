@@ -1,20 +1,15 @@
-import {
-  Body,
-  Controller,
-  HttpException,
-  HttpStatus,
-  Inject,
-  Post,
-  UseGuards,
-} from '@nestjs/common';
-import { ApiHeader, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { CreateServiceCommand } from '../../../../core/Service/Application/Commands/CreateServiceCommand';
-import { CreateServiceService } from '../../service/create-service/create-service.service';
-import { ServiceResponse } from '../../../../core/Service/Application/DTO/ServiceResponse';
-import { CurrentSeasonGuard } from '../../../guards/current-season.guard';
+import {Body, Controller, HttpException, Inject, Post, UseGuards} from '@nestjs/common';
+import {ApiHeader, ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger';
+import {CreateServiceCommand} from '../../../../core/Service/Application/Commands/CreateServiceCommand';
+import {CreateServiceService} from '../../service/create-service/create-service.service';
+import {ServiceResponse} from '../../../../core/Service/Application/DTO/ServiceResponse';
+import {CurrentSeasonGuard} from '../../../guards/current-season.guard';
+import {IController} from '../../../../core/common/Application/IController';
+import {CreateAppResponse} from '../../../../core/common/Application/CreateAppResponse';
+
 @ApiTags('Service')
 @Controller('service')
-export class CreateServiceController {
+export class CreateServiceController implements IController {
   constructor(@Inject() private service: CreateServiceService) {}
   @Post('create')
   @UseGuards(CurrentSeasonGuard)
@@ -41,10 +36,11 @@ export class CreateServiceController {
     description: 'The service has not been created. Server Error',
   })
   async execute(@Body() request: CreateServiceCommand) {
-    try {
-      return await this.service.execute(request);
-    } catch (error) {
-      return new HttpException(error.message, HttpStatus.BAD_REQUEST);
-    }
+      const data = ServiceResponse.create(await this.service.execute(request));
+      return CreateAppResponse.successResponse(
+        'The service has been created',
+        data,
+        201,
+      );
   }
 }

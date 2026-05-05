@@ -1,17 +1,14 @@
-import {
-  Controller,
-  Delete,
-  HttpException,
-  Inject,
-  Param,
-} from '@nestjs/common';
-import { DeleteReservationService } from '../../services/delete-reservation/delete-reservation.service';
-import { DeleteReservationCommand } from '../../../../core/Reservation/Application/Commands/DeleteReservationCommand';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {Controller, Delete, HttpException, Inject, Param,} from '@nestjs/common';
+import {DeleteReservationService} from '../../services/delete-reservation/delete-reservation.service';
+import {DeleteReservationCommand} from '../../../../core/Reservation/Application/Commands/DeleteReservationCommand';
+import {ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger';
+import {IController} from "../../../../core/common/Application/IController";
+import {DeleteCommand} from "../../../../core/common/Application/DeleteCommand";
+import {CreateAppResponse} from "../../../../core/common/Application/CreateAppResponse";
 
 @ApiTags('Reservation')
 @Controller('reservation')
-export class DeleteReservationController {
+export class DeleteReservationController implements IController {
   constructor(@Inject() private service: DeleteReservationService) {}
   @Delete('delete/:id')
   @ApiOperation({
@@ -27,11 +24,11 @@ export class DeleteReservationController {
     description: 'The reservation has not been deleted. Server Error',
   })
   async execute(@Param('id') request) {
-    try {
-      const command = new DeleteReservationCommand(request);
-      return await this.service.execute(command);
-    } catch (error) {
-      return new HttpException(error.message, 500);
-    }
+      await this.service.execute(new DeleteCommand(request));
+      return CreateAppResponse.successResponse(
+          'The reservation has been deleted.',
+          null,
+          204
+      )
   }
 }

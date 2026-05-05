@@ -1,15 +1,11 @@
-import {
-  Controller,
-  Get,
-  Inject,
-  Param,
-} from '@nestjs/common';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { SeasonResponse } from '../../../../core/Season/Application/DTO/SeasonResponse';
-import { GetSeasonService } from '../../services/get-season/get-season.service';
-import { GetByIdQuery } from '../../../../core/common/Application/GetByIdQuery';
-import {CreateAppResponse} from "../../../../core/common/Application/CreateAppResponse";
-import {IController} from "../../../../core/common/Application/IController";
+import {Controller, Get, Inject, Param} from '@nestjs/common';
+import {ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger';
+import {SeasonResponse} from '../../../../core/Season/Application/DTO/SeasonResponse';
+import {GetSeasonService} from '../../services/get-season/get-season.service';
+import {GetByIdQuery} from '../../../../core/common/Application/GetByIdQuery';
+import {CreateAppResponse} from '../../../../core/common/Application/CreateAppResponse';
+import {IController} from '../../../../core/common/Application/IController';
+
 @ApiTags('Season')
 @Controller('season')
 export class GetSeasonController implements IController {
@@ -30,11 +26,12 @@ export class GetSeasonController implements IController {
     description: 'The season has not been retrieved. Server Error',
   })
   async execute(@Param('id') id: string) {
-    try {
-      const data = await this.service.execute( new GetByIdQuery(id));
-      return  CreateAppResponse.successResponse('The season has been retrieved.',data);
-    } catch (error) {
-      return CreateAppResponse.errorResponse(error)
-    }
+      const data = SeasonResponse.create(
+        await this.service.execute(new GetByIdQuery(id)),
+      );
+      return CreateAppResponse.successResponse(
+        'The season has been retrieved.',
+        data,
+      );
   }
 }

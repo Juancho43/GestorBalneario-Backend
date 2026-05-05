@@ -1,5 +1,5 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { DeleteServiceController } from './delete-service.controller';
+import {Test, TestingModule} from '@nestjs/testing';
+import {DeleteServiceController} from './delete-service.controller';
 
 describe('DeleteServiceController', () => {
   let controller: DeleteServiceController;

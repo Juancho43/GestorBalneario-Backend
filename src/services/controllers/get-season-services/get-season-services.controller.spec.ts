@@ -1,5 +1,5 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { GetSeasonServicesController } from './get-season-services.controller';
+import {Test, TestingModule} from '@nestjs/testing';
+import {GetSeasonServicesController} from './get-season-services.controller';
 
 describe('GetSeasonServicesController', () => {
   let controller: GetSeasonServicesController;

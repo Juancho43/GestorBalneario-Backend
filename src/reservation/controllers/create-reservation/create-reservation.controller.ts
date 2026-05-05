@@ -1,20 +1,15 @@
-import {
-  Body,
-  Controller,
-  HttpException,
-  HttpStatus,
-  Inject,
-  Post,
-  UseGuards,
-} from '@nestjs/common';
-import { CreateReservationService } from '../../services/create-reservation/create-reservation.service';
-import { CreateReservationCommand } from '../../../../core/Reservation/Application/Commands/CreateReservationCommand';
-import { ApiHeader, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { ReservationResponse } from '../../../../core/Reservation/Application/DTO/ReservationResponse';
-import { CurrentSeasonGuard } from '../../../guards/current-season.guard';
+import {Body, Controller, Inject, Post, UseGuards,} from '@nestjs/common';
+import {CreateReservationService} from '../../services/create-reservation/create-reservation.service';
+import {CreateReservationCommand} from '../../../../core/Reservation/Application/Commands/CreateReservationCommand';
+import {ApiHeader, ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger';
+import {ReservationResponse} from '../../../../core/Reservation/Application/DTO/ReservationResponse';
+import {CurrentSeasonGuard} from '../../../guards/current-season.guard';
+import {CreateAppResponse} from '../../../../core/common/Application/CreateAppResponse';
+import {IController} from "../../../../core/common/Application/IController";
+
 @ApiTags('Reservation')
 @Controller('reservation')
-export class CreateReservationController {
+export class CreateReservationController implements IController {
   constructor(@Inject() private service: CreateReservationService) {}
   @Post('create')
   @UseGuards(CurrentSeasonGuard)
@@ -41,10 +36,13 @@ export class CreateReservationController {
     description: 'The reservation has not been created.',
   })
   async execute(@Body() request: CreateReservationCommand) {
-    try {
-      return await this.service.execute(request);
-    } catch (error) {
-      return new HttpException(error.message, HttpStatus.BAD_REQUEST);
-    }
+      const data = ReservationResponse.create(
+        await this.service.execute(request),
+      );
+      return CreateAppResponse.successResponse(
+        'Tha reservation has been created',
+        data,
+        201,
+      );
   }
 }

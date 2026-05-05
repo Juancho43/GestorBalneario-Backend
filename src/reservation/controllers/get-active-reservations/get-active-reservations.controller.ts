@@ -1,17 +1,13 @@
-import {
-  Controller,
-  Get,
-  HttpException,
-  HttpStatus,
-  Inject,
-} from '@nestjs/common';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { GetActiveReservationsService } from '../../services/get-active-reservations/get-active-reservations.service';
-import { ReservationResponse } from '../../../../core/Reservation/Application/DTO/ReservationResponse';
+import {Controller, Get, HttpException, HttpStatus, Inject,} from '@nestjs/common';
+import {ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger';
+import {GetActiveReservationsService} from '../../services/get-active-reservations/get-active-reservations.service';
+import {ReservationResponse} from '../../../../core/Reservation/Application/DTO/ReservationResponse';
+import {IController} from "../../../../core/common/Application/IController";
+import {CreateAppResponse} from "../../../../core/common/Application/CreateAppResponse";
 
 @ApiTags('Frontend')
 @Controller('reservation')
-export class GetActiveReservationsController {
+export class GetActiveReservationsController implements IController {
   constructor(@Inject() private service: GetActiveReservationsService) {}
 
   @Get('active')
@@ -28,10 +24,12 @@ export class GetActiveReservationsController {
     description: 'The reservations has not been retrieved.',
   })
   async execute() {
-    try {
-      return ReservationResponse.createList(await this.service.execute());
-    } catch (error) {
-      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
-    }
+
+      const data = ReservationResponse.createList(await this.service.execute());
+      return CreateAppResponse.successResponse(
+          'The reservations has been retrieved',
+          data,
+          200
+      )
   }
 }

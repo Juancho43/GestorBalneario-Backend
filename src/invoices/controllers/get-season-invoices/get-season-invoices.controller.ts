@@ -1,15 +1,11 @@
-import {
-  Controller,
-  Get,
-  HttpException,
-  HttpStatus,
-  Param,
-  Query,
-} from '@nestjs/common';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {Controller, Get, HttpException, HttpStatus, Param, Query,} from '@nestjs/common';
+import {ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger';
+import {CreateAppResponse} from "../../../../core/common/Application/CreateAppResponse";
+import {IController} from "../../../../core/common/Application/IController";
+
 @ApiTags('Frontend')
 @Controller('invoice')
-export class GetSeasonInvoicesController {
+export class GetSeasonInvoicesController implements IController {
   @Get('season/:id')
   @ApiOperation({
     summary: 'Gets invoices',
@@ -25,10 +21,8 @@ export class GetSeasonInvoicesController {
     @Query('page') page: number = 1,
     @Query('size') size: number = 10,
   ) {
-    try {
       // return await this.service.execute(null);
-    } catch (e) {
-      return new HttpException(e.message, HttpStatus.BAD_REQUEST);
-    }
+    const data = null;
+    return CreateAppResponse.successResponse('The invoices has been retrieved',data)
   }
 }

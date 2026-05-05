@@ -1,19 +1,14 @@
-import {
-  Body,
-  Controller,
-  HttpException,
-  HttpStatus,
-  Inject,
-  Post,
-} from '@nestjs/common';
-import { CreateClientService } from '../../services/create-client/create-client.service';
-import { CreateClientCommand } from '../../../../core/Client/Application/Commands/CreateClientCommand';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { ClientResponse } from '../../../../core/Client/Application/DTO/ClientResponse';
+import {Body, Controller, Inject, Post,} from '@nestjs/common';
+import {CreateClientService} from '../../services/create-client/create-client.service';
+import {CreateClientCommand} from '../../../../core/Client/Application/Commands/CreateClientCommand';
+import {ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger';
+import {ClientResponse} from '../../../../core/Client/Application/DTO/ClientResponse';
+import {IController} from '../../../../core/common/Application/IController';
+import {CreateAppResponse} from '../../../../core/common/Application/CreateAppResponse';
 
 @ApiTags('Client')
 @Controller('client')
-export class CreateClientController {
+export class CreateClientController implements IController {
   constructor(@Inject() private service: CreateClientService) {}
   @Post('create')
   @ApiOperation({
@@ -30,10 +25,11 @@ export class CreateClientController {
     description: 'The client has not been created. Server Error',
   })
   async execute(@Body() request: CreateClientCommand) {
-    try {
-      return await this.service.execute(request);
-    } catch (error) {
-      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
-    }
+      const data =ClientResponse.create(await this.service.execute(request));
+      return CreateAppResponse.successResponse(
+        'Tha client has been created',
+        data,
+        201,
+      );
   }
 }

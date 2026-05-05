@@ -1,16 +1,12 @@
-import {
-  Controller,
-  Get,
-  HttpException,
-  HttpStatus,
-  Param,
-} from '@nestjs/common';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { PaymentResponse } from '../../../../core/Payment/Application/DTO/PaymentResponse';
+import {Controller, Get, HttpException, HttpStatus, Param,} from '@nestjs/common';
+import {ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger';
+import {PaymentResponse} from '../../../../core/Payment/Application/DTO/PaymentResponse';
+import {CreateAppResponse} from "../../../../core/common/Application/CreateAppResponse";
+import {IController} from "../../../../core/common/Application/IController";
 
 @ApiTags('Payment')
 @Controller('payment')
-export class GetPaymentController {
+export class GetPaymentController implements IController{
   @Get('get/:id')
   @ApiOperation({
     summary: 'Get payment',
@@ -26,11 +22,11 @@ export class GetPaymentController {
     description: 'The payment has not been retrieved.',
   })
   async execute(@Param('id') id: string) {
-    try {
       // const query = new GetReservationQuery(id);
-      // return await this.service.execute(query);
-    } catch (error) {
-      return new HttpException(error.message, HttpStatus.BAD_REQUEST);
-    }
+      const data = null//await this.service.execute(query);
+      return CreateAppResponse.successResponse(
+          'The payment has been retrieved',
+          data
+      )
   }
 }

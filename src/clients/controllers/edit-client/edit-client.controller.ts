@@ -1,19 +1,14 @@
-import {
-  Body,
-  Controller,
-  HttpException,
-  HttpStatus,
-  Inject,
-  Put,
-} from '@nestjs/common';
-import { EditClientService } from '../../services/edit-client/edit-client.service';
-import { UpdateClientCommand } from '../../../../core/Client/Application/Commands/UpdateClientCommand';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { ClientResponse } from '../../../../core/Client/Application/DTO/ClientResponse';
+import {Body, Controller, Inject, Put,} from '@nestjs/common';
+import {EditClientService} from '../../services/edit-client/edit-client.service';
+import {UpdateClientCommand} from '../../../../core/Client/Application/Commands/UpdateClientCommand';
+import {ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger';
+import {ClientResponse} from '../../../../core/Client/Application/DTO/ClientResponse';
+import {CreateAppResponse} from "../../../../core/common/Application/CreateAppResponse";
+import {IController} from "../../../../core/common/Application/IController";
 
 @ApiTags('Client')
 @Controller('client')
-export class EditClientController {
+export class EditClientController implements IController {
   constructor(@Inject() private readonly service: EditClientService) {}
 
   @Put('update')
@@ -28,10 +23,11 @@ export class EditClientController {
     description: 'The client has not been updated. Server Error',
   })
   async execute(@Body() request: UpdateClientCommand) {
-    try {
-      return await this.service.execute(request);
-    } catch (error) {
-      return new HttpException(error.message, HttpStatus.BAD_REQUEST);
-    }
+      const data = ClientResponse.create(await this.service.execute(request));
+      return CreateAppResponse.successResponse(
+          'The client has been updated successfully.',
+          data,
+          201
+      )
   }
 }

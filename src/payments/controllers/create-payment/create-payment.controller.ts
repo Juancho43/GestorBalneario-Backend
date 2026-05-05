@@ -1,20 +1,15 @@
-import {
-  Body,
-  Controller,
-  HttpException,
-  HttpStatus,
-  Inject,
-  Post,
-  UseGuards,
-} from '@nestjs/common';
-import { ApiHeader, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { CreatePaymentCommand } from '../../../../core/Payment/Application/Command/CreatePaymentCommand';
-import { PaymentResponse } from '../../../../core/Payment/Application/DTO/PaymentResponse';
-import { CreatePaymentService } from '../../services/create-payment/create-payment.service';
-import { CurrentSeasonGuard } from '../../../guards/current-season.guard';
+import {Body, Controller, Inject, Post, UseGuards,} from '@nestjs/common';
+import {ApiHeader, ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger';
+import {CreatePaymentCommand} from '../../../../core/Payment/Application/Command/CreatePaymentCommand';
+import {PaymentResponse} from '../../../../core/Payment/Application/DTO/PaymentResponse';
+import {CreatePaymentService} from '../../services/create-payment/create-payment.service';
+import {CurrentSeasonGuard} from '../../../guards/current-season.guard';
+import {CreateAppResponse} from '../../../../core/common/Application/CreateAppResponse';
+import {IController} from '../../../../core/common/Application/IController';
+
 @ApiTags('Payment')
 @Controller('payment')
-export class CreatePaymentController {
+export class CreatePaymentController implements IController {
   constructor(@Inject() private service: CreatePaymentService) {}
   @Post('create')
   @UseGuards(CurrentSeasonGuard)
@@ -41,10 +36,11 @@ export class CreatePaymentController {
     description: 'The payment has not been created.',
   })
   async execute(@Body() request: CreatePaymentCommand) {
-    try {
-      return await this.service.execute(request);
-    } catch (error) {
-      return new HttpException(error.message, HttpStatus.BAD_REQUEST);
-    }
+      const data =PaymentResponse.create( await this.service.execute(request));
+      return CreateAppResponse.successResponse(
+        'Tha payment has been created',
+        data,
+        201,
+      );
   }
 }

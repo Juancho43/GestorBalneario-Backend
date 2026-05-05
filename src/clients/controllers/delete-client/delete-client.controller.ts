@@ -1,17 +1,13 @@
-import {
-  Controller,
-  Delete,
-  HttpException,
-  Inject,
-  Param,
-} from '@nestjs/common';
-import { DeleteClientService } from '../../services/delete-client/delete-client.service';
-import { DeleteCommand } from '../../../../core/common/Application/DeleteCommand';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {Controller, Delete, HttpException, Inject, Param,} from '@nestjs/common';
+import {DeleteClientService} from '../../services/delete-client/delete-client.service';
+import {DeleteCommand} from '../../../../core/common/Application/DeleteCommand';
+import {ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger';
+import {IController} from "../../../../core/common/Application/IController";
+import {CreateAppResponse} from "../../../../core/common/Application/CreateAppResponse";
 
 @ApiTags('Client')
 @Controller('client')
-export class DeleteClientController {
+export class DeleteClientController implements IController{
   constructor(@Inject() private service: DeleteClientService) {}
   @Delete('delete/:id')
   @ApiOperation({
@@ -24,11 +20,8 @@ export class DeleteClientController {
     description: 'The client has not been deleted. Server Error',
   })
   async execute(@Param('id') request: string) {
-    try {
       const command = new DeleteCommand(request);
-      return await this.service.execute(command);
-    } catch (error) {
-      return new HttpException(error.message, 500);
-    }
+      await this.service.execute(command);
+      return CreateAppResponse.successResponse('The client has been deleted',204)
   }
 }

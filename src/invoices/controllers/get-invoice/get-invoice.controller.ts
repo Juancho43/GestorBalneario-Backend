@@ -1,18 +1,14 @@
-import {
-  Controller,
-  Get,
-  HttpException,
-  HttpStatus,
-  Inject,
-  Param,
-} from '@nestjs/common';
-import { InvoiceResponse } from '../../../../core/Invoice/Application/DTO/InvoiceResponse';
-import { ApiTags, ApiResponse, ApiOperation } from '@nestjs/swagger';
-import { GetInvoiceService } from '../../services/get-invoice/get-invoice.service';
-import { GetByIdQuery } from '../../../../core/common/Application/GetByIdQuery';
+import {Controller, Get, Inject, Param} from '@nestjs/common';
+import {InvoiceResponse} from '../../../../core/Invoice/Application/DTO/InvoiceResponse';
+import {ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger';
+import {GetInvoiceService} from '../../services/get-invoice/get-invoice.service';
+import {GetByIdQuery} from '../../../../core/common/Application/GetByIdQuery';
+import {IController} from '../../../../core/common/Application/IController';
+import {CreateAppResponse} from '../../../../core/common/Application/CreateAppResponse';
+
 @ApiTags('Invoice')
 @Controller('invoice')
-export class GetInvoiceController {
+export class GetInvoiceController implements IController {
   constructor(@Inject() private service: GetInvoiceService) {}
   @Get('get/:id')
   @ApiOperation({
@@ -29,10 +25,10 @@ export class GetInvoiceController {
     description: 'The invoice has not been retrieved. Server Error',
   })
   async execute(@Param('id') id: string) {
-    try {
-      return await this.service.execute(new GetByIdQuery(id));
-    } catch (error) {
-      return new HttpException(error.message, HttpStatus.BAD_REQUEST);
-    }
+      const data = await this.service.execute(new GetByIdQuery(id));
+      return CreateAppResponse.successResponse(
+        'Tha invoice has been retrieved',
+        data,
+      );
   }
 }

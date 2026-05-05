@@ -1,5 +1,5 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { GetActiveReservationsController } from './get-active-reservations.controller';
+import {Test, TestingModule} from '@nestjs/testing';
+import {GetActiveReservationsController} from './get-active-reservations.controller';
 
 describe('GetActiveReservationsController', () => {
   let controller: GetActiveReservationsController;

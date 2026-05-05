@@ -1,26 +1,25 @@
-import {
-  Controller,
-  Get,
-  HttpException,
-  HttpStatus,
-  Param,
-  Query,
-} from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import {Controller, Get, HttpException, HttpStatus, Inject, Param, Query,} from '@nestjs/common';
+import {ApiTags} from '@nestjs/swagger';
+import {CreateAppResponse} from "../../../../core/common/Application/CreateAppResponse";
+import {IController} from "../../../../core/common/Application/IController";
+
 @ApiTags('Frontend')
 @Controller('reservation')
-export class GetSeasonReservationsController {
+export class GetSeasonReservationsController implements IController{
+  constructor(@Inject() private service) {
+  }
   @Get('season/:id')
   execute(
     @Param('id') id: string,
     @Query('page') page: number = 0,
     @Query('size') size: number = 10,
   ) {
-    try {
-      console.log('HI');
+      const data = null;
+      return CreateAppResponse.successResponse(
+          'Reservations has been retrieved',
+          data,
+          200
+      )
       // return this.service.execute(new GetSeasonServicesQuery(page,size,id));
-    } catch (error) {
-      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
-    }
   }
 }

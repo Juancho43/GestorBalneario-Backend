@@ -1,21 +1,15 @@
-import {
-  Body,
-  Controller,
-  HttpException,
-  HttpStatus,
-  Inject,
-  Post,
-  UseGuards,
-} from '@nestjs/common';
-import { CreateShadowCommand } from '../../../../core/Shadow/Application/Command/CreateShadowCommand';
-import { CreateShadowService } from '../../services/create-shadow/create-shadow.service';
-import { ApiHeader, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { ShadowResponse } from '../../../../core/Shadow/Application/Response/ShadowResponse';
-import { CurrentSeasonGuard } from '../../../guards/current-season.guard';
+import {Body, Controller, Inject, Post, UseGuards} from '@nestjs/common';
+import {CreateShadowCommand} from '../../../../core/Shadow/Application/Command/CreateShadowCommand';
+import {CreateShadowService} from '../../services/create-shadow/create-shadow.service';
+import {ApiHeader, ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger';
+import {ShadowResponse} from '../../../../core/Shadow/Application/Response/ShadowResponse';
+import {CurrentSeasonGuard} from '../../../guards/current-season.guard';
+import {IController} from '../../../../core/common/Application/IController';
+import {CreateAppResponse} from '../../../../core/common/Application/CreateAppResponse';
 
 @ApiTags('Shadow')
 @Controller('shadow')
-export class CreateShadowController {
+export class CreateShadowController implements IController {
   constructor(@Inject() private service: CreateShadowService) {}
   @Post('create')
   @UseGuards(CurrentSeasonGuard)
@@ -42,10 +36,11 @@ export class CreateShadowController {
     description: 'The shadow has not been created. Server Error',
   })
   async execute(@Body() request: CreateShadowCommand) {
-    try {
-      return await this.service.execute(request);
-    } catch (error) {
-      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
-    }
+      const data = ShadowResponse.create(await this.service.execute(request));
+      return CreateAppResponse.successResponse(
+        'Tha shadow has been created',
+        data,
+        201,
+      );
   }
 }

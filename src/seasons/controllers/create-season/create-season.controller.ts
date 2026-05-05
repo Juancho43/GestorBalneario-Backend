@@ -1,19 +1,14 @@
-import {
-  Body,
-  Controller,
-  HttpException,
-  HttpStatus,
-  Inject,
-  Post,
-} from '@nestjs/common';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { SeasonResponse } from '../../../../core/Season/Application/DTO/SeasonResponse';
-import { CreateSeasonCommand } from '../../../../core/Season/Application/Commads/CreateSeasonCommand';
-import { CreateSeasonService } from '../../services/create-season/create-season.service';
+import {Body, Controller, Inject, Post} from '@nestjs/common';
+import {ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger';
+import {SeasonResponse} from '../../../../core/Season/Application/DTO/SeasonResponse';
+import {CreateSeasonCommand} from '../../../../core/Season/Application/Commads/CreateSeasonCommand';
+import {CreateSeasonService} from '../../services/create-season/create-season.service';
+import {CreateAppResponse} from '../../../../core/common/Application/CreateAppResponse';
+import {IController} from '../../../../core/common/Application/IController';
 
 @ApiTags('Season')
 @Controller('season')
-export class CreateSeasonController {
+export class CreateSeasonController implements IController {
   constructor(@Inject() private service: CreateSeasonService) {}
   @Post('create')
   @ApiOperation({
@@ -29,11 +24,12 @@ export class CreateSeasonController {
     status: 500,
     description: 'The season has not been created. Server Error',
   })
-  execute(@Body() request: CreateSeasonCommand) {
-    try {
-      return this.service.execute(request);
-    } catch (error) {
-      return new HttpException(error.message, HttpStatus.BAD_REQUEST);
-    }
+  async execute(@Body() request: CreateSeasonCommand) {
+      const data = SeasonResponse.create(await this.service.execute(request));
+      return CreateAppResponse.successResponse(
+        'The season has been created',
+        data,
+        201,
+      );
   }
 }
