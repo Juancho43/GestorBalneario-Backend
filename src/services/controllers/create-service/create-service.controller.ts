@@ -1,4 +1,4 @@
-import {Body, Controller, HttpException, Inject, Post, UseGuards} from '@nestjs/common';
+import {Body, Controller, Inject, Post, UseGuards} from '@nestjs/common';
 import {ApiHeader, ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger';
 import {CreateServiceCommand} from '../../../../core/Service/Application/Commands/CreateServiceCommand';
 import {CreateServiceService} from '../../service/create-service/create-service.service';

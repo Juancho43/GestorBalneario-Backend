@@ -1,4 +1,4 @@
-import {Controller, Delete, HttpException, Inject, Param,} from '@nestjs/common';
+import {Controller, Delete, Inject, Param,} from '@nestjs/common';
 import {DeleteClientService} from '../../services/delete-client/delete-client.service';
 import {DeleteCommand} from '../../../../core/common/Application/DeleteCommand';
 import {ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger';

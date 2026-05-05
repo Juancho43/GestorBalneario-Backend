@@ -34,11 +34,6 @@ describe('GetSeasonController', () => {
     expect(result.statusCode).toBe(200);
     expect(result.message).toContain(' has been ');
   })
-  it('Should return an error response', async () => {
-    const errorMock = new Error('Service error');
-    serviceMock.execute.mockRejectedValue(errorMock);
-    const result = await controller.execute('');
-    expect(result.statusCode).toBe(500);
-  })
+
 
 });

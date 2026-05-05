@@ -1,4 +1,4 @@
-import {Controller, Get, HttpException, HttpStatus, Inject,} from '@nestjs/common';
+import {Controller, Get, Inject,} from '@nestjs/common';
 import {ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger';
 import {GetActiveReservationsService} from '../../services/get-active-reservations/get-active-reservations.service';
 import {ReservationResponse} from '../../../../core/Reservation/Application/DTO/ReservationResponse';

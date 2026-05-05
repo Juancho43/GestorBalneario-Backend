@@ -24,6 +24,7 @@ export class DeleteSeasonController implements IController {
       return CreateAppResponse.successResponse(
         'The season has been delete successfully',
         null,
+          204
       );
   }
 }

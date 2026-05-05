@@ -1,4 +1,4 @@
-import {Controller, Get, HttpException, HttpStatus, Param,} from '@nestjs/common';
+import {Controller, Get, Param,} from '@nestjs/common';
 import {ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger';
 import {PaymentResponse} from '../../../../core/Payment/Application/DTO/PaymentResponse';
 import {CreateAppResponse} from "../../../../core/common/Application/CreateAppResponse";
@@ -22,7 +22,6 @@ export class GetPaymentController implements IController{
     description: 'The payment has not been retrieved.',
   })
   async execute(@Param('id') id: string) {
-      // const query = new GetReservationQuery(id);
       const data = null//await this.service.execute(query);
       return CreateAppResponse.successResponse(
           'The payment has been retrieved',

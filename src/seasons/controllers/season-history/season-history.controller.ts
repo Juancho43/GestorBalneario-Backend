@@ -1,16 +1,27 @@
 import {Controller, Get, Inject, Query} from '@nestjs/common';
-import {ApiTags} from '@nestjs/swagger';
+import {ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger';
 import {GetSeasonsHistoryService} from '../../services/get-seasons-history/get-seasons-history.service';
 import {GetSeasonsHistoryQuery} from '../../../../core/Season/Application/Queries/GetSeasonsHistoryQuery';
 import {CreateAppResponse} from '../../../../core/common/Application/CreateAppResponse';
 import {IController} from '../../../../core/common/Application/IController';
 import {SeasonResponse} from "../../../../core/Season/Application/DTO/SeasonResponse";
-
 @ApiTags('Frontend')
 @Controller('season')
 export class SeasonHistoryController implements IController {
   constructor(@Inject() private service: GetSeasonsHistoryService) {}
 
+    @ApiOperation({
+        summary: 'Gets a list of seasons',
+        description: 'Gets a paginated list of seasons',
+    })
+    @ApiResponse({
+        status: 200,
+        description: 'The seasons has been retrieved.',
+    })
+    @ApiResponse({
+        status: 500,
+        description: 'The seasons has not been retrieved. Server Error',
+    })
   @Get('history')
   async execute(@Query('page') page: number, @Query('size') size: number) {
       const data =SeasonResponse.createList( await this.service.execute(

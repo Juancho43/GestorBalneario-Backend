@@ -1,0 +1,53 @@
+import {Provider} from '@nestjs/common';
+import {SEASON_TOKEN} from '../SEASON_TOKEN';
+import {GetSeason} from '../../../core/Season/Application/UseCase/CRUD/GetSeason';
+import {CreateSeason} from '../../../core/Season/Application/UseCase/CRUD/CreateSeason';
+import {UpdateSeason} from '../../../core/Season/Application/UseCase/CRUD/UpdateSeason';
+import {DeleteSeason} from '../../../core/Season/Application/UseCase/CRUD/DeleteSeason';
+import {GetActiveSeason} from '../../../core/Season/Application/UseCase/GetActiveSeason';
+import {GetSeasonsHistory} from '../../../core/Season/Application/UseCase/GetSeasonsHistory';
+
+export const SeasonUseCaseProviders: Provider[] = [
+  {
+    provide: SEASON_TOKEN.USECASE.GET_SEASON,
+    useFactory: (get) => {
+      return new GetSeason(get);
+    },
+    inject: [SEASON_TOKEN.DAOS.GET_SEASON],
+  },
+  {
+    provide: SEASON_TOKEN.USECASE.CREATE_SEASON,
+    useFactory: (dao) => {
+      return new CreateSeason(dao);
+    },
+    inject: [SEASON_TOKEN.DAOS.CREATE_SEASON_DAO],
+  },
+  {
+    provide: SEASON_TOKEN.USECASE.UPDATE_SEASON,
+    useFactory: (dao, get) => {
+      return new UpdateSeason(dao, get);
+    },
+    inject: [SEASON_TOKEN.DAOS.UPDATE_SEASON_DAO, SEASON_TOKEN.DAOS.GET_SEASON],
+  },
+  {
+    provide: SEASON_TOKEN.USECASE.DELETE_SEASON,
+    useFactory: (dao, get) => {
+      return new DeleteSeason(dao, get);
+    },
+    inject: [SEASON_TOKEN.DAOS.DELETE_SEASON_DAO, SEASON_TOKEN.DAOS.GET_SEASON],
+  },
+  {
+    provide: SEASON_TOKEN.USECASE.CURRENT_SEASON,
+    useFactory: (dao) => {
+      return new GetActiveSeason(dao);
+    },
+    inject: [SEASON_TOKEN.DAOS.CURRENT_SEASON_DAO],
+  },
+  {
+    provide: SEASON_TOKEN.USECASE.GET_HISTORY,
+    useFactory: (dao) => {
+      return new GetSeasonsHistory(dao);
+    },
+    inject: [SEASON_TOKEN.DAOS.GET_HISTORY],
+  },
+];

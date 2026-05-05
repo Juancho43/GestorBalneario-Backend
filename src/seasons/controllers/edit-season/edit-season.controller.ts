@@ -22,14 +22,10 @@ export class EditSeasonController implements IController {
     description: 'The season has not been updated. Server Error',
   })
   async execute(@Body() request: UpdateSeasonCommand) {
-    try {
       const data = await this.service.execute(request);
       return CreateAppResponse.successResponse(
         'The season has been updated successfully',
         data,
       );
-    } catch (error) {
-      return CreateAppResponse.errorResponse(error);
-    }
   }
 }

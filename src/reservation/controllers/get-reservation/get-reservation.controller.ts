@@ -1,6 +1,5 @@
-import {Controller, Get, HttpException, HttpStatus, Inject, Param,} from '@nestjs/common';
+import {Controller, Get, Inject, Param,} from '@nestjs/common';
 import {GetReservationService} from '../../services/get-reservation/get-reservation.service';
-import {GetReservationQuery} from '../../../../core/Reservation/Application/Queries/GetReservationQuery';
 import {ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger';
 import {ReservationResponse} from '../../../../core/Reservation/Application/DTO/ReservationResponse';
 import {IController} from "../../../../core/common/Application/IController";

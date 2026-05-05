@@ -71,9 +71,6 @@ export class Season implements Entity {
       softDelete,
     );
   }
-  toggleActive() {
-    this._isActive = !this._isActive;
-  }
   get isActive() {
     return this._isActive;
   }

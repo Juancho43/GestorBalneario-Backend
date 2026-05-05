@@ -24,7 +24,7 @@ export class ShadowMother {
       season: overrides.season ?? UUID.create(),
       identifier: overrides.identifier ?? StringObject.create('A-1'),
       type: overrides.type ?? ShadowType.create('Carpa'), // Asumiendo un enum o valor base
-      coords: overrides.coords ?? Coords.create(0, 0),
+      coords: overrides.coords ?? Coords.create(1, 1),
       timestamp: overrides.timestamp ?? Timestamps.create(),
       softDelete: overrides.softDelete ?? SoftDelete.empty(),
     };

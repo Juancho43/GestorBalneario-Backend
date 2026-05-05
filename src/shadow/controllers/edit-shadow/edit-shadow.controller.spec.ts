@@ -1,11 +1,9 @@
 import {Test, TestingModule} from '@nestjs/testing';
 import {EditShadowController} from './edit-shadow.controller';
 import {ShadowMother} from "../../../../core-test/mothers/ShadowMother";
-import {CreateShadowCommand} from "../../../../core/Shadow/Application/Command/CreateShadowCommand";
 import {Season} from "../../../../core/Season/Model/Season";
 import {UpdateShadowCommand} from "../../../../core/Shadow/Application/Command/UpdateShadowCommand";
 import {GetActiveSeasonService} from "../../../seasons/services/get-active-season/get-active-season.service";
-import {CreateShadowService} from "../../services/create-shadow/create-shadow.service";
 import {CurrentSeasonGuard} from "../../../guards/current-season.guard";
 import {EditShadowService} from "../../services/edit-shadow/edit-shadow.service";
 

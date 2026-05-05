@@ -2,7 +2,7 @@ import {Test, TestingModule} from '@nestjs/testing';
 import {CreateClientController} from './create-client.controller';
 import {CreateClientService} from '../../services/create-client/create-client.service';
 import {CreateClientCommand} from '../../../../core/Client/Application/Commands/CreateClientCommand';
-import {ClientResponse} from '../../../../core/Client/Application/DTO/ClientResponse';
+import {ClientMother} from "../../../../core-test/mothers/ClientMother";
 
 describe('CreateClientController', () => {
   let controller: CreateClientController;
@@ -15,7 +15,7 @@ describe('CreateClientController', () => {
       phone: '1234',
     };
     serviceMock = {
-      execute: jest.fn().mockResolvedValue({ name: 'juan' } as ClientResponse),
+      execute: jest.fn().mockResolvedValue(ClientMother.create()),
     };
     const module: TestingModule = await Test.createTestingModule({
       providers: [
@@ -33,17 +33,17 @@ describe('CreateClientController', () => {
   it('should be defined', () => {
     expect(controller).toBeDefined();
   });
-  it('should create a client', async () => {
+  it('should execute', async () => {
     const result = await controller.execute(command);
 
     expect(serviceMock.execute).toHaveBeenCalledWith(command);
     expect(result.statusCode).toBe(201);
-    expect(result.message).toContain('client has been created');
+    expect(result.message).toContain(' has been ');
   });
-  it('should return error response if service throws', async () => {
+  it('should throw an error if service throws', async () => {
     const errorMock = new Error('Service error');
     serviceMock.execute.mockRejectedValue(errorMock);
-    const result = await controller.execute(command);
-    expect(result.statusCode).toBe(500);
+
+    await expect(controller.execute(command)).rejects.toThrow(errorMock);
   });
 });

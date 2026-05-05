@@ -1,4 +1,4 @@
-import {Controller, Get, HttpException, HttpStatus, Inject, Param, Query,} from '@nestjs/common';
+import {Controller, Get, Inject, Param, Query,} from '@nestjs/common';
 import {ApiTags} from '@nestjs/swagger';
 import {CreateAppResponse} from "../../../../core/common/Application/CreateAppResponse";
 import {IController} from "../../../../core/common/Application/IController";
@@ -9,7 +9,7 @@ export class GetSeasonReservationsController implements IController{
   constructor(@Inject() private service) {
   }
   @Get('season/:id')
-  execute(
+  async execute(
     @Param('id') id: string,
     @Query('page') page: number = 0,
     @Query('size') size: number = 10,

@@ -1,7 +1,8 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { ConsoleLogger } from '@nestjs/common';
+import {NestFactory} from '@nestjs/core';
+import {AppModule} from './app.module';
+import {DocumentBuilder, SwaggerModule} from '@nestjs/swagger';
+import {ConsoleLogger} from '@nestjs/common';
+import {DomainExceptionFilter} from "./common/filters/domain-exception/domain-exception.filter";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -16,8 +17,8 @@ async function bootstrap() {
 
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, document);
-
+  app.useGlobalFilters(new DomainExceptionFilter());
   app.enableCors();
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(process.env.PORT ?? 3000,'0.0.0.0');
 }
 bootstrap();

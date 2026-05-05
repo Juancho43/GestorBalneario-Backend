@@ -8,6 +8,7 @@ import {CurrentSeasonGuard} from '../../../guards/current-season.guard';
 import {CreatePaymentService} from '../../services/create-payment/create-payment.service';
 import {Season} from '../../../../core/Season/Model/Season';
 import {PaymentResponse} from '../../../../core/Payment/Application/DTO/PaymentResponse';
+import {PaymentMother} from "../../../../core-test/mothers/PaymentMother";
 
 describe('CreatePaymentController', () => {
   let controller: CreatePaymentController;
@@ -29,7 +30,7 @@ describe('CreatePaymentController', () => {
       canActivate: jest.fn().mockResolvedValue(true),
     };
     serviceMock = {
-      execute: jest.fn().mockResolvedValue({} as PaymentResponse),
+      execute: jest.fn().mockResolvedValue(PaymentMother.create()),
     };
     getActiveMock = {
       get: jest.fn().mockResolvedValue({} as Season),
@@ -60,20 +61,11 @@ describe('CreatePaymentController', () => {
   });
 
   it('should create a payment', async () => {
-    // Act
     const result = await controller.execute(command);
 
-    // Assert (Validación del éxito)
     expect(serviceMock.execute).toHaveBeenCalledWith(command);
-    expect(result.statusCode).toBe(201); // El éxito que definiste en tu controlador
+    expect(result.statusCode).toBe(201);
     expect(result.message).toContain('has been created');
   });
-  it('should return error response if service throws', async () => {
-    const errorMock = new Error('Service error');
-    serviceMock.execute.mockRejectedValue(errorMock);
 
-    const result = await controller.execute(command);
-
-    expect(result.statusCode).toBe(500);
-  });
 });

@@ -1,18 +1,15 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { ShadowModule } from './shadow/shadow.module';
-import { DatabaseModule } from './database/database.module';
-import { ClientsModule } from './clients/clients.module';
-import { ReservationModule } from './reservation/reservation.module';
-import { PaymentsModule } from './payments/payments.module';
-import { EventsModule } from './events/eventsModule';
-import { InvoicesModule } from './invoices/invoices.module';
-import { ServicesModule } from './services/services.module';
-import { SeasonModule } from './seasons/season.module';
-import { GetSeasonReservationsController } from './reservation/controllers/get-season-reservations/get-season-reservations.controller';
-import { GetSeasonReservationsService } from './reservation/services/services/get-season-reservations/get-season-reservations.service';
-import { GetSeasonsHistoryService } from './seasons/services/get-seasons-history/get-seasons-history.service';
+import {Module} from '@nestjs/common';
+import {AppController} from './app.controller';
+import {AppService} from './app.service';
+import {ShadowModule} from './shadow/shadow.module';
+import {DatabaseModule} from './database/database.module';
+import {ClientsModule} from './clients/clients.module';
+import {ReservationModule} from './reservation/reservation.module';
+import {PaymentsModule} from './payments/payments.module';
+import {EventsModule} from './events/eventsModule';
+import {InvoicesModule} from './invoices/invoices.module';
+import {ServicesModule} from './services/services.module';
+import {SeasonModule} from './seasons/season.module';
 
 @Module({
   imports: [
@@ -26,7 +23,7 @@ import { GetSeasonsHistoryService } from './seasons/services/get-seasons-history
     ServicesModule,
     SeasonModule,
   ],
-  controllers: [AppController, GetSeasonReservationsController],
-  providers: [AppService, GetSeasonReservationsService, ],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}

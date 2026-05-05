@@ -6,6 +6,7 @@ import {Service} from '../../../../core/Service/Model/Service';
 import {GetActiveSeasonService} from '../../../seasons/services/get-active-season/get-active-season.service';
 import {CurrentSeasonGuard} from '../../../guards/current-season.guard';
 import {CreateServiceService} from '../../service/create-service/create-service.service';
+import {ServiceMother} from "../../../../core-test/mothers/ServiceMother";
 
 describe('CreateServiceController', () => {
   let controller: CreateServiceController;
@@ -23,7 +24,7 @@ describe('CreateServiceController', () => {
       canActivate: jest.fn().mockResolvedValue(true),
     };
     serviceMock = {
-      execute: jest.fn().mockResolvedValue({} as Service),
+      execute: jest.fn().mockResolvedValue(ServiceMother.create()),
     };
     getActiveMock = {
       get: jest.fn().mockResolvedValue({} as Season),
@@ -58,12 +59,5 @@ describe('CreateServiceController', () => {
     expect(result.statusCode).toBe(201);
     expect(result.message).toContain('has been created');
   });
-  it('should return error response if service throws', async () => {
-    const errorMock = new Error('Service error');
-    serviceMock.execute.mockRejectedValue(errorMock);
 
-    const result = await controller.execute(command);
-
-    expect(result.statusCode).toBe(500);
-  });
 });

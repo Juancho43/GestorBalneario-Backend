@@ -1,24 +1,21 @@
-import { Module } from '@nestjs/common';
-import { CreatePaymentController } from './controllers/create-payment/create-payment.controller';
-import { GetPaymentController } from './controllers/get-payment/get-payment.controller';
-import { CreatePaymentService } from './services/create-payment/create-payment.service';
-import { UpdatePaymentService } from './services/update-payment/update-payment.service';
-import { GetPaymentService } from './services/get-payment/get-payment.service';
-import { SqliteCreatePayment } from './repository/SqliteCreatePayment';
-import { SqliteUpdatePayment } from './repository/SqliteUpdatePayment';
-import { SqliteGetPayment } from './repository/SqliteGetPayment';
-import { SqliteGetReservation } from '../reservation/repository/SqliteGetReservation';
-import { SqliteGetInvoice } from '../invoices/repository/SqliteGetInvoice';
-import { PaymentsReportController } from './controllers/payments-report/payments-report.controller';
-import { PaymentsReportService } from './services/payments-report/payments-report.service';
-import { SqlitePaymentReport } from './repository/SqlitePaymentReport';
-import { SeasonModule } from '../seasons/season.module';
-import { NestEventPublisherAdapter } from '../events/NestEventPublisherAdapter';
-import { CqrsModule } from '@nestjs/cqrs';
-import { DeletePaymentController } from './controllers/delete-payment/delete-payment.controller';
+import {Module} from '@nestjs/common';
+import {CreatePaymentController} from './controllers/create-payment/create-payment.controller';
+import {GetPaymentController} from './controllers/get-payment/get-payment.controller';
+import {CreatePaymentService} from './services/create-payment/create-payment.service';
+import {GetPaymentService} from './services/get-payment/get-payment.service';
+import {PaymentsReportController} from './controllers/payments-report/payments-report.controller';
+import {PaymentsReportService} from './services/payments-report/payments-report.service';
+import {SeasonModule} from '../seasons/season.module';
+import {NestEventPublisherAdapter} from '../events/NestEventPublisherAdapter';
+import {CqrsModule} from '@nestjs/cqrs';
+import {DeletePaymentController} from './controllers/delete-payment/delete-payment.controller';
+import {ReservationModule} from '../reservation/reservation.module';
+import {InvoicesModule} from '../invoices/invoices.module';
+import {PaymentDaoProvider} from './services/providers/PaymentDaoProvider';
+import {PaymentUseCaseProviders} from './services/providers/PaymentUseCaseProviders';
 
 @Module({
-  imports: [CqrsModule, SeasonModule],
+  imports: [CqrsModule, SeasonModule, ReservationModule, InvoicesModule],
   controllers: [
     CreatePaymentController,
     GetPaymentController,
@@ -26,38 +23,15 @@ import { DeletePaymentController } from './controllers/delete-payment/delete-pay
     DeletePaymentController,
   ],
   providers: [
-    CreatePaymentService,
-    UpdatePaymentService,
-    GetPaymentService,
-    {
-      provide: 'CREATE_PAYMENT_DAO',
-      useClass: SqliteCreatePayment,
-    },
-    {
-      provide: 'UPDATE_PAYMENT_DAO',
-      useClass: SqliteUpdatePayment,
-    },
-    {
-      provide: 'GET_PAYMENT_DAO',
-      useClass: SqliteGetPayment,
-    },
-    {
-      provide: 'GET_RESERVATION_DAO',
-      useClass: SqliteGetReservation,
-    },
-    {
-      provide: 'GET_INVOICE_DAO',
-      useClass: SqliteGetInvoice,
-    },
-    {
-      provide: 'PAYMENT_REPORT',
-      useClass: SqlitePaymentReport,
-    },
+    ...PaymentDaoProvider,
+    ...PaymentUseCaseProviders,
     {
       provide: 'EVENT',
       useClass: NestEventPublisherAdapter,
     },
     PaymentsReportService,
+    CreatePaymentService,
+    GetPaymentService,
   ],
 })
 export class PaymentsModule {}
