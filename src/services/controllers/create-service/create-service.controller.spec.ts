@@ -2,7 +2,6 @@ import {Test, TestingModule} from '@nestjs/testing';
 import {CreateServiceController} from './create-service.controller';
 import {CreateServiceCommand} from '../../../../core/Service/Application/Commands/CreateServiceCommand';
 import {Season} from '../../../../core/Season/Model/Season';
-import {Service} from '../../../../core/Service/Model/Service';
 import {GetActiveSeasonService} from '../../../seasons/services/get-active-season/get-active-season.service';
 import {CurrentSeasonGuard} from '../../../guards/current-season.guard';
 import {CreateServiceService} from '../../service/create-service/create-service.service';

@@ -1,8 +1,8 @@
-import { IUseCase } from '../../../../common/Application/IUseCase';
-import { Service } from '../../../Model/Service';
-import { GetServiceDAO } from '../../../Model/DAO/GetServiceDAO';
-import { GetByIdQuery } from '../../../../common/Application/GetByIdQuery';
-import { EntityNotFoundError } from '../../../../common/Model/Errors/EntityNotFound';
+import {IUseCase} from '../../../../common/Application/IUseCase';
+import {Service} from '../../../Model/Service';
+import {GetServiceDAO} from '../../../Model/DAO/GetServiceDAO';
+import {GetByIdQuery} from '../../../../common/Application/GetByIdQuery';
+import {EntityNotFoundError} from '../../../../common/Model/Errors/EntityNotFound';
 
 export class GetService implements IUseCase<GetByIdQuery, Service> {
   constructor(private dao: GetServiceDAO) {}

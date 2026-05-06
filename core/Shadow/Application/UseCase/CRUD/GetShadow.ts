@@ -1,8 +1,8 @@
-import { Shadow } from '../../../Model/Shadow';
-import { IUseCase } from '../../../../common/Application/IUseCase';
-import { GetShadowDAO } from '../../../Model/DAO/GetShadowDAO';
-import { EntityNotFoundError } from '../../../../common/Model/Errors/EntityNotFound';
-import { GetByIdQuery } from '../../../../common/Application/GetByIdQuery';
+import {Shadow} from '../../../Model/Shadow';
+import {IUseCase} from '../../../../common/Application/IUseCase';
+import {GetShadowDAO} from '../../../Model/DAO/GetShadowDAO';
+import {EntityNotFoundError} from '../../../../common/Model/Errors/EntityNotFound';
+import {GetByIdQuery} from '../../../../common/Application/GetByIdQuery';
 
 export class GetShadow implements IUseCase<GetByIdQuery, Shadow> {
   constructor(private dao: GetShadowDAO) {}

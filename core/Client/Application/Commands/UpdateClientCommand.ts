@@ -1,4 +1,5 @@
-import { CreateClientCommand } from './CreateClientCommand';
+import {CreateClientCommand} from './CreateClientCommand';
+
 export class UpdateClientCommand {
   /**
    * Id of the client to edit

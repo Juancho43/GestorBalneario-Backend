@@ -1,15 +1,11 @@
-import { UpdateClient } from '../../core/Client/Application/UseCase/CRUD/UpdateClient';
-import { UpdateClientCommand } from '../../core/Client/Application/Commands/UpdateClientCommand';
-import { Client } from '../../core/Client/Model/Client';
-import { ClientMother } from '../mothers/ClientMother';
-import { vi } from 'vitest';
-import { CreateClientCommand } from '../../core/Client/Application/Commands/CreateClientCommand';
-import { EntityNotFoundError } from '../../core/common/Model/Errors/EntityNotFound';
-import { UpdateService } from '../../core/Service/Application/UseCase/CRUD/UpdateService';
-import { UpdateServiceCommand } from '../../core/Service/Application/Commands/UpdateServiceCommand';
-import { Service } from '../../core/Service/Model/Service';
-import { ServiceMother } from '../mothers/ServiceMother';
-import { CreateServiceCommand } from '../../core/Service/Application/Commands/CreateServiceCommand';
+import {vi} from 'vitest';
+import {EntityNotFoundError} from '../../core/common/Model/Errors/EntityNotFound';
+import {UpdateService} from '../../core/Service/Application/UseCase/CRUD/UpdateService';
+import {UpdateServiceCommand} from '../../core/Service/Application/Commands/UpdateServiceCommand';
+import {Service} from '../../core/Service/Model/Service';
+import {ServiceMother} from '../mothers/ServiceMother';
+import {CreateServiceCommand} from '../../core/Service/Application/Commands/CreateServiceCommand';
+
 describe('Update Service UseCase', () => {
   let useCase: UpdateService;
   let command: UpdateServiceCommand;

@@ -1,7 +1,8 @@
-import { GetActiveSeason } from '../../core/Season/Application/UseCase/GetActiveSeason';
-import { Season } from '../../core/Season/Model/Season';
-import { SeasonMother } from '../mothers/SeasonMother';
-import { vi } from 'vitest';
+import {GetActiveSeason} from '../../core/Season/Application/UseCase/GetActiveSeason';
+import {Season} from '../../core/Season/Model/Season';
+import {SeasonMother} from '../mothers/SeasonMother';
+import {vi} from 'vitest';
+
 describe('GetActiveSeason', () => {
   let useCase: GetActiveSeason;
   let season: Season;

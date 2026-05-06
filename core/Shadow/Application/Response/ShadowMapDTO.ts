@@ -1,6 +1,6 @@
-import { ShadowResponse } from './ShadowResponse';
-import { ReservationResponse } from '../../../Reservation/Application/DTO/ReservationResponse';
-import { ClientResponse } from '../../../Client/Application/DTO/ClientResponse';
+import {ShadowResponse} from './ShadowResponse';
+import {ReservationResponse} from '../../../Reservation/Application/DTO/ReservationResponse';
+import {ClientResponse} from '../../../Client/Application/DTO/ClientResponse';
 
 /**
  * Data transfer object for mapping shadows to reservations and clients.

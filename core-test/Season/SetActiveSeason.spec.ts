@@ -1,6 +1,6 @@
-import { SetActiveSeason } from '../../core/Season/Application/UseCase/SetActiveSeason';
-import { vi } from 'vitest';
-import { SetActiveSeasonCommand } from '../../core/Season/Application/Commads/SetActiveSeasonCommand';
+import {SetActiveSeason} from '../../core/Season/Application/UseCase/SetActiveSeason';
+import {vi} from 'vitest';
+import {SetActiveSeasonCommand} from '../../core/Season/Application/Commads/SetActiveSeasonCommand';
 
 describe('SetActiveSeason UseCase', () => {
   let useCase: SetActiveSeason;

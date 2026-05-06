@@ -1,4 +1,4 @@
-import { SoftDelete } from '../../core/common/Model/SoftDelete';
+import {SoftDelete} from '../../core/common/Model/SoftDelete';
 
 describe('SoftDelete Value Object', () => {
   let object: SoftDelete;

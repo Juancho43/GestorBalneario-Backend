@@ -1,19 +1,14 @@
-import { Inject, Injectable, Logger } from '@nestjs/common';
-import { DeleteShadow } from '../../../../core/Shadow/Application/UseCase/CRUD/DeleteShadow';
-import type { DeleteShadowDAO } from '../../../../core/Shadow/Model/DAO/DeleteShadowDAO';
-import { DeleteCommand } from '../../../../core/common/Application/DeleteCommand';
-import type { GetShadowDAO } from '../../../../core/Shadow/Model/DAO/GetShadowDAO';
+import {Inject, Injectable, Logger} from '@nestjs/common';
+import {DeleteShadow} from '../../../../core/Shadow/Application/UseCase/CRUD/DeleteShadow';
+import {DeleteCommand} from '../../../../core/common/Application/DeleteCommand';
+import {SHADOW_TOKEN} from '../../SHADOW_TOKEN';
 
 @Injectable()
 export class DeleteShadowService {
-  private useCase: DeleteShadow;
   private logger = new Logger(DeleteShadowService.name);
   constructor(
-    @Inject('GET_SHADOW_INTERFACE') get: GetShadowDAO,
-    @Inject('DELETE_SHADOW_INTERFACE') implementation: DeleteShadowDAO,
-  ) {
-    this.useCase = new DeleteShadow(implementation, get);
-  }
+    @Inject(SHADOW_TOKEN.USECASE.DELETE_SHADOW) private useCase: DeleteShadow,
+  ) {}
 
   async execute(command: DeleteCommand) {
     try {

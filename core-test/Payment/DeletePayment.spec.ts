@@ -1,9 +1,10 @@
-import { vi } from 'vitest';
-import { DeleteCommand } from '../../core/common/Application/DeleteCommand';
-import { EntityNotFoundError } from '../../core/common/Model/Errors/EntityNotFound';
-import { DeletePayment } from '../../core/Payment/Application/UseCase/CRUD/DeletePayment';
-import { Payment } from '../../core/Payment/Model/Payment';
-import { PaymentMother } from '../mothers/PaymentMother';
+import {vi} from 'vitest';
+import {DeleteCommand} from '../../core/common/Application/DeleteCommand';
+import {EntityNotFoundError} from '../../core/common/Model/Errors/EntityNotFound';
+import {DeletePayment} from '../../core/Payment/Application/UseCase/CRUD/DeletePayment';
+import {Payment} from '../../core/Payment/Model/Payment';
+import {PaymentMother} from '../mothers/PaymentMother';
+
 describe('Delete Payment UseCase', () => {
   let useCase: DeletePayment;
   let entity: Payment;

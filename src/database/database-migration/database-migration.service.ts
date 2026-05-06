@@ -1,11 +1,5 @@
-import {
-  Inject,
-  Injectable,
-  Logger,
-  OnModuleDestroy,
-  OnModuleInit,
-} from '@nestjs/common';
-import { DB_PROVIDER } from '../DBPROVIDER';
+import {Inject, Injectable, Logger, OnModuleDestroy, OnModuleInit,} from '@nestjs/common';
+import {DB_PROVIDER} from '../DBPROVIDER';
 import * as fs from 'node:fs';
 import path from 'node:path';
 

@@ -1,9 +1,9 @@
-import { vi } from 'vitest';
-import { GetClient } from '../../core/Client/Application/UseCase/CRUD/GetClient';
-import { Client } from '../../core/Client/Model/Client';
-import { ClientMother } from '../mothers/ClientMother';
-import { GetByIdQuery } from '../../core/common/Application/GetByIdQuery';
-import { EntityNotFoundError } from '../../core/common/Model/Errors/EntityNotFound';
+import {vi} from 'vitest';
+import {GetClient} from '../../core/Client/Application/UseCase/CRUD/GetClient';
+import {Client} from '../../core/Client/Model/Client';
+import {ClientMother} from '../mothers/ClientMother';
+import {GetByIdQuery} from '../../core/common/Application/GetByIdQuery';
+import {EntityNotFoundError} from '../../core/common/Model/Errors/EntityNotFound';
 
 describe('Get Client UseCase', () => {
   let entity: Client;

@@ -1,4 +1,4 @@
-import { Shadow } from '../Shadow';
+import {Shadow} from '../Shadow';
 
 export interface ShadowState {
   getShadow(): Shadow;

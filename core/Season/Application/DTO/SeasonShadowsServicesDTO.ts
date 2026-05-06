@@ -1,6 +1,6 @@
-import { Season } from '../../Model/Season';
-import { Shadow } from '../../../Shadow/Model/Shadow';
-import { Service } from '../../../Service/Model/Service';
+import {Season} from '../../Model/Season';
+import {Shadow} from '../../../Shadow/Model/Shadow';
+import {Service} from '../../../Service/Model/Service';
 
 /**
  * Data Transfer Object for a season with its associated shadows and services.

@@ -1,4 +1,4 @@
-import { PaymentResponse } from './PaymentResponse';
+import {PaymentResponse} from './PaymentResponse';
 
 /**
  * Data Transfer Object for a payments report.

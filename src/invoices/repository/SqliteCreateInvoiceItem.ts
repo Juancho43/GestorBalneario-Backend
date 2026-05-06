@@ -1,8 +1,9 @@
-import { SqliteBaseClass } from '../../database/SqliteBaseClass';
-import { CreateInvoiceItemDAO } from '../../../core/Invoice/Model/DAO/CreateInvoiceItemDAO';
-import { Injectable } from '@nestjs/common';
-import { InvoiceItem } from '../../../core/Invoice/Model/InvoiceItem';
-import { Invoice } from '../../../core/Invoice/Model/Invoice';
+import {SqliteBaseClass} from '../../database/SqliteBaseClass';
+import {CreateInvoiceItemDAO} from '../../../core/Invoice/Model/DAO/CreateInvoiceItemDAO';
+import {Injectable} from '@nestjs/common';
+import {InvoiceItem} from '../../../core/Invoice/Model/InvoiceItem';
+import {Invoice} from '../../../core/Invoice/Model/Invoice';
+
 @Injectable()
 export class SqliteCreateInvoiceItem
   extends SqliteBaseClass

@@ -1,8 +1,8 @@
-import { IUseCase } from '../../../../common/Application/IUseCase';
-import { DeleteCommand } from '../../../../common/Application/DeleteCommand';
-import { GetSeasonDAO } from '../../../Model/DAO/GetSeasonDAO';
-import { EntityNotFoundError } from '../../../../common/Model/Errors/EntityNotFound';
-import { DeleteSeasonDAO } from '../../../Model/DAO/DeleteSeasonDAO';
+import {IUseCase} from '../../../../common/Application/IUseCase';
+import {DeleteCommand} from '../../../../common/Application/DeleteCommand';
+import {GetSeasonDAO} from '../../../Model/DAO/GetSeasonDAO';
+import {EntityNotFoundError} from '../../../../common/Model/Errors/EntityNotFound';
+import {DeleteSeasonDAO} from '../../../Model/DAO/DeleteSeasonDAO';
 
 export class DeleteSeason implements IUseCase<DeleteCommand, void> {
   constructor(

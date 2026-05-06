@@ -1,11 +1,11 @@
-import { InvoiceDetails } from '../../core/Invoice/Application/UseCase/InvoiceDetails';
-import { InvoiceDetailsDTO } from '../../core/Invoice/Application/DTO/InvoiceDetailsDTO';
-import { InvoiceDetailQuery } from '../../core/Invoice/Application/Queries/InvoiceDetailQuery';
-import { ClientResponse } from '../../core/Client/Application/DTO/ClientResponse';
-import { ClientMother } from '../mothers/ClientMother';
-import { InvoiceMother } from '../mothers/InvoiceMother';
-import { InvoiceResponse } from '../../core/Invoice/Application/DTO/InvoiceResponse';
-import { vi } from 'vitest';
+import {InvoiceDetails} from '../../core/Invoice/Application/UseCase/InvoiceDetails';
+import {InvoiceDetailsDTO} from '../../core/Invoice/Application/DTO/InvoiceDetailsDTO';
+import {InvoiceDetailQuery} from '../../core/Invoice/Application/Queries/InvoiceDetailQuery';
+import {ClientResponse} from '../../core/Client/Application/DTO/ClientResponse';
+import {ClientMother} from '../mothers/ClientMother';
+import {InvoiceMother} from '../mothers/InvoiceMother';
+import {InvoiceResponse} from '../../core/Invoice/Application/DTO/InvoiceResponse';
+import {vi} from 'vitest';
 
 describe('InvoiceDetail UseCase', () => {
   let mockDao;

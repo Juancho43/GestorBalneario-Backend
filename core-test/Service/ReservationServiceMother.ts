@@ -1,8 +1,8 @@
-import { Money } from '../../core/Payment/Model/Money';
-import { UUID } from '../../core/common/Model/UUID';
-import { StringObject } from '../../core/common/Model/StringObject';
-import { Reservation_Service } from '../../core/Service/Model/Reservation_Service';
-import { MoneyMother } from '../mothers/MoneyMother';
+import {Money} from '../../core/Payment/Model/Money';
+import {UUID} from '../../core/common/Model/UUID';
+import {StringObject} from '../../core/common/Model/StringObject';
+import {Reservation_Service} from '../../core/Service/Model/Reservation_Service';
+import {MoneyMother} from '../mothers/MoneyMother';
 
 export class ReservationServiceMother {
   static create(

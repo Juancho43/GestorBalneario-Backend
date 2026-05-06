@@ -1,8 +1,8 @@
-import { Season } from '../../core/Season/Model/Season';
-import { UUID } from '../../core/common/Model/UUID';
-import { StringObject } from '../../core/common/Model/StringObject';
-import { Timestamps } from '../../core/common/Model/Timestamps';
-import { SoftDelete } from '../../core/common/Model/SoftDelete';
+import {Season} from '../../core/Season/Model/Season';
+import {UUID} from '../../core/common/Model/UUID';
+import {StringObject} from '../../core/common/Model/StringObject';
+import {Timestamps} from '../../core/common/Model/Timestamps';
+import {SoftDelete} from '../../core/common/Model/SoftDelete';
 
 export class SeasonMother {
   static create(

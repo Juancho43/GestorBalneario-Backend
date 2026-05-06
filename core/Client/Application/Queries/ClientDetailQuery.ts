@@ -1,4 +1,4 @@
-import { PaginatedQuery } from '../../../common/Application/PaginatedQuery';
+import {PaginatedQuery} from '../../../common/Application/PaginatedQuery';
 
 /**
  * Represents a query for fetching the details of a specific client with pagination.

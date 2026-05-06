@@ -1,4 +1,4 @@
-import { BaseError } from '../../common/Model/BaseError';
+import {BaseError} from '../../common/Model/BaseError';
 
 export class NotAvailableDate extends BaseError {
   constructor(startDate: string, endDate: string) {

@@ -1,8 +1,8 @@
-import { ClientSearch } from '../../core/Client/Application/UseCase/ClientSearch';
-import { ClientResponse } from '../../core/Client/Application/DTO/ClientResponse';
-import { ClientSearchQuery } from '../../core/Client/Application/Queries/ClientSearchQuery';
-import { ClientMother } from '../mothers/ClientMother';
-import { vi } from 'vitest';
+import {ClientSearch} from '../../core/Client/Application/UseCase/ClientSearch';
+import {ClientResponse} from '../../core/Client/Application/DTO/ClientResponse';
+import {ClientSearchQuery} from '../../core/Client/Application/Queries/ClientSearchQuery';
+import {ClientMother} from '../mothers/ClientMother';
+import {vi} from 'vitest';
 
 describe('Client Search UseCase', () => {
   let mockDao;

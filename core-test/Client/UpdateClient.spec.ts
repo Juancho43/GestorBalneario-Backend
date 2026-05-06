@@ -1,10 +1,11 @@
-import { UpdateClient } from '../../core/Client/Application/UseCase/CRUD/UpdateClient';
-import { UpdateClientCommand } from '../../core/Client/Application/Commands/UpdateClientCommand';
-import { Client } from '../../core/Client/Model/Client';
-import { ClientMother } from '../mothers/ClientMother';
-import { vi } from 'vitest';
-import { CreateClientCommand } from '../../core/Client/Application/Commands/CreateClientCommand';
-import { EntityNotFoundError } from '../../core/common/Model/Errors/EntityNotFound';
+import {UpdateClient} from '../../core/Client/Application/UseCase/CRUD/UpdateClient';
+import {UpdateClientCommand} from '../../core/Client/Application/Commands/UpdateClientCommand';
+import {Client} from '../../core/Client/Model/Client';
+import {ClientMother} from '../mothers/ClientMother';
+import {vi} from 'vitest';
+import {CreateClientCommand} from '../../core/Client/Application/Commands/CreateClientCommand';
+import {EntityNotFoundError} from '../../core/common/Model/Errors/EntityNotFound';
+
 describe('Update Client UseCase', () => {
   let useCase: UpdateClient;
   let command: UpdateClientCommand;

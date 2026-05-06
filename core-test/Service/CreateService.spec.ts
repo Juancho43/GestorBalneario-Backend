@@ -1,10 +1,10 @@
-import { vi } from 'vitest';
-import { CreateService } from '../../core/Service/Application/UseCase/CRUD/CreateService';
-import { Service } from '../../core/Service/Model/Service';
-import { CreateServiceCommand } from '../../core/Service/Application/Commands/CreateServiceCommand';
-import { ServiceMother } from '../mothers/ServiceMother';
-import { Season } from '../../core/Season/Model/Season';
-import { SeasonMother } from '../mothers/SeasonMother';
+import {vi} from 'vitest';
+import {CreateService} from '../../core/Service/Application/UseCase/CRUD/CreateService';
+import {Service} from '../../core/Service/Model/Service';
+import {CreateServiceCommand} from '../../core/Service/Application/Commands/CreateServiceCommand';
+import {ServiceMother} from '../mothers/ServiceMother';
+import {Season} from '../../core/Season/Model/Season';
+import {SeasonMother} from '../mothers/SeasonMother';
 
 describe('Create Service UseCase', () => {
   let entity: Service;

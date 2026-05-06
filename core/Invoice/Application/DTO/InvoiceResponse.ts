@@ -1,6 +1,6 @@
-import { Invoice } from '../../Model/Invoice';
-import { ItemResponse } from './ItemResponse';
-import { TimeStampResponse } from '../../../common/Application/TimeStampResponse';
+import {Invoice} from '../../Model/Invoice';
+import {ItemResponse} from './ItemResponse';
+import {TimeStampResponse} from '../../../common/Application/TimeStampResponse';
 
 /**
  * Represents the response structure for an invoice.

@@ -1,7 +1,7 @@
-import { ItemResponse } from './ItemResponse';
-import { ClientResponse } from '../../../Client/Application/DTO/ClientResponse';
-import { PaymentResponse } from '../../../Payment/Application/DTO/PaymentResponse';
-import { InvoiceResponse } from './InvoiceResponse';
+import {ItemResponse} from './ItemResponse';
+import {ClientResponse} from '../../../Client/Application/DTO/ClientResponse';
+import {PaymentResponse} from '../../../Payment/Application/DTO/PaymentResponse';
+import {InvoiceResponse} from './InvoiceResponse';
 
 /**
  * Represents the detailed data transfer object for an invoice.

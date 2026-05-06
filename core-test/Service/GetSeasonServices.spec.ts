@@ -1,9 +1,9 @@
-import { GetSeasonServices } from '../../core/Service/Application/UseCase/GetSeasonServices';
-import { vi } from 'vitest';
-import { SeasonServiceDTO } from '../../core/Service/Application/DTO/SeasonServiceDTO';
-import { ServiceResponse } from '../../core/Service/Application/DTO/ServiceResponse';
-import { ServiceMother } from '../mothers/ServiceMother';
-import { GetSeasonServicesQuery } from '../../core/Service/Application/Queries/GetSeasonServicesQuery';
+import {GetSeasonServices} from '../../core/Service/Application/UseCase/GetSeasonServices';
+import {vi} from 'vitest';
+import {SeasonServiceDTO} from '../../core/Service/Application/DTO/SeasonServiceDTO';
+import {ServiceResponse} from '../../core/Service/Application/DTO/ServiceResponse';
+import {ServiceMother} from '../mothers/ServiceMother';
+import {GetSeasonEntityQuery} from '../../core/Service/Application/Queries/GetSeasonEntityQuery';
 
 describe('GetSeasonServices UseCase', () => {
   let useCase: GetSeasonServices;
@@ -27,7 +27,7 @@ describe('GetSeasonServices UseCase', () => {
   });
   it('Should return a list of services for the active season', async () => {
     const result = await useCase.execute(
-      new GetSeasonServicesQuery(0, 10, '123'),
+      new GetSeasonEntityQuery(0, 10, '123'),
     );
     expect(result).toEqual(dto.services);
   });

@@ -1,11 +1,11 @@
-import { EntityNotFoundError } from '../../../../common/Model/Errors/EntityNotFound';
-import { Service } from '../../../Model/Service';
-import { GetServiceDAO } from '../../../Model/DAO/GetServiceDAO';
-import { UpdateServiceDAO } from '../../../Model/DAO/UpdateServiceDAO';
-import { IUseCase } from '../../../../common/Application/IUseCase';
-import { UpdateServiceCommand } from '../../Commands/UpdateServiceCommand';
-import { Money } from '../../../../Payment/Model/Money';
-import { StringObject } from '../../../../common/Model/StringObject';
+import {EntityNotFoundError} from '../../../../common/Model/Errors/EntityNotFound';
+import {Service} from '../../../Model/Service';
+import {GetServiceDAO} from '../../../Model/DAO/GetServiceDAO';
+import {UpdateServiceDAO} from '../../../Model/DAO/UpdateServiceDAO';
+import {IUseCase} from '../../../../common/Application/IUseCase';
+import {UpdateServiceCommand} from '../../Commands/UpdateServiceCommand';
+import {Money} from '../../../../Payment/Model/Money';
+import {StringObject} from '../../../../common/Model/StringObject';
 
 export class UpdateService implements IUseCase<UpdateServiceCommand, Service> {
   constructor(

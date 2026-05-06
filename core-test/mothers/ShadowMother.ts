@@ -1,10 +1,10 @@
-import { Shadow } from '../../core/Shadow/Model/Shadow';
-import { Coords } from '../../core/common/Model/Coords';
-import { UUID } from '../../core/common/Model/UUID';
-import { StringObject } from '../../core/common/Model/StringObject';
-import { ShadowType } from '../../core/Shadow/Model/ValueObjects/ShadowType';
-import { Timestamps } from '../../core/common/Model/Timestamps';
-import { SoftDelete } from '../../core/common/Model/SoftDelete';
+import {Shadow} from '../../core/Shadow/Model/Shadow';
+import {Coords} from '../../core/common/Model/Coords';
+import {UUID} from '../../core/common/Model/UUID';
+import {StringObject} from '../../core/common/Model/StringObject';
+import {ShadowType} from '../../core/Shadow/Model/ValueObjects/ShadowType';
+import {Timestamps} from '../../core/common/Model/Timestamps';
+import {SoftDelete} from '../../core/common/Model/SoftDelete';
 
 export class ShadowMother {
   static create(

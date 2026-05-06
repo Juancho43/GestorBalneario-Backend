@@ -1,13 +1,13 @@
-import { Injectable } from '@nestjs/common';
-import { SqliteBaseClass } from '../../database/SqliteBaseClass';
-import { GetInvoicesDAO } from '../../../core/Invoice/Model/DAO/GetInvoicesDAO';
-import { Invoice } from 'core/Invoice/Model/Invoice';
-import { UUID } from '../../../core/common/Model/UUID';
-import { Timestamps } from '../../../core/common/Model/Timestamps';
-import { SoftDelete } from '../../../core/common/Model/SoftDelete';
-import { Reservation_Service } from '../../../core/Service/Model/Reservation_Service';
-import { Money } from '../../../core/Payment/Model/Money';
-import { StringObject } from '../../../core/common/Model/StringObject';
+import {Injectable} from '@nestjs/common';
+import {SqliteBaseClass} from '../../database/SqliteBaseClass';
+import {GetInvoicesDAO} from '../../../core/Invoice/Model/DAO/GetInvoicesDAO';
+import {Invoice} from 'core/Invoice/Model/Invoice';
+import {UUID} from '../../../core/common/Model/UUID';
+import {Timestamps} from '../../../core/common/Model/Timestamps';
+import {SoftDelete} from '../../../core/common/Model/SoftDelete';
+import {Reservation_Service} from '../../../core/Service/Model/Reservation_Service';
+import {Money} from '../../../core/Payment/Model/Money';
+import {StringObject} from '../../../core/common/Model/StringObject';
 
 @Injectable()
 export class SqliteGetInvoices

@@ -1,8 +1,8 @@
-import { IUseCase } from '../../../../common/Application/IUseCase';
-import { GetReservationDAO } from '../../../Model/DAO/GetReservationDAO';
-import { Reservation } from '../../../Model/Reservation';
-import { GetByIdQuery } from '../../../../common/Application/GetByIdQuery';
-import { EntityNotFoundError } from '../../../../common/Model/Errors/EntityNotFound';
+import {IUseCase} from '../../../../common/Application/IUseCase';
+import {GetReservationDAO} from '../../../Model/DAO/GetReservationDAO';
+import {Reservation} from '../../../Model/Reservation';
+import {GetByIdQuery} from '../../../../common/Application/GetByIdQuery';
+import {EntityNotFoundError} from '../../../../common/Model/Errors/EntityNotFound';
 
 export class GetReservation implements IUseCase<GetByIdQuery, Reservation> {
   constructor(private dao: GetReservationDAO) {}

@@ -1,17 +1,17 @@
-import { ShadowType } from './ValueObjects/ShadowType';
-import { Coords } from '../../common/Model/Coords';
-import { StringObject } from '../../common/Model/StringObject';
-import { Reservation } from '../../Reservation/Model/Reservation';
-import { UUID } from '../../common/Model/UUID';
-import { Timestamps } from '../../common/Model/Timestamps';
-import { SoftDelete } from '../../common/Model/SoftDelete';
-import { Booking } from '../../Reservation/Model/Booking';
-import { Prototype } from '../../common/Model/Prototype';
-import { ShadowState } from './ValueObjects/ShadowState';
-import { AvailableState } from './ValueObjects/AvailableState';
-import { BookedState } from './ValueObjects/OccupaidState';
-import { Entity } from '../../common/Model/Entity';
-import { NotAvailableDate } from './NotAvailableDate';
+import {ShadowType} from './ValueObjects/ShadowType';
+import {Coords} from '../../common/Model/Coords';
+import {StringObject} from '../../common/Model/StringObject';
+import {Reservation} from '../../Reservation/Model/Reservation';
+import {UUID} from '../../common/Model/UUID';
+import {Timestamps} from '../../common/Model/Timestamps';
+import {SoftDelete} from '../../common/Model/SoftDelete';
+import {Booking} from '../../Reservation/Model/Booking';
+import {Prototype} from '../../common/Model/Prototype';
+import {ShadowState} from './ValueObjects/ShadowState';
+import {AvailableState} from './ValueObjects/AvailableState';
+import {BookedState} from './ValueObjects/OccupaidState';
+import {Entity} from '../../common/Model/Entity';
+import {NotAvailableDate} from './NotAvailableDate';
 
 /**
  * Sombra

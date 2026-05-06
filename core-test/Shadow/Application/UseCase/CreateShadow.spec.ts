@@ -1,10 +1,10 @@
-import { vi } from 'vitest';
-import { Shadow } from '../../../../core/Shadow/Model/Shadow';
-import { CreateShadow } from '../../../../core/Shadow/Application/UseCase/CRUD/CreateShadow';
-import { CreateShadowCommand } from '../../../../core/Shadow/Application/Command/CreateShadowCommand';
-import { ShadowMother } from '../../../mothers/ShadowMother';
-import { Season } from '../../../../core/Season/Model/Season';
-import { SeasonMother } from '../../../mothers/SeasonMother';
+import {vi} from 'vitest';
+import {Shadow} from '../../../../core/Shadow/Model/Shadow';
+import {CreateShadow} from '../../../../core/Shadow/Application/UseCase/CRUD/CreateShadow';
+import {Coords, CreateShadowCommand} from '../../../../core/Shadow/Application/Command/CreateShadowCommand';
+import {ShadowMother} from '../../../mothers/ShadowMother';
+import {Season} from '../../../../core/Season/Model/Season';
+import {SeasonMother} from '../../../mothers/SeasonMother';
 
 describe('Create Shadow UseCase', () => {
   let entity: Shadow;
@@ -22,15 +22,15 @@ describe('Create Shadow UseCase', () => {
     seasonMock = {
       get: vi.fn().mockResolvedValue(season),
     };
+    let coords:Coords = {
+      x: entity.coords.getX(),
+      y: entity.coords.getY(),
+    }
     useCase = new CreateShadow(createMock, seasonMock);
     command = new CreateShadowCommand(
       entity.identifier.getValue(),
       entity.type.type,
-      entity.state.toString(),
-      {
-        x: entity.coords.getX(),
-        y: entity.coords.getY(),
-      },
+      coords
     );
   });
   afterEach(() => {

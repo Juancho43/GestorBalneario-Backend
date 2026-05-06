@@ -1,11 +1,11 @@
-import { Injectable } from '@nestjs/common';
-import { SqliteBaseClass } from '../../database/SqliteBaseClass';
-import { Season } from '../../../core/Season/Model/Season';
-import { UUID } from '../../../core/common/Model/UUID';
-import { GetSeasonsDAO } from '../../../core/Season/Model/DAO/GetSeasonsDAO';
-import { SoftDelete } from '../../../core/common/Model/SoftDelete';
-import { Timestamps } from '../../../core/common/Model/Timestamps';
-import { StringObject } from '../../../core/common/Model/StringObject';
+import {Injectable} from '@nestjs/common';
+import {SqliteBaseClass} from '../../database/SqliteBaseClass';
+import {Season} from '../../../core/Season/Model/Season';
+import {UUID} from '../../../core/common/Model/UUID';
+import {GetSeasonsDAO} from '../../../core/Season/Model/DAO/GetSeasonsDAO';
+import {SoftDelete} from '../../../core/common/Model/SoftDelete';
+import {Timestamps} from '../../../core/common/Model/Timestamps';
+import {StringObject} from '../../../core/common/Model/StringObject';
 
 @Injectable()
 export class SqliteGetSeasons extends SqliteBaseClass implements GetSeasonsDAO {

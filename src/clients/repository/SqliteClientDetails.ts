@@ -1,10 +1,10 @@
-import { Injectable } from '@nestjs/common';
-import { SqliteBaseClass } from '../../database/SqliteBaseClass';
-import { ClientDetailsDAO } from '../../../core/Client/Application/Interfaces/ClientDetailsDAO';
-import { ClientDetailsDTO } from 'core/Client/Application/DTO/ClientDetailsDTO';
-import { ClientResponse } from '../../../core/Client/Application/DTO/ClientResponse';
-import { InvoiceResponse } from '../../../core/Invoice/Application/DTO/InvoiceResponse';
-import { ClientDetailQuery } from '../../../core/Client/Application/Queries/ClientDetailQuery';
+import {Injectable} from '@nestjs/common';
+import {SqliteBaseClass} from '../../database/SqliteBaseClass';
+import {ClientDetailsDAO} from '../../../core/Client/Application/Interfaces/ClientDetailsDAO';
+import {ClientDetailsDTO} from 'core/Client/Application/DTO/ClientDetailsDTO';
+import {ClientResponse} from '../../../core/Client/Application/DTO/ClientResponse';
+import {InvoiceResponse} from '../../../core/Invoice/Application/DTO/InvoiceResponse';
+import {ClientDetailQuery} from '../../../core/Client/Application/Queries/ClientDetailQuery';
 
 @Injectable()
 export class SqliteClientDetails
@@ -32,6 +32,7 @@ export class SqliteClientDetails
       limit: query.pageSize,
       offset: query.page,
     }) as any[];
+    console.log(results)
     const dto = new ClientDetailsDTO();
     if (results.length > 0) {
       const clientRow = results[0];
@@ -43,7 +44,7 @@ export class SqliteClientDetails
 
       const invoices = new Map<string, InvoiceResponse>();
       results.forEach((row) => {
-        if (!invoices.has(row.invoiceId)) {
+        if (!invoices.has(row.invoiceId) && row.invoiceId) {
           const response = new InvoiceResponse();
           response.id = row.invoiceId;
           response.clientId = row.clientId;
@@ -52,8 +53,9 @@ export class SqliteClientDetails
           invoices.set(row.invoiceId, response);
         }
       });
-
-      dto.invoices = Array.from(invoices.values());
+      if(invoices.size > 0){
+        dto.invoices = Array.from(invoices.values());
+      }
     }
     return dto;
   }

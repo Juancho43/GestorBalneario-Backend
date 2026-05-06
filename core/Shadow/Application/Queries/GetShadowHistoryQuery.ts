@@ -1,4 +1,4 @@
-import { PaginatedQuery } from '../../../common/Application/PaginatedQuery';
+import {PaginatedQuery} from '../../../common/Application/PaginatedQuery';
 
 /**
  * Represents a query to get the history of a shadow with pagination.

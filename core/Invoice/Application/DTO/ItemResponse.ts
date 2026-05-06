@@ -1,5 +1,5 @@
-import { InvoiceItem } from '../../Model/InvoiceItem';
-import { ReservationResponse } from '../../../Reservation/Application/DTO/ReservationResponse';
+import {InvoiceItem} from '../../Model/InvoiceItem';
+import {ReservationResponse} from '../../../Reservation/Application/DTO/ReservationResponse';
 
 /**
  * Represents the response structure for an invoice item.

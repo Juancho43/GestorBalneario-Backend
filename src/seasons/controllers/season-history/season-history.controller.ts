@@ -5,6 +5,7 @@ import {GetSeasonsHistoryQuery} from '../../../../core/Season/Application/Querie
 import {CreateAppResponse} from '../../../../core/common/Application/CreateAppResponse';
 import {IController} from '../../../../core/common/Application/IController';
 import {SeasonResponse} from "../../../../core/Season/Application/DTO/SeasonResponse";
+
 @ApiTags('Frontend')
 @Controller('season')
 export class SeasonHistoryController implements IController {

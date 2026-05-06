@@ -1,13 +1,12 @@
-import { Invoice } from '../../core/Invoice/Model/Invoice';
-import { InvoiceItem } from '../../core/Invoice/Model/InvoiceItem';
-import { IssuedState } from '../../core/Invoice/Model/IssuedState';
-import { vi } from 'vitest';
-import { Money } from '../../core/Payment/Model/Money';
-import { Payment } from '../../core/Payment/Model/Payment';
-import { PaymentMother } from '../mothers/PaymentMother';
-import { InvoiceMother } from '../mothers/InvoiceMother';
-import { MoneyMother } from '../mothers/MoneyMother';
-import { PaidState } from '../../core/Invoice/Model/PaidState';
+import {Invoice} from '../../core/Invoice/Model/Invoice';
+import {InvoiceItem} from '../../core/Invoice/Model/InvoiceItem';
+import {IssuedState} from '../../core/Invoice/Model/IssuedState';
+import {vi} from 'vitest';
+import {Money} from '../../core/Payment/Model/Money';
+import {PaymentMother} from '../mothers/PaymentMother';
+import {InvoiceMother} from '../mothers/InvoiceMother';
+import {MoneyMother} from '../mothers/MoneyMother';
+import {PaidState} from '../../core/Invoice/Model/PaidState';
 
 describe('Invoice Domain Entity', () => {
   let invoice: Invoice;

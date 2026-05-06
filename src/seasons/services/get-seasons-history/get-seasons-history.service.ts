@@ -1,27 +1,26 @@
 import {Inject, Injectable, Logger} from '@nestjs/common';
-import {GetSeasonHistory} from "../../../../core/Season/Application/UseCase/GetSeasonHistory";
-import type {GetSeasonsDAO} from "../../../../core/Season/Model/DAO/GetSeasonsDAO";
-import {SeasonResponse} from "../../../../core/Season/Application/DTO/SeasonResponse";
-import {GetSeasonsHistoryQuery} from "../../../../core/Season/Application/Queries/GetSeasonsHistoryQuery";
+import {GetSeasonsHistory} from '../../../../core/Season/Application/UseCase/GetSeasonsHistory';
+import {GetSeasonsHistoryQuery} from '../../../../core/Season/Application/Queries/GetSeasonsHistoryQuery';
+import {SEASON_TOKEN} from "../../SEASON_TOKEN";
 
 @Injectable()
 export class GetSeasonsHistoryService {
-    private logger = new Logger(GetSeasonsHistoryService.name);
-    private useCase : GetSeasonHistory ;
+  private logger = new Logger(GetSeasonsHistoryService.name);
 
-    constructor(
-        @Inject('GET_HISTORY') dao: GetSeasonsDAO
-    ){
-        this.useCase = new GetSeasonHistory(dao);
-    }
+  constructor(
+      @Inject(SEASON_TOKEN.USECASE.GET_HISTORY)
+      private useCase: GetSeasonsHistory
+  ) {
 
-    async execute(query:GetSeasonsHistoryQuery){
-        try{
-            this.logger.debug('Executing GetSeasonsHistoryService');
-            return SeasonResponse.createList(await this.useCase.execute(query));
-        } catch(error) {
-            this.logger.error(error);
-            throw error;
-        }
+  }
+
+  async execute(query: GetSeasonsHistoryQuery) {
+    try {
+      this.logger.debug('Executing GetSeasonsHistoryService');
+      return await this.useCase.execute(query);
+    } catch (error) {
+      this.logger.error(error);
+      throw error;
     }
+  }
 }

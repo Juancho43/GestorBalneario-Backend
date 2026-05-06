@@ -1,22 +1,21 @@
-import { Inject, Injectable } from '@nestjs/common';
-import type { GetShadowDAO } from '../../../../core/Shadow/Model/DAO/GetShadowDAO';
-import { GetShadow } from '../../../../core/Shadow/Application/UseCase/CRUD/GetShadow';
-import { GetShadowByIdQuery } from '../../../../core/Shadow/Application/Queries/GetShadowByIdQuery';
-import { ShadowResponse } from '../../../../core/Shadow/Application/Response/ShadowResponse';
+import {Inject, Injectable, Logger} from '@nestjs/common';
+import {GetShadow} from '../../../../core/Shadow/Application/UseCase/CRUD/GetShadow';
+import {SHADOW_TOKEN} from '../../SHADOW_TOKEN';
+import {GetByIdQuery} from '../../../../core/common/Application/GetByIdQuery';
 
 @Injectable()
 export class GetShadowService {
-  private useCase: GetShadow;
+  private logger = new Logger(GetShadowService.name);
+  constructor(
+    @Inject(SHADOW_TOKEN.USECASE.GET_SHADOW) private useCase: GetShadow,
+  ) {}
 
-  constructor(@Inject('GET_SHADOW_INTERFACE') implementation: GetShadowDAO) {
-    this.useCase = new GetShadow(implementation);
-  }
-
-  async execute(command: GetShadowByIdQuery) {
+  async execute(command: GetByIdQuery) {
     try {
-      return ShadowResponse.create(await this.useCase.execute(command));
+      this.logger.debug('Getting shadow by id', command);
+      return await this.useCase.execute(command);
     } catch (error) {
-      console.error('Error getting shadow:', error);
+      this.logger.error('Error getting shadow:', error);
       throw error;
     }
   }

@@ -1,20 +1,20 @@
-import { Inject, Injectable, Logger } from '@nestjs/common';
-import { GetSeasonServicesQuery } from '../../../../core/Service/Application/Queries/GetSeasonServicesQuery';
-import { GetSeasonServices } from '../../../../core/Service/Application/UseCase/GetSeasonServices';
-import type { SeasonServiceDAO } from '../../../../core/Service/Application/Interfaces/SeasonServiceDAO';
+import {Inject, Injectable, Logger} from '@nestjs/common';
+import {GetSeasonEntityQuery} from '../../../../core/Service/Application/Queries/GetSeasonEntityQuery';
+import {GetSeasonServices} from '../../../../core/Service/Application/UseCase/GetSeasonServices';
+import {SERVICE_TOKEN} from '../../SERVICE_TOKEN';
 
 @Injectable()
 export class GetSeasonServicesService {
   private logger = new Logger(GetSeasonServicesService.name);
-  private useCase: GetSeasonServices;
 
-  constructor(@Inject('GET_SEASON_SERVICES') dao: SeasonServiceDAO) {
-    this.useCase = new GetSeasonServices(dao);
-  }
+  constructor(
+    @Inject(SERVICE_TOKEN.USECASE.GET_SEASON_SERVICE)
+    private useCase: GetSeasonServices,
+  ) {}
 
-  execute(query: GetSeasonServicesQuery) {
+  async execute(query: GetSeasonEntityQuery) {
     try {
-      this.logger.debug('Executing GetSeasonServicesService');
+      this.logger.debug('Executing GetSeasonServicesService', query);
       return this.useCase.execute(query);
     } catch (error) {
       this.logger.error(error);

@@ -1,4 +1,4 @@
-import { CreateShadowCommand } from './CreateShadowCommand';
+import {CreateShadowCommand} from './CreateShadowCommand';
 
 export class UpdateShadowCommand {
   /**

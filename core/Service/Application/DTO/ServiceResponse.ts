@@ -1,5 +1,6 @@
-import { Service } from '../../Model/Service';
-import { TimeStampResponse } from '../../../common/Application/TimeStampResponse';
+import {Service} from '../../Model/Service';
+import {TimeStampResponse} from '../../../common/Application/TimeStampResponse';
+
 /**
  * Represents the response for a service.
  * @example

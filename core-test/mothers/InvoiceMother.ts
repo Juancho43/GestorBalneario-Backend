@@ -1,7 +1,7 @@
-import { Invoice } from '../../core/Invoice/Model/Invoice';
-import { UUID } from '../../core/common/Model/UUID';
-import { Timestamps } from '../../core/common/Model/Timestamps';
-import { SoftDelete } from '../../core/common/Model/SoftDelete';
+import {Invoice} from '../../core/Invoice/Model/Invoice';
+import {UUID} from '../../core/common/Model/UUID';
+import {Timestamps} from '../../core/common/Model/Timestamps';
+import {SoftDelete} from '../../core/common/Model/SoftDelete';
 
 export class InvoiceMother {
   static create(

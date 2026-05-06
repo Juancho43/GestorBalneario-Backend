@@ -1,4 +1,4 @@
-import { UUID } from '../Model/UUID';
+import {UUID} from '../Model/UUID';
 
 export interface IDomainEvent {
   /** Fecha y hora exacta en que ocurrió el evento */

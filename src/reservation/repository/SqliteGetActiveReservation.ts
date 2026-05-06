@@ -1,11 +1,12 @@
-import { GetActiveReservationsDAO } from '../../../core/Reservation/Application/Interfaces/GetActiveReservationsDAO';
-import { Injectable } from '@nestjs/common';
-import { Reservation } from '../../../core/Reservation/Model/Reservation';
-import { Booking } from '../../../core/Reservation/Model/Booking';
-import { Timestamps } from '../../../core/common/Model/Timestamps';
-import { SoftDelete } from '../../../core/common/Model/SoftDelete';
-import { UUID } from '../../../core/common/Model/UUID';
-import { SqliteBaseClass } from '../../database/SqliteBaseClass';
+import {GetActiveReservationsDAO} from '../../../core/Reservation/Application/Interfaces/GetActiveReservationsDAO';
+import {Injectable} from '@nestjs/common';
+import {Reservation} from '../../../core/Reservation/Model/Reservation';
+import {Booking} from '../../../core/Reservation/Model/Booking';
+import {Timestamps} from '../../../core/common/Model/Timestamps';
+import {SoftDelete} from '../../../core/common/Model/SoftDelete';
+import {UUID} from '../../../core/common/Model/UUID';
+import {SqliteBaseClass} from '../../database/SqliteBaseClass';
+
 @Injectable()
 export class SqliteGetActiveReservation
   extends SqliteBaseClass

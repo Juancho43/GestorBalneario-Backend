@@ -1,7 +1,7 @@
-import { SqliteBaseClass } from './SqliteBaseClass';
-import { Entity } from '../../core/common/Model/Entity';
-import { Inject } from '@nestjs/common';
-import { DB_PROVIDER } from './DBPROVIDER';
+import {SqliteBaseClass} from './SqliteBaseClass';
+import {Entity} from '../../core/common/Model/Entity';
+import {Inject} from '@nestjs/common';
+import {DB_PROVIDER} from './DBPROVIDER';
 import Database from 'better-sqlite3';
 
 export class SoftDeleteRepository<T extends Entity> extends SqliteBaseClass {

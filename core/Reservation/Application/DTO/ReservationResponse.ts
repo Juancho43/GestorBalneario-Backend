@@ -1,6 +1,7 @@
-import { Reservation } from '../../Model/Reservation';
-import { ShadowResponse } from '../../../Shadow/Application/Response/ShadowResponse';
-import { TimeStampResponse } from '../../../common/Application/TimeStampResponse';
+import {Reservation} from '../../Model/Reservation';
+import {ShadowResponse} from '../../../Shadow/Application/Response/ShadowResponse';
+import {TimeStampResponse} from '../../../common/Application/TimeStampResponse';
+
 /**
  * Represents the response data for a reservation.
  * It extends TimeStampResponse to include creation and update timestamps.

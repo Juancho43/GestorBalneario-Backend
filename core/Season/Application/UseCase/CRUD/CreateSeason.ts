@@ -1,11 +1,11 @@
-import { IUseCase } from '../../../../common/Application/IUseCase';
-import { CreateSeasonCommand } from '../../Commads/CreateSeasonCommand';
-import { Season } from '../../../Model/Season';
-import { CreateSeasonDAO } from '../../../Model/DAO/CreateSeasonDAO';
-import { UUID } from '../../../../common/Model/UUID';
-import { SoftDelete } from '../../../../common/Model/SoftDelete';
-import { Timestamps } from '../../../../common/Model/Timestamps';
-import { StringObject } from '../../../../common/Model/StringObject';
+import {IUseCase} from '../../../../common/Application/IUseCase';
+import {CreateSeasonCommand} from '../../Commads/CreateSeasonCommand';
+import {Season} from '../../../Model/Season';
+import {CreateSeasonDAO} from '../../../Model/DAO/CreateSeasonDAO';
+import {UUID} from '../../../../common/Model/UUID';
+import {SoftDelete} from '../../../../common/Model/SoftDelete';
+import {Timestamps} from '../../../../common/Model/Timestamps';
+import {StringObject} from '../../../../common/Model/StringObject';
 
 export class CreateSeason implements IUseCase<CreateSeasonCommand, Season> {
   constructor(private dao: CreateSeasonDAO) {}

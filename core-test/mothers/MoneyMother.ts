@@ -1,4 +1,4 @@
-import { Currency, Money } from '../../core/Payment/Model/Money';
+import {Currency, Money} from '../../core/Payment/Model/Money';
 
 export class MoneyMother {
   static create(

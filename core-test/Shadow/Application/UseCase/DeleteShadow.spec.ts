@@ -1,9 +1,10 @@
-import { vi } from 'vitest';
-import { DeleteShadow } from '../../../../core/Shadow/Application/UseCase/CRUD/DeleteShadow';
-import { Shadow } from '../../../../core/Shadow/Model/Shadow';
-import { ShadowMother } from '../../../mothers/ShadowMother';
-import { EntityNotFoundError } from '../../../../core/common/Model/Errors/EntityNotFound';
-import { DeleteCommand } from '../../../../core/common/Application/DeleteCommand';
+import {vi} from 'vitest';
+import {DeleteShadow} from '../../../../core/Shadow/Application/UseCase/CRUD/DeleteShadow';
+import {Shadow} from '../../../../core/Shadow/Model/Shadow';
+import {ShadowMother} from '../../../mothers/ShadowMother';
+import {EntityNotFoundError} from '../../../../core/common/Model/Errors/EntityNotFound';
+import {DeleteCommand} from '../../../../core/common/Application/DeleteCommand';
+
 describe('Delete Shadow UseCase', () => {
   let useCase: DeleteShadow;
   let entity: Shadow;

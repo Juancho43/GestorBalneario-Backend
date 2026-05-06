@@ -1,5 +1,5 @@
-import { ShadowState } from './ShadowState';
-import { Shadow } from '../Shadow';
+import {ShadowState} from './ShadowState';
+import {Shadow} from '../Shadow';
 
 export class BookedState implements ShadowState {
   constructor(private readonly shadow: Shadow) {}

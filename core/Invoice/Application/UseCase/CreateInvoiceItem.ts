@@ -1,8 +1,8 @@
-import { UUID } from '../../../common/Model/UUID';
-import { InvoiceItem } from '../../Model/InvoiceItem';
-import { Money } from '../../../Payment/Model/Money';
-import { StringObject } from '../../../common/Model/StringObject';
-import { Reservation_Service } from '../../../Service/Model/Reservation_Service';
+import {UUID} from '../../../common/Model/UUID';
+import {InvoiceItem} from '../../Model/InvoiceItem';
+import {Money} from '../../../Payment/Model/Money';
+import {StringObject} from '../../../common/Model/StringObject';
+import {Reservation_Service} from '../../../Service/Model/Reservation_Service';
 
 export class CreateInvoiceItem {
   static create(

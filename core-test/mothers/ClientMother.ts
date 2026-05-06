@@ -1,9 +1,9 @@
-import { StringObject } from '../../core/common/Model/StringObject';
-import { UUID } from '../../core/common/Model/UUID';
-import { EmailObject } from '../../core/common/Model/EmailObject';
-import { Timestamps } from '../../core/common/Model/Timestamps';
-import { SoftDelete } from '../../core/common/Model/SoftDelete';
-import { Client } from '../../core/Client/Model/Client';
+import {StringObject} from '../../core/common/Model/StringObject';
+import {UUID} from '../../core/common/Model/UUID';
+import {EmailObject} from '../../core/common/Model/EmailObject';
+import {Timestamps} from '../../core/common/Model/Timestamps';
+import {SoftDelete} from '../../core/common/Model/SoftDelete';
+import {Client} from '../../core/Client/Model/Client';
 
 export class ClientMother {
   static create(

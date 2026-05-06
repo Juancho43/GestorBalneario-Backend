@@ -1,5 +1,6 @@
-import { Client } from '../../Model/Client';
-import { TimeStampResponse } from '../../../common/Application/TimeStampResponse';
+import {Client} from '../../Model/Client';
+import {TimeStampResponse} from '../../../common/Application/TimeStampResponse';
+
 /**
  * @class ClientResponse
  * @description Represents the response format for a client.

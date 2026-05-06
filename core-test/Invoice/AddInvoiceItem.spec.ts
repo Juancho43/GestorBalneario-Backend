@@ -1,14 +1,14 @@
-import { Client } from '../../core/Client/Model/Client';
-import { Service } from '../../core/Service/Model/Service';
-import { Invoice } from '../../core/Invoice/Model/Invoice';
-import { ClientMother } from '../mothers/ClientMother';
-import { ServiceMother } from '../mothers/ServiceMother';
-import { InvoiceMother } from '../mothers/InvoiceMother';
-import { AddInvoiceItem } from '../../core/Invoice/Application/UseCase/AddInvoiceItem';
-import { AddInvoiceItemCommand } from '../../core/Invoice/Application/Commands/AddInvoiceItemCommand';
-import { UUID } from '../../core/common/Model/UUID';
-import { EntityNotFoundError } from '../../core/common/Model/Errors/EntityNotFound';
-import { vi } from 'vitest';
+import {Client} from '../../core/Client/Model/Client';
+import {Service} from '../../core/Service/Model/Service';
+import {Invoice} from '../../core/Invoice/Model/Invoice';
+import {ClientMother} from '../mothers/ClientMother';
+import {ServiceMother} from '../mothers/ServiceMother';
+import {InvoiceMother} from '../mothers/InvoiceMother';
+import {AddInvoiceItem} from '../../core/Invoice/Application/UseCase/AddInvoiceItem';
+import {AddInvoiceItemCommand} from '../../core/Invoice/Application/Commands/AddInvoiceItemCommand';
+import {UUID} from '../../core/common/Model/UUID';
+import {EntityNotFoundError} from '../../core/common/Model/Errors/EntityNotFound';
+import {vi} from 'vitest';
 
 describe('AddInvoiceItem UseCase', () => {
   let mockEventPublisher;

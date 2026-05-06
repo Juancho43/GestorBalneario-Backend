@@ -1,17 +1,22 @@
-import { Inject, Injectable } from '@nestjs/common';
-import type { GetActiveReservationsDAO } from '../../../../core/Reservation/Application/Interfaces/GetActiveReservationsDAO';
-import { GetActiveReservations } from '../../../../core/Reservation/Application/UseCase/GetActiveReservations';
+import {Inject, Injectable, Logger} from '@nestjs/common';
+import {GetActiveReservations} from '../../../../core/Reservation/Application/UseCase/GetActiveReservations';
+import {RESERVATION_TOKEN} from 'src/reservation/RESERVATION_TOKEN';
 
 @Injectable()
 export class GetActiveReservationsService {
-  private useCase: GetActiveReservations;
+  private logger = new Logger(GetActiveReservationsService.name);
   constructor(
-    @Inject('GET_ACTIVE_RESERVATIONS') private dao: GetActiveReservationsDAO,
-  ) {
-    this.useCase = new GetActiveReservations(dao);
-  }
+    @Inject(RESERVATION_TOKEN.USECASE.GET_CURRENT)
+    private useCase: GetActiveReservations,
+  ) {}
 
   async execute() {
-    return this.useCase.execute(null);
+    try {
+      this.logger.debug(`Executing GetActiveReservationsService`);
+      return await this.useCase.execute(null)
+    } catch (e) {
+      this.logger.error(e);
+      throw e;
+    }
   }
 }

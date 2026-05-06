@@ -1,10 +1,9 @@
-import { vi } from 'vitest';
-import { GetByIdQuery } from '../../core/common/Application/GetByIdQuery';
-import { EntityNotFoundError } from '../../core/common/Model/Errors/EntityNotFound';
-import { GetSeason } from '../../core/Season/Application/UseCase/CRUD/GetSeason';
-import { Service } from '../../core/Service/Model/Service';
-import { GetService } from '../../core/Service/Application/UseCase/CRUD/GetService';
-import { ServiceMother } from '../mothers/ServiceMother';
+import {vi} from 'vitest';
+import {GetByIdQuery} from '../../core/common/Application/GetByIdQuery';
+import {EntityNotFoundError} from '../../core/common/Model/Errors/EntityNotFound';
+import {Service} from '../../core/Service/Model/Service';
+import {GetService} from '../../core/Service/Application/UseCase/CRUD/GetService';
+import {ServiceMother} from '../mothers/ServiceMother';
 
 describe('Get Service UseCase', () => {
   let entity: Service;

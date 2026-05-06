@@ -1,7 +1,7 @@
-import { ClientDetailsDTO } from '../DTO/ClientDetailsDTO';
-import { ClientDetailsDAO } from '../Interfaces/ClientDetailsDAO';
-import { IUseCase } from '../../../common/Application/IUseCase';
-import { ClientDetailQuery } from '../Queries/ClientDetailQuery';
+import {ClientDetailsDTO} from '../DTO/ClientDetailsDTO';
+import {ClientDetailsDAO} from '../Interfaces/ClientDetailsDAO';
+import {IUseCase} from '../../../common/Application/IUseCase';
+import {ClientDetailQuery} from '../Queries/ClientDetailQuery';
 
 export class GetClientDetails implements IUseCase<
   ClientDetailQuery,

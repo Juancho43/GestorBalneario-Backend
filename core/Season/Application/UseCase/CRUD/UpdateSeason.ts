@@ -1,10 +1,10 @@
-import { IUseCase } from '../../../../common/Application/IUseCase';
-import { Season } from '../../../Model/Season';
-import { GetSeasonDAO } from '../../../Model/DAO/GetSeasonDAO';
-import { EntityNotFoundError } from '../../../../common/Model/Errors/EntityNotFound';
-import { UpdateSeasonDAO } from '../../../Model/DAO/UpdateSeasonDAO';
-import { UpdateSeasonCommand } from '../../Commads/UpdateSeasonCommand';
-import { StringObject } from '../../../../common/Model/StringObject';
+import {IUseCase} from '../../../../common/Application/IUseCase';
+import {Season} from '../../../Model/Season';
+import {GetSeasonDAO} from '../../../Model/DAO/GetSeasonDAO';
+import {EntityNotFoundError} from '../../../../common/Model/Errors/EntityNotFound';
+import {UpdateSeasonDAO} from '../../../Model/DAO/UpdateSeasonDAO';
+import {UpdateSeasonCommand} from '../../Commads/UpdateSeasonCommand';
+import {StringObject} from '../../../../common/Model/StringObject';
 
 export class UpdateSeason implements IUseCase<UpdateSeasonCommand, Season> {
   constructor(

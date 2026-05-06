@@ -1,4 +1,5 @@
-import { ServiceResponse } from './ServiceResponse';
+import {ServiceResponse} from './ServiceResponse';
+
 /**
  * Data Transfer Object for season services.
  */

@@ -1,6 +1,6 @@
-import { SeasonMother } from '../mothers/SeasonMother';
-import { StringObject } from '../../core/common/Model/StringObject';
-import { InvalidDatesError } from '../../core/common/Model/Errors/InvalidDates';
+import {SeasonMother} from '../mothers/SeasonMother';
+import {StringObject} from '../../core/common/Model/StringObject';
+import {InvalidDatesError} from '../../core/common/Model/Errors/InvalidDates';
 
 describe('Season Domain Entity', () => {
   it('Should be created', () => {

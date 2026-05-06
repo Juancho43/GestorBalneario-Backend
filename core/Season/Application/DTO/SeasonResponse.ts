@@ -1,5 +1,6 @@
-import { Season } from '../../Model/Season';
-import { TimeStampResponse } from '../../../common/Application/TimeStampResponse';
+import {Season} from '../../Model/Season';
+import {TimeStampResponse} from '../../../common/Application/TimeStampResponse';
+
 /**
  * Represents the data transfer object for a season response.
  * @example

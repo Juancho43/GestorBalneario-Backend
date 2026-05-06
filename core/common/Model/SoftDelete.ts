@@ -3,7 +3,7 @@
  * Representa el estado de eliminación lógica de una entidad.
  */
 export class SoftDelete {
-  private readonly _deletedAt: Date | null;
+  private  _deletedAt: Date | null;
 
   private constructor(deletedAt: Date | null) {
     this._deletedAt = deletedAt ? Object.freeze(new Date(deletedAt)) : null;
@@ -19,14 +19,12 @@ export class SoftDelete {
     return new SoftDelete(deletedAt);
   }
 
-  // Genera la acción de eliminar
-  apply(): SoftDelete {
-    return new SoftDelete(new Date());
+  apply() {
+    this._deletedAt = new Date();
   }
 
-  // Revierte la eliminación (si fuera necesario)
-  undo(): SoftDelete {
-    return new SoftDelete(null);
+  undo() {
+    this._deletedAt = null;
   }
 
   get value(): Date | null {

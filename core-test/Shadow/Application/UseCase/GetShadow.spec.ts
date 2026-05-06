@@ -1,9 +1,9 @@
-import { vi } from 'vitest';
-import { Shadow } from '../../../../core/Shadow/Model/Shadow';
-import { GetShadow } from '../../../../core/Shadow/Application/UseCase/CRUD/GetShadow';
-import { ShadowMother } from '../../../mothers/ShadowMother';
-import { GetByIdQuery } from '../../../../core/common/Application/GetByIdQuery';
-import { EntityNotFoundError } from '../../../../core/common/Model/Errors/EntityNotFound';
+import {vi} from 'vitest';
+import {Shadow} from '../../../../core/Shadow/Model/Shadow';
+import {GetShadow} from '../../../../core/Shadow/Application/UseCase/CRUD/GetShadow';
+import {ShadowMother} from '../../../mothers/ShadowMother';
+import {GetByIdQuery} from '../../../../core/common/Application/GetByIdQuery';
+import {EntityNotFoundError} from '../../../../core/common/Model/Errors/EntityNotFound';
 
 describe('Get Shadow UseCase', () => {
   let entity: Shadow;

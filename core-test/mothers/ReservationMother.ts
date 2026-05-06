@@ -1,8 +1,8 @@
-import { UUID } from '../../core/common/Model/UUID';
-import { SoftDelete } from '../../core/common/Model/SoftDelete';
-import { Timestamps } from '../../core/common/Model/Timestamps';
-import { BookingMother } from './BookingMother';
-import { Reservation } from '../../core/Reservation/Model/Reservation';
+import {UUID} from '../../core/common/Model/UUID';
+import {SoftDelete} from '../../core/common/Model/SoftDelete';
+import {Timestamps} from '../../core/common/Model/Timestamps';
+import {BookingMother} from './BookingMother';
+import {Reservation} from '../../core/Reservation/Model/Reservation';
 
 export class ReservationMother {
   static create(

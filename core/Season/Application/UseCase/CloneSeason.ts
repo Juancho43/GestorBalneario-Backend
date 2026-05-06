@@ -1,13 +1,13 @@
-import { CloneSeasonCommand } from '../Commads/CloneSeasonCommand';
-import { IUseCase } from '../../../common/Application/IUseCase';
-import { CloneSeasonDAO } from '../Interfaces/CloneSeasonDAO';
-import { GetSeasonShadowsServicesDAO } from '../Interfaces/GetSeasonShadowsServicesDAO';
-import { CloneSeasonDTO } from '../DTO/CloneSeasonDTO';
-import { UUID } from '../../../common/Model/UUID';
-import { Season } from '../../Model/Season';
-import { StringObject } from '../../../common/Model/StringObject';
-import { SoftDelete } from '../../../common/Model/SoftDelete';
-import { Timestamps } from '../../../common/Model/Timestamps';
+import {CloneSeasonCommand} from '../Commads/CloneSeasonCommand';
+import {IUseCase} from '../../../common/Application/IUseCase';
+import {CloneSeasonDAO} from '../Interfaces/CloneSeasonDAO';
+import {GetSeasonShadowsServicesDAO} from '../Interfaces/GetSeasonShadowsServicesDAO';
+import {CloneSeasonDTO} from '../DTO/CloneSeasonDTO';
+import {UUID} from '../../../common/Model/UUID';
+import {Season} from '../../Model/Season';
+import {StringObject} from '../../../common/Model/StringObject';
+import {SoftDelete} from '../../../common/Model/SoftDelete';
+import {Timestamps} from '../../../common/Model/Timestamps';
 
 export class CloneSeason implements IUseCase<CloneSeasonCommand, void> {
   constructor(

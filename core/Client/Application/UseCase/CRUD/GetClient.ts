@@ -1,8 +1,8 @@
-import { IUseCase } from '../../../../common/Application/IUseCase';
-import { Client } from '../../../Model/Client';
-import { GetClientDAO } from '../../../Model/DAO/GetClientDAO';
-import { GetByIdQuery } from '../../../../common/Application/GetByIdQuery';
-import { EntityNotFoundError } from '../../../../common/Model/Errors/EntityNotFound';
+import {IUseCase} from '../../../../common/Application/IUseCase';
+import {Client} from '../../../Model/Client';
+import {GetClientDAO} from '../../../Model/DAO/GetClientDAO';
+import {GetByIdQuery} from '../../../../common/Application/GetByIdQuery';
+import {EntityNotFoundError} from '../../../../common/Model/Errors/EntityNotFound';
 
 export class GetClient implements IUseCase<GetByIdQuery, Client> {
   constructor(private dao: GetClientDAO) {}

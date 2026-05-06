@@ -1,8 +1,8 @@
-import { InvoiceState } from './InvoiceState';
-import { InvoiceItem } from './InvoiceItem';
-import { Payment } from '../../Payment/Model/Payment';
-import { Invoice } from './Invoice';
-import { ModifyPaidInvoiceError } from './Errors/ModifyPaidInvoice';
+import {InvoiceState} from './InvoiceState';
+import {InvoiceItem} from './InvoiceItem';
+import {Payment} from '../../Payment/Model/Payment';
+import {Invoice} from './Invoice';
+import {ModifyPaidInvoiceError} from './Errors/ModifyPaidInvoice';
 
 export class PaidState implements InvoiceState {
   constructor(private invoice: Invoice) {}

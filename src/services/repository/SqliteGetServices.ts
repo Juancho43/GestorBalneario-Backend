@@ -1,12 +1,13 @@
-import { SqliteBaseClass } from '../../database/SqliteBaseClass';
-import { GetServicesDAO } from '../../../core/Service/Model/DAO/GetServicesDAO';
-import { Service } from '../../../core/Service/Model/Service';
-import { Injectable } from '@nestjs/common';
-import { Money } from '../../../core/Payment/Model/Money';
-import { UUID } from '../../../core/common/Model/UUID';
-import { StringObject } from '../../../core/common/Model/StringObject';
-import { Timestamps } from '../../../core/common/Model/Timestamps';
-import { SoftDelete } from '../../../core/common/Model/SoftDelete';
+import {SqliteBaseClass} from '../../database/SqliteBaseClass';
+import {GetServicesDAO} from '../../../core/Service/Model/DAO/GetServicesDAO';
+import {Service} from '../../../core/Service/Model/Service';
+import {Injectable} from '@nestjs/common';
+import {Money} from '../../../core/Payment/Model/Money';
+import {UUID} from '../../../core/common/Model/UUID';
+import {StringObject} from '../../../core/common/Model/StringObject';
+import {Timestamps} from '../../../core/common/Model/Timestamps';
+import {SoftDelete} from '../../../core/common/Model/SoftDelete';
+
 @Injectable()
 export class SqliteGetServices
   extends SqliteBaseClass

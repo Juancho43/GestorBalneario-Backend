@@ -1,11 +1,11 @@
-import { StringObject } from '../../common/Model/StringObject';
-import { EmailObject } from '../../common/Model/EmailObject';
-import { Timestamps } from '../../common/Model/Timestamps';
-import { SoftDelete } from '../../common/Model/SoftDelete';
-import { UUID } from '../../common/Model/UUID';
-import { Invoice } from '../../Invoice/Model/Invoice';
-import { IssuedState } from '../../Invoice/Model/IssuedState';
-import { Entity } from '../../common/Model/Entity';
+import {StringObject} from '../../common/Model/StringObject';
+import {EmailObject} from '../../common/Model/EmailObject';
+import {Timestamps} from '../../common/Model/Timestamps';
+import {SoftDelete} from '../../common/Model/SoftDelete';
+import {UUID} from '../../common/Model/UUID';
+import {Invoice} from '../../Invoice/Model/Invoice';
+import {IssuedState} from '../../Invoice/Model/IssuedState';
+import {Entity} from '../../common/Model/Entity';
 
 export class Client implements Entity {
   private readonly _id: UUID;

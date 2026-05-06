@@ -1,14 +1,14 @@
-import { vi } from 'vitest';
-import { Reservation } from '../../core/Reservation/Model/Reservation';
-import { Shadow } from '../../core/Shadow/Model/Shadow';
-import { ReservationMother } from '../mothers/ReservationMother';
-import { ShadowMother } from '../mothers/ShadowMother';
-import { UpdateReservation } from '../../core/Reservation/Application/UseCase/CRUD/UpdateReservation';
-import { UpdateReservationCommand } from '../../core/Reservation/Application/Commands/UpdateReservationCommand';
-import { CreateReservationCommand } from '../../core/Reservation/Application/Commands/CreateReservationCommand';
-import { EntityNotFoundError } from '../../core/common/Model/Errors/EntityNotFound';
-import { NotAvailableDate } from '../../core/Shadow/Model/NotAvailableDate';
-import { BookingMother } from "../../core-test/mothers/BookingMother";
+import {vi} from 'vitest';
+import {Reservation} from '../../core/Reservation/Model/Reservation';
+import {Shadow} from '../../core/Shadow/Model/Shadow';
+import {ReservationMother} from '../mothers/ReservationMother';
+import {ShadowMother} from '../mothers/ShadowMother';
+import {UpdateReservation} from '../../core/Reservation/Application/UseCase/CRUD/UpdateReservation';
+import {UpdateReservationCommand} from '../../core/Reservation/Application/Commands/UpdateReservationCommand';
+import {CreateReservationCommand} from '../../core/Reservation/Application/Commands/CreateReservationCommand';
+import {EntityNotFoundError} from '../../core/common/Model/Errors/EntityNotFound';
+import {NotAvailableDate} from '../../core/Shadow/Model/NotAvailableDate';
+import {BookingMother} from '../../core-test/mothers/BookingMother';
 
 describe('Update reservation UseCase', () => {
   let getShadowMock;
@@ -80,7 +80,7 @@ describe('Update reservation UseCase', () => {
       booking: BookingMother.create({
         checkIn: new Date('2025-01-12'),
         checkOut: new Date('2025-01-18'),
-      })
+      }),
     });
     shadow.addReservation(overlappingReservation);
     shadow.addReservation(reservation);

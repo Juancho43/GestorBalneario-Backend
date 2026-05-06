@@ -1,12 +1,13 @@
-import { GetClientDetails } from '../../core/Client/Application/UseCase/GetClientDetails';
-import { ClientDetailQuery } from '../../core/Client/Application/Queries/ClientDetailQuery';
-import { ClientDetailsDTO } from '../../core/Client/Application/DTO/ClientDetailsDTO';
-import { ClientMother } from '../mothers/ClientMother';
-import { Invoice } from '../../core/Invoice/Model/Invoice';
-import { InvoiceMother } from '../mothers/InvoiceMother';
-import { ClientResponse } from '../../core/Client/Application/DTO/ClientResponse';
-import { InvoiceResponse } from '../../core/Invoice/Application/DTO/InvoiceResponse';
-import { vi } from 'vitest';
+import {GetClientDetails} from '../../core/Client/Application/UseCase/GetClientDetails';
+import {ClientDetailQuery} from '../../core/Client/Application/Queries/ClientDetailQuery';
+import {ClientDetailsDTO} from '../../core/Client/Application/DTO/ClientDetailsDTO';
+import {ClientMother} from '../mothers/ClientMother';
+import {Invoice} from '../../core/Invoice/Model/Invoice';
+import {InvoiceMother} from '../mothers/InvoiceMother';
+import {ClientResponse} from '../../core/Client/Application/DTO/ClientResponse';
+import {InvoiceResponse} from '../../core/Invoice/Application/DTO/InvoiceResponse';
+import {vi} from 'vitest';
+
 describe('GetClientDetail UseCase', () => {
   let mockDao;
   let useCase: GetClientDetails;

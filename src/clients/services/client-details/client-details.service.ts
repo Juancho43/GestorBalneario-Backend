@@ -1,16 +1,16 @@
-import { Inject, Injectable, Logger } from '@nestjs/common';
-import { GetClientQuery } from '../../../../core/Client/Application/Queries/GetClientQuery';
-import type { ClientDetailsDAO } from '../../../../core/Client/Application/Interfaces/ClientDetailsDAO';
-import { GetClientDetails } from '../../../../core/Client/Application/UseCase/GetClientDetails';
-import { ClientDetailQuery } from '../../../../core/Client/Application/Queries/ClientDetailQuery';
+import {Inject, Injectable, Logger} from '@nestjs/common';
+import {GetClientDetails} from '../../../../core/Client/Application/UseCase/GetClientDetails';
+import {ClientDetailQuery} from '../../../../core/Client/Application/Queries/ClientDetailQuery';
+import {CLIENT_TOKEN} from '../../CLIENT_TOKEN';
 
 @Injectable()
 export class ClientDetailsService {
   private logger = new Logger(ClientDetailsService.name);
-  private useCase: GetClientDetails;
-  constructor(@Inject('GET_DETAILS') dao: ClientDetailsDAO) {
-    this.useCase = new GetClientDetails(dao);
-  }
+
+  constructor(
+    @Inject(CLIENT_TOKEN.USECASE.CLIENT_DETAILS)
+    private useCase: GetClientDetails,
+  ) {}
 
   execute(query: ClientDetailQuery) {
     try {

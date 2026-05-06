@@ -1,16 +1,16 @@
-import { Injectable } from '@nestjs/common';
-import { SeasonServiceDAO } from '../../../core/Service/Application/Interfaces/SeasonServiceDAO';
-import { SqliteBaseClass } from '../../database/SqliteBaseClass';
-import { SeasonServiceDTO } from 'core/Service/Application/DTO/SeasonServiceDTO';
-import { GetSeasonServicesQuery } from 'core/Service/Application/Queries/GetSeasonServicesQuery';
-import { ServiceResponse } from '../../../core/Service/Application/DTO/ServiceResponse';
+import {Injectable} from '@nestjs/common';
+import {SeasonServiceDAO} from '../../../core/Service/Application/Interfaces/SeasonServiceDAO';
+import {SqliteBaseClass} from '../../database/SqliteBaseClass';
+import {SeasonServiceDTO} from 'core/Service/Application/DTO/SeasonServiceDTO';
+import {GetSeasonEntityQuery} from 'core/Service/Application/Queries/GetSeasonEntityQuery';
+import {ServiceResponse} from '../../../core/Service/Application/DTO/ServiceResponse';
 
 @Injectable()
 export class SqliteSeasonsServices
   extends SqliteBaseClass
   implements SeasonServiceDAO
 {
-  async get(query: GetSeasonServicesQuery): Promise<SeasonServiceDTO> {
+  async get(query: GetSeasonEntityQuery): Promise<SeasonServiceDTO> {
     const sql = `
             SELECT
                 s.id as serviceId,

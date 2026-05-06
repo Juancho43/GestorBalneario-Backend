@@ -1,10 +1,5 @@
-import {
-  CanActivate,
-  ExecutionContext,
-  Inject,
-  Injectable,
-} from '@nestjs/common';
-import { GetActiveSeasonService } from '../seasons/services/get-active-season/get-active-season.service';
+import {CanActivate, ExecutionContext, Inject, Injectable,} from '@nestjs/common';
+import {GetActiveSeasonService} from '../seasons/services/get-active-season/get-active-season.service';
 
 @Injectable()
 export class CurrentSeasonGuard implements CanActivate {

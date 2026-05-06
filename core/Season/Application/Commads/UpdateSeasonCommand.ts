@@ -1,4 +1,4 @@
-import { CreateSeasonCommand } from './CreateSeasonCommand';
+import {CreateSeasonCommand} from './CreateSeasonCommand';
 
 export class UpdateSeasonCommand {
   id: string;

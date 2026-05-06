@@ -1,9 +1,9 @@
-import { vi } from 'vitest';
-import { GetByIdQuery } from '../../core/common/Application/GetByIdQuery';
-import { EntityNotFoundError } from '../../core/common/Model/Errors/EntityNotFound';
-import { Season } from '../../core/Season/Model/Season';
-import { GetSeason } from '../../core/Season/Application/UseCase/CRUD/GetSeason';
-import { SeasonMother } from '../mothers/SeasonMother';
+import {vi} from 'vitest';
+import {GetByIdQuery} from '../../core/common/Application/GetByIdQuery';
+import {EntityNotFoundError} from '../../core/common/Model/Errors/EntityNotFound';
+import {Season} from '../../core/Season/Model/Season';
+import {GetSeason} from '../../core/Season/Application/UseCase/CRUD/GetSeason';
+import {SeasonMother} from '../mothers/SeasonMother';
 
 describe('Get Season UseCase', () => {
   let entity: Season;

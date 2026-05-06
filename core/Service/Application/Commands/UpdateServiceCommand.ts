@@ -1,4 +1,4 @@
-import { CreateServiceCommand } from './CreateServiceCommand';
+import {CreateServiceCommand} from './CreateServiceCommand';
 
 export class UpdateServiceCommand {
   id: string;

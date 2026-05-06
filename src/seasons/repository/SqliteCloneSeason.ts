@@ -1,8 +1,8 @@
-import { Injectable } from '@nestjs/common';
-import { SqliteBaseClass } from '../../database/SqliteBaseClass';
-import { CloneSeasonDAO } from '../../../core/Season/Application/Interfaces/CloneSeasonDAO';
-import { CloneSeasonDTO } from 'core/Season/Application/DTO/CloneSeasonDTO';
-import { UUID } from '../../../core/common/Model/UUID';
+import {Injectable} from '@nestjs/common';
+import {SqliteBaseClass} from '../../database/SqliteBaseClass';
+import {CloneSeasonDAO} from '../../../core/Season/Application/Interfaces/CloneSeasonDAO';
+import {CloneSeasonDTO} from 'core/Season/Application/DTO/CloneSeasonDTO';
+import {UUID} from '../../../core/common/Model/UUID';
 
 @Injectable()
 export class SqliteCloneSeason

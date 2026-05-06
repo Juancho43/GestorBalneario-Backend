@@ -1,14 +1,14 @@
-import { InvoiceDetailQuery } from 'core/Invoice/Application/Queries/InvoiceDetailQuery';
-import { InvoiceDetailsDTO } from 'core/Invoice/Application/DTO/InvoiceDetailsDTO';
-import { InvoiceDetailDAO } from '../../../core/Invoice/Application/Interfaces/InvoiceDetailDAO';
-import { SqliteBaseClass } from '../../database/SqliteBaseClass';
-import { Injectable } from '@nestjs/common';
-import { InvoiceResponse } from '../../../core/Invoice/Application/DTO/InvoiceResponse';
-import { ClientResponse } from '../../../core/Client/Application/DTO/ClientResponse';
-import { ShadowResponse } from '../../../core/Shadow/Application/Response/ShadowResponse';
-import { ReservationResponse } from '../../../core/Reservation/Application/DTO/ReservationResponse';
-import { ItemResponse } from '../../../core/Invoice/Application/DTO/ItemResponse';
-import { PaymentResponse } from '../../../core/Payment/Application/DTO/PaymentResponse';
+import {InvoiceDetailQuery} from 'core/Invoice/Application/Queries/InvoiceDetailQuery';
+import {InvoiceDetailsDTO} from 'core/Invoice/Application/DTO/InvoiceDetailsDTO';
+import {InvoiceDetailDAO} from '../../../core/Invoice/Application/Interfaces/InvoiceDetailDAO';
+import {SqliteBaseClass} from '../../database/SqliteBaseClass';
+import {Injectable} from '@nestjs/common';
+import {InvoiceResponse} from '../../../core/Invoice/Application/DTO/InvoiceResponse';
+import {ClientResponse} from '../../../core/Client/Application/DTO/ClientResponse';
+import {ShadowResponse} from '../../../core/Shadow/Application/Response/ShadowResponse';
+import {ReservationResponse} from '../../../core/Reservation/Application/DTO/ReservationResponse';
+import {ItemResponse} from '../../../core/Invoice/Application/DTO/ItemResponse';
+import {PaymentResponse} from '../../../core/Payment/Application/DTO/PaymentResponse';
 
 @Injectable()
 export class SqliteInvoiceDetail

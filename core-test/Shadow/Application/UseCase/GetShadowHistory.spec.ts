@@ -1,8 +1,9 @@
-import { GetShadowHistory } from '../../../../core/Shadow/Application/UseCase/GetShadowHistory';
-import { ShadowHistoryDTO } from '../../../../core/Shadow/Application/Response/ShadowHistoryDTO';
-import { ShadowMother } from '../../../mothers/ShadowMother';
-import { ShadowResponse } from '../../../../core/Shadow/Application/Response/ShadowResponse';
-import { vi } from 'vitest';
+import {GetShadowHistory} from '../../../../core/Shadow/Application/UseCase/GetShadowHistory';
+import {ShadowHistoryDTO} from '../../../../core/Shadow/Application/Response/ShadowHistoryDTO';
+import {ShadowMother} from '../../../mothers/ShadowMother';
+import {ShadowResponse} from '../../../../core/Shadow/Application/Response/ShadowResponse';
+import {vi} from 'vitest';
+
 describe('GetShadowHistory UseCase', () => {
   let useCase: GetShadowHistory;
   let mockDao;

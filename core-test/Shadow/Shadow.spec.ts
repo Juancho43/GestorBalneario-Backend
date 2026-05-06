@@ -1,15 +1,15 @@
-import { ShadowMother } from '../mothers/ShadowMother';
-import { UUID } from '../../core/common/Model/UUID';
-import { ShadowType } from '../../core/Shadow/Model/ValueObjects/ShadowType';
-import { Timestamps } from '../../core/common/Model/Timestamps';
-import { SoftDelete } from '../../core/common/Model/SoftDelete';
-import { StringObject } from '../../core/common/Model/StringObject';
-import { Coords } from '../../core/common/Model/Coords';
-import { Shadow } from '../../core/Shadow/Model/Shadow';
-import { ReservationMother } from '../mothers/ReservationMother';
-import { BookingMother } from '../mothers/BookingMother';
-import { Reservation } from '../../core/Reservation/Model/Reservation';
-import { NotAvailableDate } from '../../core/Shadow/Model/NotAvailableDate';
+import {ShadowMother} from '../mothers/ShadowMother';
+import {UUID} from '../../core/common/Model/UUID';
+import {ShadowType} from '../../core/Shadow/Model/ValueObjects/ShadowType';
+import {Timestamps} from '../../core/common/Model/Timestamps';
+import {SoftDelete} from '../../core/common/Model/SoftDelete';
+import {StringObject} from '../../core/common/Model/StringObject';
+import {Coords} from '../../core/common/Model/Coords';
+import {Shadow} from '../../core/Shadow/Model/Shadow';
+import {ReservationMother} from '../mothers/ReservationMother';
+import {BookingMother} from '../mothers/BookingMother';
+import {Reservation} from '../../core/Reservation/Model/Reservation';
+import {NotAvailableDate} from '../../core/Shadow/Model/NotAvailableDate';
 
 describe('Shadow Domain Entity', () => {
   let shadow: Shadow;

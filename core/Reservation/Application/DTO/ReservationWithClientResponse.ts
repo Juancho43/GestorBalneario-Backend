@@ -1,7 +1,7 @@
-import { ReservationResponse } from './ReservationResponse';
-import { ClientResponse } from '../../../Client/Application/DTO/ClientResponse';
-import { Client } from '../../../Client/Model/Client';
-import { Reservation } from '../../Model/Reservation';
+import {ReservationResponse} from './ReservationResponse';
+import {ClientResponse} from '../../../Client/Application/DTO/ClientResponse';
+import {Client} from '../../../Client/Model/Client';
+import {Reservation} from '../../Model/Reservation';
 
 /**
  * Represents a response that combines reservation data with client data.

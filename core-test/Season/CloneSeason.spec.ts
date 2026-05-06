@@ -1,20 +1,20 @@
-import { CloneSeason } from '../../core/Season/Application/UseCase/CloneSeason';
-import { CloneSeasonCommand } from '../../core/Season/Application/Commads/CloneSeasonCommand';
-import { SeasonShadowsServicesDTO } from '../../core/Season/Application/DTO/SeasonShadowsServicesDTO';
-import { CloneSeasonDTO } from '../../core/Season/Application/DTO/CloneSeasonDTO';
-import { vi } from 'vitest';
-import { SeasonMother } from '../mothers/SeasonMother';
-import { Service } from '../../core/Service/Model/Service';
-import { Shadow } from '../../core/Shadow/Model/Shadow';
-import { ServiceMother } from '../mothers/ServiceMother';
-import { ShadowMother } from '../mothers/ShadowMother';
-import { CreateSeasonCommand } from '../../core/Season/Application/Commads/CreateSeasonCommand';
+import {CloneSeason} from '../../core/Season/Application/UseCase/CloneSeason';
+import {CloneSeasonCommand} from '../../core/Season/Application/Commads/CloneSeasonCommand';
+import {SeasonShadowsServicesDTO} from '../../core/Season/Application/DTO/SeasonShadowsServicesDTO';
+import {CloneSeasonDTO} from '../../core/Season/Application/DTO/CloneSeasonDTO';
+import {vi} from 'vitest';
+import {SeasonMother} from '../mothers/SeasonMother';
+import {Service} from '../../core/Service/Model/Service';
+import {Shadow} from '../../core/Shadow/Model/Shadow';
+import {ServiceMother} from '../mothers/ServiceMother';
+import {ShadowMother} from '../mothers/ShadowMother';
+import {CreateSeasonCommand} from '../../core/Season/Application/Commads/CreateSeasonCommand';
 
 describe('CloneSeason UseCase', () => {
   let mockDao;
+  let mockGetData;
   let useCase: CloneSeason;
   let command: CloneSeasonCommand;
-  let mockGetData;
   let dataDto: SeasonShadowsServicesDTO;
   let cloneDto: CloneSeasonDTO;
 

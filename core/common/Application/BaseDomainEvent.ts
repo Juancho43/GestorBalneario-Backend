@@ -1,5 +1,5 @@
-import { UUID } from '../Model/UUID';
-import { IDomainEvent } from './IDomainEvent';
+import {UUID} from '../Model/UUID';
+import {IDomainEvent} from './IDomainEvent';
 
 export abstract class BaseDomainEvent implements IDomainEvent {
   public readonly occurredOn: Date;

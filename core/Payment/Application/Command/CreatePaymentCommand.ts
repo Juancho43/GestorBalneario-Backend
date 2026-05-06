@@ -1,5 +1,5 @@
-import { PaymentMethod } from '../../Model/PaymentType';
-import { Currency } from '../../Model/Money';
+import {PaymentMethod} from '../../Model/PaymentType';
+import {Currency} from '../../Model/Money';
 
 export class CreatePaymentCommand {
   /** Id of the invoices

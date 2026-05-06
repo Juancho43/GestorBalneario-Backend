@@ -1,21 +1,18 @@
-import { Inject, Injectable, Logger } from '@nestjs/common';
-import { SetActiveSeason } from '../../../../core/Season/Application/UseCase/SetActiveSeason';
-import type { SetActiveSeasonDAO } from '../../../../core/Season/Application/Interfaces/SetActiveSeasonDAO';
-import { SetActiveSeasonCommand } from '../../../../core/Season/Application/Commads/SetActiveSeasonCommand';
-import { GetActiveSeason } from '../../../../core/Season/Application/UseCase/GetActiveSeason';
-import { GetActiveSeasonService } from '../get-active-season/get-active-season.service';
+import {Inject, Injectable, Logger} from '@nestjs/common';
+import {SetActiveSeason} from '../../../../core/Season/Application/UseCase/SetActiveSeason';
+import {SetActiveSeasonCommand} from '../../../../core/Season/Application/Commads/SetActiveSeasonCommand';
+import {GetActiveSeasonService} from '../get-active-season/get-active-season.service';
+import {SEASON_TOKEN} from '../../SEASON_TOKEN';
 
 @Injectable()
 export class SetActiveSeasonService {
   private logger = new Logger(SetActiveSeasonService.name);
-  private useCase: SetActiveSeason;
 
   constructor(
-    @Inject('SET_ACTIVE') dao: SetActiveSeasonDAO,
+    @Inject(SEASON_TOKEN.USECASE.SET_ACTIVE)
+    private useCase: SetActiveSeason,
     @Inject() private getActive: GetActiveSeasonService,
-  ) {
-    this.useCase = new SetActiveSeason(dao);
-  }
+  ) {}
 
   async execute(command: SetActiveSeasonCommand) {
     try {

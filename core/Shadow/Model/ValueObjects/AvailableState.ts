@@ -1,5 +1,5 @@
-import { ShadowState } from './ShadowState';
-import { Shadow } from '../Shadow';
+import {ShadowState} from './ShadowState';
+import {Shadow} from '../Shadow';
 
 export class AvailableState implements ShadowState {
   private readonly shadow: Shadow;

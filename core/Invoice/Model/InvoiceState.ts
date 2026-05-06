@@ -1,6 +1,6 @@
-import { Invoice } from './Invoice';
-import { InvoiceItem } from './InvoiceItem';
-import { Payment } from '../../Payment/Model/Payment';
+import {Invoice} from './Invoice';
+import {InvoiceItem} from './InvoiceItem';
+import {Payment} from '../../Payment/Model/Payment';
 
 export interface InvoiceState {
   toString(): string;

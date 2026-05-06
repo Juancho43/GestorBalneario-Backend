@@ -1,6 +1,6 @@
-import { IUseCase } from '../../../common/Application/IUseCase';
-import { ShadowMapDTO } from '../Response/ShadowMapDTO';
-import { ShadowMapDAO } from '../Interfaces/ShadowMapDAO';
+import {IUseCase} from '../../../common/Application/IUseCase';
+import {ShadowMapDTO} from '../Response/ShadowMapDTO';
+import {ShadowMapDAO} from '../Interfaces/ShadowMapDAO';
 
 export class GetShadowMap implements IUseCase<string, ShadowMapDTO> {
   constructor(private dao: ShadowMapDAO) {}

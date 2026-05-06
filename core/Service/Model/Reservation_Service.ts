@@ -1,7 +1,7 @@
-import { UUID } from '../../common/Model/UUID';
-import { Money } from '../../Payment/Model/Money';
-import { InvoiceItem } from '../../Invoice/Model/InvoiceItem';
-import { StringObject } from '../../common/Model/StringObject';
+import {UUID} from '../../common/Model/UUID';
+import {Money} from '../../Payment/Model/Money';
+import {InvoiceItem} from '../../Invoice/Model/InvoiceItem';
+import {StringObject} from '../../common/Model/StringObject';
 
 export class Reservation_Service implements InvoiceItem {
   private id: UUID;

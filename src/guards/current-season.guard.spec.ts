@@ -1,4 +1,4 @@
-import { CurrentSeasonGuard } from './current-season.guard';
+import {CurrentSeasonGuard} from './current-season.guard';
 
 describe('CurrentSeasonGuard', () => {
   it('should be defined', () => {

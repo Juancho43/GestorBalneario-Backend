@@ -1,4 +1,4 @@
-import { CreateReservationCommand } from './CreateReservationCommand';
+import {CreateReservationCommand} from './CreateReservationCommand';
 
 export class UpdateReservationCommand {
   /**

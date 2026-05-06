@@ -1,17 +1,17 @@
-import { Injectable } from '@nestjs/common';
-import { SqliteBaseClass } from '../../database/SqliteBaseClass';
-import { GetSeasonShadowsServicesDAO } from '../../../core/Season/Application/Interfaces/GetSeasonShadowsServicesDAO';
-import { SeasonShadowsServicesDTO } from 'core/Season/Application/DTO/SeasonShadowsServicesDTO';
-import { UUID } from '../../../core/common/Model/UUID';
-import { Season } from '../../../core/Season/Model/Season';
-import { SoftDelete } from '../../../core/common/Model/SoftDelete';
-import { Timestamps } from '../../../core/common/Model/Timestamps';
-import { Service } from '../../../core/Service/Model/Service';
-import { Shadow } from '../../../core/Shadow/Model/Shadow';
-import { StringObject } from '../../../core/common/Model/StringObject';
-import { ShadowType } from '../../../core/Shadow/Model/ValueObjects/ShadowType';
-import { Coords } from '../../../core/common/Model/Coords';
-import { Money } from '../../../core/Payment/Model/Money';
+import {Injectable} from '@nestjs/common';
+import {SqliteBaseClass} from '../../database/SqliteBaseClass';
+import {GetSeasonShadowsServicesDAO} from '../../../core/Season/Application/Interfaces/GetSeasonShadowsServicesDAO';
+import {SeasonShadowsServicesDTO} from 'core/Season/Application/DTO/SeasonShadowsServicesDTO';
+import {UUID} from '../../../core/common/Model/UUID';
+import {Season} from '../../../core/Season/Model/Season';
+import {SoftDelete} from '../../../core/common/Model/SoftDelete';
+import {Timestamps} from '../../../core/common/Model/Timestamps';
+import {Service} from '../../../core/Service/Model/Service';
+import {Shadow} from '../../../core/Shadow/Model/Shadow';
+import {StringObject} from '../../../core/common/Model/StringObject';
+import {ShadowType} from '../../../core/Shadow/Model/ValueObjects/ShadowType';
+import {Coords} from '../../../core/common/Model/Coords';
+import {Money} from '../../../core/Payment/Model/Money';
 
 @Injectable()
 export class SqliteGetSeasonShadowsServices

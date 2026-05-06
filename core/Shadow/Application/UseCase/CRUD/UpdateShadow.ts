@@ -1,12 +1,12 @@
-import { IUseCase } from '../../../../common/Application/IUseCase';
-import { Shadow } from '../../../Model/Shadow';
-import { UpdateShadowCommand } from '../../Command/UpdateShadowCommand';
-import { StringObject } from '../../../../common/Model/StringObject';
-import { Coords } from '../../../../common/Model/Coords';
-import { UpdateShadowDAO } from '../../../Model/DAO/UpdateShadowDAO';
-import { ActiveSeasonDAO } from '../../../../Season/Application/Interfaces/ActiveSeasonDAO';
-import { GetShadowDAO } from '../../../Model/DAO/GetShadowDAO';
-import { EntityNotFoundError } from '../../../../common/Model/Errors/EntityNotFound';
+import {IUseCase} from '../../../../common/Application/IUseCase';
+import {Shadow} from '../../../Model/Shadow';
+import {UpdateShadowCommand} from '../../Command/UpdateShadowCommand';
+import {StringObject} from '../../../../common/Model/StringObject';
+import {Coords} from '../../../../common/Model/Coords';
+import {UpdateShadowDAO} from '../../../Model/DAO/UpdateShadowDAO';
+import {ActiveSeasonDAO} from '../../../../Season/Application/Interfaces/ActiveSeasonDAO';
+import {GetShadowDAO} from '../../../Model/DAO/GetShadowDAO';
+import {EntityNotFoundError} from '../../../../common/Model/Errors/EntityNotFound';
 
 export class UpdateShadow implements IUseCase<UpdateShadowCommand, Shadow> {
   constructor(
@@ -22,6 +22,7 @@ export class UpdateShadow implements IUseCase<UpdateShadowCommand, Shadow> {
     }
 
     const season = await this.currentSeason.get();
+
     existingEntity.update();
     const shadow = Shadow.create(
       existingEntity.id,

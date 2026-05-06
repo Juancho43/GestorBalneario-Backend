@@ -1,9 +1,9 @@
-import { vi } from 'vitest';
-import { GetByIdQuery } from '../../core/common/Application/GetByIdQuery';
-import { EntityNotFoundError } from '../../core/common/Model/Errors/EntityNotFound';
-import { GetPayment } from '../../core/Payment/Application/UseCase/CRUD/GetPayment';
-import { Payment } from '../../core/Payment/Model/Payment';
-import { PaymentMother } from '../mothers/PaymentMother';
+import {vi} from 'vitest';
+import {GetByIdQuery} from '../../core/common/Application/GetByIdQuery';
+import {EntityNotFoundError} from '../../core/common/Model/Errors/EntityNotFound';
+import {GetPayment} from '../../core/Payment/Application/UseCase/CRUD/GetPayment';
+import {Payment} from '../../core/Payment/Model/Payment';
+import {PaymentMother} from '../mothers/PaymentMother';
 
 describe('Get Payment UseCase', () => {
   let entity: Payment;

@@ -1,6 +1,6 @@
 // test/mothers/BookingMother.ts
 
-import { Booking } from '../../core/Reservation/Model/Booking';
+import {Booking} from '../../core/Reservation/Model/Booking';
 
 export class BookingMother {
   static create(

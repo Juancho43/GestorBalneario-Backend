@@ -1,5 +1,5 @@
-import { AppResponse } from './AppResponse';
-import { BaseError } from '../Model/BaseError';
+import {AppResponse} from './AppResponse';
+import {BaseError} from '../Model/BaseError';
 
 export class CreateAppResponse {
   static successResponse(

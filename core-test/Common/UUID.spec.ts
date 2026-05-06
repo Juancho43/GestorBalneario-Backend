@@ -1,4 +1,4 @@
-import { UUID } from '../../core/common/Model/UUID';
+import {UUID} from '../../core/common/Model/UUID';
 
 describe('UUID Value Object', () => {
   it('should be created', () => {

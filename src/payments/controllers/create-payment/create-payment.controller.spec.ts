@@ -7,7 +7,6 @@ import {GetActiveSeasonService} from '../../../seasons/services/get-active-seaso
 import {CurrentSeasonGuard} from '../../../guards/current-season.guard';
 import {CreatePaymentService} from '../../services/create-payment/create-payment.service';
 import {Season} from '../../../../core/Season/Model/Season';
-import {PaymentResponse} from '../../../../core/Payment/Application/DTO/PaymentResponse';
 import {PaymentMother} from "../../../../core-test/mothers/PaymentMother";
 
 describe('CreatePaymentController', () => {

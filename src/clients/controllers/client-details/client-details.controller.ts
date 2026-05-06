@@ -4,7 +4,6 @@ import {ClientDetailsService} from '../../services/client-details/client-details
 import {ClientDetailQuery} from '../../../../core/Client/Application/Queries/ClientDetailQuery';
 import {CreateAppResponse} from "../../../../core/common/Application/CreateAppResponse";
 import {IController} from "../../../../core/common/Application/IController";
-import {ClientResponse} from "../../../../core/Client/Application/DTO/ClientResponse";
 import {ClientDetailsDTO} from "../../../../core/Client/Application/DTO/ClientDetailsDTO";
 
 @ApiTags('Frontend')

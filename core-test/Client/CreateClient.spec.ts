@@ -1,8 +1,8 @@
-import { CreateClient } from '../../core/Client/Application/UseCase/CRUD/CreateClient';
-import { Client } from '../../core/Client/Model/Client';
-import { ClientMother } from '../mothers/ClientMother';
-import { CreateClientCommand } from '../../core/Client/Application/Commands/CreateClientCommand';
-import { vi } from 'vitest';
+import {CreateClient} from '../../core/Client/Application/UseCase/CRUD/CreateClient';
+import {Client} from '../../core/Client/Model/Client';
+import {ClientMother} from '../mothers/ClientMother';
+import {CreateClientCommand} from '../../core/Client/Application/Commands/CreateClientCommand';
+import {vi} from 'vitest';
 
 describe('Create Client UseCase', () => {
   let entity: Client;

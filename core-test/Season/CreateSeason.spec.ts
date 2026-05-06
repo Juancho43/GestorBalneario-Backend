@@ -1,8 +1,8 @@
-import { vi } from 'vitest';
-import { CreateSeasonCommand } from '../../core/Season/Application/Commads/CreateSeasonCommand';
-import { Season } from '../../core/Season/Model/Season';
-import { CreateSeason } from '../../core/Season/Application/UseCase/CRUD/CreateSeason';
-import { SeasonMother } from '../mothers/SeasonMother';
+import {vi} from 'vitest';
+import {CreateSeasonCommand} from '../../core/Season/Application/Commads/CreateSeasonCommand';
+import {Season} from '../../core/Season/Model/Season';
+import {CreateSeason} from '../../core/Season/Application/UseCase/CRUD/CreateSeason';
+import {SeasonMother} from '../mothers/SeasonMother';
 
 describe('Create Season UseCase', () => {
   let entity: Season;

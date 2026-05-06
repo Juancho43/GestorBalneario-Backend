@@ -1,8 +1,8 @@
-import { IUseCase } from '../../../../common/Application/IUseCase';
-import { DeleteCommand } from '../../../../common/Application/DeleteCommand';
-import { DeletePaymentDAO } from '../../../Model/DAO/DeletePaymentDAO';
-import { GetPaymentDAO } from '../../../Model/DAO/GetPaymentDAO';
-import { EntityNotFoundError } from '../../../../common/Model/Errors/EntityNotFound';
+import {IUseCase} from '../../../../common/Application/IUseCase';
+import {DeleteCommand} from '../../../../common/Application/DeleteCommand';
+import {DeletePaymentDAO} from '../../../Model/DAO/DeletePaymentDAO';
+import {GetPaymentDAO} from '../../../Model/DAO/GetPaymentDAO';
+import {EntityNotFoundError} from '../../../../common/Model/Errors/EntityNotFound';
 
 export class DeletePayment implements IUseCase<DeleteCommand, void> {
   constructor(

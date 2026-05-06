@@ -1,25 +1,23 @@
 import {Inject, Injectable, Logger} from '@nestjs/common';
-import {PaginatedQuery} from "../../../../core/common/Application/PaginatedQuery";
-import {ClientResponse} from "../../../../core/Client/Application/DTO/ClientResponse";
-import {GetClientsHistory} from "../../../../core/Client/Application/UseCase/GetClientsHistory";
-import type {GetClientsDAO} from "../../../../core/Client/Model/DAO/GetClientsDAO";
+import {PaginatedQuery} from '../../../../core/common/Application/PaginatedQuery';
+import {GetClientsHistory} from '../../../../core/Client/Application/UseCase/GetClientsHistory';
+import {CLIENT_TOKEN} from '../../CLIENT_TOKEN';
 
 @Injectable()
 export class GetClientsHistoryService {
-    private logger = new Logger(GetClientsHistoryService.name);
-    private useCase : GetClientsHistory;
+  private logger = new Logger(GetClientsHistoryService.name);
+  constructor(
+    @Inject(CLIENT_TOKEN.USECASE.CLIENT_LIST)
+    private useCase: GetClientsHistory,
+  ) {}
 
-    constructor(@Inject('GET_CLIENTS') dao: GetClientsDAO){
-        this.useCase = new GetClientsHistory(dao);
+  async execute(query: PaginatedQuery) {
+    try {
+      this.logger.debug('Executing GetClientsHistoryService');
+      return await this.useCase.execute(query);
+    } catch (error) {
+      this.logger.error(error);
+      throw error;
     }
-
-    async execute(query: PaginatedQuery): Promise<ClientResponse[]>  {
-        try{
-            this.logger.debug('Executing GetClientsHistoryService');
-            return ClientResponse.createList(await this.useCase.execute(query));
-        } catch(error) {
-            this.logger.error(error);
-            throw error;
-        }
-    }
+  }
 }

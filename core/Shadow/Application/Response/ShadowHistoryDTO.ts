@@ -1,5 +1,5 @@
-import { ReservationResponse } from '../../../Reservation/Application/DTO/ReservationResponse';
-import { ShadowResponse } from './ShadowResponse';
+import {ReservationResponse} from '../../../Reservation/Application/DTO/ReservationResponse';
+import {ShadowResponse} from './ShadowResponse';
 
 /**
  * Data Transfer Object for a shadow's history.

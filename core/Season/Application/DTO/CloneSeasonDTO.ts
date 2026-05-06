@@ -1,6 +1,6 @@
-import { Season } from '../../Model/Season';
-import { Service } from '../../../Service/Model/Service';
-import { Shadow } from '../../../Shadow/Model/Shadow';
+import {Season} from '../../Model/Season';
+import {Service} from '../../../Service/Model/Service';
+import {Shadow} from '../../../Shadow/Model/Shadow';
 
 /**
  * Data Transfer Object for cloning a season.

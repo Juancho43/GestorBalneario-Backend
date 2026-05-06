@@ -1,18 +1,15 @@
-import { Inject, Injectable, Logger } from '@nestjs/common';
-import type { GetInvoiceDAO } from '../../../../core/Invoice/Model/DAO/GetInvoiceDAO';
-import { GetInvoice } from '../../../../core/Invoice/Application/UseCase/CRUD/GetInvoice';
-import { InvoiceResponse } from '../../../../core/Invoice/Application/DTO/InvoiceResponse';
-import { GetByIdQuery } from '../../../../core/common/Application/GetByIdQuery';
+import {Inject, Injectable, Logger} from '@nestjs/common';
+import {GetInvoice} from '../../../../core/Invoice/Application/UseCase/CRUD/GetInvoice';
+import {InvoiceResponse} from '../../../../core/Invoice/Application/DTO/InvoiceResponse';
+import {GetByIdQuery} from '../../../../core/common/Application/GetByIdQuery';
+import {INVOICE_TOKEN} from '../../INVOICE_TOKEN';
 
 @Injectable()
 export class GetInvoiceService {
   private logger = new Logger(GetInvoiceService.name);
-  private useCase: GetInvoice;
-
-  constructor(@Inject('GET_INVOICE') dao: GetInvoiceDAO) {
-    this.useCase = new GetInvoice(dao);
-  }
-
+  constructor(
+    @Inject(INVOICE_TOKEN.USECASE.GET_INVOICE) private useCase: GetInvoice,
+  ) {}
   async execute(id: GetByIdQuery) {
     try {
       this.logger.debug('Getting Invoice');

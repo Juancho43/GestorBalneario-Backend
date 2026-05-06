@@ -1,10 +1,10 @@
-import { Injectable } from '@nestjs/common';
-import { SqliteBaseClass } from '../../database/SqliteBaseClass';
-import { ShadowMapDAO } from '../../../core/Shadow/Application/Interfaces/ShadowMapDAO';
-import { ShadowMapDTO } from 'core/Shadow/Application/Response/ShadowMapDTO';
-import { ShadowResponse } from '../../../core/Shadow/Application/Response/ShadowResponse';
-import { ReservationResponse } from '../../../core/Reservation/Application/DTO/ReservationResponse';
-import { ClientResponse } from '../../../core/Client/Application/DTO/ClientResponse';
+import {Injectable} from '@nestjs/common';
+import {SqliteBaseClass} from '../../database/SqliteBaseClass';
+import {ShadowMapDAO} from '../../../core/Shadow/Application/Interfaces/ShadowMapDAO';
+import {ShadowMapDTO} from 'core/Shadow/Application/Response/ShadowMapDTO';
+import {ShadowResponse} from '../../../core/Shadow/Application/Response/ShadowResponse';
+import {ReservationResponse} from '../../../core/Reservation/Application/DTO/ReservationResponse';
+import {ClientResponse} from '../../../core/Client/Application/DTO/ClientResponse';
 
 @Injectable()
 export class SqliteGetShadowMap
@@ -30,7 +30,7 @@ export class SqliteGetShadowMap
                      LEFT JOIN Season_Shadows ss ON ss.shadowId = s.id 
                      LEFT JOIN Reservations r ON r.shadowId = s.id and (CURRENT_TIMESTAMP BETWEEN r.checkIn and r.checkOut)
                      LEFT JOIN Clients c ON r.clientId = c.id
-           WHERE ss.seasonId = @seasonId
+           WHERE ss.seasonId = @seasonId AND s.deleted_at IS NULL 
         `;
     const results = this.getDb()
       .prepare(sql)

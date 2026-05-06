@@ -4,7 +4,6 @@ import {InvoiceDetailsService} from '../../services/invoice-details/invoice-deta
 import {InvoiceDetailQuery} from '../../../../core/Invoice/Application/Queries/InvoiceDetailQuery';
 import {CreateAppResponse} from "../../../../core/common/Application/CreateAppResponse";
 import {IController} from "../../../../core/common/Application/IController";
-import {ClientDetailsDTO} from "../../../../core/Client/Application/DTO/ClientDetailsDTO";
 
 @ApiTags('Frontend')
 @Controller('invoice')

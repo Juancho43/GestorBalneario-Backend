@@ -1,4 +1,4 @@
-import { BaseError } from '../../../common/Model/BaseError';
+import {BaseError} from '../../../common/Model/BaseError';
 
 export class ModifyPaidInvoiceError extends BaseError {
   constructor(message: string) {

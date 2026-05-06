@@ -1,12 +1,12 @@
-import { UUID } from '../../common/Model/UUID';
-import { InvoiceItem } from './InvoiceItem';
-import { Money } from '../../Payment/Model/Money';
-import { Payment } from '../../Payment/Model/Payment';
-import { Timestamps } from '../../common/Model/Timestamps';
-import { SoftDelete } from '../../common/Model/SoftDelete';
-import { InvoiceState } from './InvoiceState';
-import { IssuedState } from './IssuedState';
-import { Entity } from '../../common/Model/Entity';
+import {UUID} from '../../common/Model/UUID';
+import {InvoiceItem} from './InvoiceItem';
+import {Money} from '../../Payment/Model/Money';
+import {Payment} from '../../Payment/Model/Payment';
+import {Timestamps} from '../../common/Model/Timestamps';
+import {SoftDelete} from '../../common/Model/SoftDelete';
+import {InvoiceState} from './InvoiceState';
+import {IssuedState} from './IssuedState';
+import {Entity} from '../../common/Model/Entity';
 
 export class Invoice implements Entity {
   private readonly _id: UUID;

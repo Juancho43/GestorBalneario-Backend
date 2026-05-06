@@ -1,6 +1,6 @@
-import { GetShadowMap } from '../../../../core/Shadow/Application/UseCase/GetShadowMap';
-import { ShadowMapDTO } from '../../../../core/Shadow/Application/Response/ShadowMapDTO';
-import { vi } from 'vitest';
+import {GetShadowMap} from '../../../../core/Shadow/Application/UseCase/GetShadowMap';
+import {ShadowMapDTO} from '../../../../core/Shadow/Application/Response/ShadowMapDTO';
+import {vi} from 'vitest';
 
 describe('GetShadowMap UseCase', () => {
   let useCase: GetShadowMap;

@@ -1,7 +1,7 @@
-import { PaymentMother } from '../mothers/PaymentMother';
-import { MoneyMother } from '../mothers/MoneyMother';
-import { StringObject } from '../../core/common/Model/StringObject';
-import { PaymentTypeMother } from '../mothers/PaymentTypeMother';
+import {PaymentMother} from '../mothers/PaymentMother';
+import {MoneyMother} from '../mothers/MoneyMother';
+import {StringObject} from '../../core/common/Model/StringObject';
+import {PaymentTypeMother} from '../mothers/PaymentTypeMother';
 
 describe('Payment Domain Entity', () => {
   it('should be created', () => {

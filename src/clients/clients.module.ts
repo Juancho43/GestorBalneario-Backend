@@ -1,25 +1,21 @@
-import { Module } from '@nestjs/common';
-import { GetClientController } from './controllers/get-client/get-client.controller';
-import { CreateClientController } from './controllers/create-client/create-client.controller';
-import { EditClientController } from './controllers/edit-client/edit-client.controller';
-import { DeleteClientController } from './controllers/delete-client/delete-client.controller';
-import { GetClientService } from './services/get-client/get-client.service';
-import { CreateClientService } from './services/create-client/create-client.service';
-import { EditClientService } from './services/edit-client/edit-client.service';
-import { DeleteClientService } from './services/delete-client/delete-client.service';
-import { SqliteClientCreate } from './repository/SqliteClientCreate';
-import { SqliteClientUpdate } from './repository/SqliteClientUpdate';
-import { SqliteClientDelete } from './repository/SqliteClientDelete';
-import { SqliteClientGetOne } from './repository/SqliteClientGetOne';
-import { SqliteClientGetMany } from './repository/SqliteClientGetMany';
-import { ClientDetailsController } from './controllers/client-details/client-details.controller';
-import { ClientDetailsService } from './services/client-details/client-details.service';
-import { SqliteClientDetails } from './repository/SqliteClientDetails';
-import { ClientSearcherController } from './controllers/client-searcher/client-searcher.controller';
-import { ClientSearcherService } from './services/client-searcher/client-searcher.service';
-import { SqliteClientSearch } from './repository/SqliteClientSearch';
-import { GetClientsHistoryController } from './controllers/get-clients-history/get-clients-history.controller';
-import {GetClientsHistoryService} from "./services/get-clients-history/get-clients-history.service";
+import {Module} from '@nestjs/common';
+import {GetClientController} from './controllers/get-client/get-client.controller';
+import {CreateClientController} from './controllers/create-client/create-client.controller';
+import {EditClientController} from './controllers/edit-client/edit-client.controller';
+import {DeleteClientController} from './controllers/delete-client/delete-client.controller';
+import {GetClientService} from './services/get-client/get-client.service';
+import {CreateClientService} from './services/create-client/create-client.service';
+import {EditClientService} from './services/edit-client/edit-client.service';
+import {DeleteClientService} from './services/delete-client/delete-client.service';
+import {ClientDetailsController} from './controllers/client-details/client-details.controller';
+import {ClientDetailsService} from './services/client-details/client-details.service';
+import {ClientSearcherController} from './controllers/client-searcher/client-searcher.controller';
+import {ClientSearcherService} from './services/client-searcher/client-searcher.service';
+import {GetClientsHistoryController} from './controllers/get-clients-history/get-clients-history.controller';
+import {GetClientsHistoryService} from './services/get-clients-history/get-clients-history.service';
+import {CLIENT_TOKEN} from './CLIENT_TOKEN';
+import {ClientDaoProviders} from './providers/ClientDaoProviders';
+import {ClientUseCaseProviders} from './providers/ClientUseCaseProviders';
 
 @Module({
   controllers: [
@@ -32,41 +28,16 @@ import {GetClientsHistoryService} from "./services/get-clients-history/get-clien
     GetClientsHistoryController,
   ],
   providers: [
+    ...ClientUseCaseProviders,
+    ...ClientDaoProviders,
     GetClientService,
     CreateClientService,
     EditClientService,
     DeleteClientService,
-    {
-      provide: 'CREATE_CLIENT_INTERFACE',
-      useClass: SqliteClientCreate,
-    },
-    {
-      provide: 'UPDATE_CLIENT_INTERFACE',
-      useClass: SqliteClientUpdate,
-    },
-    {
-      provide: 'DELETE_CLIENT_INTERFACE',
-      useClass: SqliteClientDelete,
-    },
-    {
-      provide: 'GET_CLIENT_INTERFACE',
-      useClass: SqliteClientGetOne,
-    },
-    {
-      provide: 'GET_CLIENTS',
-      useClass: SqliteClientGetMany,
-    },
-    {
-      provide: 'GET_DETAILS',
-      useClass: SqliteClientDetails,
-    },
-    {
-      provide: 'SEARCHER',
-      useClass: SqliteClientSearch,
-    },
     ClientDetailsService,
     ClientSearcherService,
     GetClientsHistoryService,
   ],
+  exports: [CLIENT_TOKEN.DAOS.GET_CLIENT],
 })
 export class ClientsModule {}

@@ -1,7 +1,7 @@
-import { Client } from '../../core/Client/Model/Client';
-import { Invoice } from '../../core/Invoice/Model/Invoice';
-import { ClientMother } from '../mothers/ClientMother';
-import { InvoiceMother } from '../mothers/InvoiceMother';
+import {Client} from '../../core/Client/Model/Client';
+import {Invoice} from '../../core/Invoice/Model/Invoice';
+import {ClientMother} from '../mothers/ClientMother';
+import {InvoiceMother} from '../mothers/InvoiceMother';
 
 describe('Client Domanin Entity', () => {
   let client: Client;

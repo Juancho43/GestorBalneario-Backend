@@ -1,10 +1,10 @@
-import { Module } from '@nestjs/common';
-import { AddInvoiceItemService } from './services/add-invoice-item/add-invoice-item.service';
-import { SqliteGetClientInvoice } from '../clients/repository/SqliteGetClientInvoice';
-import { SqliteGetService } from '../services/repository/SqliteGetService';
-import { SqliteCreateInvoiceItem } from '../invoices/repository/SqliteCreateInvoiceItem';
-import { NestEventPublisherAdapter } from './NestEventPublisherAdapter';
-import { CqrsModule } from '@nestjs/cqrs';
+import {Module} from '@nestjs/common';
+import {AddInvoiceItemService} from './services/add-invoice-item/add-invoice-item.service';
+import {SqliteGetClientInvoice} from '../clients/repository/SqliteGetClientInvoice';
+import {SqliteGetService} from '../services/repository/CRUD/SqliteGetService';
+import {SqliteCreateInvoiceItem} from '../invoices/repository/SqliteCreateInvoiceItem';
+import {NestEventPublisherAdapter} from './NestEventPublisherAdapter';
+import {CqrsModule} from '@nestjs/cqrs';
 
 @Module({
   imports: [CqrsModule],
@@ -27,6 +27,6 @@ import { CqrsModule } from '@nestjs/cqrs';
       useClass: NestEventPublisherAdapter,
     },
   ],
-  exports: [AddInvoiceItemService],
+  exports: [AddInvoiceItemService, 'EVENT'],
 })
 export class EventsModule {}

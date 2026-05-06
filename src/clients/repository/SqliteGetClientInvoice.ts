@@ -1,13 +1,13 @@
-import { SqliteBaseClass } from '../../database/SqliteBaseClass';
-import { GetClientsInvoicesDAO } from '../../../core/Client/Model/DAO/GetClientsInvoicesDAO';
-import { Injectable } from '@nestjs/common';
-import { Client } from 'core/Client/Model/Client';
-import { UUID } from '../../../core/common/Model/UUID';
-import { StringObject } from '../../../core/common/Model/StringObject';
-import { EmailObject } from '../../../core/common/Model/EmailObject';
-import { Timestamps } from '../../../core/common/Model/Timestamps';
-import { SoftDelete } from '../../../core/common/Model/SoftDelete';
-import { Invoice } from '../../../core/Invoice/Model/Invoice';
+import {SqliteBaseClass} from '../../database/SqliteBaseClass';
+import {GetClientsInvoicesDAO} from '../../../core/Client/Model/DAO/GetClientsInvoicesDAO';
+import {Injectable} from '@nestjs/common';
+import {Client} from 'core/Client/Model/Client';
+import {UUID} from '../../../core/common/Model/UUID';
+import {StringObject} from '../../../core/common/Model/StringObject';
+import {EmailObject} from '../../../core/common/Model/EmailObject';
+import {Timestamps} from '../../../core/common/Model/Timestamps';
+import {SoftDelete} from '../../../core/common/Model/SoftDelete';
+import {Invoice} from '../../../core/Invoice/Model/Invoice';
 
 @Injectable()
 export class SqliteGetClientInvoice

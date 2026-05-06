@@ -1,5 +1,5 @@
-import { Shadow } from '../../Model/Shadow';
-import { TimeStampResponse } from '../../../common/Application/TimeStampResponse';
+import {Shadow} from '../../Model/Shadow';
+import {TimeStampResponse} from '../../../common/Application/TimeStampResponse';
 
 export class ShadowResponse extends TimeStampResponse {
   /**

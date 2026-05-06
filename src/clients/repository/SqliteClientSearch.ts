@@ -1,8 +1,8 @@
-import { SqliteBaseClass } from '../../database/SqliteBaseClass';
-import { ClientSearcherDAO } from '../../../core/Client/Application/Interfaces/ClientSearcherDAO';
-import { Injectable } from '@nestjs/common';
-import { ClientResponse } from 'core/Client/Application/DTO/ClientResponse';
-import { ClientSearchQuery } from 'core/Client/Application/Queries/ClientSearchQuery';
+import {SqliteBaseClass} from '../../database/SqliteBaseClass';
+import {ClientSearcherDAO} from '../../../core/Client/Application/Interfaces/ClientSearcherDAO';
+import {Injectable} from '@nestjs/common';
+import {ClientResponse} from 'core/Client/Application/DTO/ClientResponse';
+import {ClientSearchQuery} from 'core/Client/Application/Queries/ClientSearchQuery';
 
 @Injectable()
 export class SqliteClientSearch

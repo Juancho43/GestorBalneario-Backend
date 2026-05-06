@@ -1,8 +1,8 @@
-import { IUseCase } from '../../../../common/Application/IUseCase';
-import { DeleteCommand } from '../../../../common/Application/DeleteCommand';
-import { DeleteShadowDAO } from '../../../Model/DAO/DeleteShadowDAO';
-import { GetShadowDAO } from '../../../Model/DAO/GetShadowDAO';
-import { EntityNotFoundError } from '../../../../common/Model/Errors/EntityNotFound';
+import {IUseCase} from '../../../../common/Application/IUseCase';
+import {DeleteCommand} from '../../../../common/Application/DeleteCommand';
+import {DeleteShadowDAO} from '../../../Model/DAO/DeleteShadowDAO';
+import {GetShadowDAO} from '../../../Model/DAO/GetShadowDAO';
+import {EntityNotFoundError} from '../../../../common/Model/Errors/EntityNotFound';
 
 export class DeleteShadow implements IUseCase<DeleteCommand, void> {
   constructor(

@@ -1,8 +1,8 @@
-import { vi, describe, it, expect } from 'vitest';
-import { GeneratePaymentReport } from '../../../core/Payment/Application/UseCase/GeneratePaymentReport';
-import { PaymentsReportDAO } from '../../../core/Payment/Application/Interfaces/PaymentsReportDAO';
-import { PaymentsReportQuery } from '../../../core/Payment/Application/Query/PaymentsReportQuery';
-import { PaymentsReportDTO } from '../../../core/Payment/Application/DTO/PaymentsReportDTO';
+import {describe, expect, it, vi} from 'vitest';
+import {GeneratePaymentReport} from '../../../core/Payment/Application/UseCase/GeneratePaymentReport';
+import {PaymentsReportDAO} from '../../../core/Payment/Application/Interfaces/PaymentsReportDAO';
+import {PaymentsReportQuery} from '../../../core/Payment/Application/Query/PaymentsReportQuery';
+import {PaymentsReportDTO} from '../../../core/Payment/Application/DTO/PaymentsReportDTO';
 
 describe('GeneratePaymentReport', () => {
   let useCase: GeneratePaymentReport;

@@ -1,16 +1,16 @@
-import { Inject, Injectable, Logger } from '@nestjs/common';
-import { GetReservationDetail } from '../../../../core/Reservation/Application/UseCase/GetReservationDetail';
-import type { GetReservationDetailsDAO } from '../../../../core/Reservation/Application/Interfaces/GetReservationDetailsDAO';
-import { GetReservationQuery } from '../../../../core/Reservation/Application/Queries/GetReservationQuery';
+import {Inject, Injectable, Logger} from '@nestjs/common';
+import {GetReservationDetail} from '../../../../core/Reservation/Application/UseCase/GetReservationDetail';
+import {GetReservationQuery} from '../../../../core/Reservation/Application/Queries/GetReservationQuery';
+import {RESERVATION_TOKEN} from '../../RESERVATION_TOKEN';
 
 @Injectable()
 export class GetReservationDetailService {
   private logger = new Logger(GetReservationDetailService.name);
-  private useCase: GetReservationDetail;
 
-  constructor(@Inject('GET_DETAILS') dao: GetReservationDetailsDAO) {
-    this.useCase = new GetReservationDetail(dao);
-  }
+  constructor(
+    @Inject(RESERVATION_TOKEN.USECASE.GET_DETAILS)
+    private useCase: GetReservationDetail,
+  ) {}
   async execute(id: string) {
     try {
       this.logger.debug(`Executing GetReservationDetailService with id: ${id}`);

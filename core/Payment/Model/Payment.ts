@@ -1,10 +1,11 @@
-import { PaymentType } from './PaymentType';
-import { StringObject } from '../../common/Model/StringObject';
-import { UUID } from '../../common/Model/UUID';
-import { Money } from './Money';
-import { Timestamps } from '../../common/Model/Timestamps';
-import { SoftDelete } from '../../common/Model/SoftDelete';
-import { Entity } from '../../common/Model/Entity';
+import {PaymentType} from './PaymentType';
+import {StringObject} from '../../common/Model/StringObject';
+import {UUID} from '../../common/Model/UUID';
+import {Money} from './Money';
+import {Timestamps} from '../../common/Model/Timestamps';
+import {SoftDelete} from '../../common/Model/SoftDelete';
+import {Entity} from '../../common/Model/Entity';
+
 export class Payment implements Entity {
   private constructor(
     private readonly _id: UUID,

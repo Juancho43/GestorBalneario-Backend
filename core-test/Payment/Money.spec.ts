@@ -1,6 +1,6 @@
-import { expect } from 'vitest';
-import { MoneyMother } from '../mothers/MoneyMother';
-import { Currency } from '../../core/Payment/Model/Money';
+import {expect} from 'vitest';
+import {MoneyMother} from '../mothers/MoneyMother';
+import {Currency} from '../../core/Payment/Model/Money';
 
 describe('Money Domain Entity', () => {
   it('should be created', () => {

@@ -1,7 +1,7 @@
-import { SqliteBaseClass } from '../../database/SqliteBaseClass';
-import { Injectable } from '@nestjs/common';
-import { GetActiveSeasonDAO } from '../../../core/Season/Application/Interfaces/GetActiveSeasonDAO';
-import { SeasonResponse } from '../../../core/Season/Application/DTO/SeasonResponse';
+import {SqliteBaseClass} from '../../database/SqliteBaseClass';
+import {Injectable} from '@nestjs/common';
+import {GetActiveSeasonDAO} from '../../../core/Season/Application/Interfaces/GetActiveSeasonDAO';
+import {SeasonResponse} from '../../../core/Season/Application/DTO/SeasonResponse';
 
 @Injectable()
 export class SqliteGetActiveSeason

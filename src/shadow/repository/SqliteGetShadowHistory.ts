@@ -1,9 +1,10 @@
-import { SqliteBaseClass } from '../../database/SqliteBaseClass';
-import type { ShadowHistoryDAO } from '../../../core/Shadow/Application/Interfaces/ShadowHistoryDAO';
-import { ShadowHistoryDTO } from '../../../core/Shadow/Application/Response/ShadowHistoryDTO';
-import { Injectable } from '@nestjs/common';
-import { ShadowResponse } from '../../../core/Shadow/Application/Response/ShadowResponse';
-import { ReservationResponse } from '../../../core/Reservation/Application/DTO/ReservationResponse';
+import {SqliteBaseClass} from '../../database/SqliteBaseClass';
+import type {ShadowHistoryDAO} from '../../../core/Shadow/Application/Interfaces/ShadowHistoryDAO';
+import {ShadowHistoryDTO} from '../../../core/Shadow/Application/Response/ShadowHistoryDTO';
+import {Injectable} from '@nestjs/common';
+import {ShadowResponse} from '../../../core/Shadow/Application/Response/ShadowResponse';
+import {ReservationResponse} from '../../../core/Reservation/Application/DTO/ReservationResponse';
+
 @Injectable()
 export class SqliteGetShadowHistory
   extends SqliteBaseClass
@@ -24,7 +25,8 @@ export class SqliteGetShadowHistory
                     s.id AS shadowId,
                 s.x,
                 s.y,
-                s.identifier
+                s.identifier,
+                   s.type
             FROM Shadows s
                 LEFT JOIN Reservations r ON r.shadowId = s.id
                 LEFT JOIN Clients c ON r.clientId = c.id
@@ -35,15 +37,14 @@ export class SqliteGetShadowHistory
     const result = this.getDb()
       .prepare(sql)
       .all({ id: id, offset: page, limit: limit }) as any;
-    const dto = this.toDTO(result);
-    return dto;
+    return this.toDTO(result);
   }
 
   private toDTO(rows: any): ShadowHistoryDTO {
     const historyDTO = new ShadowHistoryDTO();
     historyDTO.reservations = [];
     const shadow: ShadowResponse = {
-      id: rows[0].shadowId, // Asegúrate que este sea s.id en el SQL
+      id: rows[0].shadowId,
       identifier: rows[0].identifier,
       type: rows[0].type,
       coords: {

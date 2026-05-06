@@ -1,7 +1,7 @@
-import { Module, Global } from '@nestjs/common';
+import {Global, Module} from '@nestjs/common';
 import Database from 'better-sqlite3';
-import { DatabaseMigrationService } from './database-migration/database-migration.service';
-import { DB_PROVIDER } from './DBPROVIDER';
+import {DatabaseMigrationService} from './database-migration/database-migration.service';
+import {DB_PROVIDER} from './DBPROVIDER';
 
 @Global()
 @Module({

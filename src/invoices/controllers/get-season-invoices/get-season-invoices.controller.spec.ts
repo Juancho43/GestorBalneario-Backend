@@ -1,6 +1,5 @@
 import {Test, TestingModule} from '@nestjs/testing';
 import {GetSeasonInvoicesController} from './get-season-invoices.controller';
-import {GetSeasonServices} from "../../../../core/Service/Application/UseCase/GetSeasonServices";
 
 describe('GetSeasonInvoicesController', () => {
   let controller: GetSeasonInvoicesController;

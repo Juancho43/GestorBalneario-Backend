@@ -1,5 +1,5 @@
-import { Booking } from '../../core/Reservation/Model/Booking';
-import { InvalidDatesError } from '../../core/common/Model/Errors/InvalidDates';
+import {Booking} from '../../core/Reservation/Model/Booking';
+import {InvalidDatesError} from '../../core/common/Model/Errors/InvalidDates';
 
 describe('Booking Value Object', () => {
   it('Should be created', () => {

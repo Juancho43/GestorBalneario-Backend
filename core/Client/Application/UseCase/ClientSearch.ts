@@ -1,7 +1,7 @@
-import { ClientSearchQuery } from '../Queries/ClientSearchQuery';
-import { IUseCase } from '../../../common/Application/IUseCase';
-import { ClientResponse } from '../DTO/ClientResponse';
-import { ClientSearcherDAO } from '../Interfaces/ClientSearcherDAO';
+import {ClientSearchQuery} from '../Queries/ClientSearchQuery';
+import {IUseCase} from '../../../common/Application/IUseCase';
+import {ClientResponse} from '../DTO/ClientResponse';
+import {ClientSearcherDAO} from '../Interfaces/ClientSearcherDAO';
 
 export class ClientSearch implements IUseCase<
   ClientSearchQuery,

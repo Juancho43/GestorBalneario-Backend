@@ -1,8 +1,8 @@
-import { GetServiceDAO } from '../../../Model/DAO/GetServiceDAO';
-import { IUseCase } from '../../../../common/Application/IUseCase';
-import { DeleteCommand } from '../../../../common/Application/DeleteCommand';
-import { DeleteServiceDAO } from '../../../Model/DAO/DeleteServiceDAO';
-import { EntityNotFoundError } from '../../../../common/Model/Errors/EntityNotFound';
+import {GetServiceDAO} from '../../../Model/DAO/GetServiceDAO';
+import {IUseCase} from '../../../../common/Application/IUseCase';
+import {DeleteCommand} from '../../../../common/Application/DeleteCommand';
+import {DeleteServiceDAO} from '../../../Model/DAO/DeleteServiceDAO';
+import {EntityNotFoundError} from '../../../../common/Model/Errors/EntityNotFound';
 
 export class DeleteService implements IUseCase<DeleteCommand, void> {
   constructor(

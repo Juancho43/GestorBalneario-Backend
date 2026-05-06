@@ -1,9 +1,10 @@
-import { DeleteClient } from '../../core/Client/Application/UseCase/CRUD/DeleteClient';
-import { Client } from '../../core/Client/Model/Client';
-import { ClientMother } from '../mothers/ClientMother';
-import { vi } from 'vitest';
-import { DeleteCommand } from '../../core/common/Application/DeleteCommand';
-import { EntityNotFoundError } from '../../core/common/Model/Errors/EntityNotFound';
+import {DeleteClient} from '../../core/Client/Application/UseCase/CRUD/DeleteClient';
+import {Client} from '../../core/Client/Model/Client';
+import {ClientMother} from '../mothers/ClientMother';
+import {vi} from 'vitest';
+import {DeleteCommand} from '../../core/common/Application/DeleteCommand';
+import {EntityNotFoundError} from '../../core/common/Model/Errors/EntityNotFound';
+
 describe('Delete Client UseCase', () => {
   let useCase: DeleteClient;
   let client: Client;

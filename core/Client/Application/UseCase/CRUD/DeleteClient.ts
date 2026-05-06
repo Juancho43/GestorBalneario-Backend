@@ -1,8 +1,8 @@
-import { IUseCase } from '../../../../common/Application/IUseCase';
-import { DeleteCommand } from '../../../../common/Application/DeleteCommand';
-import { DeleteClientDAO } from '../../../Model/DAO/DeleteClientDAO';
-import { GetClientDAO } from '../../../Model/DAO/GetClientDAO';
-import { EntityNotFoundError } from '../../../../common/Model/Errors/EntityNotFound';
+import {IUseCase} from '../../../../common/Application/IUseCase';
+import {DeleteCommand} from '../../../../common/Application/DeleteCommand';
+import {DeleteClientDAO} from '../../../Model/DAO/DeleteClientDAO';
+import {GetClientDAO} from '../../../Model/DAO/GetClientDAO';
+import {EntityNotFoundError} from '../../../../common/Model/Errors/EntityNotFound';
 
 export class DeleteClient implements IUseCase<DeleteCommand, void> {
   constructor(

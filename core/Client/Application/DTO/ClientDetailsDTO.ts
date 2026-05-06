@@ -1,5 +1,5 @@
-import { ClientResponse } from './ClientResponse';
-import { InvoiceResponse } from '../../../Invoice/Application/DTO/InvoiceResponse';
+import {ClientResponse} from './ClientResponse';
+import {InvoiceResponse} from '../../../Invoice/Application/DTO/InvoiceResponse';
 
 /**
  * @class ClientDetailsDTO

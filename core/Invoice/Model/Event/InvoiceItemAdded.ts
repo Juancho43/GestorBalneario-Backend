@@ -1,4 +1,4 @@
-import { BaseDomainEvent } from '../../../common/Application/BaseDomainEvent';
+import {BaseDomainEvent} from '../../../common/Application/BaseDomainEvent';
 
 export class InvoiceItemAdded extends BaseDomainEvent {
   constructor(invoiceId: string) {

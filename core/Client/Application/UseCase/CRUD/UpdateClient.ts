@@ -1,11 +1,11 @@
-import { IUseCase } from '../../../../common/Application/IUseCase';
-import { UpdateClientCommand } from '../../Commands/UpdateClientCommand';
-import { Client } from '../../../Model/Client';
-import { UpdateClientDAO } from '../../../Model/DAO/UpdateClientDAO';
-import { StringObject } from '../../../../common/Model/StringObject';
-import { EmailObject } from '../../../../common/Model/EmailObject';
-import { EntityNotFoundError } from '../../../../common/Model/Errors/EntityNotFound';
-import { GetClientDAO } from '../../../Model/DAO/GetClientDAO';
+import {IUseCase} from '../../../../common/Application/IUseCase';
+import {UpdateClientCommand} from '../../Commands/UpdateClientCommand';
+import {Client} from '../../../Model/Client';
+import {UpdateClientDAO} from '../../../Model/DAO/UpdateClientDAO';
+import {StringObject} from '../../../../common/Model/StringObject';
+import {EmailObject} from '../../../../common/Model/EmailObject';
+import {EntityNotFoundError} from '../../../../common/Model/Errors/EntityNotFound';
+import {GetClientDAO} from '../../../Model/DAO/GetClientDAO';
 
 export class UpdateClient implements IUseCase<UpdateClientCommand, Client> {
   constructor(

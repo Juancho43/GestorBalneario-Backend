@@ -1,5 +1,5 @@
-import { Reservation } from '../Reservation';
+import {Reservation} from '../Reservation';
 
 export interface UpdateReservationDAO {
-  update(reservation: Reservation): Promise<boolean>;
+  update(reservation: Reservation): Promise<void>;
 }

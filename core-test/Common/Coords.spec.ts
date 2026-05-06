@@ -1,4 +1,4 @@
-import { Coords } from '../../core/common/Model/Coords';
+import {Coords} from '../../core/common/Model/Coords';
 
 describe('Coords Value Object', () => {
   it('Should be created', () => {

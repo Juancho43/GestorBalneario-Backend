@@ -1,9 +1,9 @@
-import { CreatePaymentDAO } from '../../../core/Payment/Model/DAO/CreatePaymentDAO';
-import { Injectable } from '@nestjs/common';
-import { Payment } from 'core/Payment/Model/Payment';
-import { SqliteBaseClass } from '../../database/SqliteBaseClass';
-import { UUID } from '../../../core/common/Model/UUID';
-import { Invoice } from '../../../core/Invoice/Model/Invoice';
+import {CreatePaymentDAO} from '../../../core/Payment/Model/DAO/CreatePaymentDAO';
+import {Injectable} from '@nestjs/common';
+import {Payment} from 'core/Payment/Model/Payment';
+import {SqliteBaseClass} from '../../database/SqliteBaseClass';
+import {UUID} from '../../../core/common/Model/UUID';
+import {Invoice} from '../../../core/Invoice/Model/Invoice';
 
 @Injectable()
 export class SqliteCreatePayment

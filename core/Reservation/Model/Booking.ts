@@ -1,4 +1,4 @@
-import { InvalidDatesError } from '../../common/Model/Errors/InvalidDates';
+import {InvalidDatesError} from '../../common/Model/Errors/InvalidDates';
 
 export class Booking {
   private constructor(

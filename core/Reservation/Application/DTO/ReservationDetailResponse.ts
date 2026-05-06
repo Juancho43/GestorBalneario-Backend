@@ -1,8 +1,9 @@
-import { ReservationResponse } from './ReservationResponse';
-import { ShadowResponse } from '../../../Shadow/Application/Response/ShadowResponse';
-import { ClientResponse } from '../../../Client/Application/DTO/ClientResponse';
-import { InvoiceResponse } from '../../../Invoice/Application/DTO/InvoiceResponse';
-import { PaymentResponse } from '../../../Payment/Application/DTO/PaymentResponse';
+import {ReservationResponse} from './ReservationResponse';
+import {ShadowResponse} from '../../../Shadow/Application/Response/ShadowResponse';
+import {ClientResponse} from '../../../Client/Application/DTO/ClientResponse';
+import {InvoiceResponse} from '../../../Invoice/Application/DTO/InvoiceResponse';
+import {PaymentResponse} from '../../../Payment/Application/DTO/PaymentResponse';
+
 /**
  * Represents the detailed response for a reservation, including related entities.
  * @class ReservationDetailResponse

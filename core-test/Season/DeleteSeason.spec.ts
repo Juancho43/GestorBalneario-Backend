@@ -1,9 +1,10 @@
-import { vi } from 'vitest';
-import { DeleteCommand } from '../../core/common/Application/DeleteCommand';
-import { EntityNotFoundError } from '../../core/common/Model/Errors/EntityNotFound';
-import { DeleteSeason } from '../../core/Season/Application/UseCase/CRUD/DeleteSeason';
-import { Season } from '../../core/Season/Model/Season';
-import { SeasonMother } from '../mothers/SeasonMother';
+import {vi} from 'vitest';
+import {DeleteCommand} from '../../core/common/Application/DeleteCommand';
+import {EntityNotFoundError} from '../../core/common/Model/Errors/EntityNotFound';
+import {DeleteSeason} from '../../core/Season/Application/UseCase/CRUD/DeleteSeason';
+import {Season} from '../../core/Season/Model/Season';
+import {SeasonMother} from '../mothers/SeasonMother';
+
 describe('Delete Season UseCase', () => {
   let useCase: DeleteSeason;
   let entity: Season;

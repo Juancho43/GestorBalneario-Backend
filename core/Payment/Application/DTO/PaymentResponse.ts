@@ -1,6 +1,6 @@
-import { Payment } from '../../Model/Payment';
-import { InvoiceResponse } from '../../../Invoice/Application/DTO/InvoiceResponse';
-import { TimeStampResponse } from '../../../common/Application/TimeStampResponse';
+import {Payment} from '../../Model/Payment';
+import {InvoiceResponse} from '../../../Invoice/Application/DTO/InvoiceResponse';
+import {TimeStampResponse} from '../../../common/Application/TimeStampResponse';
 
 /**
  * Represents the response for a payment.

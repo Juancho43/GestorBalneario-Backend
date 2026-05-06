@@ -1,4 +1,4 @@
-import { CreatePaymentCommand } from './CreatePaymentCommand';
+import {CreatePaymentCommand} from './CreatePaymentCommand';
 
 export class UpdatePaymentCommand {
   /**

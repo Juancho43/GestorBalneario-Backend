@@ -1,5 +1,4 @@
-import { SetActiveSeasonCommand } from '../Commads/SetActiveSeasonCommand';
-import { Season } from '../../Model/Season';
+import {SetActiveSeasonCommand} from '../Commads/SetActiveSeasonCommand';
 
 export interface SetActiveSeasonDAO {
   set(command: SetActiveSeasonCommand): Promise<void>;

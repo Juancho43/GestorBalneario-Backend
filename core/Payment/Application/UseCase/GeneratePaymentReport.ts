@@ -1,7 +1,7 @@
-import { IUseCase } from '../../../common/Application/IUseCase';
-import { PaymentsReportQuery } from '../Query/PaymentsReportQuery';
-import { PaymentsReportDTO } from '../DTO/PaymentsReportDTO';
-import { PaymentsReportDAO } from '../Interfaces/PaymentsReportDAO';
+import {IUseCase} from '../../../common/Application/IUseCase';
+import {PaymentsReportQuery} from '../Query/PaymentsReportQuery';
+import {PaymentsReportDTO} from '../DTO/PaymentsReportDTO';
+import {PaymentsReportDAO} from '../Interfaces/PaymentsReportDAO';
 
 export class GeneratePaymentReport implements IUseCase<
   PaymentsReportQuery,

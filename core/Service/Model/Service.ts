@@ -1,10 +1,10 @@
-import { UUID } from '../../common/Model/UUID';
-import { StringObject } from '../../common/Model/StringObject';
-import { Money } from '../../Payment/Model/Money';
-import { Timestamps } from '../../common/Model/Timestamps';
-import { SoftDelete } from '../../common/Model/SoftDelete';
-import { Prototype } from '../../common/Model/Prototype';
-import { Entity } from '../../common/Model/Entity';
+import {UUID} from '../../common/Model/UUID';
+import {StringObject} from '../../common/Model/StringObject';
+import {Money} from '../../Payment/Model/Money';
+import {Timestamps} from '../../common/Model/Timestamps';
+import {SoftDelete} from '../../common/Model/SoftDelete';
+import {Prototype} from '../../common/Model/Prototype';
+import {Entity} from '../../common/Model/Entity';
 
 export class Service implements Prototype<Service>, Entity {
   private readonly _id: UUID;

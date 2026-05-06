@@ -1,6 +1,7 @@
-import { GetActiveReservations } from '../../core/Reservation/Application/UseCase/GetActiveReservations';
-import { Reservation } from '../../core/Reservation/Model/Reservation';
-import { vi } from 'vitest';
+import {GetActiveReservations} from '../../core/Reservation/Application/UseCase/GetActiveReservations';
+import {Reservation} from '../../core/Reservation/Model/Reservation';
+import {vi} from 'vitest';
+
 describe('GetActiveReservations useCase', () => {
   let useCase: GetActiveReservations;
   let mockDao;

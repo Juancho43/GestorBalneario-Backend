@@ -1,7 +1,4 @@
-import {
-  PaymentMethod,
-  PaymentType,
-} from '../../core/Payment/Model/PaymentType';
+import {PaymentMethod, PaymentType,} from '../../core/Payment/Model/PaymentType';
 
 export class PaymentTypeMother {
   static create(value?: string): PaymentType {

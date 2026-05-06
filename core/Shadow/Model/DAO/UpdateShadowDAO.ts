@@ -1,5 +1,5 @@
-import { Shadow } from '../Shadow';
+import {Shadow} from '../Shadow';
 
 export interface UpdateShadowDAO {
-  update(shadow: Shadow): Promise<boolean>;
+  update(shadow: Shadow): Promise<void>;
 }

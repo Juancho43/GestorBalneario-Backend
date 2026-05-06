@@ -1,8 +1,8 @@
-import { ServiceMother } from '../mothers/ServiceMother';
-import { StringObject } from '../../core/common/Model/StringObject';
-import { MoneyMother } from '../mothers/MoneyMother';
-import { UUID } from '../../core/common/Model/UUID';
-import { Currency } from '../../core/Payment/Model/Money';
+import {ServiceMother} from '../mothers/ServiceMother';
+import {StringObject} from '../../core/common/Model/StringObject';
+import {MoneyMother} from '../mothers/MoneyMother';
+import {UUID} from '../../core/common/Model/UUID';
+import {Currency} from '../../core/Payment/Model/Money';
 
 describe('Service', () => {
   it('should create a service with default values', () => {

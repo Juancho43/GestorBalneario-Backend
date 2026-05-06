@@ -1,9 +1,9 @@
-import { UUID } from '../../common/Model/UUID';
-import { Timestamps } from '../../common/Model/Timestamps';
-import { SoftDelete } from '../../common/Model/SoftDelete';
-import { StringObject } from '../../common/Model/StringObject';
-import { InvalidDatesError } from '../../common/Model/Errors/InvalidDates';
-import { Entity } from '../../common/Model/Entity';
+import {UUID} from '../../common/Model/UUID';
+import {Timestamps} from '../../common/Model/Timestamps';
+import {SoftDelete} from '../../common/Model/SoftDelete';
+import {StringObject} from '../../common/Model/StringObject';
+import {InvalidDatesError} from '../../common/Model/Errors/InvalidDates';
+import {Entity} from '../../common/Model/Entity';
 
 export class Season implements Entity {
   private readonly _id: UUID;

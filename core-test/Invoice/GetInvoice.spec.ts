@@ -1,9 +1,9 @@
-import { vi } from 'vitest';
-import { GetByIdQuery } from '../../core/common/Application/GetByIdQuery';
-import { EntityNotFoundError } from '../../core/common/Model/Errors/EntityNotFound';
-import { InvoiceMother } from '../mothers/InvoiceMother';
-import { Invoice } from '../../core/Invoice/Model/Invoice';
-import { GetInvoice } from '../../core/Invoice/Application/UseCase/CRUD/GetInvoice';
+import {vi} from 'vitest';
+import {GetByIdQuery} from '../../core/common/Application/GetByIdQuery';
+import {EntityNotFoundError} from '../../core/common/Model/Errors/EntityNotFound';
+import {InvoiceMother} from '../mothers/InvoiceMother';
+import {Invoice} from '../../core/Invoice/Model/Invoice';
+import {GetInvoice} from '../../core/Invoice/Application/UseCase/CRUD/GetInvoice';
 
 describe('Get Invoice UseCase', () => {
   let entity: Invoice;

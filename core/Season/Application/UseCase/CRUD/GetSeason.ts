@@ -1,8 +1,8 @@
-import { IUseCase } from '../../../../common/Application/IUseCase';
-import { Season } from '../../../Model/Season';
-import { GetSeasonDAO } from '../../../Model/DAO/GetSeasonDAO';
-import { EntityNotFoundError } from '../../../../common/Model/Errors/EntityNotFound';
-import { GetByIdQuery } from '../../../../common/Application/GetByIdQuery';
+import {IUseCase} from '../../../../common/Application/IUseCase';
+import {Season} from '../../../Model/Season';
+import {GetSeasonDAO} from '../../../Model/DAO/GetSeasonDAO';
+import {EntityNotFoundError} from '../../../../common/Model/Errors/EntityNotFound';
+import {GetByIdQuery} from '../../../../common/Application/GetByIdQuery';
 
 export class GetSeason implements IUseCase<GetByIdQuery, Season> {
   constructor(private dao: GetSeasonDAO) {}

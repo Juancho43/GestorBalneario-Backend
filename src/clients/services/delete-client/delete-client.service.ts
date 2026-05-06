@@ -1,19 +1,14 @@
-import { Inject, Injectable, Logger } from '@nestjs/common';
-import { DeleteClient } from '../../../../core/Client/Application/UseCase/CRUD/DeleteClient';
-import type { DeleteClientDAO } from '../../../../core/Client/Model/DAO/DeleteClientDAO';
-import { DeleteCommand } from '../../../../core/common/Application/DeleteCommand';
-import type { GetClientDAO } from '../../../../core/Client/Model/DAO/GetClientDAO';
+import {Inject, Injectable, Logger} from '@nestjs/common';
+import {DeleteClient} from '../../../../core/Client/Application/UseCase/CRUD/DeleteClient';
+import {DeleteCommand} from '../../../../core/common/Application/DeleteCommand';
+import {CLIENT_TOKEN} from '../../CLIENT_TOKEN';
 
 @Injectable()
 export class DeleteClientService {
-  private useCase: DeleteClient;
   private logger = new Logger(DeleteClient.name);
   constructor(
-    @Inject('GET_CLIENT_INTERFACE') get: GetClientDAO,
-    @Inject('DELETE_CLIENT_INTERFACE') implementation: DeleteClientDAO,
-  ) {
-    this.useCase = new DeleteClient(implementation, get);
-  }
+    @Inject(CLIENT_TOKEN.USECASE.DELETE_CLIENT) private useCase: DeleteClient,
+  ) {}
 
   async execute(command: DeleteCommand) {
     try {

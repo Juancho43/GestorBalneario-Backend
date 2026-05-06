@@ -1,14 +1,14 @@
-import { IUseCase } from '../../../../common/Application/IUseCase';
-import { UpdateReservationCommand } from '../../Commands/UpdateReservationCommand';
-import { Reservation } from '../../../Model/Reservation';
-import { Booking } from '../../../Model/Booking';
-import { UpdateReservationDAO } from '../../../Model/DAO/UpdateReservationDAO';
-import { UUID } from '../../../../common/Model/UUID';
-import { EntityNotFoundError } from '../../../../common/Model/Errors/EntityNotFound';
-import { GetReservationDAO } from '../../../Model/DAO/GetReservationDAO';
-import { GetShadowDAO } from '../../../../Shadow/Model/DAO/GetShadowDAO';
-import { Shadow } from '../../../../Shadow/Model/Shadow';
-import { NotAvailableDate } from '../../../../Shadow/Model/NotAvailableDate';
+import {IUseCase} from '../../../../common/Application/IUseCase';
+import {UpdateReservationCommand} from '../../Commands/UpdateReservationCommand';
+import {Reservation} from '../../../Model/Reservation';
+import {Booking} from '../../../Model/Booking';
+import {UpdateReservationDAO} from '../../../Model/DAO/UpdateReservationDAO';
+import {UUID} from '../../../../common/Model/UUID';
+import {EntityNotFoundError} from '../../../../common/Model/Errors/EntityNotFound';
+import {GetReservationDAO} from '../../../Model/DAO/GetReservationDAO';
+import {GetShadowDAO} from '../../../../Shadow/Model/DAO/GetShadowDAO';
+import {Shadow} from '../../../../Shadow/Model/Shadow';
+import {NotAvailableDate} from '../../../../Shadow/Model/NotAvailableDate';
 
 export class UpdateReservation implements IUseCase<
   UpdateReservationCommand,

@@ -1,8 +1,8 @@
-import { Booking } from './Booking';
-import { UUID } from '../../common/Model/UUID';
-import { SoftDelete } from '../../common/Model/SoftDelete';
-import { Timestamps } from '../../common/Model/Timestamps';
-import { Entity } from '../../common/Model/Entity';
+import {Booking} from './Booking';
+import {UUID} from '../../common/Model/UUID';
+import {SoftDelete} from '../../common/Model/SoftDelete';
+import {Timestamps} from '../../common/Model/Timestamps';
+import {Entity} from '../../common/Model/Entity';
 
 export class Reservation implements Entity {
   private readonly _id: UUID;
