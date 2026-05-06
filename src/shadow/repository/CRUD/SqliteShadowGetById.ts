@@ -1,15 +1,15 @@
-import { Inject, Injectable } from '@nestjs/common';
-import { GetShadowDAO } from '../../../core/Shadow/Model/DAO/GetShadowDAO';
-import { Shadow } from '../../../core/Shadow/Model/Shadow';
-import { Coords } from '../../../core/common/Model/Coords';
-import { StringObject } from '../../../core/common/Model/StringObject';
-import { ShadowType } from '../../../core/Shadow/Model/ValueObjects/ShadowType';
-import { Reservation } from '../../../core/Reservation/Model/Reservation';
-import { Booking } from '../../../core/Reservation/Model/Booking';
-import { UUID } from '../../../core/common/Model/UUID';
-import { Timestamps } from '../../../core/common/Model/Timestamps';
-import { SoftDelete } from '../../../core/common/Model/SoftDelete';
-import { SqliteBaseClass } from '../../database/SqliteBaseClass';
+import {Injectable} from '@nestjs/common';
+import {GetShadowDAO} from '../../../../core/Shadow/Model/DAO/GetShadowDAO';
+import {Shadow} from '../../../../core/Shadow/Model/Shadow';
+import {Coords} from '../../../../core/common/Model/Coords';
+import {StringObject} from '../../../../core/common/Model/StringObject';
+import {ShadowType} from '../../../../core/Shadow/Model/ValueObjects/ShadowType';
+import {Reservation} from '../../../../core/Reservation/Model/Reservation';
+import {Booking} from '../../../../core/Reservation/Model/Booking';
+import {UUID} from '../../../../core/common/Model/UUID';
+import {Timestamps} from '../../../../core/common/Model/Timestamps';
+import {SoftDelete} from '../../../../core/common/Model/SoftDelete';
+import {SqliteBaseClass} from '../../../database/SqliteBaseClass';
 
 @Injectable()
 export class SqliteShadowGetById
@@ -19,8 +19,13 @@ export class SqliteShadowGetById
   async get(id: string): Promise<Shadow | null> {
     const sql = `
             SELECT
-                s.id AS shadowId, s.identifier, s.type, s.x, s.y,
-                s.created_at, s.updated_at,
+                s.id AS shadowId, 
+                s.identifier, 
+                s.type, 
+                s.x, 
+                s.y,
+                s.created_at, 
+                s.updated_at,
                 r.id AS reservationId, r.checkIn, r.checkOut, r.clientId, r.date,
                 r.created_at AS resCreated, r.updated_at as resUpdated,
                 ss.seasonId
@@ -62,6 +67,9 @@ export class SqliteShadowGetById
         });
       }
     }
+    if(result?.isAvailable(new Date())){
+      result?.makeAvailable()
+    };
 
     return result;
   }

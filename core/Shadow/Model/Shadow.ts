@@ -109,12 +109,13 @@ export class Shadow implements Prototype<Shadow>, Entity {
     this._reservations.push(reservation);
     this._state = new BookedState(this);
   }
-  isAvailable(): boolean {
-    const date = new Date();
+  isAvailable(date: Date): boolean {
     date.setHours(date.getHours() + 8);
-    return this.canBeReserved(Booking.create(new Date(), date));
+     return this.canBeReserved(Booking.create(new Date(), date))
   }
-
+  makeAvailable(): void {
+    this._state = new AvailableState(this);
+  }
   get id(): UUID {
     return this._id;
   }

@@ -43,7 +43,7 @@ export class ShadowResponse extends TimeStampResponse {
     response.identifier = shadow.identifier.getValue();
     response.type = shadow.type.type;
     response.coords = { x: shadow.coords.getX(), y: shadow.coords.getY() };
-    response.state = shadow.isAvailable() ? 'available' : 'occupied';
+    response.state = shadow.isAvailable(new Date()) ? 'available' : 'occupied';
     response.create_at = shadow.timestamp.createdAt.toISOString();
     response.updated_at = shadow.timestamp.updatedAt.toISOString();
     return response;
