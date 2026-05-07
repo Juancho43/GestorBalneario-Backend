@@ -20,8 +20,7 @@ export class DeleteClientController implements IController{
     description: 'The client has not been deleted. Server Error',
   })
   async execute(@Param('id') request: string) {
-      const command = new DeleteCommand(request);
-      await this.service.execute(command);
+      await this.service.execute(new DeleteCommand(request));
       return CreateAppResponse.successResponse('The client has been deleted',204)
   }
 }

@@ -19,8 +19,10 @@ export class SqliteClientGetMany extends SqliteBaseClass implements GetClientsDA
       .prepare(
         `
                 SELECT * FROM Clients 
-                ORDER BY id 
+                         WHERE deleted_at IS NULL 
+                ORDER BY name  
                 LIMIT ? OFFSET ?
+ 
             `,
       )
       .all(limit, offset) as any[];

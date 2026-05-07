@@ -10,6 +10,7 @@ export class SqliteClientDelete
 {
   async delete(client: Client): Promise<void> {
     const sql = `UPDATE Clients SET deleted_at = @date WHERE id = @id`;
+    console.log(client.id.value,client.getSoftDelete().value!.toISOString())
     this.getDb().prepare(sql).run({
       date: client.getSoftDelete().value!.toISOString(),
       id: client.getId().value,

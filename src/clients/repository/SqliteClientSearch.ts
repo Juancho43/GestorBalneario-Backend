@@ -18,6 +18,7 @@ export class SqliteClientSearch
                  email LIKE '%' || @query || '%' OR
                  phone LIKE '%' || @query || '%')
               AND deleted_at IS NULL
+            ORDER BY name
             LIMIT @limit OFFSET @page
         `);
 
