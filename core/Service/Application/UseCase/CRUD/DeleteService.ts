@@ -16,6 +16,7 @@ export class DeleteService implements IUseCase<DeleteCommand, void> {
       throw new EntityNotFoundError('Service', request.id);
     }
     entity.delete();
+    console.log(entity)
     await this.deleteDao.delete(entity);
   }
 }

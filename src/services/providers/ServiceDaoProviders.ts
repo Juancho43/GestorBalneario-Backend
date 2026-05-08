@@ -6,11 +6,12 @@ import {SqliteCreateService} from '../repository/CRUD/SqliteCreateService';
 import {SqliteGetService} from '../repository/CRUD/SqliteGetService';
 import {SqliteSeasonsServices} from '../repository/SqliteSeasonsServices';
 import {SqliteGetServices} from '../repository/SqliteGetServices';
+import {SqliteServiceDelete} from "../repository/CRUD/SqliteServiceDelete";
 
 export const ServiceDaoProviders: Provider[] = [
   {
     provide: SERVICE_TOKEN.DAOS.DELETE_SERVICE_DAO,
-    useClass: SqliteShadowDelete,
+    useClass: SqliteServiceDelete,
   },
   {
     provide: SERVICE_TOKEN.DAOS.CREATE_SERVICE_DAO,

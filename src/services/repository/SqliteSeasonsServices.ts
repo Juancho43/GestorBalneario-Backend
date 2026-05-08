@@ -18,7 +18,7 @@ export class SqliteSeasonsServices
                 s.description as serviceDescription
             FROM Services s
                      INNER JOIN Season_Services ss ON ss.serviceId = s.id
-            WHERE ss.seasonId = @seasonId
+            WHERE ss.seasonId = @seasonId AND deleted_at IS NULL 
             LIMIT @limit OFFSET @offset
         `;
     const results = this.getDb().prepare(sql).all({

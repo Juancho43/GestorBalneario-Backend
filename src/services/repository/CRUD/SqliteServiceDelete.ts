@@ -10,9 +10,10 @@ export class SqliteServiceDelete
 {
   async delete(entity: Service): Promise<void> {
     const sql = `UPDATE Services SET deleted_at = @date WHERE id = @id`;
-    this.getDb().prepare(sql).run({
+    const result =this.getDb().prepare(sql).run({
       date: entity.getSoftDelete().value!.toISOString(),
       id: entity.getId().value,
     });
+    console.log(result)
   }
 }
