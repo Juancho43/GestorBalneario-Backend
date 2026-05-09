@@ -9,6 +9,7 @@ import {DeleteInvoiceService} from './services/delete-service/delete-invoice.ser
 import {INVOICE_TOKEN} from './INVOICE_TOKEN';
 import {InvoiceDaoProviders} from './providers/InvoiceDaoProviders';
 import {InvoiceUseCaseProviders} from './providers/InvoiceUseCaseProviders';
+import { GetSeasonInvoicesService } from './services/get-season-invoices/get-season-invoices.service';
 
 @Module({
   providers: [
@@ -17,6 +18,7 @@ import {InvoiceUseCaseProviders} from './providers/InvoiceUseCaseProviders';
     GetInvoiceService,
     InvoiceDetailsService,
     DeleteInvoiceService,
+    GetSeasonInvoicesService,
   ],
   controllers: [
     GetInvoiceController,

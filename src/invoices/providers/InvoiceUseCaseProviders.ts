@@ -3,6 +3,7 @@ import {GetInvoice} from '../../../core/Invoice/Application/UseCase/CRUD/GetInvo
 import {INVOICE_TOKEN} from '../INVOICE_TOKEN';
 import {DeleteInvoice} from '../../../core/Invoice/Application/UseCase/CRUD/DeleteInvoice';
 import {InvoiceDetails} from '../../../core/Invoice/Application/UseCase/InvoiceDetails';
+import {GetSeasonsInvoices} from "../../../core/Invoice/Application/UseCase/GetSeasonsInvoices";
 
 export const InvoiceUseCaseProviders: Provider[] = [
   {
@@ -29,4 +30,11 @@ export const InvoiceUseCaseProviders: Provider[] = [
     },
     inject: [INVOICE_TOKEN.DAOS.INVOICE_DETAILS],
   },
+  {
+    provide: INVOICE_TOKEN.USECASE.INVOICE_LIST,
+    useFactory: (dao) =>{
+      return new GetSeasonsInvoices(dao)
+    },
+    inject: [INVOICE_TOKEN.DAOS.INVOICE_LIST],
+  }
 ];
