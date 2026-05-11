@@ -1,17 +1,13 @@
 import {GetSeasonsInvoicesDAO} from "../../../core/Invoice/Application/Interfaces/GetSeasonsInvoicesDAO";
 import {Injectable} from "@nestjs/common";
 import {SqliteBaseClass} from "../../database/SqliteBaseClass";
-import { Invoice } from "core/Invoice/Model/Invoice";
-import { GetSeasonEntityQuery } from "core/Service/Application/Queries/GetSeasonEntityQuery";
-import { UUID } from "core/common/Model/UUID";
-import {SoftDelete} from "../../../core/common/Model/SoftDelete";
-import {Timestamps} from "../../../core/common/Model/Timestamps";
 import {InvoiceResponse} from "../../../core/Invoice/Application/DTO/InvoiceResponse";
+import {GetSeasonInvoicesQuery} from "../../../core/Invoice/Application/Queries/GetSeasonInvoicesQuery";
 
 
 @Injectable()
 export class SqliteGetSeasonsInvoices extends SqliteBaseClass implements GetSeasonsInvoicesDAO {
-    async get(query: GetSeasonEntityQuery): Promise<InvoiceResponse[]> {
+    async get(query: GetSeasonInvoicesQuery): Promise<InvoiceResponse[]> {
         const sql = `
             SELECT
                 i.id as invoiceId,
@@ -27,7 +23,7 @@ export class SqliteGetSeasonsInvoices extends SqliteBaseClass implements GetSeas
                      INNER JOIN Invoice_Items ii ON ii.invoiceId = i.id
                      INNER JOIN  Services s ON ii.serviceId = s.id
                      INNER JOIN Season_Services ss ON ss.serviceId = s.id
-            WHERE ss.seasonId = @id AND i.deleted_at IS NULL
+            WHERE ss.seasonId = @id AND i.deleted_at IS NULL AND (@state = 'ALL' OR i.state = @state)
             GROUP BY invoiceId
             LIMIT @size OFFSET @offset
         `
@@ -36,6 +32,7 @@ export class SqliteGetSeasonsInvoices extends SqliteBaseClass implements GetSeas
             id: query.seasonId,
             size: query.pageSize,
             offset: query.page,
+            state: query.state
         }) as any[];
         const data: InvoiceResponse[] = [];
         if(result){

@@ -1,6 +1,6 @@
-import {GetSeasonEntityQuery} from "../../../Service/Application/Queries/GetSeasonEntityQuery";
 import {InvoiceResponse} from "../DTO/InvoiceResponse";
+import {GetSeasonInvoicesQuery} from "../Queries/GetSeasonInvoicesQuery";
 
 export interface GetSeasonsInvoicesDAO {
-    get(query: GetSeasonEntityQuery): Promise<InvoiceResponse[]>;
+    get(query: GetSeasonInvoicesQuery): Promise<InvoiceResponse[]>;
 }

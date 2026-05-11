@@ -1,9 +1,8 @@
 import {Inject, Injectable, Logger} from '@nestjs/common';
 import {INVOICE_TOKEN} from "../../INVOICE_TOKEN";
-import {InvoiceDetails} from "../../../../core/Invoice/Application/UseCase/InvoiceDetails";
-import {InvoiceDetailQuery} from "../../../../core/Invoice/Application/Queries/InvoiceDetailQuery";
 import {GetSeasonsInvoices} from "../../../../core/Invoice/Application/UseCase/GetSeasonsInvoices";
 import {GetSeasonEntityQuery} from "../../../../core/Service/Application/Queries/GetSeasonEntityQuery";
+import {GetSeasonInvoicesQuery} from "../../../../core/Invoice/Application/Queries/GetSeasonInvoicesQuery";
 
 @Injectable()
 export class GetSeasonInvoicesService {
@@ -15,7 +14,7 @@ export class GetSeasonInvoicesService {
         private useCase: GetSeasonsInvoices,
     ) {}
 
-    execute(query: GetSeasonEntityQuery) {
+    execute(query: GetSeasonInvoicesQuery) {
         try {
             this.logger.debug('GetSeasonInvoicesService:', query);
             return this.useCase.execute(query);

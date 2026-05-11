@@ -4,6 +4,7 @@ import {CreateAppResponse} from "../../../../core/common/Application/CreateAppRe
 import {IController} from "../../../../core/common/Application/IController";
 import {GetSeasonInvoicesService} from "../../services/get-season-invoices/get-season-invoices.service";
 import {GetSeasonEntityQuery} from "../../../../core/Service/Application/Queries/GetSeasonEntityQuery";
+import {GetSeasonInvoicesQuery} from "../../../../core/Invoice/Application/Queries/GetSeasonInvoicesQuery";
 
 @ApiTags('Frontend')
 @Controller('invoice')
@@ -26,8 +27,9 @@ export class GetSeasonInvoicesController implements IController {
       @Param('id') id: string,
       @Query('page') page: number = 1,
       @Query('size') size: number = 10,
+      @Query('state') state: string = 'ALL'
   ) {
-    const query = new GetSeasonEntityQuery(page, size,id);
+    const query = new GetSeasonInvoicesQuery(page, size,id,state);
     const data = await this.service.execute(query);
     return CreateAppResponse.successResponse('The invoices has been retrieved',data)
   }
