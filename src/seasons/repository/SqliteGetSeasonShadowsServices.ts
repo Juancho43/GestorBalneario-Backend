@@ -12,6 +12,7 @@ import {StringObject} from '../../../core/common/Model/StringObject';
 import {ShadowType} from '../../../core/Shadow/Model/ValueObjects/ShadowType';
 import {Coords} from '../../../core/common/Model/Coords';
 import {Money} from '../../../core/Payment/Model/Money';
+import {ServiceCategory} from "../../../core/Service/ServiceCategory";
 
 @Injectable()
 export class SqliteGetSeasonShadowsServices
@@ -38,6 +39,7 @@ export class SqliteGetSeasonShadowsServices
                services.id AS serviceId,
                services.price AS servicePrice,
                services.description AS serviceName,
+                services.type AS serviceType,
                services.created_at AS serviceCreatedAt,
                services.updated_at AS serviceUpdatedAt
            FROM Seasons s 
@@ -84,6 +86,7 @@ export class SqliteGetSeasonShadowsServices
             UUID.restore(row.seasonId),
             StringObject.create(row.serviceName),
             Money.create(row.servicePrice),
+            ServiceCategory.create(row.serviceCategory),
             Timestamps.restore(row.serviceCreatedAt, row.serviceUpdatedAt),
             SoftDelete.empty(),
           ),

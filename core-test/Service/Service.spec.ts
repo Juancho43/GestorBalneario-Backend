@@ -19,7 +19,12 @@ describe('Service', () => {
   it('should create a service and getters should work', () => {
     const id = UUID.create();
     const name = StringObject.create('Carpa');
-    const price = MoneyMother.create(25, 1, Currency.USD);
+    const price = MoneyMother.create({
+      amount: 25,
+      currency: Currency.USD,
+      exchangeRate:1,
+
+    });
     const service = ServiceMother.create({ id: id, name: name, price: price });
 
     expect(service.id).toEqual(id);
@@ -30,7 +35,7 @@ describe('Service', () => {
   });
 
   it('should allow creating a service with a specific price', () => {
-    const price = MoneyMother.create(500);
+    const price = MoneyMother.create({amount:500});
     const service = ServiceMother.create({ price: price });
     expect(service.price).toEqual(price);
   });

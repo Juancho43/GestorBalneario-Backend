@@ -15,7 +15,8 @@ export class SqliteSeasonsServices
             SELECT
                 s.id as serviceId,
                 s.price as servicePrice,
-                s.description as serviceDescription
+                s.description as serviceDescription,
+                s.type as serviceType
             FROM Services s
                      INNER JOIN Season_Services ss ON ss.serviceId = s.id
             WHERE ss.seasonId = @seasonId AND deleted_at IS NULL 
@@ -33,6 +34,7 @@ export class SqliteSeasonsServices
       service.id = result.serviceId;
       service.name = result.serviceDescription;
       service.price = result.servicePrice;
+      service.type = result.serviceType;
       response.services.push(service);
     });
     return response;

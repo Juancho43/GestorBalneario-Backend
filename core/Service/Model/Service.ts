@@ -5,12 +5,14 @@ import {Timestamps} from '../../common/Model/Timestamps';
 import {SoftDelete} from '../../common/Model/SoftDelete';
 import {Prototype} from '../../common/Model/Prototype';
 import {Entity} from '../../common/Model/Entity';
+import {ServiceCategory, ServiceType} from "../ServiceCategory";
 
 export class Service implements Prototype<Service>, Entity {
   private readonly _id: UUID;
   private readonly _seasonId: UUID;
   private readonly _name: StringObject;
   private readonly _price: Money;
+  private readonly _type: ServiceCategory;
   private readonly _timestamp: Timestamps;
   private readonly _softDelete: SoftDelete;
 
@@ -19,6 +21,7 @@ export class Service implements Prototype<Service>, Entity {
     seasonId: UUID,
     name: StringObject,
     price: Money,
+    type: ServiceCategory,
     timestamp: Timestamps,
     softDelete: SoftDelete,
   ) {
@@ -26,6 +29,7 @@ export class Service implements Prototype<Service>, Entity {
     this._seasonId = seasonId;
     this._name = name;
     this._price = price;
+    this._type = type;
     this._timestamp = timestamp;
     this._softDelete = softDelete;
   }
@@ -54,6 +58,7 @@ export class Service implements Prototype<Service>, Entity {
       this._seasonId,
       this._name,
       this._price,
+      this._type,
       Timestamps.create(),
       SoftDelete.empty(),
     );
@@ -64,10 +69,11 @@ export class Service implements Prototype<Service>, Entity {
     seasonId: UUID,
     name: StringObject,
     price: Money,
+    type: ServiceCategory,
     timestamp: Timestamps,
     softDelete: SoftDelete,
   ) {
-    return new Service(id, seasonId, name, price, timestamp, softDelete);
+    return new Service(id, seasonId, name, price,type, timestamp, softDelete);
   }
   get timestamp(): Timestamps {
     return this._timestamp;
@@ -88,7 +94,9 @@ export class Service implements Prototype<Service>, Entity {
   get price(): Money {
     return this._price;
   }
-
+  get type(): ServiceCategory {
+    return this._type;
+  }
   get seasonId(): UUID {
     return this._seasonId;
   }

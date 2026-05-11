@@ -6,6 +6,7 @@ import {IUseCase} from '../../../../common/Application/IUseCase';
 import {UpdateServiceCommand} from '../../Commands/UpdateServiceCommand';
 import {Money} from '../../../../Payment/Model/Money';
 import {StringObject} from '../../../../common/Model/StringObject';
+import {ServiceCategory} from "../../../ServiceCategory";
 
 export class UpdateService implements IUseCase<UpdateServiceCommand, Service> {
   constructor(
@@ -24,6 +25,7 @@ export class UpdateService implements IUseCase<UpdateServiceCommand, Service> {
       existingEntity.seasonId,
       StringObject.create(request.data.name),
       Money.create(request.data.price),
+      ServiceCategory.create(request.data.type),
       existingEntity.getTimestamps(),
       existingEntity.getSoftDelete(),
     );

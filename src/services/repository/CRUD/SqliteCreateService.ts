@@ -15,13 +15,14 @@ export class SqliteCreateService
             VALUES (@id, @seasonId, @serviceId)
         `);
     const stmtService = this.getDb().prepare(`
-            INSERT INTO Services (id,description,price,created_at,updated_at)
-            VALUES (:id, :name, :price, :createdAt,:updatedAt)`);
+            INSERT INTO Services (id,description,price,type,created_at,updated_at)
+            VALUES (:id, :name, :price,:type, :createdAt,:updatedAt)`);
     const transaction = this.getDb().transaction(() => {
       stmtService.run({
         id: service.id.value,
         name: service.name.getValue(),
         price: service.price.finalAmount,
+        type:service.type.getValue(),
         createdAt: service.timestamp.createdAt.toISOString(),
         updatedAt: service.timestamp.updatedAt.toISOString(),
       });

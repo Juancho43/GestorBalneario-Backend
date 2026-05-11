@@ -7,6 +7,7 @@ import {UUID} from '../../../core/common/Model/UUID';
 import {StringObject} from '../../../core/common/Model/StringObject';
 import {Timestamps} from '../../../core/common/Model/Timestamps';
 import {SoftDelete} from '../../../core/common/Model/SoftDelete';
+import { ServiceCategory } from "core/Service/ServiceCategory";
 
 @Injectable()
 export class SqliteGetServices
@@ -18,6 +19,7 @@ export class SqliteGetServices
             s.id,
             s.description,
             s.price,
+            s.type,
             s.created_at,
             s.updated_at,
             ss.seasonId
@@ -37,6 +39,7 @@ export class SqliteGetServices
           UUID.restore(row.seasonId),
           StringObject.create(row.description),
           Money.create(row.price),
+          ServiceCategory.create(row.type),
           Timestamps.restore(
             new Date(row.created_at),
             new Date(row.updated_at),

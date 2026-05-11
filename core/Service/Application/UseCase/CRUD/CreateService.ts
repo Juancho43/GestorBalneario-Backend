@@ -8,6 +8,7 @@ import {Money} from '../../../../Payment/Model/Money';
 import {Timestamps} from '../../../../common/Model/Timestamps';
 import {SoftDelete} from '../../../../common/Model/SoftDelete';
 import {ActiveSeasonDAO} from '../../../../Season/Application/Interfaces/ActiveSeasonDAO';
+import {ServiceCategory} from "../../../ServiceCategory";
 
 export class CreateService implements IUseCase<CreateServiceCommand, Service> {
   constructor(
@@ -22,6 +23,7 @@ export class CreateService implements IUseCase<CreateServiceCommand, Service> {
       season.id,
       StringObject.create(request.name),
       Money.create(request.price),
+      ServiceCategory.create(request.type),
       Timestamps.create(),
       SoftDelete.empty(),
     );

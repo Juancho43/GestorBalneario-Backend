@@ -7,6 +7,7 @@ import {Timestamps} from '../../../../core/common/Model/Timestamps';
 import {SoftDelete} from '../../../../core/common/Model/SoftDelete';
 import {StringObject} from '../../../../core/common/Model/StringObject';
 import {Money} from '../../../../core/Payment/Model/Money';
+import {ServiceCategory} from "../../../../core/Service/ServiceCategory";
 
 @Injectable()
 export class SqliteGetService extends SqliteBaseClass implements GetServiceDAO {
@@ -17,6 +18,7 @@ export class SqliteGetService extends SqliteBaseClass implements GetServiceDAO {
                 s.description,
                 s.price,
                 s.created_at,
+              s.type,
                 s.updated_at,
                 ss.seasonId AS seasonId
                 FROM Services s
@@ -31,6 +33,7 @@ export class SqliteGetService extends SqliteBaseClass implements GetServiceDAO {
         UUID.restore(result.seasonId),
         StringObject.create(result.description),
         Money.create(result.price),
+        ServiceCategory.create(result.type),
         Timestamps.restore(
           new Date(result.created_at),
           new Date(result.updated_at),

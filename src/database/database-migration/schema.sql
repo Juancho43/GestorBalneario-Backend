@@ -107,6 +107,7 @@ CREATE TABLE IF NOT EXISTS `Services`(
                                          `id` TEXT NOT NULL PRIMARY KEY,
                            `description` TEXT NOT NULL,
                            `price` INTEGER NOT NULL,
+                            `type` TEXT NOT NULL,
                            `created_at` TEXT NOT NULL,
                            `updated_at` TEXT NOT NULL,
                            `deleted_at` TEXT NULL

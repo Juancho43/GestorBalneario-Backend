@@ -4,6 +4,7 @@ import {StringObject} from '../../core/common/Model/StringObject';
 import {Timestamps} from '../../core/common/Model/Timestamps';
 import {SoftDelete} from '../../core/common/Model/SoftDelete';
 import {Money} from '../../core/Payment/Model/Money';
+import {ServiceCategory} from "../../core/Service/ServiceCategory";
 
 export class ServiceMother {
   static create(
@@ -12,6 +13,7 @@ export class ServiceMother {
       seasonId: UUID;
       name: StringObject;
       price: Money;
+      type:ServiceCategory;
       timestamp: Timestamps;
       softDelete: SoftDelete;
     }> = {},
@@ -22,6 +24,7 @@ export class ServiceMother {
       seasonId: overrides.seasonId ?? UUID.create(),
       name: overrides.name ?? StringObject.create('Carpado Enero Full'),
       price: overrides.price ?? Money.create(1500),
+        type: overrides.type ?? ServiceCategory.create('OTHER'),
       timestamp: overrides.timestamp ?? Timestamps.create(),
       softDelete: overrides.softDelete ?? SoftDelete.empty(),
     };
@@ -31,6 +34,7 @@ export class ServiceMother {
       defaults.seasonId,
       defaults.name,
       defaults.price,
+      defaults.type,
       defaults.timestamp,
       defaults.softDelete,
     );

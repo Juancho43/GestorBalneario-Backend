@@ -29,7 +29,7 @@ export class ServiceResponse extends TimeStampResponse {
    * @example 25.99
    */
   price: number;
-
+  type: string;
   /**
    * Creates a ServiceResponse from a Service model.
    * @param {Service} service - The service model.
@@ -40,6 +40,7 @@ export class ServiceResponse extends TimeStampResponse {
     response.id = service.id.value;
     response.name = service.name.getValue();
     response.price = service.price.finalAmount;
+    response.type = service.type.getValue();
     response.create_at = service.timestamp.createdAt.toISOString();
     response.updated_at = service.timestamp.updatedAt.toISOString();
     response.deleted_at = service.softDelete.value?.toISOString() || '';

@@ -9,8 +9,10 @@ export class CreateServiceCommand {
    * @example 10
    */
   price: number;
-  constructor(name: string, price: number) {
+  type:string;
+  constructor(name: string, price: number,type:string) {
     this.name = name;
     this.price = price;
+    this.type = type;
   }
 }

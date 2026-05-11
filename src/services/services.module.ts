@@ -13,6 +13,8 @@ import {UpdateServiceService} from './service/update-service/update-service.serv
 import {ServiceDaoProviders} from './providers/ServiceDaoProviders';
 import {ServiceUseCaseProviders} from './providers/ServiceUseCaseProviders';
 import {SERVICE_TOKEN} from './SERVICE_TOKEN';
+import { GetServiceTypesService } from './service/get-service-types/get-service-types.service';
+import { GetServiceTypesController } from './controllers/get-service-types/get-service-types.controller';
 
 @Module({
   imports: [SeasonModule],
@@ -22,6 +24,7 @@ import {SERVICE_TOKEN} from './SERVICE_TOKEN';
     GetSeasonServicesController,
     EditServiceController,
     DeleteServiceController,
+    GetServiceTypesController,
   ],
   providers: [
     ...ServiceDaoProviders,
@@ -31,6 +34,7 @@ import {SERVICE_TOKEN} from './SERVICE_TOKEN';
     GetSeasonServicesService,
     DeleteServiceService,
     UpdateServiceService,
+    GetServiceTypesService,
   ],
   exports: [SERVICE_TOKEN.DAOS.GET_SERVICE],
 })

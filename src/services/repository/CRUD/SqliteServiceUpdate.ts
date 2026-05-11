@@ -12,13 +12,15 @@ export class SqliteServiceUpdate
     const stmt = this.getDb().prepare(`
             UPDATE Services
             SET description = @description,
-                price = @price
+                price = @price,
+              type = @type
             WHERE id = @id
         `);
     stmt.run({
       id: service.id.value,
       description: service.name.getValue(),
       price: service.price.finalAmount,
+      type: service.type.getValue(),
     });
   }
 }
