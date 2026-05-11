@@ -17,12 +17,14 @@ export class SqliteGetSeasonsInvoices extends SqliteBaseClass implements GetSeas
                 i.state as invoiceState,
                 i.amount as invoiceAmount,
                 i.created_at as invoiceCreatedAt,
-                i.updated_at as invoiceUpdatedAt
+                i.updated_at as invoiceUpdatedAt,
+                c.name as clientName
 
             FROM Invoices i
                      INNER JOIN Invoice_Items ii ON ii.invoiceId = i.id
                      INNER JOIN  Services s ON ii.serviceId = s.id
                      INNER JOIN Season_Services ss ON ss.serviceId = s.id
+                     INNER JOIN Clients c ON i.clientId = c.id
             WHERE ss.seasonId = @id AND i.deleted_at IS NULL AND (@state = 'ALL' OR i.state = @state)
             GROUP BY invoiceId
             LIMIT @size OFFSET @offset
@@ -40,6 +42,7 @@ export class SqliteGetSeasonsInvoices extends SqliteBaseClass implements GetSeas
                     const response = new InvoiceResponse();
                     response.id = row.invoiceId;
                     response.state = row.invoiceState;
+                    response.clientName = row.clientName;
                     response.date = row.invoiceDate;
                     response.amount = row.invoiceAmount;
                     response.clientId = row.clientId;

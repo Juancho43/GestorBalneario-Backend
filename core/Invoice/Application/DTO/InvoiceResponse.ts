@@ -37,7 +37,7 @@ export class InvoiceResponse extends TimeStampResponse {
    * @example 'paid'
    */
   state: string;
-
+  clientName: string;
   /**
    * Creates an InvoiceResponse from an Invoice domain model.
    * @param {Invoice} invoice - The invoice entity.
