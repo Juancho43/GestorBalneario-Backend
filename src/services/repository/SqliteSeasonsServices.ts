@@ -2,15 +2,15 @@ import {Injectable} from '@nestjs/common';
 import {SeasonServiceDAO} from '../../../core/Service/Application/Interfaces/SeasonServiceDAO';
 import {SqliteBaseClass} from '../../database/SqliteBaseClass';
 import {SeasonServiceDTO} from 'core/Service/Application/DTO/SeasonServiceDTO';
-import {GetSeasonEntityQuery} from 'core/Service/Application/Queries/GetSeasonEntityQuery';
 import {ServiceResponse} from '../../../core/Service/Application/DTO/ServiceResponse';
+import {GetSeasonServicesQuery} from "../../../core/Service/Application/Queries/GetSeasonServicesQuery";
 
 @Injectable()
 export class SqliteSeasonsServices
   extends SqliteBaseClass
   implements SeasonServiceDAO
 {
-  async get(query: GetSeasonEntityQuery): Promise<SeasonServiceDTO> {
+  async get(query: GetSeasonServicesQuery): Promise<SeasonServiceDTO> {
     const sql = `
             SELECT
                 s.id as serviceId,
@@ -19,13 +19,14 @@ export class SqliteSeasonsServices
                 s.type as serviceType
             FROM Services s
                      INNER JOIN Season_Services ss ON ss.serviceId = s.id
-            WHERE ss.seasonId = @seasonId AND deleted_at IS NULL 
+            WHERE ss.seasonId = @seasonId AND deleted_at IS NULL AND (@type = 'ALL' OR s.type = @type)
             LIMIT @limit OFFSET @offset
         `;
     const results = this.getDb().prepare(sql).all({
       seasonId: query.seasonId,
       limit: query.pageSize,
       offset: query.page,
+      type: query.type
     }) as any[];
 
     const response = new SeasonServiceDTO([]);
