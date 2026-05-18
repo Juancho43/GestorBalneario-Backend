@@ -4,7 +4,7 @@ import {StringObject} from '../../core/common/Model/StringObject';
 import {Timestamps} from '../../core/common/Model/Timestamps';
 import {SoftDelete} from '../../core/common/Model/SoftDelete';
 import {Money} from '../../core/Payment/Model/Money';
-import {ServiceCategory} from "../../core/Service/ServiceCategory";
+import {ServiceCategory} from "../../core/Service/Model/ServiceCategory";
 
 export class ServiceMother {
   static create(

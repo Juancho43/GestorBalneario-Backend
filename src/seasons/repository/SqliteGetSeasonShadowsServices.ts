@@ -12,7 +12,7 @@ import {StringObject} from '../../../core/common/Model/StringObject';
 import {ShadowType} from '../../../core/Shadow/Model/ValueObjects/ShadowType';
 import {Coords} from '../../../core/common/Model/Coords';
 import {Money} from '../../../core/Payment/Model/Money';
-import {ServiceCategory} from "../../../core/Service/ServiceCategory";
+import {ServiceCategory} from "../../../core/Service/Model/ServiceCategory";
 
 @Injectable()
 export class SqliteGetSeasonShadowsServices

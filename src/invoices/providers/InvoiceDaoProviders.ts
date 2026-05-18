@@ -5,6 +5,8 @@ import {SqliteGetInvoice} from '../repository/SqliteGetInvoice';
 import {SqliteInvoiceDetail} from '../repository/SqliteInvoiceDetail';
 import {SqliteGetInvoices} from '../repository/SqliteGetInvoices';
 import {SqliteGetSeasonsInvoices} from "../repository/SqliteGetSeasonsInvoices";
+import {SqliteUpdateInvoiceItem} from "../repository/SqliteUpdateInvoiceItem";
+import {SqliteDeleteInvoiceItem} from "../repository/SqliteDeleteInvoiceItem";
 
 export const InvoiceDaoProviders: Provider[] = [
   {
@@ -26,5 +28,14 @@ export const InvoiceDaoProviders: Provider[] = [
   {
     provide: INVOICE_TOKEN.DAOS.INVOICE_LIST,
     useClass: SqliteGetSeasonsInvoices,
+  },
+  {
+    provide: INVOICE_TOKEN.DAOS.INVOICE_ITEM_UPDATE,
+    useClass: SqliteUpdateInvoiceItem,
+  },
+  {
+    provide: INVOICE_TOKEN.DAOS.INVOICE_ITEM_DELETE,
+    useClass: SqliteDeleteInvoiceItem,
   }
+
 ];

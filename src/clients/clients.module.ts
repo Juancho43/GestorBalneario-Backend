@@ -38,6 +38,6 @@ import {ClientUseCaseProviders} from './providers/ClientUseCaseProviders';
     ClientSearcherService,
     GetClientsHistoryService,
   ],
-  exports: [CLIENT_TOKEN.DAOS.GET_CLIENT],
+  exports: [CLIENT_TOKEN.DAOS.GET_CLIENT,CLIENT_TOKEN.DAOS.CLIENT_INVOICES],
 })
 export class ClientsModule {}

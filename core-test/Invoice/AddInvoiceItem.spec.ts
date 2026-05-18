@@ -77,4 +77,5 @@ describe('AddInvoiceItem UseCase', () => {
     expect(mockCreateItemDAO.create).toHaveBeenCalled();
     expect(mockEventPublisher.publish).toHaveBeenCalled();
   });
+
 });

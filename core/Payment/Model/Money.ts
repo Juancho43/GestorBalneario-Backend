@@ -11,7 +11,6 @@ export class Money {
     private readonly _exchangeRate: number,
     private readonly _currency: Currency,
   ) {
-    this.validate(this._amount);
     this.validate(this._exchangeRate);
   }
 
@@ -25,7 +24,7 @@ export class Money {
 
   private validate(value: number): void {
     if (value <= 0)
-      throw new Error('Los valores monetarios deben ser positivos.');
+      throw new Error('El tipo de cambio debe ser positivo');
   }
 
   public get finalAmount(): number {

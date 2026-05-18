@@ -14,12 +14,12 @@ describe('SoftDelete Value Object', () => {
     expect(object.value).toEqual(date);
   });
   it('Should applied soft delete', () => {
-    const objectDeleted = object.apply();
-    expect(objectDeleted.isDeleted).toEqual(true);
+  object.apply();
+    expect(object.isDeleted).toEqual(true);
   });
   it('Should undo soft delete', () => {
-    const objectToTest = object.apply();
-    const notDeleted = objectToTest.undo();
-    expect(notDeleted.isDeleted).toEqual(false);
+    object.apply();
+     object.undo();
+    expect(object.isDeleted).toEqual(false);
   });
 });

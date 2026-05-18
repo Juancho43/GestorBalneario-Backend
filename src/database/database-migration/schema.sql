@@ -124,6 +124,7 @@ CREATE TABLE IF NOT EXISTS `Invoice_Items`(
                                               `serviceId` TEXT NOT NULL,
                                               `price` INTEGER NOT NULL,
                                               `quantity` INTEGER NULL,
+                                              `deleted_at` TEXT NULL,
                                               FOREIGN KEY(`serviceId`) REFERENCES `Services`(`id`),
                                               FOREIGN KEY(`invoiceId`) REFERENCES `Invoices`(`id`)
 );

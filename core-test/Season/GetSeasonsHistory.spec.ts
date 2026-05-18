@@ -15,7 +15,6 @@ describe('GetSeasonsHistory useCase', () => {
         dto = []
         for(let i =0; i<10; i++){
             dto.push(SeasonMother.create())
-            console.log(i)
         }
         mockDao = {
             get: vi.fn().mockResolvedValue(dto),

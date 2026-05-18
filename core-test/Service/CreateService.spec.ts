@@ -24,8 +24,9 @@ describe('Create Service UseCase', () => {
     };
     useCase = new CreateService(createMock, seasonMock);
     command = new CreateServiceCommand(
-      entity.name.getValue(),
-      entity.price.amount,
+        entity.name.getValue(),
+        entity.price.amount,
+        entity.type.getValue(),
     );
   });
   afterEach(() => {

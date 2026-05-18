@@ -6,7 +6,7 @@ import {IUseCase} from '../../../../common/Application/IUseCase';
 import {UpdateServiceCommand} from '../../Commands/UpdateServiceCommand';
 import {Money} from '../../../../Payment/Model/Money';
 import {StringObject} from '../../../../common/Model/StringObject';
-import {ServiceCategory} from "../../../ServiceCategory";
+import {ServiceCategory} from "../../../Model/ServiceCategory";
 
 export class UpdateService implements IUseCase<UpdateServiceCommand, Service> {
   constructor(

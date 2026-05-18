@@ -8,6 +8,7 @@ import {SoftDelete} from '../../../core/common/Model/SoftDelete';
 import {Reservation_Service} from '../../../core/Service/Model/Reservation_Service';
 import {Money} from '../../../core/Payment/Model/Money';
 import {StringObject} from '../../../core/common/Model/StringObject';
+import {CreateInvoiceItem} from "../../../core/Invoice/Application/UseCase/CreateInvoiceItem";
 
 @Injectable()
 export class SqliteGetInvoice extends SqliteBaseClass implements GetInvoiceDAO {
@@ -25,10 +26,12 @@ export class SqliteGetInvoice extends SqliteBaseClass implements GetInvoiceDAO {
                 r.aggregateId,
                 r.aggregateType,
                 r.serviceId,
-                r.id as itemId
+                r.id as itemId,
+                s.type as serviceType
             FROM Invoices i
                      LEFT JOIN Invoice_Items r ON r.invoiceId = i.id
-            WHERE i.id = @id and i.deleted_at IS NULL
+                     LEFT JOIN Services s ON r.serviceId = s.id
+            WHERE i.id = @id AND i.deleted_at IS NULL AND r.deleted_at IS NULL
         `;
     const result = this.getDb().prepare(sql).all({ id }) as any;
     let invoice: Invoice | null = null;
@@ -44,17 +47,17 @@ export class SqliteGetInvoice extends SqliteBaseClass implements GetInvoiceDAO {
         SoftDelete.empty(),
       );
       result.forEach((row: any) => {
-        if (row.aggregateType == 'Reservations') {
-          const item = Reservation_Service.create(
-            UUID.restore(row.itemId),
-            Money.create(row.price),
-            StringObject.create('Booking'),
-            UUID.restore(row.serviceId),
-            UUID.restore(row.aggregateId),
-            UUID.restore(row.invoiceId),
-          );
-          invoice!.addItem(item);
-        }
+        const item = CreateInvoiceItem.create(
+            row.serviceType,
+            row.price,
+            row.aggregateType,
+            row.serviceId,
+            row.aggregateId,
+            row.invoiceId,
+            row.itemId
+        )
+        invoice!.addItem(item);
+
       });
     }
     return invoice;

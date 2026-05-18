@@ -23,7 +23,7 @@ describe('Update Service UseCase', () => {
     useCase = new UpdateService(updateMock, getMock);
     command = new UpdateServiceCommand(
       entity.id.value,
-      new CreateServiceCommand(entity.name.getValue(), entity.price.amount),
+      new CreateServiceCommand(entity.name.getValue(), entity.price.amount, entity.type.getValue()),
     );
   });
   afterEach(() => {

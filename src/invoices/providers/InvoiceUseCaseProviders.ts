@@ -4,6 +4,10 @@ import {INVOICE_TOKEN} from '../INVOICE_TOKEN';
 import {DeleteInvoice} from '../../../core/Invoice/Application/UseCase/CRUD/DeleteInvoice';
 import {InvoiceDetails} from '../../../core/Invoice/Application/UseCase/InvoiceDetails';
 import {GetSeasonsInvoices} from "../../../core/Invoice/Application/UseCase/GetSeasonsInvoices";
+import {UpdateInvoiceItem} from "../../../core/Invoice/Application/UseCase/UpdateInvoiceItem";
+import {CLIENT_TOKEN} from "../../clients/CLIENT_TOKEN";
+import {SERVICE_TOKEN} from "../../services/SERVICE_TOKEN";
+import {DeleteInvoiceItem} from "../../../core/Invoice/Application/UseCase/DeleteInvoiceItem";
 
 export const InvoiceUseCaseProviders: Provider[] = [
   {
@@ -36,5 +40,19 @@ export const InvoiceUseCaseProviders: Provider[] = [
       return new GetSeasonsInvoices(dao)
     },
     inject: [INVOICE_TOKEN.DAOS.INVOICE_LIST],
+  },
+  {
+    provide: INVOICE_TOKEN.USECASE.INVOICE_ITEM_UPDATE,
+    useFactory: (dao,invoice,service,event) =>{
+      return new UpdateInvoiceItem(invoice,service,dao,event);
+    },
+    inject: [INVOICE_TOKEN.DAOS.INVOICE_ITEM_UPDATE,INVOICE_TOKEN.DAOS.GET_INVOICE,SERVICE_TOKEN.DAOS.GET_SERVICE,'EVENT'],
+  },
+  {
+    provide: INVOICE_TOKEN.USECASE.INVOICE_ITEM_DELETE,
+    useFactory: (get,dao,event) => {
+      return new DeleteInvoiceItem(get,dao,event);
+    },
+    inject: [INVOICE_TOKEN.DAOS.GET_INVOICE,INVOICE_TOKEN.DAOS.INVOICE_ITEM_DELETE,'EVENT']
   }
 ];

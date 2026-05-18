@@ -7,6 +7,7 @@ import {SqliteClientGetOne} from '../repository/CRUD/SqliteClientGetOne';
 import {SqliteClientGetMany} from '../repository/SqliteClientGetMany';
 import {SqliteClientDetails} from '../repository/SqliteClientDetails';
 import {SqliteClientSearch} from '../repository/SqliteClientSearch';
+import {SqliteGetClientInvoice} from "../repository/SqliteGetClientInvoice";
 
 export const ClientDaoProviders: Provider[] = [
   {
@@ -37,4 +38,8 @@ export const ClientDaoProviders: Provider[] = [
     provide: CLIENT_TOKEN.DAOS.SEARCHER,
     useClass: SqliteClientSearch,
   },
+  {
+    provide: CLIENT_TOKEN.DAOS.CLIENT_INVOICES,
+    useClass: SqliteGetClientInvoice,
+  }
 ];

@@ -19,6 +19,7 @@ export class SqliteInvoiceDetail
     const sql = `
             SELECT
                 *,
+                ss.id AS serviceId,
                 i.id AS invoiceId,
                 s.id AS shadowId,
                 c.id AS clientId,
@@ -37,16 +38,20 @@ export class SqliteInvoiceDetail
                 r.checkOut,
                 rs.price AS priceItem,
                 rs.id AS itemId,
-                rs.aggregateType AS itemAggregateType
+                rs.aggregateType AS itemAggregateType,
+                s.type AS shadowType,
+                s.identifier AS shadowIndentifier,
+                ss.type AS serviceType
             FROM Invoices i
-                     LEFT JOIN Invoice_Items rs ON rs.invoiceId = i.id
-                     LEFT JOIN Reservations r on rs.aggregateId = r.id and rs.aggregateType = 'Reservations'
-                     LEFT JOIN Invoice_Payments ip ON ip.invoiceId = i.id
-                     LEFT JOIN Payments p ON ip.paymentId = p.id
-                     LEFT JOIN Shadows s ON r.shadowId = s.id
-                     LEFT JOIN Clients c ON r.clientId = c.id
-            WHERE i.id = @id AND i.deleted_at IS NULL
-        `;
+                   LEFT JOIN Invoice_Items rs ON rs.invoiceId = i.id
+                   LEFT JOIN Reservations r on rs.aggregateId = r.id and rs.aggregateType = 'Reservations'
+                   LEFT JOIN Invoice_Payments ip ON ip.invoiceId = i.id
+                   LEFT JOIN Payments p ON ip.paymentId = p.id
+                   LEFT JOIN Shadows s ON r.shadowId = s.id
+                   LEFT JOIN Clients c ON r.clientId = c.id
+                   LEFT JOIN Services ss ON rs.serviceId = ss.id
+            WHERE i.id = @id AND i.deleted_at IS NULL AND ss.deleted_at IS NULL AND rs.deleted_at IS NULL
+    `;
     const results = this.getDb().prepare(sql).all({ id: query.id }) as any[];
     const response = new InvoiceDetailsDTO();
     if (results.length === 0) return response;
@@ -72,21 +77,27 @@ export class SqliteInvoiceDetail
       // --- Map Items (Reservations) ---
       if (!processedItems.has(row.itemId)) {
         const item = new ItemResponse();
+
         item.id = row.itemId;
         item.price = row.priceItem;
-
-        const shadow = new ShadowResponse();
-        shadow.id = row.shadowId;
-        shadow.identifier = row.identifier;
-        shadow.type = row.type;
-        shadow.coords = { x: row.x, y: row.y };
-
-        const reservation = new ReservationResponse();
-        reservation.id = row.reservationId;
-        reservation.dates = { checkIn: row.checkIn, checkOut: row.checkOut };
-        reservation.shadow = shadow;
+        item.description = row.description;
         item.aggregate = row.itemAggregateType;
-        item.aggregateObject = reservation;
+        item.serviceId=row.serviceId;
+        item.type=row.serviceType;
+        if(row.itemAggregateType === 'Reservations') {
+          const shadow = new ShadowResponse();
+          shadow.id = row.shadowId;
+          shadow.identifier = row.shadowIndentifier;
+          shadow.type = row.shadowType;
+          shadow.coords = { x: row.x, y: row.y };
+
+          const reservation = new ReservationResponse();
+          reservation.id = row.reservationId;
+          reservation.dates = { checkIn: row.checkIn, checkOut: row.checkOut };
+          reservation.shadow = shadow;
+          item.aggregateObject = reservation;
+        }
+
         response.items.push(item);
 
         processedItems.add(row.itemId);

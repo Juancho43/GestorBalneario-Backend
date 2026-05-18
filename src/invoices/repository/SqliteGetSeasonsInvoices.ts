@@ -25,7 +25,7 @@ export class SqliteGetSeasonsInvoices extends SqliteBaseClass implements GetSeas
                      INNER JOIN  Services s ON ii.serviceId = s.id
                      INNER JOIN Season_Services ss ON ss.serviceId = s.id
                      INNER JOIN Clients c ON i.clientId = c.id
-            WHERE ss.seasonId = @id AND i.deleted_at IS NULL AND (@state = 'ALL' OR i.state = @state)
+            WHERE ss.seasonId = @id AND i.deleted_at IS NULL AND (@state = 'ALL' OR i.state = @state) AND ii.deleted_at IS NULL
             GROUP BY invoiceId
             LIMIT @size OFFSET @offset
         `

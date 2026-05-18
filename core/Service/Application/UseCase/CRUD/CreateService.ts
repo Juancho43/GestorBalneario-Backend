@@ -8,7 +8,7 @@ import {Money} from '../../../../Payment/Model/Money';
 import {Timestamps} from '../../../../common/Model/Timestamps';
 import {SoftDelete} from '../../../../common/Model/SoftDelete';
 import {ActiveSeasonDAO} from '../../../../Season/Application/Interfaces/ActiveSeasonDAO';
-import {ServiceCategory} from "../../../ServiceCategory";
+import {ServiceCategory} from "../../../Model/ServiceCategory";
 
 export class CreateService implements IUseCase<CreateServiceCommand, Service> {
   constructor(

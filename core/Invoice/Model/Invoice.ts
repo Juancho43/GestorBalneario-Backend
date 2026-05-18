@@ -60,16 +60,15 @@ export class Invoice implements Entity {
   ) {
     return new Invoice(id, date, clientId, timestamps, softDelete);
   }
-
   updateAmount() {
     this._amount = Money.create(this.calculateTotalAmount());
   }
-
   calculateDebt() {
     return this._amount.finalAmount - this.calculateTotalPaid();
   }
   calculateTotalAmount(): number {
-    return this._items.reduce((total, item) => item.getPrice().finalAmount, 0);
+    let total = this._items.reduce((total, item) => item.getPrice().finalAmount,0 );
+    return  total==0? 1 : total;
   }
 
   calculateTotalPaid(): number {
@@ -80,6 +79,12 @@ export class Invoice implements Entity {
     this._state.addItem(item);
   }
 
+  updateInvoiceItem(item: InvoiceItem){
+    this._state.updateItem(item);
+  }
+  deleteInvoiceItem(item: UUID){
+    this._state.removeItem(item);
+  }
   addPayment(payment: Payment) {
     this._state.addPayment(payment);
   }
@@ -120,5 +125,8 @@ export class Invoice implements Entity {
 
   get softDelete(): SoftDelete {
     return this._softDelete;
+  }
+  public updateItemsCollection(newItems: InvoiceItem[]): void {
+    this._items = newItems;
   }
 }

@@ -27,4 +27,16 @@ describe('PaidState Model', () => {
   it('Should not add payments', () => {
     expect(() => model.addPayment({} as any)).toThrow(ModifyPaidInvoiceError);
   });
+  it('Should not modify items', () => {
+    expect(() => model.updateItem({} as any)).toThrow(ModifyPaidInvoiceError);
+  })
+  it('Should not remove items', () => {
+    expect(() => model.removeItem({} as any)).toThrow(ModifyPaidInvoiceError);
+  })
+  it('Should not detele the invoice',()=>{
+    expect(() => model.delete()).toThrow(ModifyPaidInvoiceError);
+  })
+  it('Should not modify the invoice', () => {
+    expect(() => model.update()).toThrow(ModifyPaidInvoiceError);
+  })
 });

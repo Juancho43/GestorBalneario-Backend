@@ -7,7 +7,7 @@ import {Timestamps} from '../../../../core/common/Model/Timestamps';
 import {SoftDelete} from '../../../../core/common/Model/SoftDelete';
 import {StringObject} from '../../../../core/common/Model/StringObject';
 import {Money} from '../../../../core/Payment/Model/Money';
-import {ServiceCategory} from "../../../../core/Service/ServiceCategory";
+import {ServiceCategory} from "../../../../core/Service/Model/ServiceCategory";
 
 @Injectable()
 export class SqliteGetService extends SqliteBaseClass implements GetServiceDAO {

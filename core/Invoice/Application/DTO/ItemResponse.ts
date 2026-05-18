@@ -1,5 +1,6 @@
 import {InvoiceItem} from '../../Model/InvoiceItem';
 import {ReservationResponse} from '../../../Reservation/Application/DTO/ReservationResponse';
+import {ServiceResponse} from "../../../Service/Application/DTO/ServiceResponse";
 
 /**
  * Represents the response structure for an invoice item.
@@ -39,8 +40,8 @@ export class ItemResponse {
    * The aggregated object itself, such as a reservation response.
    * @example { id: "c3d479f4-7ac1-0b58-cc43-72a5670e02b2", status: "CONFIRMED" }
    */
-  aggregateObject?: ReservationResponse | any;
-
+  aggregateObject?: ReservationResponse | ServiceResponse | any;
+  type: string;
   /**
    * Creates an ItemResponse from an InvoiceItem entity.
    * @param {InvoiceItem} item - The invoice item entity.

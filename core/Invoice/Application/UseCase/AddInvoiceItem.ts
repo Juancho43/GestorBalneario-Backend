@@ -7,6 +7,7 @@ import {InvoiceItemAdded} from '../../Model/Event/InvoiceItemAdded';
 import {AddInvoiceItemCommand} from '../Commands/AddInvoiceItemCommand';
 import {EntityNotFoundError} from '../../../common/Model/Errors/EntityNotFound';
 import {CreateInvoiceItem} from './CreateInvoiceItem';
+import {CreateInvoiceItemDTO} from "../DTO/CreateInvoiceItemDTO";
 
 export class AddInvoiceItem implements IUseCase<AddInvoiceItemCommand, void> {
   constructor(
@@ -31,12 +32,12 @@ export class AddInvoiceItem implements IUseCase<AddInvoiceItemCommand, void> {
       request.price,
       request.description,
       request.serviceId,
-      request.aggregateId,
-      invoiceToWork.id,
+      request.aggregateId ?? request.serviceId,
+      invoiceToWork.id.value
     );
 
     invoiceToWork.addItem(item);
-    await this.createInvoiceItemDAO.create(item, invoiceToWork);
+    await this.createInvoiceItemDAO.create(new CreateInvoiceItemDTO(invoiceToWork,item));
     this.eventPublisher.publish(new InvoiceItemAdded(invoiceToWork.id.value));
   }
 }

@@ -5,7 +5,7 @@ import {Timestamps} from '../../common/Model/Timestamps';
 import {SoftDelete} from '../../common/Model/SoftDelete';
 import {Prototype} from '../../common/Model/Prototype';
 import {Entity} from '../../common/Model/Entity';
-import {ServiceCategory, ServiceType} from "../ServiceCategory";
+import {ServiceCategory, ServiceType} from "./ServiceCategory";
 
 export class Service implements Prototype<Service>, Entity {
   private readonly _id: UUID;

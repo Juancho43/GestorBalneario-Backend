@@ -3,13 +3,14 @@ import {CreateInvoiceItemDAO} from '../../../core/Invoice/Model/DAO/CreateInvoic
 import {Injectable} from '@nestjs/common';
 import {InvoiceItem} from '../../../core/Invoice/Model/InvoiceItem';
 import {Invoice} from '../../../core/Invoice/Model/Invoice';
+import {CreateInvoiceItemDTO} from "../../../core/Invoice/Application/DTO/CreateInvoiceItemDTO";
 
 @Injectable()
 export class SqliteCreateInvoiceItem
   extends SqliteBaseClass
   implements CreateInvoiceItemDAO
 {
-  async create(item: InvoiceItem, invoice: Invoice): Promise<void> {
+  async create(data: CreateInvoiceItemDTO): Promise<void> {
     const sqlInvoice = `
             INSERT OR IGNORE INTO Invoices (id,date,state,amount,clientId,created_at,updated_at)
                 VALUES (@id,@date,@amount,@state,@clientId,@created_at,@updated_at)
@@ -30,26 +31,26 @@ export class SqliteCreateInvoiceItem
 
     const transaction = this.getDb().transaction(() => {
       stmtInvoice.run({
-        id: invoice.id.value,
-        date: invoice.date.toISOString(),
-        amount: invoice.amount.toString(),
-        state: invoice.state.toString(),
-        clientId: invoice.clientId.value,
-        created_at: invoice.timestamps.createdAt.toISOString(),
-        updated_at: invoice.timestamps.updatedAt.toISOString(),
+        id: data.invoice.id.value,
+        date: data.invoice.date.toISOString(),
+        amount: data.invoice.amount.toString(),
+        state: data.invoice.state.toString(),
+        clientId: data.invoice.clientId.value,
+        created_at: data.invoice.timestamps.createdAt.toISOString(),
+        updated_at: data.invoice.timestamps.updatedAt.toISOString(),
       });
 
       stmtItem.run({
-        id: item.getId().value,
-        invoiceId: item.getInvoiceId().value,
-        aggregateId: item.getAggregateId().value,
-        type: item.getAggregate(),
-        serviceId: item.getServiceId().value,
-        price: item.getPrice().finalAmount,
+        id: data.item.getId().value,
+        invoiceId: data.item.getInvoiceId().value,
+        aggregateId: data.item.getAggregateId().value,
+        type: data.item.getAggregate(),
+        serviceId: data.item.getServiceId().value,
+        price: data.item.getPrice().finalAmount,
       });
 
       stmtUpdate.run({
-        id: item.getInvoiceId().value,
+        id: data.item.getInvoiceId().value,
       });
     });
 

@@ -1,5 +1,5 @@
 import {IUseCase} from "../../../common/Application/IUseCase";
-import {ServiceType} from "../../ServiceCategory";
+import {ServiceType} from "../../Model/ServiceCategory";
 
 export class GetServiceTypes implements IUseCase<undefined,string[]> {
     execute(_request: undefined): Promise<string[]> {

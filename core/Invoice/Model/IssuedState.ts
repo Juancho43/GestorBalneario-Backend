@@ -3,9 +3,39 @@ import {InvoiceItem} from './InvoiceItem';
 import {Payment} from '../../Payment/Model/Payment';
 import {Invoice} from './Invoice';
 import {PaidState} from './PaidState';
+import {EntityNotFoundError} from "../../common/Model/Errors/EntityNotFound";
+import {UUID} from "../../common/Model/UUID";
 
 export class IssuedState implements InvoiceState {
   constructor(private invoice: Invoice) {}
+
+  updateItem(item: InvoiceItem): void {
+    const currentItems = this.invoice.items;
+    const exists = currentItems.some(i => i.getId().value === item.getId().value);
+    if (!exists) {
+      throw new EntityNotFoundError('Item',item.getId().value);
+    }
+    const updatedItems = currentItems.map(currentItem =>
+        currentItem.getId().value === item.getId().value ? item : currentItem
+    );
+    this.invoice.updateItemsCollection(updatedItems);
+    this.update();
+    this.invoice.updateAmount();
+  }
+
+  removeItem(item: UUID): void {
+    const currentItems = this.invoice.items;
+    const itemExists = currentItems.some(i => i.getId().value === item.value);
+    if (!itemExists) {
+      throw new EntityNotFoundError('Item',item.value);
+    }
+    const filteredItems = currentItems.filter(
+        currentItem => currentItem.getId().value !== item.value
+    );
+    this.invoice.updateItemsCollection(filteredItems);
+    this.update();
+    this.invoice.updateAmount();
+  }
 
   addItem(item: InvoiceItem): void {
     this.invoice.items.push(item);
@@ -27,9 +57,13 @@ export class IssuedState implements InvoiceState {
     return this.invoice;
   }
 
-  update(): void {}
+  update(): void {
+    this.getInvoice().timestamps.update();
+  }
 
-  delete(): void {}
+  delete(): void {
+    this.getInvoice().softDelete.apply();
+  }
   toString(): string {
     return IssuedState.name;
   }

@@ -31,7 +31,7 @@ export class SqliteGetInvoices
                 r.id as itemId
             FROM Invoices i
                      LEFT JOIN Invoice_Items r ON r.invoiceId = i.id
-            WHERE i.deleted_at IS NULL
+            WHERE i.deleted_at IS NULL AND r.deleted_at IS NULL
             LIMIT @limit OFFSET @offset
         `;
     const results = this.getDb().prepare(sql).all({

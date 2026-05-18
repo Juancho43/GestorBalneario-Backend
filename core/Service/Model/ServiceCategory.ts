@@ -1,5 +1,5 @@
 export enum ServiceType{
-    BOOKING = 'BOOKING',
+    RESERVATION = 'RESERVATION',
     DISCOUNT = 'DISCOUNT',
     RECHARGE = 'RECHARGE',
     OTHER = 'OTHER'
