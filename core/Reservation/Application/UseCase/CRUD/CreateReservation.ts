@@ -9,7 +9,7 @@ import {UUID} from '../../../../common/Model/UUID';
 import {Timestamps} from '../../../../common/Model/Timestamps';
 import {SoftDelete} from '../../../../common/Model/SoftDelete';
 import {EventPublisher} from '../../../../common/Application/EventPublisher';
-import {ReservationCreatedEvent} from '../../../Model/ReservationCreatedEvent';
+import {ReservationCreatedEvent} from '../../../Model/Events/ReservationCreatedEvent';
 import {GetServiceDAO} from '../../../../Service/Model/DAO/GetServiceDAO';
 import {EntityNotFoundError} from '../../../../common/Model/Errors/EntityNotFound';
 import {Service} from '../../../../Service/Model/Service';

@@ -3,12 +3,10 @@ import {UpdateReservationCommand} from '../../Commands/UpdateReservationCommand'
 import {Reservation} from '../../../Model/Reservation';
 import {Booking} from '../../../Model/Booking';
 import {UpdateReservationDAO} from '../../../Model/DAO/UpdateReservationDAO';
-import {UUID} from '../../../../common/Model/UUID';
 import {EntityNotFoundError} from '../../../../common/Model/Errors/EntityNotFound';
 import {GetReservationDAO} from '../../../Model/DAO/GetReservationDAO';
 import {GetShadowDAO} from '../../../../Shadow/Model/DAO/GetShadowDAO';
 import {Shadow} from '../../../../Shadow/Model/Shadow';
-import {NotAvailableDate} from '../../../../Shadow/Model/NotAvailableDate';
 
 export class UpdateReservation implements IUseCase<
   UpdateReservationCommand,
@@ -33,24 +31,13 @@ export class UpdateReservation implements IUseCase<
     }
 
     existingEntity.update();
-    const reservation = Reservation.create(
-      UUID.restore(request.id),
-      UUID.restore(request.data.clientId),
-      UUID.restore(request.data.shadowId),
-      Booking.create(
+    const newDates = Booking.create(
         new Date(request.data.checkIn),
         new Date(request.data.checkOut),
-      ),
-      existingEntity.getTimestamps(),
-      existingEntity.getSoftDelete(),
-    );
-    if (!shadow.canBeReserved(reservation.booking)) {
-      throw new NotAvailableDate(
-        reservation.booking.checkIn.toISOString(),
-        reservation.booking.checkOut.toISOString(),
-      );
-    }
-    await this.updateDao.update(reservation);
-    return reservation;
+    )
+    existingEntity.reschedule(shadow,newDates);
+
+    await this.updateDao.update(existingEntity);
+    return existingEntity;
   }
 }

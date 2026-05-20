@@ -1,9 +1,9 @@
-import {Controller, Get, Inject,} from '@nestjs/common';
+import {Controller, Get, Inject, Query,} from '@nestjs/common';
 import {ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger';
 import {GetActiveReservationsService} from '../../services/get-active-reservations/get-active-reservations.service';
-import {ReservationResponse} from '../../../../core/Reservation/Application/DTO/ReservationResponse';
 import {IController} from "../../../../core/common/Application/IController";
 import {CreateAppResponse} from "../../../../core/common/Application/CreateAppResponse";
+import {PaginatedQuery} from "../../../../core/common/Application/PaginatedQuery";
 
 @ApiTags('Frontend')
 @Controller('reservation')
@@ -23,9 +23,12 @@ export class GetActiveReservationsController implements IController {
     status: 500,
     description: 'The reservations has not been retrieved.',
   })
-  async execute() {
-
-      const data = ReservationResponse.createList(await this.service.execute());
+  async execute(
+      @Query('page') page: number = 0,
+      @Query('size') size: number = 10
+  ) {
+      const query = new PaginatedQuery(page, size)
+      const data = await this.service.execute(query);
       return CreateAppResponse.successResponse(
           'The reservations has been retrieved',
           data,

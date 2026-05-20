@@ -1,6 +1,8 @@
 import {Reservation} from '../../Model/Reservation';
 import {ShadowResponse} from '../../../Shadow/Application/Response/ShadowResponse';
 import {TimeStampResponse} from '../../../common/Application/TimeStampResponse';
+import {ClientResponse} from "../../../Client/Application/DTO/ClientResponse";
+import {ServiceResponse} from "../../../Service/Application/DTO/ServiceResponse";
 
 /**
  * Represents the response data for a reservation.
@@ -35,13 +37,16 @@ export class ReservationResponse extends TimeStampResponse {
    * @example 1
    */
   duration: number;
-
+  price?:number;
+  state:string;
   /**
    * Optional shadow information associated with the reservation.
    * @example { id: "shd_123", name: "Guest" }
    */
   shadow?: ShadowResponse;
-
+  client?: ClientResponse;
+  serviceId?: string;
+  shadowId?:string;
   /**
    * Maps a Reservation Model to a ReservationResponse DTO.
    * @param {Reservation} reservation - The reservation model instance.

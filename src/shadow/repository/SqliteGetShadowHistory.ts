@@ -7,36 +7,37 @@ import {ReservationResponse} from '../../../core/Reservation/Application/DTO/Res
 
 @Injectable()
 export class SqliteGetShadowHistory
-  extends SqliteBaseClass
-  implements ShadowHistoryDAO
+    extends SqliteBaseClass
+    implements ShadowHistoryDAO
 {
   async get(
-    id: string,
-    page: number,
-    limit: number,
+      id: string,
+      page: number,
+      limit: number,
   ): Promise<ShadowHistoryDTO> {
     const sql = `
-            SELECT r.id    AS reservationId,
-                   r.checkIn,
-                   r.checkOut,
-                   r.date  AS reservation_date,
-                   c.name  AS client_name,
-                   c.email AS client_email,
-                    s.id AS shadowId,
-                s.x,
-                s.y,
-                s.identifier,
-                   s.type
-            FROM Shadows s
-                LEFT JOIN Reservations r ON r.shadowId = s.id
-                LEFT JOIN Clients c ON r.clientId = c.id
-            WHERE s.id = @id
-            ORDER BY r.date DESC
-            LIMIT @limit OFFSET @offset;
-        `;
+      SELECT
+        r.id    AS reservationId,
+        r.checkIn,
+        r.checkOut,
+        r.state AS reservationState,
+        c.name  AS client_name,
+        c.email AS client_email,
+        s.id AS shadowId,
+        s.x,
+        s.y,
+        s.identifier,
+        s.type
+      FROM Shadows s
+             LEFT JOIN Reservations r ON r.shadowId = s.id
+             LEFT JOIN Clients c ON r.clientId = c.id
+      WHERE s.id = @id
+      ORDER BY r.date DESC
+      LIMIT @limit OFFSET @offset;
+    `;
     const result = this.getDb()
-      .prepare(sql)
-      .all({ id: id, offset: page, limit: limit }) as any;
+        .prepare(sql)
+        .all({ id: id, offset: page, limit: limit }) as any;
     return this.toDTO(result);
   }
 
@@ -56,12 +57,13 @@ export class SqliteGetShadowHistory
     if (rows[0].reservationId) {
       rows.forEach((row) => {
         const reservation: ReservationResponse = {
-          id: row.reservationId, // El ID de la reserva
+          id: row.reservationId,
           dates: {
             checkIn: row.checkIn,
             checkOut: row.checkOut,
           },
           duration: 0,
+          state:row.reservationState
         };
         historyDTO.reservations.push(reservation);
       });

@@ -3,12 +3,17 @@ import {UUID} from '../../common/Model/UUID';
 import {SoftDelete} from '../../common/Model/SoftDelete';
 import {Timestamps} from '../../common/Model/Timestamps';
 import {Entity} from '../../common/Model/Entity';
+import {ReservationState} from "./ValueObjects/ReservationState";
+import {CreatedState} from "./ValueObjects/CreatedState";
+import {Client} from "../../Client/Model/Client";
+import {Shadow} from "../../Shadow/Model/Shadow";
 
 export class Reservation implements Entity {
   private readonly _id: UUID;
   private readonly _client: UUID;
   private readonly _shadow: UUID;
-  private readonly _booking: Booking;
+  private _booking: Booking;
+  private _state: ReservationState;
   private readonly _timestamp: Timestamps;
   private readonly _softDelete: SoftDelete;
 
@@ -26,13 +31,15 @@ export class Reservation implements Entity {
     this._booking = booking;
     this._timestamp = timestamp;
     this._softDelete = softDelete;
+    this._state = new CreatedState(this);
   }
 
   delete(): void {
-    this.softDelete.apply();
+    this._state.delete();
+
   }
   update(): void {
-    this.timestamp.update();
+    this._state.update();
   }
 
   getId(): UUID {
@@ -53,14 +60,7 @@ export class Reservation implements Entity {
     timestamp: Timestamps,
     softdelete: SoftDelete,
   ): Reservation {
-    if (!client || !shadow || !booking) {
-      throw new Error('Invalid reservation data: All fields are required.');
-    }
     return new Reservation(id, client, shadow, booking, timestamp, softdelete);
-  }
-
-  public getDurationInDays(): number {
-    return this.booking.durationInDays();
   }
 
   get id(): UUID {
@@ -80,5 +80,18 @@ export class Reservation implements Entity {
   }
   get softDelete(): SoftDelete {
     return this._softDelete;
+  }
+  clientCheckIn(client: Client){
+    this._state.checkIn(client);
+  }
+  reschedule(shadow: Shadow, booking: Booking){
+    this._state.reschedule(shadow,booking)
+    this.booking = booking;
+  }
+  private set booking(booking: Booking) {
+    this._booking = booking;
+  }
+  setState(state: ReservationState){
+    this._state = state;
   }
 }

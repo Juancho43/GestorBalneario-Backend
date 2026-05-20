@@ -46,6 +46,7 @@ CREATE TABLE IF NOT EXISTS `Reservations`(
                                `checkIn` TEXT NOT NULL,
                                `checkOut` TEXT NOT NULL,
                                `date` TEXT NOT NULL,
+                                `state` TEXT NOT NULL,
                                `created_at` TEXT NOT NULL,
                                `updated_at` TEXT NOT NULL,
                                `deleted_at` TEXT NULL,

@@ -4,7 +4,6 @@ import {CreateAppResponse} from "../../../../core/common/Application/CreateAppRe
 import {IController} from "../../../../core/common/Application/IController";
 import {GetSeasonReservationsService} from "../../services/get-season-reservations/get-season-reservations.service";
 import {GetSeasonEntityQuery} from "../../../../core/Service/Application/Queries/GetSeasonEntityQuery";
-import {ReservationResponse} from "../../../../core/Reservation/Application/DTO/ReservationResponse";
 
 @ApiTags('Frontend')
 @Controller('reservation')
@@ -18,7 +17,7 @@ export class GetSeasonReservationsController implements IController{
     @Query('size') size: number = 10,
   ) {
       const query = new GetSeasonEntityQuery(page,size,id);
-      const data = ReservationResponse.createList(await this.service.execute(query));
+      const data = await this.service.execute(query);
       return CreateAppResponse.successResponse(
           'Reservations has been retrieved',
           data,

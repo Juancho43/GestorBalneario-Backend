@@ -1,5 +1,6 @@
-import {Reservation} from '../../Model/Reservation';
+import {ReservationResponse} from "../DTO/ReservationResponse";
+import {PaginatedQuery} from "../../../common/Application/PaginatedQuery";
 
 export interface GetActiveReservationsDAO {
-  get(): Reservation[];
+  get(query: PaginatedQuery): Promise<ReservationResponse[]>;
 }

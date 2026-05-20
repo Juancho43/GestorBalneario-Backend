@@ -85,17 +85,20 @@ export class Shadow implements Prototype<Shadow>, Entity {
     );
   }
 
-  canBeReserved(dates: Booking): boolean {
-    let isAvailable = true;
-    if (this._softDelete.isDeleted) isAvailable = false;
+  public canBeReserved(dates: Booking, excludeReservationId?: UUID): boolean {
+    if (this._softDelete.isDeleted) return false;
 
-    let overlap = false;
-    this._reservations.forEach((reservation) => {
+    let isAvailable = true;
+
+    this._reservations.forEach((reservation: Reservation) => {
+      if (excludeReservationId && reservation.id.value === excludeReservationId.value) {
+        return;
+      }
       if (reservation.booking.overlapsWith(dates)) {
-        overlap = true;
+        isAvailable = false;
       }
     });
-    if (overlap) isAvailable = false;
+
     return isAvailable;
   }
 

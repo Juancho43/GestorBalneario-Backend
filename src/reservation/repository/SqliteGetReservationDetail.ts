@@ -8,48 +8,49 @@ import {InvoiceResponse} from '../../../core/Invoice/Application/DTO/InvoiceResp
 import {PaymentResponse} from '../../../core/Payment/Application/DTO/PaymentResponse';
 
 export class SqliteGetReservationDetail
-  extends SqliteBaseClass
-  implements GetReservationDetailsDAO
+    extends SqliteBaseClass
+    implements GetReservationDetailsDAO
 {
   async get(id: string): Promise<ReservationDetailResponse> {
     const sql = `
-            SELECT
-                r.id as reservationId,
-                c.id as clientId,
-                s.id as shadowId,
-                rs.serviceId as serviceId,
-                i.id as invoiceId,
-                p.id as paymentId,
-                r.date as reservationDate,
-                r.checkIn as reservationCheckIn,
-                r.checkOut as reservationCheckOut,
-                c.name as clientName,
-                c.email as clientEmail,
-                c.phone as clientPhone,
-                s.x,
-                s.y,
-                s.type,
-                s.identifier,
-                rs.price,
-                p.amount as paymentAmount,
-                p.date as paymentDate,
-                p.changeType as paymentChangeType,
-                p.type as paymentType,
-                p.description as paymentDescription,
-                p.finalAmount as paymentFinalAmount,
-                i.amount as invoiceAmount,
-                i.date as invoiceDate
-             
-            FROM
-                Reservations r
-                    LEFT JOIN Shadows s ON r.shadowId = s.id
-                    LEFT JOIN Clients c ON r.clientId = c.id
-                    LEFT JOIN Invoice_Items AS rs ON rs.aggregateId = r.id
-                    LEFT JOIN Invoices i ON rs.invoiceId = i.id
-                    LEFT JOIN Invoice_Payments AS ip ON ip.invoiceId = i.id
-                    LEFT JOIN Payments p ON ip.paymentId = p.id
-            WHERE r.id = @id AND r.deleted_at IS NULL
-        `;
+      SELECT
+        r.id AS reservationId,
+        c.id AS clientId,
+        s.id AS shadowId,
+        rs.serviceId AS serviceId,
+        i.id AS invoiceId,
+        p.id AS paymentId,
+        r.date AS reservationDate,
+        r.checkIn AS reservationCheckIn,
+        r.checkOut AS reservationCheckOut,
+        r.state AS reservationState,
+        c.name AS clientName,
+        c.email AS clientEmail,
+        c.phone AS clientPhone,
+        s.x,
+        s.y,
+        s.type,
+        s.identifier,
+        rs.price,
+        p.amount AS paymentAmount,
+        p.date AS paymentDate,
+        p.changeType AS paymentChangeType,
+        p.type AS paymentType,
+        p.description AS paymentDescription,
+        p.finalAmount AS paymentFinalAmount,
+        i.amount AS invoiceAmount,
+        i.date AS invoiceDate
+
+      FROM
+        Reservations r
+          LEFT JOIN Shadows s ON r.shadowId = s.id
+          LEFT JOIN Clients c ON r.clientId = c.id
+          LEFT JOIN Invoice_Items AS rs ON rs.aggregateId = r.id
+          LEFT JOIN Invoices i ON rs.invoiceId = i.id
+          LEFT JOIN Invoice_Payments AS ip ON ip.invoiceId = i.id
+          LEFT JOIN Payments p ON ip.paymentId = p.id
+      WHERE r.id = @id AND r.deleted_at IS NULL
+    `;
     const rows = this.getDb().prepare(sql).all({ id }) as any;
     const clientResponse = new ClientResponse();
     clientResponse.id = rows[0].clientId;
@@ -64,12 +65,15 @@ export class SqliteGetReservationDetail
     };
     shadowResponse.type = rows[0].type;
     shadowResponse.identifier = rows[0].identifier;
+
     const reservationResponse = new ReservationResponse();
+    reservationResponse.shadowId = rows[0].shadowId;
     reservationResponse.id = rows[0].reservationId;
     reservationResponse.dates = {
       checkIn: rows[0].reservationCheckIn,
       checkOut: rows[0].reservationCheckOut,
     };
+    reservationResponse.state = rows[0].reservationState;
     const invoiceResponse = new InvoiceResponse();
     invoiceResponse.id = rows[0].invoiceId;
     invoiceResponse.amount = rows[0].invoiceAmount;

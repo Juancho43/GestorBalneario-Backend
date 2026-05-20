@@ -1,5 +1,5 @@
 import {CommandBus, EventsHandler, IEventHandler} from '@nestjs/cqrs';
-import {ReservationCreatedEvent} from '../../../core/Reservation/Model/ReservationCreatedEvent';
+import {ReservationCreatedEvent} from '../../../core/Reservation/Model/Events/ReservationCreatedEvent';
 import {Logger} from '@nestjs/common';
 import {AddInvoiceItemCommand} from '../../../core/Invoice/Application/Commands/AddInvoiceItemCommand';
 
