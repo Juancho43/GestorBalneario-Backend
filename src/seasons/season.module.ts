@@ -20,6 +20,8 @@ import {SeasonDaoProviders} from './providers/SeasonDaoProviders';
 import {SeasonUseCaseProviders} from './providers/SeasonUseCaseProviders';
 import {SeasonSearcherController} from './controllers/season-searcher/season-searcher.controller';
 import {SeasonSearcherService} from './services/season-searcher/season-searcher.service';
+import { SeasonsClientsDebtController } from './controllers/seasons-clients-debt/seasons-clients-debt.controller';
+import { SeasonsClientsDebtService } from './services/seasons-clients-debt/seasons-clients-debt.service';
 
 @Module({
   controllers: [
@@ -32,6 +34,7 @@ import {SeasonSearcherService} from './services/season-searcher/season-searcher.
     EditSeasonController,
     SeasonHistoryController,
     SeasonSearcherController,
+    SeasonsClientsDebtController,
   ],
   providers: [
     ...SeasonDaoProviders,
@@ -45,6 +48,7 @@ import {SeasonSearcherService} from './services/season-searcher/season-searcher.
     DeleteSeasonService,
     UpdateSeasonService,
     SeasonSearcherService,
+    SeasonsClientsDebtService,
   ],
   exports: [GetActiveSeasonService, SEASON_TOKEN.DAOS.CURRENT_SEASON_DAO],
 })

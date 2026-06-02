@@ -11,8 +11,8 @@ import {CqrsModule} from '@nestjs/cqrs';
 import {DeletePaymentController} from './controllers/delete-payment/delete-payment.controller';
 import {ReservationModule} from '../reservation/reservation.module';
 import {InvoicesModule} from '../invoices/invoices.module';
-import {PaymentDaoProvider} from './services/providers/PaymentDaoProvider';
-import {PaymentUseCaseProviders} from './services/providers/PaymentUseCaseProviders';
+import {PaymentDaoProvider} from './providers/PaymentDaoProvider';
+import {PaymentUseCaseProviders} from './providers/PaymentUseCaseProviders';
 import {GetPaymentTypesController} from './controllers/get-payment-types/get-payment-types.controller';
 import {GetPaymentTypesService} from './services/get-payment-types/get-payment-types.service';
 

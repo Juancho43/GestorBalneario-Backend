@@ -1,8 +1,8 @@
 import {ReservationState} from "./ReservationState";
 import {Booking} from "../Booking";
 import {Reservation} from "../Reservation";
-import { Client } from "core/Client/Model/Client";
-import { Shadow } from "core/Shadow/Model/Shadow";
+import {Client} from "core/Client/Model/Client";
+import {Shadow} from "core/Shadow/Model/Shadow";
 import {InvalidReservationActionError} from "../InvalidReservationActionError";
 import {CompletedState} from "./CompletedState";
 

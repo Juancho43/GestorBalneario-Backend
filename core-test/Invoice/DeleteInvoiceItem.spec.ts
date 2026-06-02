@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import {afterEach, beforeEach, describe, expect, it, vi} from 'vitest';
 import {DeleteInvoiceItem} from "../../core/Invoice/Application/UseCase/DeleteInvoiceItem";
 import {DeleteInvoiceItemCommand} from "../../core/Invoice/Application/Commands/DeleteInvoiceItemCommand";
 import {InvoiceMother} from "../mothers/InvoiceMother";

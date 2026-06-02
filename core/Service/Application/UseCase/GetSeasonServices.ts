@@ -1,7 +1,6 @@
 import {IUseCase} from '../../../common/Application/IUseCase';
 import {SeasonServiceDTO} from '../DTO/SeasonServiceDTO';
 import {SeasonServiceDAO} from '../Interfaces/SeasonServiceDAO';
-import {GetSeasonEntityQuery} from '../Queries/GetSeasonEntityQuery';
 import {GetSeasonServicesQuery} from "../Queries/GetSeasonServicesQuery";
 
 export class GetSeasonServices implements IUseCase<

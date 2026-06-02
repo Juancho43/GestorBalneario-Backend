@@ -1,6 +1,6 @@
-import { StringObject } from "core/common/Model/StringObject";
-import { UUID } from "core/common/Model/UUID";
-import { Money } from "core/Payment/Model/Money";
+import {StringObject} from "core/common/Model/StringObject";
+import {UUID} from "core/common/Model/UUID";
+import {Money} from "core/Payment/Model/Money";
 import {InvoiceItem} from "../../Invoice/Model/InvoiceItem";
 
 export class Recharge implements InvoiceItem {

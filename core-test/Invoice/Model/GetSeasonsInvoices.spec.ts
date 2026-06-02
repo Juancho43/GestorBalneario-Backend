@@ -1,6 +1,6 @@
 import {GetSeasonsInvoices} from "../../../core/Invoice/Application/UseCase/GetSeasonsInvoices";
 import {InvoiceResponse} from "../../../core/Invoice/Application/DTO/InvoiceResponse";
-import { vi } from "vitest";
+import {vi} from "vitest";
 import {GetSeasonInvoicesQuery} from "../../../core/Invoice/Application/Queries/GetSeasonInvoicesQuery";
 
 describe('GetSeasonsInvoices UseCase', () => {

@@ -1,5 +1,4 @@
 import {IUseCase} from "../../../common/Application/IUseCase";
-import {Reservation} from "../../Model/Reservation";
 import {GetSeasonEntityQuery} from "../../../Service/Application/Queries/GetSeasonEntityQuery";
 import {GetSeasonReservationsDAO} from "../Interfaces/GetSeasonReservationsDAO";
 import {ReservationResponse} from "../DTO/ReservationResponse";

@@ -10,6 +10,7 @@ import {SqliteSetActiveSeason} from '../repository/SqliteSetActiveSeason';
 import {SqliteCloneSeason} from '../repository/SqliteCloneSeason';
 import {SqliteGetSeasonShadowsServices} from '../repository/SqliteGetSeasonShadowsServices';
 import {SqliteSeasonSearch} from "../repository/SqliteSeasonSearch";
+import {SqliteSeasonClientsDebt} from "../repository/SqliteSeasonClientsDebt";
 
 export const SeasonDaoProviders: Provider[] = [
   {
@@ -52,4 +53,8 @@ export const SeasonDaoProviders: Provider[] = [
     provide: SEASON_TOKEN.DAOS.SEARCHER,
     useClass: SqliteSeasonSearch,
   },
+  {
+    provide: SEASON_TOKEN.DAOS.CLIENTS_DEBT,
+    useClass: SqliteSeasonClientsDebt
+  }
 ];

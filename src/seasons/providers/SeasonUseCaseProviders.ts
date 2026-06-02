@@ -7,6 +7,7 @@ import {DeleteSeason} from '../../../core/Season/Application/UseCase/CRUD/Delete
 import {GetActiveSeason} from '../../../core/Season/Application/UseCase/GetActiveSeason';
 import {GetSeasonsHistory} from '../../../core/Season/Application/UseCase/GetSeasonsHistory';
 import {SeasonSearch} from "../../../core/Season/Application/UseCase/SeasonSearch";
+import {SeasonClientsDebt} from "../../../core/Season/Application/UseCase/SeasonClientsDebt";
 
 export const SeasonUseCaseProviders: Provider[] = [
   {
@@ -58,4 +59,11 @@ export const SeasonUseCaseProviders: Provider[] = [
     },
     inject: [SEASON_TOKEN.DAOS.SEARCHER],
   },
+  {
+    provide: SEASON_TOKEN.USECASE.CLIENTS_DEBT,
+    useFactory: (dao) => {
+      return new SeasonClientsDebt(dao);
+    },
+    inject: [SEASON_TOKEN.DAOS.CLIENTS_DEBT],
+  }
 ];

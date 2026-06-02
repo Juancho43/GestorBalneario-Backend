@@ -1,11 +1,11 @@
 import {ReservationState} from "./ReservationState";
 import {Reservation} from "../Reservation";
 import {Booking} from "../Booking";
-import { Client } from "core/Client/Model/Client";
+import {Client} from "core/Client/Model/Client";
 import {ActiveState} from "./ActiveState";
 import {CancelledState} from "./CancelledState";
 import {InvalidReservationActionError} from "../InvalidReservationActionError";
-import { Shadow } from "core/Shadow/Model/Shadow";
+import {Shadow} from "core/Shadow/Model/Shadow";
 
 export class CreatedState implements ReservationState {
  private readonly reservation: Reservation;

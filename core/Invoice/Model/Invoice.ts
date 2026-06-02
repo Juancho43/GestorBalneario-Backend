@@ -67,8 +67,10 @@ export class Invoice implements Entity {
     return this._amount.finalAmount - this.calculateTotalPaid();
   }
   calculateTotalAmount(): number {
-    let total = this._items.reduce((total, item) => item.getPrice().finalAmount,0 );
-    return  total==0? 1 : total;
+    return this._items.reduce(
+      (total, item) => total + item.getPrice().finalAmount,
+      0,
+    );
   }
 
   calculateTotalPaid(): number {

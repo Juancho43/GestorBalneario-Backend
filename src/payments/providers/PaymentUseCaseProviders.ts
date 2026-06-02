@@ -1,10 +1,10 @@
 import {Provider} from '@nestjs/common';
-import {PAYMENT_TOKEN} from '../../PAYMENT_TOKEN';
-import {GetPayment} from '../../../../core/Payment/Application/UseCase/CRUD/GetPayment';
-import {ProcessPayment} from '../../../../core/Payment/Application/UseCase/ProcessPayment';
-import {DeletePayment} from '../../../../core/Payment/Application/UseCase/CRUD/DeletePayment';
-import {INVOICE_TOKEN} from '../../../invoices/INVOICE_TOKEN';
-import {GeneratePaymentReport} from '../../../../core/Payment/Application/UseCase/GeneratePaymentReport';
+import {PAYMENT_TOKEN} from '../PAYMENT_TOKEN';
+import {GetPayment} from '../../../core/Payment/Application/UseCase/CRUD/GetPayment';
+import {ProcessPayment} from '../../../core/Payment/Application/UseCase/ProcessPayment';
+import {DeletePayment} from '../../../core/Payment/Application/UseCase/CRUD/DeletePayment';
+import {INVOICE_TOKEN} from '../../invoices/INVOICE_TOKEN';
+import {GeneratePaymentReport} from '../../../core/Payment/Application/UseCase/GeneratePaymentReport';
 
 export const PaymentUseCaseProviders: Provider[] = [
   {
