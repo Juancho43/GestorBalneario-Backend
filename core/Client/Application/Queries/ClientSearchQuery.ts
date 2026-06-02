@@ -1,18 +1,17 @@
 import {PaginatedQuery} from '../../../common/Application/PaginatedQuery';
 
-/**
- * Represents a query for searching clients with pagination.
- * @example
- * const query = new ClientSearchQuery(1, 10, "John Doe");
- */
+
 export class ClientSearchQuery extends PaginatedQuery {
-  /**
-   * The search term to filter clients.
-   * @example "John Doe"
-   */
+
   query: string;
-  constructor(page: number, pageSize: number, query: string) {
+  orderBy: string;
+  direction: string;
+
+  constructor(page: number, pageSize: number, query: string, orderBy: string ='name' , direction: string = 'asc') {
     super(page, pageSize);
     this.query = query;
+    this.orderBy = orderBy;
+    this.direction = direction;
   }
 }
+

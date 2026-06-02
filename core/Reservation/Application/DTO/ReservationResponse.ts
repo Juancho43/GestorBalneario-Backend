@@ -2,7 +2,6 @@ import {Reservation} from '../../Model/Reservation';
 import {ShadowResponse} from '../../../Shadow/Application/Response/ShadowResponse';
 import {TimeStampResponse} from '../../../common/Application/TimeStampResponse';
 import {ClientResponse} from "../../../Client/Application/DTO/ClientResponse";
-import {ServiceResponse} from "../../../Service/Application/DTO/ServiceResponse";
 
 /**
  * Represents the response data for a reservation.
@@ -48,9 +47,9 @@ export class ReservationResponse extends TimeStampResponse {
   serviceId?: string;
   shadowId?:string;
   /**
-   * Maps a Reservation Model to a ReservationResponse DTO.
+   * Maps a Reservation Model to a ReservationResponse Interfaces.
    * @param {Reservation} reservation - The reservation model instance.
-   * @returns {ReservationResponse} The reservation response DTO.
+   * @returns {ReservationResponse} The reservation response Interfaces.
    */
   static create(reservation: Reservation): ReservationResponse {
     const r = new ReservationResponse();

@@ -7,6 +7,7 @@ import {SqliteGetInvoices} from '../repository/SqliteGetInvoices';
 import {SqliteGetSeasonsInvoices} from "../repository/SqliteGetSeasonsInvoices";
 import {SqliteUpdateInvoiceItem} from "../repository/SqliteUpdateInvoiceItem";
 import {SqliteDeleteInvoiceItem} from "../repository/SqliteDeleteInvoiceItem";
+import {SqliteSearchInvoice} from "../repository/SqliteSearchInvoice";
 
 export const InvoiceDaoProviders: Provider[] = [
   {
@@ -36,6 +37,9 @@ export const InvoiceDaoProviders: Provider[] = [
   {
     provide: INVOICE_TOKEN.DAOS.INVOICE_ITEM_DELETE,
     useClass: SqliteDeleteInvoiceItem,
+  },
+  {
+    provide: INVOICE_TOKEN.DAOS.SEARCHER,
+    useClass: SqliteSearchInvoice,
   }
-
 ];

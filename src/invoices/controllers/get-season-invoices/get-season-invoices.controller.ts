@@ -3,7 +3,6 @@ import {ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger';
 import {CreateAppResponse} from "../../../../core/common/Application/CreateAppResponse";
 import {IController} from "../../../../core/common/Application/IController";
 import {GetSeasonInvoicesService} from "../../services/get-season-invoices/get-season-invoices.service";
-import {GetSeasonEntityQuery} from "../../../../core/Service/Application/Queries/GetSeasonEntityQuery";
 import {GetSeasonInvoicesQuery} from "../../../../core/Invoice/Application/Queries/GetSeasonInvoicesQuery";
 
 @ApiTags('Frontend')

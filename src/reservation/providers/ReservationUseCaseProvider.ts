@@ -10,6 +10,7 @@ import {DeleteReservation} from '../../../core/Reservation/Application/UseCase/C
 import {GetReservationDetail} from '../../../core/Reservation/Application/UseCase/GetReservationDetail';
 import {GetActiveReservations} from '../../../core/Reservation/Application/UseCase/GetActiveReservations';
 import {GetSeasonReservations} from "../../../core/Reservation/Application/UseCase/GetSeasonReservations";
+import {ReservationSearch} from "../../../core/Reservation/Application/UseCase/ReservationSearch";
 
 export const ReservationUseCaseProvider: Provider[] = [
   {
@@ -73,5 +74,12 @@ export const ReservationUseCaseProvider: Provider[] = [
       return new GetSeasonReservations(dao)
     },
     inject: [RESERVATION_TOKEN.DAOS.GET_SEASON_RESERVATION]
-  }
+  },
+  {
+    provide: RESERVATION_TOKEN.USECASE.SEARCHER,
+    useFactory: (dao) => {
+      return new ReservationSearch(dao);
+    },
+    inject: [RESERVATION_TOKEN.DAOS.SEARCHER],
+  },
 ];

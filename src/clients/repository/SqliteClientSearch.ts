@@ -10,22 +10,25 @@ export class SqliteClientSearch
   implements ClientSearcherDAO
 {
   async search(query: ClientSearchQuery): Promise<ClientResponse[]> {
-    const stmt = this.getDb().prepare(`
-            SELECT id, name, email, phone 
-            FROM Clients
-            WHERE
-                (name LIKE  '%' || @query || '%'  OR
-                 email LIKE '%' || @query || '%' OR
-                 phone LIKE '%' || @query || '%')
-              AND deleted_at IS NULL
-            ORDER BY name
-            LIMIT @limit OFFSET @page
-        `);
+    const offset = query.page * query.pageSize;
+    const sql = `
+          SELECT id, name, email, phone
+          FROM Clients
+          WHERE
+            (name LIKE  '%' || @query || '%'  OR
+             email LIKE '%' || @query || '%' OR
+             phone LIKE '%' || @query || '%')
+            AND deleted_at IS NULL
+          ORDER BY ${query.orderBy} ${query.direction!.toUpperCase()}
+          LIMIT @limit OFFSET @page
+        `
+    ;
+    const stmt = this.getDb().prepare(sql);
 
     const results = stmt.all({
       query: query.query,
       limit: query.pageSize,
-      page: query.page,
+      page:offset,
     }) as any[];
     const dto: ClientResponse[] = [];
     results.forEach((result) => {

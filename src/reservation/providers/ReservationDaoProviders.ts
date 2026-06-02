@@ -7,6 +7,7 @@ import {SqliteGetReservation} from '../repository/Crud/SqliteGetReservation';
 import {SqliteGetReservationDetail} from '../repository/SqliteGetReservationDetail';
 import {SqliteGetActiveReservation} from '../repository/SqliteGetActiveReservation';
 import {SqliteGetSeasonReservations} from "../repository/SqliteGetSeasonReservations";
+import {SqliteReservationSearch} from "../repository/SqliteReservationSearch";
 
 export const ReservationDaoProviders: Provider[] = [
   {
@@ -36,5 +37,9 @@ export const ReservationDaoProviders: Provider[] = [
   {
     provide: RESERVATION_TOKEN.DAOS.GET_SEASON_RESERVATION,
     useClass: SqliteGetSeasonReservations,
-  }
+  },
+  {
+    provide: RESERVATION_TOKEN.DAOS.SEARCHER,
+    useClass: SqliteReservationSearch,
+  },
 ];

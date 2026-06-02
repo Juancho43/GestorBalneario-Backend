@@ -15,6 +15,8 @@ import {SeasonModule} from '../seasons/season.module';
 import {SHADOW_TOKEN} from './SHADOW_TOKEN';
 import {ShadowDaoProviders} from './providers/ShadowDaoProviders';
 import {ShadowUseCaseProviders} from './providers/ShadowUseCaseProviders';
+import {ShadowSearcherController} from './controllers/shadow-searcher/shadow-searcher.controller';
+import {ShadowSearcherService} from './services/shadow-searcher/shadow-searcher.service';
 
 @Module({
   imports: [SeasonModule],
@@ -25,6 +27,7 @@ import {ShadowUseCaseProviders} from './providers/ShadowUseCaseProviders';
     GetByIdShadowController,
     ShadowHistoryController,
     GetShadowMapController,
+    ShadowSearcherController,
   ],
   providers: [
     ...ShadowDaoProviders,
@@ -35,6 +38,7 @@ import {ShadowUseCaseProviders} from './providers/ShadowUseCaseProviders';
     GetShadowService,
     GetShadowMapService,
     GetShadowHistoryService,
+    ShadowSearcherService,
   ],
   exports: [SHADOW_TOKEN.DAOS.GET_SHADOW],
 })

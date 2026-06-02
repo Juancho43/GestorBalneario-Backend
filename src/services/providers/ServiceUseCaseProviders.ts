@@ -6,6 +6,7 @@ import {CreateService} from '../../../core/Service/Application/UseCase/CRUD/Crea
 import {GetService} from '../../../core/Service/Application/UseCase/CRUD/GetService';
 import {GetSeasonServices} from '../../../core/Service/Application/UseCase/GetSeasonServices';
 import {GetActiveSeasonService} from '../../seasons/services/get-active-season/get-active-season.service';
+import {ServiceSearch} from "../../../core/Service/Application/UseCase/ServiceSearch";
 
 export const ServiceUseCaseProviders: Provider[] = [
   {
@@ -50,4 +51,11 @@ export const ServiceUseCaseProviders: Provider[] = [
     inject: [SERVICE_TOKEN.DAOS.GET_SEASON_SERVICE],
   },
 
+  {
+    provide: SERVICE_TOKEN.USECASE.SEARCHER,
+    useFactory: (dao) => {
+      return new ServiceSearch(dao);
+    },
+    inject: [SERVICE_TOKEN.DAOS.SEARCHER],
+  },
 ];

@@ -1,12 +1,12 @@
 import {Provider} from '@nestjs/common';
 import {SERVICE_TOKEN} from '../SERVICE_TOKEN';
-import {SqliteShadowDelete} from '../../shadow/repository/CRUD/SqliteShadowDelete';
 import {SqliteServiceUpdate} from '../repository/CRUD/SqliteServiceUpdate';
 import {SqliteCreateService} from '../repository/CRUD/SqliteCreateService';
 import {SqliteGetService} from '../repository/CRUD/SqliteGetService';
 import {SqliteSeasonsServices} from '../repository/SqliteSeasonsServices';
 import {SqliteGetServices} from '../repository/SqliteGetServices';
 import {SqliteServiceDelete} from "../repository/CRUD/SqliteServiceDelete";
+import {ServiceSearcher} from "../repository/SqliteSeviceSearch";
 
 export const ServiceDaoProviders: Provider[] = [
   {
@@ -32,5 +32,9 @@ export const ServiceDaoProviders: Provider[] = [
   {
     provide: SERVICE_TOKEN.DAOS.GET_SERVICES,
     useClass: SqliteGetServices,
+  },
+  {
+    provide: SERVICE_TOKEN.DAOS.SEARCHER,
+    useClass: ServiceSearcher,
   },
 ];

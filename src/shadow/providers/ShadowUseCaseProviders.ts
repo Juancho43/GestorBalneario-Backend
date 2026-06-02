@@ -8,6 +8,7 @@ import {SEASON_TOKEN} from '../../seasons/SEASON_TOKEN';
 import {GetShadowHistory} from '../../../core/Shadow/Application/UseCase/GetShadowHistory';
 import {GetShadowMap} from '../../../core/Shadow/Application/UseCase/GetShadowMap';
 import {GetActiveSeasonService} from '../../seasons/services/get-active-season/get-active-season.service';
+import {ShadowSearch} from "../../../core/Shadow/Application/UseCase/ShadowSearch";
 
 export const ShadowUseCaseProviders: Provider[] = [
   {
@@ -55,5 +56,13 @@ export const ShadowUseCaseProviders: Provider[] = [
       return new GetShadowMap(dao);
     },
     inject: [SHADOW_TOKEN.DAOS.SHADOW_MAP],
+  },
+
+  {
+    provide: SHADOW_TOKEN.USECASE.SEARCHER,
+    useFactory: (dao) => {
+      return new ShadowSearch(dao);
+    },
+    inject: [SHADOW_TOKEN.DAOS.SEARCHER],
   },
 ];

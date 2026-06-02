@@ -1,7 +1,7 @@
 import {Injectable} from "@nestjs/common";
 import {SqliteBaseClass} from "../../database/SqliteBaseClass";
 import {UpdateInvoiceItemDAO} from "../../../core/Invoice/Model/DAO/UpdateInvoiceItemDAO";
-import { UpdateInvoiceItemDTO } from "core/Invoice/Application/DTO/UpdateInvoiceItemDTO";
+import {UpdateInvoiceItemDTO} from "core/Invoice/Application/DTO/UpdateInvoiceItemDTO";
 
 @Injectable()
 export class SqliteUpdateInvoiceItem extends SqliteBaseClass implements UpdateInvoiceItemDAO {

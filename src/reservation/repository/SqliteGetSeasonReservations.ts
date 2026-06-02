@@ -1,7 +1,7 @@
 import {Injectable} from "@nestjs/common";
 import {SqliteBaseClass} from "../../database/SqliteBaseClass";
 import {GetSeasonReservationsDAO} from "../../../core/Reservation/Application/Interfaces/GetSeasonReservationsDAO";
-import { GetSeasonEntityQuery } from "core/Service/Application/Queries/GetSeasonEntityQuery";
+import {GetSeasonEntityQuery} from "core/Service/Application/Queries/GetSeasonEntityQuery";
 import {ReservationResponse} from "../../../core/Reservation/Application/DTO/ReservationResponse";
 import {ShadowResponse} from "../../../core/Shadow/Application/Response/ShadowResponse";
 import {ClientResponse} from "../../../core/Client/Application/DTO/ClientResponse";

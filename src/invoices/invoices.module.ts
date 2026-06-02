@@ -9,15 +9,17 @@ import {DeleteInvoiceService} from './services/delete-service/delete-invoice.ser
 import {INVOICE_TOKEN} from './INVOICE_TOKEN';
 import {InvoiceDaoProviders} from './providers/InvoiceDaoProviders';
 import {InvoiceUseCaseProviders} from './providers/InvoiceUseCaseProviders';
-import { GetSeasonInvoicesService } from './services/get-season-invoices/get-season-invoices.service';
-import { AddInvoiceItemController } from './controllers/add-invoice-item/add-invoice-item.controller';
-import { DeleteInvoiceItemController } from './controllers/delete-invoice-item/delete-invoice-item.controller';
-import { PutInvoiceItemController } from './controllers/put-invoice-item/put-invoice-item.controller';
-import { PutInvoiceItemService } from './services/put-invoice-item/put-invoice-item.service';
-import { DeleteInvoiceItemService } from './services/delete-invoice-item/delete-invoice-item.service';
+import {GetSeasonInvoicesService} from './services/get-season-invoices/get-season-invoices.service';
+import {AddInvoiceItemController} from './controllers/add-invoice-item/add-invoice-item.controller';
+import {DeleteInvoiceItemController} from './controllers/delete-invoice-item/delete-invoice-item.controller';
+import {PutInvoiceItemController} from './controllers/put-invoice-item/put-invoice-item.controller';
+import {PutInvoiceItemService} from './services/put-invoice-item/put-invoice-item.service';
+import {DeleteInvoiceItemService} from './services/delete-invoice-item/delete-invoice-item.service';
 import {ClientsModule} from "../clients/clients.module";
 import {ServicesModule} from "../services/services.module";
 import {EventsModule} from "../events/eventsModule";
+import {InvoiceSearcherController} from './controllers/invoice-searcher/invoice-searcher.controller';
+import {InvoicesSearcherService} from './services/invoices-searcher/invoices-searcher.service';
 
 @Module({
   imports:[ClientsModule,ServicesModule,EventsModule],
@@ -30,6 +32,7 @@ import {EventsModule} from "../events/eventsModule";
     GetSeasonInvoicesService,
     PutInvoiceItemService,
     DeleteInvoiceItemService,
+    InvoicesSearcherService,
   ],
   controllers: [
     GetInvoiceController,
@@ -39,6 +42,7 @@ import {EventsModule} from "../events/eventsModule";
     AddInvoiceItemController,
     DeleteInvoiceItemController,
     PutInvoiceItemController,
+    InvoiceSearcherController,
   ],
   exports: [INVOICE_TOKEN.DAOS.GET_INVOICE],
 })

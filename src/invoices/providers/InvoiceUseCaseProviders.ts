@@ -5,9 +5,9 @@ import {DeleteInvoice} from '../../../core/Invoice/Application/UseCase/CRUD/Dele
 import {InvoiceDetails} from '../../../core/Invoice/Application/UseCase/InvoiceDetails';
 import {GetSeasonsInvoices} from "../../../core/Invoice/Application/UseCase/GetSeasonsInvoices";
 import {UpdateInvoiceItem} from "../../../core/Invoice/Application/UseCase/UpdateInvoiceItem";
-import {CLIENT_TOKEN} from "../../clients/CLIENT_TOKEN";
 import {SERVICE_TOKEN} from "../../services/SERVICE_TOKEN";
 import {DeleteInvoiceItem} from "../../../core/Invoice/Application/UseCase/DeleteInvoiceItem";
+import {InvoiceSearch} from "../../../core/Invoice/Application/UseCase/InvoiceSearch";
 
 export const InvoiceUseCaseProviders: Provider[] = [
   {
@@ -54,5 +54,13 @@ export const InvoiceUseCaseProviders: Provider[] = [
       return new DeleteInvoiceItem(get,dao,event);
     },
     inject: [INVOICE_TOKEN.DAOS.GET_INVOICE,INVOICE_TOKEN.DAOS.INVOICE_ITEM_DELETE,'EVENT']
-  }
+  },
+
+  {
+    provide: INVOICE_TOKEN.USECASE.SEARCHER,
+    useFactory: (dao) => {
+      return new InvoiceSearch(dao);
+    },
+    inject: [INVOICE_TOKEN.DAOS.SEARCHER],
+  },
 ];

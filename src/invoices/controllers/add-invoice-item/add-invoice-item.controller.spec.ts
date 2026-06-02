@@ -1,5 +1,5 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { AddInvoiceItemController } from './add-invoice-item.controller';
+import {Test, TestingModule} from '@nestjs/testing';
+import {AddInvoiceItemController} from './add-invoice-item.controller';
 
 describe('AddInvoiceItemController', () => {
   let controller: AddInvoiceItemController;

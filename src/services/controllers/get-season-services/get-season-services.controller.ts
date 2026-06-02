@@ -1,7 +1,6 @@
 import {Controller, Get, Inject, Param, Query} from '@nestjs/common';
 import {ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger';
 import {GetSeasonServicesService} from '../../service/get-season-services/get-season-services.service';
-import {GetSeasonEntityQuery} from '../../../../core/Service/Application/Queries/GetSeasonEntityQuery';
 import {CreateAppResponse} from '../../../../core/common/Application/CreateAppResponse';
 import {IController} from '../../../../core/common/Application/IController';
 import {GetSeasonServicesQuery} from "../../../../core/Service/Application/Queries/GetSeasonServicesQuery";

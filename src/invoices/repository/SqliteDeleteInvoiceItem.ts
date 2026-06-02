@@ -1,4 +1,4 @@
-import { DeleteInvoiceItemDTO } from "core/Invoice/Application/DTO/DeleteInvoiceItemDTO";
+import {DeleteInvoiceItemDTO} from "core/Invoice/Application/DTO/DeleteInvoiceItemDTO";
 import {DeleteInvoiceItemDAO} from "../../../core/Invoice/Model/DAO/DeleteInvoiceItemDAO";
 import {SqliteBaseClass} from "../../database/SqliteBaseClass";
 import {Injectable} from "@nestjs/common";

@@ -1,5 +1,5 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { DeleteInvoiceItemService } from './delete-invoice-item.service';
+import {Test, TestingModule} from '@nestjs/testing';
+import {DeleteInvoiceItemService} from './delete-invoice-item.service';
 
 describe('DeleteInvoiceItemService', () => {
   let service: DeleteInvoiceItemService;

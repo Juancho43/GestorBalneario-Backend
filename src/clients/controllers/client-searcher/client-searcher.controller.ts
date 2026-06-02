@@ -9,7 +9,7 @@ import {ClientDetailsDTO} from "../../../../core/Client/Application/DTO/ClientDe
 @ApiTags('Frontend')
 @Controller('client')
 export class ClientSearcherController implements IController{
-  constructor(@Inject() private service: ClientSearcherService) {}
+    constructor(@Inject() private service: ClientSearcherService) {}
     @ApiOperation({
         summary: 'Client searcher',
         description: 'Search a client by name, phone or email.',
@@ -23,14 +23,16 @@ export class ClientSearcherController implements IController{
         status: 500,
         description: 'The clients has not been searched. Server Error',
     })
-  @Get('search')
-  async execute(
-    @Query('query') query: string,
-    @Query('page') page: number,
-    @Query('limit') limit: number,
-  ) {
-      const searchQuery = new ClientSearchQuery(page, limit, query);
-      const data = await this.service.execute(searchQuery);
-      return CreateAppResponse.successResponse('The clients have been searched successfully',data);
-  }
+    @Get('search')
+    async execute(
+        @Query('query') query: string,
+        @Query('page') page: number,
+        @Query('orderBy') orderBy: string,
+        @Query('direction') direction: string,
+        @Query('limit') limit: number,
+    ) {
+        const searchQuery = new ClientSearchQuery(page, limit, query,orderBy, direction);
+        const data = await this.service.execute(searchQuery);
+        return CreateAppResponse.successResponse('The clients have been searched successfully',data);
+    }
 }

@@ -1,7 +1,6 @@
 import {Client} from '../../../../core/Client/Model/Client';
 import {GetClientDAO} from '../../../../core/Client/Model/DAO/GetClientDAO';
-import {Inject, Injectable} from '@nestjs/common';
-import {DB_PROVIDER} from '../../../database/DBPROVIDER';
+import {Injectable} from '@nestjs/common';
 import {StringObject} from '../../../../core/common/Model/StringObject';
 import {EmailObject} from '../../../../core/common/Model/EmailObject';
 import {Timestamps} from '../../../../core/common/Model/Timestamps';

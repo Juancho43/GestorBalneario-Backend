@@ -1,5 +1,5 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { GetSeasonInvoicesService } from './get-season-invoices.service';
+import {Test, TestingModule} from '@nestjs/testing';
+import {GetSeasonInvoicesService} from './get-season-invoices.service';
 
 describe('GetSeasonInvoicesService', () => {
   let service: GetSeasonInvoicesService;

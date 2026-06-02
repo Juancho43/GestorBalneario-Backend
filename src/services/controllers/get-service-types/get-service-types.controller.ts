@@ -4,6 +4,7 @@ import {AppResponse} from "../../../../core/common/Application/AppResponse";
 import {CreateAppResponse} from "../../../../core/common/Application/CreateAppResponse";
 import {GetServiceTypesService} from "../../service/get-service-types/get-service-types.service";
 import {IController} from "../../../../core/common/Application/IController";
+
 @ApiTags('Frontend')
 @Controller('service')
 export class GetServiceTypesController implements IController {

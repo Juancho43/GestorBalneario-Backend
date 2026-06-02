@@ -2,7 +2,7 @@ import {Controller, Get, Inject} from '@nestjs/common';
 import {GetPaymentTypesService} from "../../services/get-payment-types/get-payment-types.service";
 import {ApiTags} from "@nestjs/swagger";
 import {IController} from "../../../../core/common/Application/IController";
-import { AppResponse } from "core/common/Application/AppResponse";
+import {AppResponse} from "core/common/Application/AppResponse";
 import {CreateAppResponse} from "../../../../core/common/Application/CreateAppResponse";
 
 @ApiTags('Frontend')

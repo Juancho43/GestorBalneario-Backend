@@ -27,8 +27,10 @@ import {ReservationDaoProviders} from './providers/ReservationDaoProviders';
 import {ReservationUseCaseProvider} from './providers/ReservationUseCaseProvider';
 import {GetSeasonReservationsService} from './services/get-season-reservations/get-season-reservations.service';
 import {
-  GetSeasonReservationsController
+    GetSeasonReservationsController
 } from "./controllers/get-season-reservations/get-season-reservations.controller";
+import {ReservationSearcherController} from './controllers/reservation-searcher/reservation-searcher.controller';
+import {ReservationSearcherService} from './services/reservation-searcher/reservation-searcher.service';
 
 @Module({
   imports: [
@@ -52,6 +54,7 @@ import {
     AddInvoiceItemHandler,
     ReservationCreatedHandler,
     GetSeasonReservationsService,
+    ReservationSearcherService,
   ],
   controllers: [
     EditReservationController,
@@ -60,7 +63,8 @@ import {
     GetReservationController,
     GetActiveReservationsController,
     GetReservationDetailController,
-      GetSeasonReservationsController
+      GetSeasonReservationsController,
+      ReservationSearcherController
   ],
   exports: [RESERVATION_TOKEN.DAOS.GET_RESERVATION],
 })

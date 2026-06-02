@@ -1,7 +1,6 @@
 import {Inject, Injectable, Logger} from '@nestjs/common';
 import {INVOICE_TOKEN} from "../../INVOICE_TOKEN";
 import {GetSeasonsInvoices} from "../../../../core/Invoice/Application/UseCase/GetSeasonsInvoices";
-import {GetSeasonEntityQuery} from "../../../../core/Service/Application/Queries/GetSeasonEntityQuery";
 import {GetSeasonInvoicesQuery} from "../../../../core/Invoice/Application/Queries/GetSeasonInvoicesQuery";
 
 @Injectable()

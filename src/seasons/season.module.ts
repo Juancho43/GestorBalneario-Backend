@@ -18,6 +18,8 @@ import {UpdateSeasonService} from './services/update-season/update-season.servic
 import {SEASON_TOKEN} from './SEASON_TOKEN';
 import {SeasonDaoProviders} from './providers/SeasonDaoProviders';
 import {SeasonUseCaseProviders} from './providers/SeasonUseCaseProviders';
+import {SeasonSearcherController} from './controllers/season-searcher/season-searcher.controller';
+import {SeasonSearcherService} from './services/season-searcher/season-searcher.service';
 
 @Module({
   controllers: [
@@ -29,6 +31,7 @@ import {SeasonUseCaseProviders} from './providers/SeasonUseCaseProviders';
     DeleteSeasonController,
     EditSeasonController,
     SeasonHistoryController,
+    SeasonSearcherController,
   ],
   providers: [
     ...SeasonDaoProviders,
@@ -41,6 +44,7 @@ import {SeasonUseCaseProviders} from './providers/SeasonUseCaseProviders';
     CloneSeasonService,
     DeleteSeasonService,
     UpdateSeasonService,
+    SeasonSearcherService,
   ],
   exports: [GetActiveSeasonService, SEASON_TOKEN.DAOS.CURRENT_SEASON_DAO],
 })

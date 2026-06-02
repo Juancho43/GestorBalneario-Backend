@@ -6,6 +6,7 @@ import {SqliteShadowGetById} from '../repository/CRUD/SqliteShadowGetById';
 import {SqliteShadowDelete} from '../repository/CRUD/SqliteShadowDelete';
 import {SqliteShadowCreate} from '../repository/CRUD/SqliteShadowCreate';
 import {SqliteShadowUpdate} from '../repository/CRUD/SqliteShadowUpdate';
+import {SqliteShadowSearch} from "../repository/SqliteShadowSearch";
 
 export const ShadowDaoProviders: Provider[] = [
   {
@@ -31,5 +32,9 @@ export const ShadowDaoProviders: Provider[] = [
   {
     provide: SHADOW_TOKEN.DAOS.SHADOW_DETAILS,
     useClass: SqliteGetShadowHistory,
+  },
+  {
+    provide: SHADOW_TOKEN.DAOS.SEARCHER,
+    useClass: SqliteShadowSearch,
   },
 ];

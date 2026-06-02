@@ -7,7 +7,7 @@ import {UUID} from '../../../core/common/Model/UUID';
 import {StringObject} from '../../../core/common/Model/StringObject';
 import {Timestamps} from '../../../core/common/Model/Timestamps';
 import {SoftDelete} from '../../../core/common/Model/SoftDelete';
-import { ServiceCategory } from "../../../core/Service/Model/ServiceCategory";
+import {ServiceCategory} from "../../../core/Service/Model/ServiceCategory";
 
 @Injectable()
 export class SqliteGetServices
