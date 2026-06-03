@@ -15,6 +15,8 @@ import {PaymentDaoProvider} from './providers/PaymentDaoProvider';
 import {PaymentUseCaseProviders} from './providers/PaymentUseCaseProviders';
 import {GetPaymentTypesController} from './controllers/get-payment-types/get-payment-types.controller';
 import {GetPaymentTypesService} from './services/get-payment-types/get-payment-types.service';
+import { ExportPaymentReportController } from './controllers/export-payment-report/export-payment-report.controller';
+import { ExportPaymentReportService } from './services/export-payment-report/export-payment-report.service';
 
 @Module({
   imports: [CqrsModule, SeasonModule, ReservationModule, InvoicesModule],
@@ -24,6 +26,7 @@ import {GetPaymentTypesService} from './services/get-payment-types/get-payment-t
     PaymentsReportController,
     DeletePaymentController,
     GetPaymentTypesController,
+    ExportPaymentReportController,
   ],
   providers: [
     ...PaymentDaoProvider,
@@ -36,6 +39,7 @@ import {GetPaymentTypesService} from './services/get-payment-types/get-payment-t
     CreatePaymentService,
     GetPaymentService,
     GetPaymentTypesService,
+    ExportPaymentReportService,
   ],
 })
 export class PaymentsModule {}

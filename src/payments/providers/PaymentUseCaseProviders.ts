@@ -5,6 +5,8 @@ import {ProcessPayment} from '../../../core/Payment/Application/UseCase/ProcessP
 import {DeletePayment} from '../../../core/Payment/Application/UseCase/CRUD/DeletePayment';
 import {INVOICE_TOKEN} from '../../invoices/INVOICE_TOKEN';
 import {GeneratePaymentReport} from '../../../core/Payment/Application/UseCase/GeneratePaymentReport';
+import {ReportStrategyFactory} from "../../../core/Payment/Application/UseCase/ReportStrategyFactory";
+import {ExportPaymentReport} from "../../../core/Payment/Application/UseCase/ExportPaymentReport";
 
 export const PaymentUseCaseProviders: Provider[] = [
   {
@@ -42,5 +44,19 @@ export const PaymentUseCaseProviders: Provider[] = [
       return new GeneratePaymentReport(dao);
     },
     inject: [PAYMENT_TOKEN.DAOS.PAYMENT_REPORT],
+  },
+  {
+    provide: PAYMENT_TOKEN.STRATEGY.FACTORY,
+    useFactory: () => {
+      return new ReportStrategyFactory();
+    },
+  },
+
+  {
+    provide: PAYMENT_TOKEN.USECASE.EXPORT_REPORT,
+    useFactory: (factory: ReportStrategyFactory) => {
+      return new ExportPaymentReport(factory);
+    },
+    inject: [PAYMENT_TOKEN.STRATEGY.FACTORY],
   },
 ];
