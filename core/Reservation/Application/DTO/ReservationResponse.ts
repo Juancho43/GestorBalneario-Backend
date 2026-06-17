@@ -56,8 +56,8 @@ export class ReservationResponse extends TimeStampResponse {
 
     r.id = reservation.id.value;
     r.dates = {
-      checkIn: reservation.booking.checkIn.toString(),
-      checkOut: reservation.booking.checkOut.toString(),
+      checkIn: reservation.booking.startDate.toString(),
+      checkOut: reservation.booking.endDate.toString(),
     };
     r.duration = reservation.booking.durationInDays();
 

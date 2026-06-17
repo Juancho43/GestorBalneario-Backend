@@ -3,16 +3,19 @@ import {UUID} from '../../common/Model/UUID';
 import {SoftDelete} from '../../common/Model/SoftDelete';
 import {Timestamps} from '../../common/Model/Timestamps';
 import {Entity} from '../../common/Model/Entity';
-import {ReservationState} from "./ValueObjects/ReservationState";
-import {CreatedState} from "./ValueObjects/CreatedState";
+import {ReservationState} from "./States/ReservationState";
+import {CreatedState} from "./States/CreatedState";
 import {Client} from "../../Client/Model/Client";
 import {Shadow} from "../../Shadow/Model/Shadow";
+import {timestamp} from "rxjs";
 
 export class Reservation implements Entity {
   private readonly _id: UUID;
   private readonly _client: UUID;
   private readonly _shadow: UUID;
   private _booking: Booking;
+  private _checkIn: null | Date = null;
+  private _checkOut: null | Date = null;
   private _state: ReservationState;
   private readonly _timestamp: Timestamps;
   private readonly _softDelete: SoftDelete;
@@ -34,24 +37,6 @@ export class Reservation implements Entity {
     this._state = new CreatedState(this);
   }
 
-  delete(): void {
-    this._state.delete();
-
-  }
-  update(): void {
-    this._state.update();
-  }
-
-  getId(): UUID {
-    return this._id;
-  }
-  getTimestamps(): Timestamps {
-    return this._timestamp;
-  }
-  getSoftDelete(): SoftDelete {
-    return this._softDelete;
-  }
-
   public static create(
     id: UUID,
     client: UUID,
@@ -63,6 +48,25 @@ export class Reservation implements Entity {
     return new Reservation(id, client, shadow, booking, timestamp, softdelete);
   }
 
+  clientCheckIn(client: Client, shadow: Shadow){
+    this._state.checkIn(client,shadow);
+  }
+  clientCheckOut(client: Client){
+    this._state.checkOut(client);
+  }
+  reschedule(shadow: Shadow, booking: Booking){
+    this._state.reschedule(shadow,booking)
+    this.booking = booking;
+  }
+  cancel(){
+    this._state.cancel();
+  }
+  update(): void {
+    this._state.update();
+  }
+  delete(): void {
+    this._state.delete();
+  }
   get id(): UUID {
     return this._id;
   }
@@ -81,17 +85,39 @@ export class Reservation implements Entity {
   get softDelete(): SoftDelete {
     return this._softDelete;
   }
-  clientCheckIn(client: Client){
-    this._state.checkIn(client);
+  get state(): ReservationState{
+    return this._state;
   }
-  reschedule(shadow: Shadow, booking: Booking){
-    this._state.reschedule(shadow,booking)
-    this.booking = booking;
+  setState(state: ReservationState){
+    this._state = state;
   }
   private set booking(booking: Booking) {
     this._booking = booking;
   }
-  setState(state: ReservationState){
-    this._state = state;
+
+  get checkIn(): Date | null {
+    return this._checkIn;
+  }
+
+  set checkIn(value: Date | null) {
+    this._checkIn = value;
+  }
+
+  get checkOut(): Date | null {
+    return this._checkOut;
+  }
+
+  set checkOut(value: Date | null) {
+    this._checkOut = value;
+  }
+
+  getId(): UUID {
+    return this._id;
+  }
+  getTimestamps(): Timestamps {
+    return this._timestamp;
+  }
+  getSoftDelete(): SoftDelete {
+    return this._softDelete;
   }
 }

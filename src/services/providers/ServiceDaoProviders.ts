@@ -7,6 +7,7 @@ import {SqliteSeasonsServices} from '../repository/SqliteSeasonsServices';
 import {SqliteGetServices} from '../repository/SqliteGetServices';
 import {SqliteServiceDelete} from "../repository/CRUD/SqliteServiceDelete";
 import {ServiceSearcher} from "../repository/SqliteSeviceSearch";
+import {SqliteGetServiceDetails} from "../repository/SqliteGetServiceDetails";
 
 export const ServiceDaoProviders: Provider[] = [
   {
@@ -37,4 +38,8 @@ export const ServiceDaoProviders: Provider[] = [
     provide: SERVICE_TOKEN.DAOS.SEARCHER,
     useClass: ServiceSearcher,
   },
+  {
+    provide: SERVICE_TOKEN.DAOS.GET_DETAILS,
+    useClass: SqliteGetServiceDetails
+  }
 ];

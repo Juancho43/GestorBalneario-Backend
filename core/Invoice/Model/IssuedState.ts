@@ -50,6 +50,7 @@ export class IssuedState implements InvoiceState {
     this.invoice.payments.push(payment);
     if (this.invoice.calculateTotalPaid() == this.invoice.amount.finalAmount) {
       this.invoice.state = new PaidState(this.invoice);
+      this.invoice.closeDate = new Date();
     }
   }
 

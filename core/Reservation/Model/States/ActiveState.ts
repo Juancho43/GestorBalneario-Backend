@@ -5,6 +5,7 @@ import {Client} from "core/Client/Model/Client";
 import {Shadow} from "core/Shadow/Model/Shadow";
 import {InvalidReservationActionError} from "../InvalidReservationActionError";
 import {CompletedState} from "./CompletedState";
+import {CancelledState} from "./CancelledState";
 
 export class ActiveState implements ReservationState {
     private readonly reservation: Reservation;
@@ -13,11 +14,24 @@ export class ActiveState implements ReservationState {
         this.reservation = reservation;
     }
 
+    checkIn(): void {
+        throw new InvalidReservationActionError(this.toString(), 'checkIn');
+    }
+
+    checkOut(client: Client): void {
+        if(this.reservation.client.value !== client.id.value){
+            throw new Error('Client does not match the reservation');
+        }
+        this.reservation.checkOut =  new Date();
+        this.reservation.setState(new CompletedState(this.reservation))
+        this.update();
+    }
+
     reschedule(shadow: Shadow, booking: Booking): boolean {
         if (this.reservation.shadow.value !== shadow.id.value) {
             throw new Error('You can only reschedule to the same shadow');
         }
-        if (this.reservation.booking.checkIn.getTime() !== booking.checkIn.getTime()) {
+        if (this.reservation.booking.startDate.getTime() !== booking.startDate.getTime()) {
             throw new Error('You can only reschedule to the same check-in date');
         }
         const isAvailable = shadow.canBeReserved(booking, this.reservation.id);
@@ -27,24 +41,16 @@ export class ActiveState implements ReservationState {
         return true;
     }
 
-    checkIn(client: Client): void {
-        throw new InvalidReservationActionError(this.toString(), 'checkIn');
-    }
-
     cancel(): void {
-        throw new InvalidReservationActionError(this.toString(), 'cancel');
+        this.reservation.setState(new CancelledState(this.reservation))
+        this.reservation.checkOut =  new Date();
+        this.update();
     }
-
-    delete(): void {
-        this.reservation.softDelete.apply();
-    }
-
-    finish(): void {
-        this.reservation.setState(new CompletedState(this.reservation))
-    }
-
     update(): void {
         this.reservation.timestamp.update();
+    }
+    delete(): void {
+        this.reservation.softDelete.apply();
     }
     getReservation(): Reservation {
         return this.reservation;

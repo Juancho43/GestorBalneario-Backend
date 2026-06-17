@@ -17,8 +17,8 @@ export class SqliteUpdateReservation implements UpdateReservationDAO {
 
         const reservaActualizada = {
             id: reservation.id.value,
-            checkIn: reservation.booking.checkIn.toISOString(),
-            checkOut: reservation.booking.checkOut.toISOString(),
+            checkIn: reservation.booking.startDate.toISOString(),
+            checkOut: reservation.booking.endDate.toISOString(),
         };
 
         stmt.run(reservaActualizada);

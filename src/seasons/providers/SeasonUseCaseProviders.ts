@@ -8,6 +8,7 @@ import {GetActiveSeason} from '../../../core/Season/Application/UseCase/GetActiv
 import {GetSeasonsHistory} from '../../../core/Season/Application/UseCase/GetSeasonsHistory';
 import {SeasonSearch} from "../../../core/Season/Application/UseCase/SeasonSearch";
 import {SeasonClientsDebt} from "../../../core/Season/Application/UseCase/SeasonClientsDebt";
+import {SeasonDetails} from "../../../core/Season/Application/UseCase/SeasonDetails";
 
 export const SeasonUseCaseProviders: Provider[] = [
   {
@@ -65,5 +66,12 @@ export const SeasonUseCaseProviders: Provider[] = [
       return new SeasonClientsDebt(dao);
     },
     inject: [SEASON_TOKEN.DAOS.CLIENTS_DEBT],
+  },
+  {
+    provide: SEASON_TOKEN.USECASE.GET_DETAILS,
+    useFactory: (dao) => {
+      return new SeasonDetails(dao)
+    },
+    inject : [SEASON_TOKEN.DAOS.GET_DETAILS],
   }
 ];

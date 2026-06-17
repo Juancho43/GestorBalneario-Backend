@@ -7,6 +7,7 @@ import {GetService} from '../../../core/Service/Application/UseCase/CRUD/GetServ
 import {GetSeasonServices} from '../../../core/Service/Application/UseCase/GetSeasonServices';
 import {GetActiveSeasonService} from '../../seasons/services/get-active-season/get-active-season.service';
 import {ServiceSearch} from "../../../core/Service/Application/UseCase/ServiceSearch";
+import {ServiceDetails} from "../../../core/Service/Application/UseCase/ServiceDetails";
 
 export const ServiceUseCaseProviders: Provider[] = [
   {
@@ -58,4 +59,11 @@ export const ServiceUseCaseProviders: Provider[] = [
     },
     inject: [SERVICE_TOKEN.DAOS.SEARCHER],
   },
+  {
+    provide: SERVICE_TOKEN.USECASE.GET_DETAILS,
+    useFactory: (get) => {
+      return new ServiceDetails(get)
+    },
+    inject: [SERVICE_TOKEN.DAOS.GET_DETAILS]
+  }
 ];

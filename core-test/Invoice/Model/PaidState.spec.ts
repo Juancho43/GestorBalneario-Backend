@@ -33,7 +33,7 @@ describe('PaidState Model', () => {
   it('Should not remove items', () => {
     expect(() => model.removeItem({} as any)).toThrow(ModifyPaidInvoiceError);
   })
-  it('Should not detele the invoice',()=>{
+  it('Should not delete the invoice',()=>{
     expect(() => model.delete()).toThrow(ModifyPaidInvoiceError);
   })
   it('Should not modify the invoice', () => {

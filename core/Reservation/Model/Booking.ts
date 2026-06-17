@@ -2,8 +2,8 @@ import {InvalidDatesError} from '../../common/Model/Errors/InvalidDates';
 
 export class Booking {
   private constructor(
-    private _checkIn: Date,
-    private _checkOut: Date,
+    private _startDate: Date,
+    private _endDate: Date,
   ) {}
 
   public static create(checkIn: Date, checkOut: Date): Booking {
@@ -13,18 +13,18 @@ export class Booking {
     return new Booking(checkIn, checkOut);
   }
   public overlapsWith(other: Booking): boolean {
-    return this._checkIn < other.checkOut && other.checkIn < this._checkOut;
+    return this._startDate < other.endDate && other.startDate < this._endDate;
   }
 
   public durationInDays(): number {
-    const diff = this._checkOut.getTime() - this._checkIn.getTime();
+    const diff = this._endDate.getTime() - this._startDate.getTime();
     return Math.ceil(diff / (1000 * 3600 * 24));
   }
-  get checkIn(): Date {
-    return this._checkIn;
+  get startDate(): Date {
+    return this._startDate;
   }
 
-  get checkOut(): Date {
-    return this._checkOut;
+  get endDate(): Date {
+    return this._endDate;
   }
 }

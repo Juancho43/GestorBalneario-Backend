@@ -1,31 +1,30 @@
 import {ReservationState} from "./ReservationState";
-import {Booking} from "../Booking";
 import {Reservation} from "../Reservation";
-import {Client} from "../../../Client/Model/Client";
 import {InvalidReservationActionError} from "../InvalidReservationActionError";
-import {Shadow} from "../../../Shadow/Model/Shadow";
 
-export class CompletedState  implements ReservationState {
+export class CancelledState  implements ReservationState {
     private readonly reservation : Reservation;
 
     constructor(reservation: Reservation) {
         this.reservation = reservation;
     }
 
-    cancel(): void {
-        throw new InvalidReservationActionError(this.toString(), 'cancel');
+    checkIn(): void {
+        throw new InvalidReservationActionError(this.toString(), 'checkIn');
     }
 
-    finish(): void {
+    checkOut(): void {
         throw new InvalidReservationActionError(this.toString(), 'finish');
     }
 
-    reschedule(shadow: Shadow, booking: Booking): boolean {
+    reschedule(): boolean {
         throw new InvalidReservationActionError(this.toString(), 'reschedule');
     }
-
+    cancel(): void {
+        throw new InvalidReservationActionError(this.toString(), 'cancel');
+    }
     update(): void {
-        throw new InvalidReservationActionError(this.toString(), 'update');
+        throw new InvalidReservationActionError(this.toString(), 'reschedule');
     }
 
     delete(): void {
@@ -34,11 +33,8 @@ export class CompletedState  implements ReservationState {
     getReservation(): Reservation {
         return this.reservation;
     }
-    toString(): string {
-        return CompletedState.name;
-    }
 
-    checkIn(client: Client): void {
-        throw new InvalidReservationActionError(this.toString(), 'checkIn');
+    toString(): string {
+        return CancelledState.name;
     }
 }

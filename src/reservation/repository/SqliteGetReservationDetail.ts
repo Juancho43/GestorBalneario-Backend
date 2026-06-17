@@ -39,7 +39,8 @@ export class SqliteGetReservationDetail
         p.description AS paymentDescription,
         p.finalAmount AS paymentFinalAmount,
         i.amount AS invoiceAmount,
-        i.date AS invoiceDate
+        i.date AS invoiceDate,
+        i.state AS invoiceState
 
       FROM
         Reservations r
@@ -79,7 +80,7 @@ export class SqliteGetReservationDetail
     invoiceResponse.amount = rows[0].invoiceAmount;
     invoiceResponse.date = rows[0].invoiceDate;
     invoiceResponse.clientId = rows[0].clientId;
-
+    invoiceResponse.state = rows[0].invoiceState;
     const paymentsResponse: PaymentResponse[] = [];
 
     rows.forEach((row) => {

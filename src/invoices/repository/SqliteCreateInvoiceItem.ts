@@ -26,7 +26,8 @@ export class SqliteCreateInvoiceItem
     const stmtInvoice = this.getDb().prepare(sqlInvoice);
     const stmtItem = this.getDb().prepare(sqlItem);
     const stmtUpdate = this.getDb().prepare(sqlUpdate);
-
+  //TODO: guarda el estado como OBJECT OBJECT
+    console.log(data.invoice);
     const transaction = this.getDb().transaction(() => {
       stmtInvoice.run({
         id: data.invoice.id.value,

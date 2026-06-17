@@ -16,6 +16,7 @@ export class Invoice implements Entity {
   private _state: InvoiceState;
   private _items: InvoiceItem[] = [];
   private _payments: Payment[] = [];
+  private _closeDate : Date | null = null;
   private readonly _timestamps: Timestamps;
   private readonly _softDelete: SoftDelete;
 
@@ -128,6 +129,15 @@ export class Invoice implements Entity {
   get softDelete(): SoftDelete {
     return this._softDelete;
   }
+
+  get closeDate(): Date | null {
+    return this._closeDate;
+  }
+
+  set closeDate(value: Date | null) {
+    this._closeDate = value;
+  }
+
   public updateItemsCollection(newItems: InvoiceItem[]): void {
     this._items = newItems;
   }

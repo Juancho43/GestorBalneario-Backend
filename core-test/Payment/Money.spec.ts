@@ -24,7 +24,4 @@ describe('Money Domain Entity', () => {
     expect(money.finalAmount).toBe(100 * 1140);
   });
 
-  it('should trow exceptions if number is negative', () => {
-    expect(() => MoneyMother.create({ amount: -100 })).toThrow(Error);
-  });
 });

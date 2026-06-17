@@ -59,10 +59,10 @@ describe('Update reservation UseCase', () => {
     expect(getReservationMock.get).toHaveBeenCalledWith(reservation.id.value);
     expect(getShadowMock.get).toHaveBeenCalledWith(reservation.shadow.value);
     expect(saveMock.update).toHaveBeenCalled();
-    expect(updatedReservation.booking.checkIn.toISOString()).toBe(
+    expect(updatedReservation.booking.startDate.toISOString()).toBe(
       command.data.checkIn,
     );
-    expect(updatedReservation.booking.checkOut.toISOString()).toBe(
+    expect(updatedReservation.booking.endDate.toISOString()).toBe(
       command.data.checkOut,
     );
   });

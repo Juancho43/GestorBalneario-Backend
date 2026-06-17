@@ -106,8 +106,8 @@ export class Shadow implements Prototype<Shadow>, Entity {
     const booking = reservation.booking;
     if (!this.canBeReserved(booking))
       throw new NotAvailableDate(
-        booking.checkIn.toISOString(),
-        booking.checkOut.toISOString(),
+        booking.startDate.toISOString(),
+        booking.endDate.toISOString(),
       );
     this._reservations.push(reservation);
     this._state = new BookedState(this);

@@ -4,13 +4,11 @@ import {Client} from "../../../Client/Model/Client";
 import {Shadow} from "../../../Shadow/Model/Shadow";
 
 export interface ReservationState {
-    update() : void;
-    delete() : void;
+    checkIn(client:Client, shadow: Shadow): void;
+    checkOut(client:Client): void;
     reschedule(shadow: Shadow, booking: Booking) : boolean;
     cancel(): void;
-    finish(): void;
+    update() : void;
+    delete() : void;
     getReservation(): Reservation;
-    toString(): string;
-    checkIn(client:Client): void;
-
 }

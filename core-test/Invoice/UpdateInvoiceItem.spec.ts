@@ -28,7 +28,7 @@ describe('UpdateInvoiceItem UseCase', () => {
         invoice = InvoiceMother.create();
         client.addInvoice(invoice);
 
-        item = CreateInvoiceItem.create('Discount',10,'Client Vip',service.id.value,service.id.value,invoice.id.value);
+        item = CreateInvoiceItem.create('DISCOUNT',10,'Client Vip',service.id.value,service.id.value,invoice.id.value);
         invoice.addItem(item);
         mockEventPublisher = {
             publish: vi.fn().mockResolvedValue(undefined),
@@ -37,7 +37,7 @@ describe('UpdateInvoiceItem UseCase', () => {
             update: vi.fn().mockResolvedValue(undefined),
         };
         mockClientInvoicesDAO = {
-            get: vi.fn().mockResolvedValue(client),
+            get: vi.fn().mockResolvedValue(invoice),
         };
         mockGetServiceDAO = {
             get: vi.fn().mockResolvedValue(service),
@@ -47,7 +47,7 @@ describe('UpdateInvoiceItem UseCase', () => {
            client.id.value,
             service.id.value,
             service.price.amount,
-            'Discount',
+            'DISCOUNT',
             1,
             'Service',
         );

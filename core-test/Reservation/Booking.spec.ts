@@ -8,8 +8,8 @@ describe('Booking Value Object', () => {
       new Date('2020-01-10'),
     );
     expect(booking).toBeTruthy();
-    expect(booking.checkIn).toEqual(new Date('2020-01-02'));
-    expect(booking.checkOut).toEqual(new Date('2020-01-10'));
+    expect(booking.startDate).toEqual(new Date('2020-01-02'));
+    expect(booking.endDate).toEqual(new Date('2020-01-10'));
     expect(booking.durationInDays()).toEqual(8);
   });
 

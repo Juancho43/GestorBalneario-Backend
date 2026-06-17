@@ -20,7 +20,8 @@ export class SqliteClientDetails
                 c.phone as clientPhone,
                 i.id as invoiceId,
                 i.amount as invoiceAmount,
-                i.date as invoiceDate
+                i.date as invoiceDate,
+                i.state as invoiceState
             FROM Clients AS c
                      LEFT JOIN Invoices AS i ON i.clientId = c.id
             WHERE c.id = @clientId
@@ -50,6 +51,7 @@ export class SqliteClientDetails
           response.clientId = row.clientId;
           response.date = row.invoiceDate;
           response.amount = row.invoiceAmount;
+          response.state = row.invoiceState;
           invoices.set(row.invoiceId, response);
         }
       });
